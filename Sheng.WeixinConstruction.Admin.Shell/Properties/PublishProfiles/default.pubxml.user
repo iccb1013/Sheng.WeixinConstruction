@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+您 Web 项目的发布/打包进程将使用此文件。您可以通过编辑此 MSBuild 文件
+来自定义该进程的行为。若要了解与此相关的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=208121。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\WorkFloder\WeixinConstruction_Publish\Sheng.WeixinConstruction.Admin.Shell</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Areas/Api/Views/web.config">
+      <publishTime>08/10/2016 23:26:23</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>10/23/2015 23:02:28</publishTime>
+    </File>
+    <File Include="bin/App_Code.compiled">
+      <publishTime>08/12/2016 01:05:46</publishTime>
+    </File>
+    <File Include="bin/App_Code.dll">
+      <publishTime>08/12/2016 01:05:46</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>08/12/2016 01:05:47</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>08/12/2016 01:05:47</publishTime>
+    </File>
+    <File Include="bin/Gma.QrCodeNet.Encoding.Net45.dll">
+      <publishTime>02/03/2016 21:39:45</publishTime>
+    </File>
+    <File Include="bin/Linkup.Common.dll">
+      <publishTime>08/06/2016 22:28:41</publishTime>
+    </File>
+    <File Include="bin/Linkup.Data.dll">
+      <publishTime>08/12/2016 01:05:32</publishTime>
+    </File>
+    <File Include="bin/Linkup.DataRelationalMapping.dll">
+      <publishTime>08/07/2016 00:15:46</publishTime>
+    </File>
+    <File Include="bin/LitJson.dll">
+      <publishTime>05/19/2014 21:40:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll">
+      <publishTime>05/21/2013 12:43:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Data.dll">
+      <publishTime>05/21/2013 12:43:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll">
+      <publishTime>05/21/2013 12:43:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll">
+      <publishTime>05/21/2013 12:43:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Logging.dll">
+      <publishTime>05/21/2013 12:43:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>10/23/2015 23:02:27</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>10/23/2015 23:02:32</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.Admin.Shell.dll">
+      <publishTime>08/12/2016 01:05:35</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.ApiContract.dll">
+      <publishTime>06/21/2016 01:16:52</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.Core.dll">
+      <publishTime>08/12/2016 01:05:34</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.Infrastructure.dll">
+      <publishTime>08/12/2016 01:05:33</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.Service.dll">
+      <publishTime>08/12/2016 00:07:20</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.WeixinContract.dll">
+      <publishTime>08/07/2016 00:15:28</publishTime>
+    </File>
+    <File Include="bin/StackExchange.Redis.dll">
+      <publishTime>12/03/2015 21:38:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>10/23/2015 23:02:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>10/23/2015 23:02:27</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>10/23/2015 23:02:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>10/23/2015 23:02:25</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>10/23/2015 23:02:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>10/23/2015 23:02:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>10/23/2015 23:02:26</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>10/23/2015 23:02:28</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Optimization.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>10/23/2015 23:02:29</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="Content/Images/leftMenuItem_active_bg.jpg">
+      <publishTime>08/10/2016 00:20:27</publishTime>
+    </File>
+    <File Include="Content/Images/leftMenu_bg.jpg">
+      <publishTime>08/10/2016 00:20:39</publishTime>
+    </File>
+    <File Include="Content/Images/leftTitle_bg.jpg">
+      <publishTime>08/10/2016 00:20:35</publishTime>
+    </File>
+    <File Include="Content/Images/mainMenu_active.jpg">
+      <publishTime>08/10/2016 00:20:27</publishTime>
+    </File>
+    <File Include="Content/Images/tableTitle_bg.jpg">
+      <publishTime>08/11/2016 00:02:55</publishTime>
+    </File>
+    <File Include="Content/Images/topbar_bg.jpg">
+      <publishTime>08/10/2016 00:20:27</publishTime>
+    </File>
+    <File Include="Content/Style.css">
+      <publishTime>08/10/2016 00:20:13</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>08/10/2016 00:16:08</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>08/10/2016 00:16:28</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>08/12/2016 01:05:39</publishTime>
+    </File>
+    <File Include="Scripts/common.js">
+      <publishTime>08/10/2016 00:21:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>08/10/2016 00:16:10</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>08/10/2016 00:16:09</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>08/10/2016 00:16:09</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>08/10/2016 00:16:11</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>08/10/2016 00:16:11</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>08/10/2016 00:16:11</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>08/10/2016 00:16:11</publishTime>
+    </File>
+    <File Include="Scripts/laydate/laydate.js">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/laydate/need/laydate.css">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/laydate/skins/default/icon.png">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/laydate/skins/default/laydate.css">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/laydate/skins/molv/icon.png">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/laydate/skins/molv/laydate.css">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/layer/extend/layer.ext.js">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/layer/layer.js">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/layer/skin/default/icon-ext.png">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/layer/skin/default/icon.png">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/layer/skin/default/loading-0.gif">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/layer/skin/default/loading-1.gif">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/layer/skin/default/loading-2.gif">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/layer/skin/layer.css">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/layer/skin/layer.ext.css">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/laypage/laypage.js">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/laypage/skin/laypage.css">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/laytpl.js">
+      <publishTime>08/10/2016 00:22:10</publishTime>
+    </File>
+    <File Include="Scripts/validate/additional-methods.js">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/validate/additional-methods.min.js">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/validate/jquery.validate.js">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/validate/jquery.validate.min.js">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/validate/localization/messages_zh.js">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/validate/localization/messages_zh.min.js">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>08/10/2016 00:22:49</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>08/10/2016 00:16:08</publishTime>
+    </File>
+    <File Include="Views/Home/PortalTemplate.cshtml">
+      <publishTime>08/11/2016 23:54:08</publishTime>
+    </File>
+    <File Include="Views/Home/PortalTemplateEdit.cshtml">
+      <publishTime>08/12/2016 00:02:23</publishTime>
+    </File>
+    <File Include="Views/Home/_LeftMenu.cshtml">
+      <publishTime>08/10/2016 00:28:07</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>08/10/2016 00:16:08</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>08/10/2016 00:30:18</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutBlank.cshtml">
+      <publishTime>08/10/2016 23:57:36</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>08/10/2016 00:16:08</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>08/10/2016 00:16:08</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>08/12/2016 01:05:36</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

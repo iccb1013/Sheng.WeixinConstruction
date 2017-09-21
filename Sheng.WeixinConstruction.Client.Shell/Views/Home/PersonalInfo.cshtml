@@ -1,0 +1,207 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.PersonalInfoViewModel
+
+@{
+    ViewBag.SubTitle = "个人信息";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<script>
+
+    var _editing = false;
+
+    $(document).ready(function ()
+    {
+
+    });
+
+    function modify()
+    {
+        if (_editing == false)
+        {
+            $("#divBaseInfo").hide();
+            $("#divBaseInfoEdit").show();
+            $("#btnModifyButton").html("保存");
+            $("#txtName").focus();
+            _editing = true;
+        }
+        else
+        {
+            //保存数据
+            var loadLayerIndex = layer.open({
+                type: 2,
+                shadeClose: false,
+                content: '请稍候...'
+            });
+
+            var args = new Object();
+            args.Name = $("#txtName").val();
+            args.Birthday = $("#txtBirthday").val();
+            args.MobilePhone = $("#txtMobilePhone").val();
+            args.Email = $("#txtEmail").val();
+
+            $.ajax({
+                url: "/Api/Member/UpdatePersonalInfo/@ViewBag.Domain.Id",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(args),
+                success: function (data, status, jqXHR)
+                {
+                    layer.close(loadLayerIndex);
+                    if (data.Success)
+                    {
+                        $("#spanName").html(args.Name);
+                        $("#spanBirthday").html(args.Birthday);
+                        $("#spanMobilePhone").html(args.MobilePhone);
+                        $("#spanEmail").html(args.Email);
+
+                        $("#divBaseInfo").show();
+                        $("#divBaseInfoEdit").hide();
+                        $("#btnModifyButton").html("修改个人信息");
+                        _editing = false;
+                        
+                    } else
+                    {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest)
+                {
+                    layer.close(loadLayerIndex);
+                    //alert("Error: " + xmlHttpRequest.status);
+                }
+            });          
+        }
+    }
+
+</script>
+
+<style type="text/css">
+    body {
+        margin-top: 0.85rem;
+        margin-bottom: 0.55rem;
+    }
+
+    #divTopTitle {
+        height: 0.7rem;
+        color: #FFF;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        top: 0rem;
+    }
+
+
+    .tdInfo {
+        height: 0.33rem;
+        width: 0.6rem;
+    }
+
+
+    #divFooter {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.4rem;
+        font-size: 0.14rem;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+</style>
+
+
+<div id="divTopTitle" class="gradient">
+    <div style="padding-top:0.1rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width:0.7rem;">
+                    <img src="@Model.Member.Headimgurl_64" style="width:0.5rem; height:0.5rem">
+                </td>
+                <td>
+                    <div>@Model.Member.NickName</div>
+                    <div style="margin-top:0.1rem;">
+                        <span>@Model.Member.Country</span>
+                        <span>@Model.Member.Province</span>
+                        <span>@Model.Member.City</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div class="divContent" style="">
+    @*<div>
+        我的兴趣：
+    </div>
+    <div style="margin-top:0.1rem;">
+        <div class="divRectangle" style="margin-right:0.1rem;float:left;padding: 0.04rem 0.1rem;">美食</div>
+        <div class="divRectangle" style="margin-right:0.1rem;float:left;padding: 0.04rem 0.1rem;">时尚</div>
+        <div class="divRectangle" style="margin-right:0.1rem;float:left;padding: 0.04rem 0.1rem;">户外</div>
+        <div style="clear:both"></div>
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem;">
+    </div>*@
+
+    <div id="divBaseInfo" style=" margin-top:0.1rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="tdInfo">姓名：</td>
+                <td><span id="spanName">@Model.Member.Name</span></td>
+            </tr>
+            <tr>
+                <td class="tdInfo">生日：</td>
+                <td><span id="spanBirthday">@if (Model.Member.Birthday.HasValue) { @Html.Raw(Model.Member.Birthday.Value.ToString("yyyy-MM-dd")); }</span></td>
+            </tr>
+            <tr>
+                <td class="tdInfo">手机：</td>
+                <td>
+                    <span id="spanMobilePhone">@Model.Member.MobilePhone</span>
+                    @*<span class="defaultColor" style=" text-decoration:underline">
+                        点击此处绑定手机
+                    </span>*@
+                </td>
+            </tr>
+            <tr>
+                <td class="tdInfo">邮箱：</td>
+                <td><span id="spanEmail">@Model.Member.Email</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="divBaseInfoEdit" style="  margin-top:0.1rem; display:none">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="tdInfo">姓名：</td>
+                <td><input id="txtName" name="txtName" type="text" class="input_16" maxlength="10" value="@Model.Member.Name" /></td>
+            </tr>
+            <tr>
+                <td class="tdInfo">生日：</td>
+                <td><input id="txtBirthday" name="txtBirthday" type="date" class="input_16" value="@if (Model.Member.Birthday.HasValue) { @Html.Raw(Model.Member.Birthday.Value.ToString("yyyy-MM-dd")); }" /></td>
+            </tr>
+            <tr>
+                <td class="tdInfo">手机：</td>
+                <td><input id="txtMobilePhone" name="txtMobilePhone" type="number" maxlength="15" class="input_16" value="@Model.Member.MobilePhone" /></td>
+            </tr>
+            <tr>
+                <td class="tdInfo">邮箱：</td>
+                <td><input id="txtEmail" name="txtEmail" type="email" class="input_16" maxlength="30" value="@Model.Member.Email" /></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<div id="divFooter" onclick="modify()">
+    <table align="center" style="height:100%">
+        <tr>
+            <td valign="middle" align="center">
+                <input id="btnModifyButton" name="" type="button" class="button" value="修改个人信息" style="width:1.5rem;">
+            </td>
+        </tr>
+    </table>
+</div>

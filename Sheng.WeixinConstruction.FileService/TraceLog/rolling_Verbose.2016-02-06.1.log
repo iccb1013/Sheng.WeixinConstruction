@@ -1,0 +1,180 @@
+----------------------------------------
+Timestamp: 2016/1/30 0:01:49
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/30 0:01:50
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/3 0:34:25
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/3 0:34:26
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/3 1:28:35
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/3 1:28:35
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/3 22:19:33
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/3 22:19:36
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/4 0:37:39
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/4 0:37:40
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/4 0:37:40
+
+Title:发起文件代理下载请求
+
+Message: {"Url":"http://wx.qlogo.cn/mmopen/yvKXaGzVGr54DuXya20RWoJODqKdETGP1MeFdnoSl2uvufT0evb8do7epJCht9lh4xVZwr6O9VBkjOicKEcibYRFFibxcrbkH5D/96","Sync":true,"CallbackUrl":null,"Tag":null,"Domain":"f6aad430-ca1f-4afd-b2b0-6e0d2fabb622","ServerRootDir":"D:\\WorkFloder\\WeixinConstruction\\trunk\\SourceCode\\Sheng.WeixinConstruction.FileService\\"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/4 0:37:40
+
+Title:文件代理下载请求返回
+
+Message: {"Success":true,"Message":null,"OutputFile":"FileStore/f6aad430-ca1f-4afd-b2b0-6e0d2fabb622/c2dae96d-9e44-4c52-92b4-ca52d6e565dd.jpg","Tag":null,"ContentType":"image/jpeg"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/4 0:40:36
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/4 0:40:38
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/4 0:40:39
+
+Title:发起文件代理下载请求
+
+Message: {"Url":"http://wx.qlogo.cn/mmopen/yvKXaGzVGr54DuXya20RWoJODqKdETGP1MeFdnoSl2uvufT0evb8do7epJCht9lh4xVZwr6O9VBkjOicKEcibYRFFibxcrbkH5D/96","Sync":true,"CallbackUrl":null,"Tag":null,"Domain":"f6aad430-ca1f-4afd-b2b0-6e0d2fabb622","ServerRootDir":"D:\\WorkFloder\\WeixinConstruction\\trunk\\SourceCode\\Sheng.WeixinConstruction.FileService\\"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/4 0:40:39
+
+Title:文件代理下载请求返回
+
+Message: {"Success":true,"Message":null,"OutputFile":"FileStore/f6aad430-ca1f-4afd-b2b0-6e0d2fabb622/a8654c31-aff3-47cb-9070-b7cc348d2dee.jpg","Tag":null,"ContentType":"image/jpeg"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/4 0:41:59
+
+Title:发起文件代理下载请求
+
+Message: {"Url":"http://wx.qlogo.cn/mmopen/yvKXaGzVGr54DuXya20RWoJODqKdETGP1MeFdnoSl2uvufT0evb8do7epJCht9lh4xVZwr6O9VBkjOicKEcibYRFFibxcrbkH5D/96","Sync":true,"CallbackUrl":null,"Tag":null,"Domain":"f6aad430-ca1f-4afd-b2b0-6e0d2fabb622","ServerRootDir":"D:\\WorkFloder\\WeixinConstruction\\trunk\\SourceCode\\Sheng.WeixinConstruction.FileService\\"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/2/4 0:41:59
+
+Title:文件代理下载请求返回
+
+Message: {"Success":true,"Message":null,"OutputFile":"FileStore/f6aad430-ca1f-4afd-b2b0-6e0d2fabb622/f809ee57-27b1-45ca-b896-6607b961dec2.jpg","Tag":null,"ContentType":"image/jpeg"}
+
+Severity: Verbose
+
+----------------------------------------

@@ -1,0 +1,96 @@
+----------------------------------------
+Timestamp: 2016/10/10 0:28:33
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/10/10 0:28:51
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/10/10 0:30:36
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/10/10 0:30:37
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/10/10 0:30:58
+
+Title:ShortUrlApi.GetShortUrl 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/shorturl?access_token=gF2SfgVC0hr-pyeTEeT50zB-mpofUK25PLgh8xx1dRVfRdd9S-8VQUWguBNmz8QWQsCe3VcDD_XDPIBEWZL3cA5egKErcuZE48QycPKJFp1KcT2RcnF1vhCwo6ktdyN6IZXfAMDBSQ
+发送的内容：
+{"action":"long2short","long_url":"http://wx8c36b3c0000a0a49.wxc.shengxunwei.com/Function/RecommendUrl/2a58d820-de07-4c8f-80b9-b5cb5a1028b4?id=0e4c1eae-b75d-48cf-a721-9f0976c29ade"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered requestIP: 36.62.185.206 hint: [v5P.Pa0654vr30!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/10/10 0:38:52
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/10/10 0:38:54
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/10/10 0:44:02
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/10/10 0:44:03
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------

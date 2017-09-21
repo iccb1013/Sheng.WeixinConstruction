@@ -1,0 +1,460 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.Properties.Resources.MissingFaultDescription">
+            <summary>
+              Looks up a localized string similar to The operation &apos;{0}&apos; has no FaultContract defined for validation. Add the  [FaultContract(typeof(ValidationFault))] attribute to this operation. .
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior">
+            <summary>
+            The behavior class that set up the validation contract behavior
+            for implementing the validation process.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.#ctor(System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Internal use initializer that set the client validation flag.
+            </summary>
+            <param name="enabled">if set to <c>true</c> [enabled].</param>
+            <param name="enableClientValidation">if set to <c>true</c> [enable client validation].</param>
+            <param name="ruleSet"></param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ValidationBehavior"/> class.
+            The <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.Enabled"/> property will be set as 'true'.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ValidationBehavior"/> class.
+            The <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.Enabled"/> property will be set to 'true'.
+            </summary>
+            <param name="ruleSet">The name of the validation ruleset to apply.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ValidationBehavior"/> class.
+            </summary>
+            <param name="enabled">if set to <c>true</c> [enabled].</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            Implement to pass data at runtime to bindings to support custom behavior.
+            </summary>
+            <param name="endpoint">The endpoint to modify.</param>
+            <param name="bindingParameters">The objects that binding elements require to support the behavior.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+            <summary>
+            Implements a modification or extension of the client across an endpoint.
+            </summary>
+            <param name="endpoint">The endpoint that is to be customized.</param>
+            <param name="clientRuntime">The client runtime to be customized.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)">
+            <summary>
+            Implements a modification or extension of the service across an endpoint.
+            </summary>
+            <param name="endpoint">The endpoint that exposes the contract.</param>
+            <param name="endpointDispatcher">The endpoint dispatcher to be modified or extended.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.Validate(System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            Implement to confirm that the endpoint meets some intended criteria.
+            </summary>
+            <param name="endpoint">The endpoint to validate.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.AddBindingParameters(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            Configures any binding elements to support the contract behavior.
+            </summary>
+            <param name="contractDescription">The contract description to modify.</param>
+            <param name="endpoint">The endpoint to modify.</param>
+            <param name="bindingParameters">The objects that binding elements require to support the behavior.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.ApplyClientBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+            <summary>
+            Implements a modification or extension of the client across a contract.
+            </summary>
+            <param name="contractDescription">The contract description for which the extension is intended.</param>
+            <param name="endpoint">The endpoint.</param>
+            <param name="clientRuntime">The client runtime.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.DispatchRuntime)">
+            <summary>
+            Implements a modification or extension of the client across a contract.
+            </summary>
+            <param name="contractDescription">The contract description to be modified.</param>
+            <param name="endpoint">The endpoint that exposes the contract.</param>
+            <param name="dispatchRuntime">The dispatch runtime that controls service execution.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.Validate(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            Implement to confirm that the contract and endpoint can support the contract behavior.
+            </summary>
+            <param name="contractDescription">The contract to validate.</param>
+            <param name="endpoint">The endpoint to validate.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.AddBindingParameters(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            Configures any binding elements to support the operation behavior.
+            </summary>
+            <param name="operationDescription">The operation being examined. Use for examination only. If the operation 
+            description is modified, the results are undefined.</param>
+            <param name="bindingParameters">The objects that binding elements require to support the behavior.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.ApplyClientBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.ClientOperation)">
+            <summary>
+            Implements a modification or extension of the client accross an operation.
+            </summary>
+            <param name="operationDescription">The operation being examined. Use for examination only. If the operation 
+            description is modified, the results are undefined.</param>
+            <param name="clientOperation">The run-time object that exposes customization properties for the operation 
+            described by <paramref name="operationDescription"/>.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.DispatchOperation)">
+            <summary>
+            Implements a modification or extension of the service accross an operation.
+            </summary>
+            <param name="operationDescription">The operation being examined. Use for examination only. If the operation 
+            description is modified, the results are undefined.</param>
+            <param name="dispatchOperation">The run-time object that exposes customization properties for the operation 
+            described by <paramref name="operationDescription"/>.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.Validate(System.ServiceModel.Description.OperationDescription)">
+            <summary>
+            Implement to confirm that the operation meets some intended criteria.
+            </summary>
+            <param name="operationDescription">The operation being examined. Use for examination only. If the operation 
+            description is modified, the results are undefined.</param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior.Enabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:ValidationBehavior"/> is enabled.
+            </summary>
+            <value><c>true</c> if enabled; otherwise, <c>false</c>. The dafault value is true.</value>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute">
+            <summary>
+            Indicates that an implementation service class will use message validation constraints. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ValidationAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="ruleSet"></param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            Implement to pass data at runtime to bindings to support custom behavior.
+            </summary>
+            <param name="endpoint">The endpoint to modify.</param>
+            <param name="bindingParameters">The objects that binding elements require to support the behavior.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+            <summary>
+            Implements a modification or extension of the client across an endpoint.
+            </summary>
+            <param name="endpoint">The endpoint that is to be customized.</param>
+            <param name="clientRuntime">The client runtime to be customized.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)">
+            <summary>
+            Implements a modification or extension of the service across an endpoint.
+            </summary>
+            <param name="endpoint">The endpoint that exposes the contract.</param>
+            <param name="endpointDispatcher">The endpoint dispatcher to be modified or extended.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.Validate(System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            Implement to confirm that the endpoint meets some intended criteria.
+            </summary>
+            <param name="endpoint">The endpoint to validate.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.AddBindingParameters(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            Configures any binding elements to support the contract behavior.
+            </summary>
+            <param name="contractDescription">The contract description to modify.</param>
+            <param name="endpoint">The endpoint to modify.</param>
+            <param name="bindingParameters">The objects that binding elements require to support the behavior.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.ApplyClientBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+            <summary>
+            Implements a modification or extension of the client across a contract.
+            </summary>
+            <param name="contractDescription">The contract description for which the extension is intended.</param>
+            <param name="endpoint">The endpoint.</param>
+            <param name="clientRuntime">The client runtime.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.ApplyDispatchBehavior(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.DispatchRuntime)">
+            <summary>
+            Implements a modification or extension of the client across a contract.
+            </summary>
+            <param name="contractDescription">The contract description to be modified.</param>
+            <param name="endpoint">The endpoint that exposes the contract.</param>
+            <param name="dispatchRuntime">The dispatch runtime that controls service execution.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.Validate(System.ServiceModel.Description.ContractDescription,System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            Implement to confirm that the contract and endpoint can support the contract behavior.
+            </summary>
+            <param name="contractDescription">The contract to validate.</param>
+            <param name="endpoint">The endpoint to validate.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.AddBindingParameters(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            Configures any binding elements to support the operation behavior.
+            </summary>
+            <param name="operationDescription">The operation being examined. Use for examination only. If the operation 
+            description is modified, the results are undefined.</param>
+            <param name="bindingParameters">The objects that binding elements require to support the behavior.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.ApplyClientBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.ClientOperation)">
+            <summary>
+            Implements a modification or extension of the client accross an operation.
+            </summary>
+            <param name="operationDescription">The operation being examined. Use for examination only. If the operation 
+            description is modified, the results are undefined.</param>
+            <param name="clientOperation">The run-time object that exposes customization properties for the operation 
+            described by <paramref name="operationDescription"/>.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.ApplyDispatchBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.DispatchOperation)">
+            <summary>
+            Implements a modification or extension of the service accross an operation.
+            </summary>
+            <param name="operationDescription">The operation being examined. Use for examination only. If the operation 
+            description is modified, the results are undefined.</param>
+            <param name="dispatchOperation">The run-time object that exposes customization properties for the operation 
+            described by <paramref name="operationDescription"/>.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.Validate(System.ServiceModel.Description.OperationDescription)">
+            <summary>
+            Implement to confirm that the operation meets some intended criteria.
+            </summary>
+            <param name="operationDescription">The operation being examined. Use for examination only. If the operation 
+            description is modified, the results are undefined.</param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehaviorAttribute.RuleSet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBindingElement">
+            <summary>
+            Represents the binding element that contains the message validation policy.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBindingElement.Clone">
+            <summary>
+            When overridden in a derived class, returns a copy of the binding element object.
+            </summary>
+            <returns>
+            A <see cref="T:System.ServiceModel.Channels.BindingElement"></see> object that is a deep clone of the original.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBindingElement.GetProperty``1(System.ServiceModel.Channels.BindingContext)">
+            <summary>
+            Gets the property.
+            </summary>
+            <param name="context">The context.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBindingElementExtension">
+            <summary>
+            Represents a configuration element that specifies a message validation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBindingElementExtension.CreateBindingElement">
+            <summary>
+            When overridden in a derived class, returns a custom binding element object.
+            </summary>
+            <returns>
+            A custom <see cref="T:System.ServiceModel.Channels.BindingElement"></see> object.
+            </returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBindingElementExtension.BindingElementType">
+            <summary>
+            When overridden in a derived class, gets the <see cref="T:System.Type"></see> object that represents the custom binding element.
+            </summary>
+            <value></value>
+            <returns>A <see cref="T:System.Type"></see> object that represents the custom binding type.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationConstants">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationConstants.FaultContractName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationConstants.FaultContractNamespace">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationDetail">
+            <summary>
+            This class holds the results of a single validation. Effectively,
+            it&apos;s the same as a ValidationResult, but creating a separate
+            class allows us to mark up a DataContract with impunity.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationDetail.#ctor">
+            <summary>
+            Construct a new <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationDetail"/> object with empty
+            fields.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationDetail.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Construct a new <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationDetail"/> object with the given
+            values.
+            </summary>
+            <param name="message">Message about validation failure.</param>
+            <param name="key">Name describing the location of the validation result.</param>
+            <param name="tag">Get a value characterizing the result.</param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationDetail.Message">
+            <summary>
+            Get or set a message describing the validation failure.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationDetail.Key">
+            <summary>
+            Get or set a name describing the location of the validation result.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationDetail.Tag">
+            <summary>
+            Get or set a value characterizing the fault.
+            </summary>
+            <remarks>The meaning for a tag is determined by the client code consuming the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationDetail"/>.</remarks>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationElement">
+            <summary>
+            Represents a configuration element that specifies validation features 
+            for a Windows Communication Foundation (WCF) service.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationElement.CreateBehavior">
+            <summary>
+            Creates a behavior extension based on the current configuration settings.
+            </summary>
+            <returns>The behavior extension.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationElement.Enabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationElement.Ruleset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationElement.BehaviorType">
+            <summary>
+            Gets the type of behavior.
+            </summary>
+            <value></value>
+            <returns>A <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationBehavior"/> <see cref="T:System.Type"></see>.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationFault">
+            <summary>
+            This class is used to return information to a WCF
+            client when validation fails on a service parameter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationFault.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationFault.#ctor(System.Collections.Generic.IEnumerable{Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationDetail})">
+            <summary>
+            
+            </summary>
+            <param name="details"></param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationFault.Add(Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationDetail)">
+            <summary>
+            
+            </summary>
+            <param name="detail"></param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationFault.IsValid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationFault.Details">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationParameterInspector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationParameterInspector.#ctor(System.ServiceModel.Description.OperationDescription,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="operation"></param>
+            <param name="ruleSet"></param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationParameterInspector.BeforeCall(System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="operationName"></param>
+            <param name="inputs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationParameterInspector.AfterCall(System.String,System.Object[],System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="operationName"></param>
+            <param name="outputs"></param>
+            <param name="returnValue"></param>
+            <param name="correlationState"></param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.ValidationParameterInspector.InputValidators">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

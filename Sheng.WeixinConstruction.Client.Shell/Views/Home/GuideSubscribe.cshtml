@@ -1,0 +1,44 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.GuideSubscribeViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>关注我们</title>
+
+    <link href="/Content/Style.css" rel="stylesheet" type="text/css">
+    @Scripts.Render("~/bundles/common")
+
+    <style type="text/css">
+        body {
+            margin-bottom: 0.55rem;
+            background-color: #FDFDFB;
+        }
+    </style>
+
+</head>
+<body>
+    <div style="margin-top:0.1rem; text-align:center">
+        @Model.Authorizer.NickName
+    </div>
+    <div style="margin-top:0.1rem; text-align:center">
+        <img src="@Model.Authorizer.QRCodeUrl" style=" width:2.2rem;">
+    </div>
+    <div style="margin-top:0.1rem; text-align:center">
+        长按并识别二维码关注我们
+    </div>
+    @*<div style="margin-top:0.1rem;line-height:0.25rem; text-align:center">
+        此为 升讯威微信营销系统 演示公众号。<br />
+        本系统可使您的公众号五分钟之内拥有：用户积分、礼品兑换、会员管理、活动管理等一系列功能，是您微信营销，吸粉涨粉的利器。<br />
+        并且，本系统是免费的！<br />
+        请访问：wx.shengxunwei.com 了解并注册。
+    </div>*@
+</body>
+</html>

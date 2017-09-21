@@ -1,0 +1,217 @@
+﻿@{
+    ViewBag.SubTitle = "结算";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+     body {
+        margin-top: 0.6rem;
+    }
+
+    #divTopTitle {
+        height: 0.5rem;
+        color: #FFF;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        top: 0rem;
+    }
+
+    .divCommodityItem {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        padding: 0.1rem 0.05rem;
+        min-height: 0.8rem;
+        width: 100%;
+        color: #535353;
+        margin-top: 0.1rem;
+    }
+
+    .imgPointCommodity {
+        max-height: 0.8rem;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+
+    #divFooter {
+        background-color: white;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.45rem;
+        font-size: 0.13rem;
+        text-align: center;
+    }
+</style>
+
+<script>
+
+    var _checkout;
+
+    $(document).ready(function () {
+       // alert(localStorage.checkout);
+
+        _checkout = eval('(' + localStorage.checkout + ')');
+
+        $("#spanTotalPrice").html(_checkout.TotalPrice);
+        $("#spanTotalPoint").html(_checkout.TotalPoint);
+
+        var gettpl = document.getElementById('pointCommodityListTemplate').innerHTML;
+        laytpl(gettpl).render(_checkout.ItemList, function (html) {
+            document.getElementById('pointCommodityContainer').innerHTML += html;
+        });
+    });
+
+    function order() {
+        var args = new Object();
+        args.ItemList = new Array();
+        for (var i = 0; i < _checkout.ItemList.length; i++) {
+            var pointCommodity = new Object();
+            pointCommodity.Id = _checkout.ItemList[i].Id;
+            pointCommodity.Quantity = _checkout.ItemList[i].Quantity;
+            args.ItemList[i] = pointCommodity;
+        }
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+        
+        $.ajax({
+            url: "/Api/PointCommodity/CreateOrder/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                   // alert(JSON.stringify(data));
+                    var msg = "";
+                    switch (data.Data.Reason) {
+                        case 0:
+                            msg = "下单成功！";
+                            break;
+                        case 1:
+                            msg = "您的积分不足。";
+                            break;
+                        case 2:
+                            msg = "您的订单中部分商品库存不足。";
+                            break;
+                        case 3:
+                            msg = "您的订单中部分商品已下架。";
+                            break;
+                        default:
+                            msg = "未知错误";
+                            break;
+                    }
+                    if (data.Data.Reason == 0) {
+                        layerAlertBtn(msg, function () {
+                            window.location.href = '/PointCommodity/OrderDetail/@ViewBag.Domain.Id?id=' + data.Data.Data.OrderId;
+                        });
+                    } else {
+                        layerAlert(msg);
+                    }
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+</script>
+
+<script id="pointCommodityListTemplate" type="text/html">
+
+    {{# for(var i = 0, len = d.length; i < len; i=i+1){ }}
+    {{# var price = accMul(accDiv(d[i].Price,100),d[i].Quantity) }}
+    <div class="divCommodityItem" style="">
+        <div style="float:left;width:35%;text-align:center">
+            <img src="{{ d[i].ImageUrl }}" class="imgPointCommodity">
+        </div>
+        <div style="float:right;width:60%;">
+            <div class="defaultColor" style="font-size:0.14rem;">{{ d[i].Name }}</div>
+            <div style="margin-top:0.05rem;">数量：{{ d[i].Quantity }}</div>
+            <div style="margin-top:0.05rem;">{{ price }} 元 + {{ d[i].Quantity * d[i].Point }} 积分</div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem;">
+    </div>
+
+    {{# } }}
+
+</script>
+
+<div id="divTopTitle" class="gradient">
+    <div style="padding-top:0.16rem;font-size:0.15rem;">
+        结算
+    </div>
+    <div style="position:absolute;bottom:0rem;left:0.2rem;right:0.2rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width:0.7rem;" align="left">
+                    <img src="/Content/Images/arrow_up.png" style="width:0.18rem;display:block;margin-left:0.15rem;">
+                </td>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="33%" align="left"></td>
+                            <td width="33%" align="left"></td>
+                            <td width="33%" align="left"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="divContent">
+
+    <div style="">
+        上门自取
+    </div>
+    <div style="margin-top:0.1rem;color:#858585">
+        @ViewBag.DomainContext.PointCommodityGetWay
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem;">
+    </div>
+
+    <div id="pointCommodityContainer">
+
+
+    </div>
+
+
+
+</div>
+
+<div id="divFooter">
+    <div style="height:1px;background-color:#F5F5F5">
+    </div>
+    <div style="margin-left:0.1rem;margin-right:0.1rem;margin-top:0.05rem">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" style="height:100%;width:100%;">
+            <tr>
+                <td class="defaultColor" align="left" valign="middle" style="font-size:0.14rem;">
+                    合计：<span id="spanTotalPrice">0</span> 元 + <span id="spanTotalPoint">0</span> 积分
+                </td>
+                <td valign="middle" align="right" width="30%">
+                    <input name="" type="button" class="button" value="提交" style="width:90%" onclick="order()">
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

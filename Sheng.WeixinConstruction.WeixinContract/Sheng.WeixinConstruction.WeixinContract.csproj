@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19972C3F-7A6F-46C0-A501-5A89001148E6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sheng.WeixinConstruction.WeixinContract</RootNamespace>
+    <AssemblyName>Sheng.WeixinConstruction.WeixinContract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LitJson">
+      <HintPath>..\_Lib\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\GroupApi.cs" />
+    <Compile Include="Api\KFApi.cs" />
+    <Compile Include="Api\MaterialApi.cs" />
+    <Compile Include="Api\GroupMessageApi.cs" />
+    <Compile Include="Api\QRCodeApi.cs" />
+    <Compile Include="Api\ShortUrlApi.cs" />
+    <Compile Include="Api\TagsApi.cs" />
+    <Compile Include="Api\UserApi.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Menu\ButtonMediaId.cs" />
+    <Compile Include="Model\ShortUrl\WeixinCreateShortUrlArgs.cs" />
+    <Compile Include="Model\ShortUrl\WeixinCreateShortUrlResult.cs" />
+    <Compile Include="Model\Tag\WeixinCreateTagArgs.cs" />
+    <Compile Include="Model\Tag\WeixinGetTagListResult.cs" />
+    <Compile Include="Model\Tag\WeixinGetTagUserListResult.cs" />
+    <Compile Include="Model\Tag\WeixinGetUserTagListResult.cs" />
+    <Compile Include="Model\Tag\WeixinTag.cs" />
+    <Compile Include="Model\Tag\WeixinTagBatchTaggingArgs.cs" />
+    <Compile Include="PayApi\Model\WeixinPayCloseOrderArgs.cs" />
+    <Compile Include="PayApi\Model\WeixinPayCloseOrderResult.cs" />
+    <Compile Include="PayApi\Model\WeixinPayGetBrandWCPayRequestArgs.cs" />
+    <Compile Include="PayApi\Model\WeixinPayNotify.cs" />
+    <Compile Include="PayApi\Model\WeixinPayNotify_Coupon.cs" />
+    <Compile Include="PayApi\Model\WeixinPayOrderQueryArgs.cs" />
+    <Compile Include="PayApi\Model\WeixinPayOrderQueryResult.cs" />
+    <Compile Include="PayApi\Model\WeixinPayOrderQueryResult_Coupon.cs" />
+    <Compile Include="PayApi\Model\WeixinPayRefundArgs.cs" />
+    <Compile Include="PayApi\Model\WeixinPayRefundQueryArgs.cs" />
+    <Compile Include="PayApi\Model\WeixinPayRefundQueryResult.cs" />
+    <Compile Include="PayApi\Model\WeixinPayRefundQueryResult_Refund.cs" />
+    <Compile Include="PayApi\Model\WeixinPayRefundResult.cs" />
+    <Compile Include="PayApi\Model\WeixinPayUnifiedOrderArgs.cs" />
+    <Compile Include="PayApi\Model\WeixinPayUnifiedOrderResult.cs" />
+    <Compile Include="PayApi\WxPayArgs.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\Event\ReceivingXMLMessage_ClickEventMessage.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\Verify\ReceivingXMLMessage_AnnualRenew.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\Verify\ReceivingXMLMessage_NamingVerifyFail.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\Verify\ReceivingXMLMessage_NamingVerifySuccess.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\Verify\ReceivingXMLMessage_QualificationVerifyFail.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\Verify\ReceivingXMLMessage_QualificationVerifySuccess.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\Verify\ReceivingXMLMessage_VerifyExpired.cs" />
+    <Compile Include="WeixinErrorCode.cs" />
+    <Compile Include="HashAndMd5.cs" />
+    <Compile Include="KFMessage\MessageDefine\KFImageMessage.cs" />
+    <Compile Include="KFMessage\MessageDefine\KFMpArticleMessage.cs" />
+    <Compile Include="KFMessage\MessageDefine\KFTextMessage.cs" />
+    <Compile Include="KFMessage\MessageDefine\KFMessageBase.cs" />
+    <Compile Include="Model\Material\WeixinUpdateArticleMaterialArgs.cs" />
+    <Compile Include="Model\Material\WeixinUploadImgResult.cs" />
+    <Compile Include="Model\WeixinGetJsApiTicketResult.cs" />
+    <Compile Include="Model\WeixinJsApiConfig.cs" />
+    <Compile Include="PayApi\Model\WeixinPaySendRedpackArgs.cs" />
+    <Compile Include="PayApi\Model\WeixinPaySendRedpackResult.cs" />
+    <Compile Include="PayApi\RequestPayApiResult.cs" />
+    <Compile Include="PayApi\WxPayApi.cs" />
+    <Compile Include="PayApi\WxPayConfig.cs" />
+    <Compile Include="PayApi\WxPayData.cs" />
+    <Compile Include="PayApi\WxPayException.cs" />
+    <Compile Include="PayApi\WxPayLog.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\Event\ReceivingXMLMessage_GroupMessageFinishEvent.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\Event\ReceivingXMLMessage_ScanEventMessage.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\Event\ReceivingXMLMessage_SubscribeEventMessage.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\ReceivingXMLMessage_ImageMessage.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\ReceivingXMLMessage_LocationMessage.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\ReceivingXMLMessage_LinkMessage.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\Event\ReceivingXMLMessage_UnsubscribeEventMessage.cs" />
+    <Compile Include="Model\GroupMessage\WeixinGroupMessagePreviewArgs.cs" />
+    <Compile Include="Model\GroupMessage\WeixinGroupMessagePreviewResult.cs" />
+    <Compile Include="Model\Group\WeixinGetGroupListResult.cs" />
+    <Compile Include="Model\Group\WeixinCreateGroupArgs.cs" />
+    <Compile Include="Model\Group\WeixinGetUserGroupIdResult.cs" />
+    <Compile Include="Model\Group\WeixinGroup.cs" />
+    <Compile Include="Model\Group\WeixinSetUserListGroupArgs.cs" />
+    <Compile Include="Model\Group\WeixinSetUserGroupArgs.cs" />
+    <Compile Include="Model\Material\WeixinAddArticleMaterialArgs.cs" />
+    <Compile Include="Model\Material\WeixinAddArticleMaterialResult.cs" />
+    <Compile Include="Model\Material\WeixinAddMaterialResult.cs" />
+    <Compile Include="Model\Material\WeixinArticleMaterial.cs" />
+    <Compile Include="Model\GroupMessage\WeixinGroupMessageGetStatusResult.cs" />
+    <Compile Include="Model\GroupMessage\WeixinGroupMessageSendAllResult.cs" />
+    <Compile Include="Model\GroupMessage\WeixinGroupMessageSendArgs.cs" />
+    <Compile Include="Model\GroupMessage\WeixinGroupMessageSendResult.cs" />
+    <Compile Include="Model\QRCode\WeixinCreateQRCodeArgs.cs" />
+    <Compile Include="Model\QRCode\WeixinCreateQRCodeResult.cs" />
+    <Compile Include="Model\Material\WeixinGetMaterialListArgs.cs" />
+    <Compile Include="Model\Material\WeixinGetMaterialListResult.cs" />
+    <Compile Include="Model\WeixinGetUserListResult.cs" />
+    <Compile Include="Model\Material\WeixinMaterialListItemBase.cs" />
+    <Compile Include="Model\GroupMessage\WeixinGroupMessageSendAllArgs.cs" />
+    <Compile Include="Model\Material\WeixinNormalMaterial.cs" />
+    <Compile Include="Model\WeixinUser.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\ReceivingXMLMessage_ShortVideoMessage.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\ReceivingXMLMessage_VideoMessage.cs" />
+    <Compile Include="ResponsiveXMLMessage\MessageDefine\ResponsiveXMLMessage_TextMessage.cs" />
+    <Compile Include="ResponsiveXMLMessage\MessageDefine\ResponsiveXMLMessage_ImageMessage.cs" />
+    <Compile Include="ResponsiveXMLMessage\ResponsiveXMLMessageBase.cs" />
+    <Compile Include="ThirdParty\Api\ThirdPartyApi.cs" />
+    <Compile Include="ThirdParty\Model\Invoke\WeixinThirdPartyGetAuthorizationInfoResult.cs" />
+    <Compile Include="ThirdParty\Model\Invoke\WeixinThirdPartyGetAuthorizerAccountInfoArgs.cs" />
+    <Compile Include="ThirdParty\Model\Invoke\WeixinThirdPartyGetAuthorizerAccountInfoResult.cs" />
+    <Compile Include="ThirdParty\Model\WeixinThirdPartyAuthorizationInfo.cs" />
+    <Compile Include="ThirdParty\Model\WeixinThirdPartyAuthorizerAccountInfo.cs" />
+    <Compile Include="ThirdParty\Model\WeixinThirdPartyFuncscopeCategory.cs" />
+    <Compile Include="ThirdParty\Model\Invoke\WeixinThirdPartyGetAccessTokenArgs.cs" />
+    <Compile Include="ThirdParty\Model\Invoke\WeixinThirdPartyGetAuthorizationInfoArgs.cs" />
+    <Compile Include="ThirdParty\Model\Invoke\WeixinThirdPartyGetPreAuthCodeResult.cs" />
+    <Compile Include="ThirdParty\Model\Invoke\WeixinThirdPartyGetAccessTokenResult.cs" />
+    <Compile Include="ThirdParty\Model\Invoke\WeixinThirdPartyGetAuthorizerAccessTokenArgs.cs" />
+    <Compile Include="ThirdParty\Model\Invoke\WeixinThirdPartyGetAuthorizerAccessTokenResult.cs" />
+    <Compile Include="ThirdParty\Model\WeixinThirdPartyFuncscopeCategoryCollection.cs" />
+    <Compile Include="ThirdParty\ReceivingXMLMessage\ThirdPartyXMLMessage_ComponentVerifyTicket.cs" />
+    <Compile Include="ThirdParty\ReceivingXMLMessage\ThirdPartyXMLMessage_Unauthorized.cs" />
+    <Compile Include="WeixinApiHelper.cs" />
+    <Compile Include="Model\WeixinWebAccessTokenResult.cs" />
+    <Compile Include="Model\WeixinApiErrorResult.cs" />
+    <Compile Include="Api\MenuApi.cs" />
+    <Compile Include="Api\TokenApi.cs" />
+    <Compile Include="Cryptography.cs" />
+    <Compile Include="Model\WeixinAccessTokenResult.cs" />
+    <Compile Include="IWeixinApp.cs" />
+    <Compile Include="Menu\ButtonClick.cs" />
+    <Compile Include="Menu\ButtonView.cs" />
+    <Compile Include="Menu\Enums.cs" />
+    <Compile Include="Menu\ButtonBase.cs" />
+    <Compile Include="Menu\Menu.cs" />
+    <Compile Include="Menu\ParentButton.cs" />
+    <Compile Include="Menu\TypeButton.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\ReceivingXMLMessage_VoiceMessage.cs" />
+    <Compile Include="WeixinJsApi.cs" />
+    <Compile Include="XMLMessageHelper.cs" />
+    <Compile Include="ReceivingXMLMessage\XMLMessageUrlParameter.cs" />
+    <Compile Include="ReceivingXMLMessage\ReceivingXMLMessageBase.cs" />
+    <Compile Include="ReceivingXMLMessage\MessageDefine\ReceivingXMLMessage_TextMessage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestApiResult.cs" />
+    <Compile Include="WXBizMsgCrypt.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Linkup.Common\Linkup.Common.csproj">
+      <Project>{2753ed31-d787-41f3-893c-58df187da1d8}</Project>
+      <Name>Linkup.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Linkup.DataRelationalMapping\Linkup.DataRelationalMapping.csproj">
+      <Project>{7bb22de3-7422-4ce4-bd77-b51565343dd2}</Project>
+      <Name>Linkup.DataRelationalMapping</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ErrorCode.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

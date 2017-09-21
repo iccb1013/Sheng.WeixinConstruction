@@ -1,0 +1,2580 @@
+----------------------------------------
+Timestamp: 2017/5/21 11:15:23
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:15:23
+
+Title:从数据库中恢复 AuthorizerAccessTokenWrapper 1 个
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:15:23
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 12:09:42
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 12:09:44
+
+Title:从数据库中恢复 AuthorizerAccessTokenWrapper 1 个
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 12:09:44
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:31:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:31:13
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [O6IEGa0507e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:31:13
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [Bz1Q2a0507e578] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:32:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:32:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [Ruv4LA0567e575] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:32:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [bkoboa0567e578]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:33:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:33:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [RT63OA0627e578] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:33:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [_x3JSa0627e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:34:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:34:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [Pu26gA0686e578] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:34:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [oXGN0687e514]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:35:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:35:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [fZ0747e544] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:35:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [NpZDnA0747e575]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:36:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:36:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [PH3qAA0807e544] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:36:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [hd8_Xa0807e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:37:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:37:13
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [W09THA0867e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:37:13
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [IKWMOA0868e514] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:38:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:38:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [kWa8Aa0927e544] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:38:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [zqi1sa0927e578]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:39:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:39:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [XNi6dA0987e575] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:39:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [_hc4Ha0987e578]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:40:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:40:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [ex8._a0047e544] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:40:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [lewrvA0047e514]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:41:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:41:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [.Svqya0106e575] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:41:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [TtzjYa0107e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:42:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:42:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [NhlGda0166e578] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:42:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [KtLCVA0167e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:43:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:43:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [4TPv_0227e575] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:43:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [nl0227e514]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:44:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:44:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [.c9dea0286e514] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:44:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [wv4dIA0287e514]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:45:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:45:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [Uv1eCA0346e544] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:45:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [eAdBBA0347e578]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:46:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:46:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [mqNCHa0407e514] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:46:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [8dTf.A0407e578]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:47:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:47:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [rcZwla0466e575] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:47:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [AdDzSA0467e514]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:48:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:48:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [kVZGVa0526e578] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:48:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [01RG6a0527e578]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:49:12
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:49:12
+
+Title:ThirdPartyAccessToken.GetToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_component_token
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","component_appsecret":"d88d8fb6d243088ae78147f6c5ef84d3","component_verify_ticket":"ticket@@@OnFSu2ER3OnA-7t3-oWWX29nUwnbcoQXecfQjXVvWrreXdxLU9FSBDfwck2uzlhKHjRwkmv95MoZ2mqxP7WS9A"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [SZe8pA0587e514] requestIP: 36.62.174.26"}
+
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:49:12
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [vjPHeA0587e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:56:56
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:56:58
+
+Title:从数据库中恢复 AuthorizerAccessTokenWrapper 1 个
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:56:58
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:02:02
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:02:03
+
+Title:从数据库中恢复 AuthorizerAccessTokenWrapper 1 个
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:02:03
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:02:03
+
+Title:从数据库中恢复 AuthorizerJsApiTicket 1 个
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:05:22
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:05:22
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [olEfZa0156vr46!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:05:31
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:05:32
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [LCcbGA0166vr48!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:05:33
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:05:33
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [hzbXFA0168vr64!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:06:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:06:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [o9a.dA0198vr52!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:06:19
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:06:19
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [iXiA60214vr51!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:06:31
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:06:31
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [LbiUqA0226vr55!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:06:59
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:06:59
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [X4SdCa0254vr58!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:07:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:07:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [YOtSnA0258vr30!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:07:11
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:07:11
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [MUVRrA0265vr52!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:07:14
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:07:14
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [TaINOa0269vr32!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:07:21
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:07:21
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [hEDfba0275vr57!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:08:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:08:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:08:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [pbflhA0318vr29!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:08:04
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [CNv3ma0318e575]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:09:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:09:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [sVaBjA0377e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:09:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:09:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [V7fHba0378vr66!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:10:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:10:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [LokURa0437e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:10:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:10:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [KT2JSa0438vr46!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:10:51
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:10:52
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [IC3hIa0486vr50!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:10:59
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:10:59
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [5dppJa0493vr32!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:11:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:11:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [dh0AeA0497e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:11:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:11:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [gMjSVA0498vr58!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:11:04
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:11:04
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [U0N1Qa0499vr60!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:12:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:12:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:12:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [3sBWhA0558e578]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:12:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [_.twoA0558vr46!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:13:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:13:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [nhjUta0617e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:13:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:13:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [Jh53La0618vr58!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:14:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:14:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [hlTNhA0677e575]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:14:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:14:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [OpbFIA0678vr68!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:15:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:15:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [anxPpA0737e514]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:15:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:15:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [vTl6Ua0738vr66!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:16:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:16:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [juVn.a0797e514]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:16:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:16:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [2Wf9IA0798vr63!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:17:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:17:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [zNEG0857e514]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:17:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:17:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [N7A_Ea0858vr64!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:18:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:18:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [YPBwDa0917e575]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:18:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:18:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [a6sfva0918vr44!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:19:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:19:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [igSL70977e575]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:19:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:19:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [lfkFvA0978vr57!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:20:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:20:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [A__M7a0037e575]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:20:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:20:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [5B_.8a0038vr57!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:21:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:21:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [F5dVkA0097e514]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:21:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:21:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [qV3cZa0098vr30!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:22:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:22:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [hSbseA0157e514]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:22:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:22:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [A3_2ta0158vr54!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:23:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:23:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [ewwLIA0217e575]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:23:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:23:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [UZ9Hxa0218vr67!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:24:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:24:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [7aF.Ha0277e514]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:24:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:24:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [duK9ra0278vr44!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:25:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:25:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [RCk2oa0337e575]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:25:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:25:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [KdJmra0338vr60!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:26:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:26:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [VsVJ3a0397e544]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:26:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:26:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [i97Qoa0398vr46!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:27:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:27:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [KMG_jA0457e578]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:27:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:27:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [sCctcA0458vr56!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:28:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:28:03
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [1f3k1a0518e575]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:28:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:28:03
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [QJl3ga0518vr49!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:29:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:29:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:29:04
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [OCvWkA0578e575]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:29:04
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [pabi.a0578vr63!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:30:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:30:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:30:04
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [T4sVra0639vr69!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:30:05
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [rKPAnA0639e578]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:31:03
+
+Title:ThirdPartyAccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:31:03
+
+Title:AccessTokenGetter.Get 请求失败
+
+Message: 无效的 URI: 未能确定 URI 的格式。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:31:04
+
+Title:ThirdPartyApi.GetAuthorizerAccessToken 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/component/api_authorizer_token?component_access_token=
+发送的内容：
+{"component_appid":"wxc99af26ef3ecf658","authorizer_appid":"wx8c36b3c0000a0a49","authorizer_refresh_token":"refreshtoken@@@mal-Y-g_R-NvtseZT-n2Aap_9pNLZu5KxFpGNG50h2A"}
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [AkMFJa0698e575]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:31:04
+
+Title:TokenApi.GetJsApiTicket 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=&type=jsapi
+发送的内容：
+
+返回的内容：
+{"errcode":41001,"errmsg":"access_token missing hint: [txl.lA0698vr67!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:13:31
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:13:32
+
+Title:从数据库中恢复 AuthorizerAccessTokenWrapper 1 个
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:13:32
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:34:22
+
+Title:从数据库中恢复 AuthorizerJsApiTicket 1 个
+
+Message: 
+
+Severity: Information
+
+----------------------------------------

@@ -1,0 +1,270 @@
+﻿@{
+    ViewBag.SubTitle = "卡券";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #tableOrderDetail {
+        font-size: 0.14rem;
+    }
+
+        #tableOrderDetail tr {
+            height: 0.24rem;
+        }
+</style>
+
+<script>
+
+    var _serialNumber = getQueryString("serialNumber");
+    var _coupon;
+    var _couponRecord;
+
+    $(document).ready(function () {
+
+        var jsApiConfigStr = "@Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.JsApiConfig)";
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("&quot;", "gm"), "\"");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\r\n", "gm"), "");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\n", "gm"), "");
+        var jsApiConfig = eval('(' + jsApiConfigStr + ')');
+
+        wx.config(jsApiConfig);
+
+        if (_serialNumber != undefined && _serialNumber != null && _serialNumber != "") {
+            $("#txtSearch_SerialNumber").val(_serialNumber);
+            search();
+        }
+    });
+
+    wx.error(function (res) {
+        alert("error:" + res);
+    });
+
+    function search() {
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var serialNumber = $("#txtSearch_SerialNumber").val();
+
+        $.ajax({
+            url: "/Api/Coupon/GetCouponRecordBySerialNumber/@ViewBag.Domain.Id?serialNumber=" + serialNumber,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+
+                    _coupon = data.Data.Coupon;
+                    _couponRecord = data.Data.CouponRecord;
+
+                    $("#spanName").html(_coupon.Name);
+                    $("#spanDistributeTime").html(_couponRecord.DistributeTime);
+
+                    if (_couponRecord.LimitedTime != null && _couponRecord.LimitedTime != "") {
+                        var time = new Date(_couponRecord.LimitedTime.replace(/-/g, "/")).format("yyyy-MM-dd ");
+                        $("#spanLimitedTime").html(time);
+                    } else {
+                        $("#spanLimitedTime").html("");
+                    }
+
+                    $("#spanChargeTime").html(_couponRecord.ChargeTime);
+                    $("#spanCondition").html(_coupon.Condition);
+
+                    $("#btnCharge").hide();
+                    switch (_couponRecord.Status) {
+                        case 0:
+                            $("#spanStatus").html("未使用");
+                            $("#btnCharge").show();
+                            break;
+                        case 1:
+                            $("#spanStatus").html("已使用");
+                            break;
+                        default:
+                            $("#spanStatus").html("未知：" + _couponRecord.Status);
+                            break;
+                    }
+
+                    $("#divCoupon").show();
+                    $("#divCondition").show();
+                    $("#divMessage").hide();
+
+
+                } else {
+
+                    _coupon = null;
+                    _couponRecord = null;
+
+                    $("#divCoupon").hide();
+                    $("#divCondition").hide();
+                    $("#divMessage").show();
+
+                    $("#btnCharge").hide();
+
+
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function charge() {
+        if (_couponRecord == undefined || _couponRecord == null)
+            return;
+
+        var msg = "是否确认核销？"
+
+        var confirmLayerIndex = layer.open({
+            content: msg,
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function () {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                $.ajax({
+                    url: "/Api/Coupon/Charge/@ViewBag.Domain.Id?recordId=" + _couponRecord.Id,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data, status, jqXHR) {
+                        layer.close(loadLayerIndex);
+                        //0 核销成功 1 域或appid不对应 2 卡券已过期 3 卡券已被核销过
+                        if (data.Success) {
+                            switch (data.Data.Reason) {
+                                case 0:
+                                    layerAlertBtn("核销成功！", function () {
+                                        layer.closeAll();
+                                        search();
+                                    });
+                                    break;
+                                case 1:
+                                    layerAlert("失败<br/>无权限。");
+                                    break;
+                                case 2:
+                                    layerAlert("失败<br/>该卡券已过有效期。");
+                                    break;
+                                case 3:
+                                    layerAlert("失败<br/>该卡券已被核销过。");
+                                    break;
+                                default:
+                                    layerAlert("失败<br/>未知错误：" + data.Data.Reason);
+                                    break;
+                            }
+
+                        } else {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest) {
+                        layer.close(loadLayerIndex);
+                        alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+    function scan() {
+        wx.scanQRCode({
+            needResult: 0,
+            scanType: ["qrCode"]
+        });
+    }
+
+    function closeAllLayer() {
+        layer.closeAll();
+    }
+
+</script>
+
+<div class="divContent" style="margin-top:0.1rem;">
+    <div style="margin-top:0.5rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>卡券号：</td>
+                <td align="right">
+                    <input name="btnSearch" type="button" class="btn_blue" id="btnSearch" value="查询" onclick="search()" />
+                    <input name="btnScan" type="button" class="btn_blue" id="btnScan" value="扫一扫" onclick="scan()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-top:0.1rem;">
+        <input id="txtSearch_SerialNumber" name="txtSearch_SerialNumber" type="text" class="input_16" />
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+    </div>
+    <div id="divCoupon" style="margin-top:0.1rem;display:none">
+        <table id="tableOrderDetail" width="96%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width:1rem;">名称：</td>
+                <td>
+                    <span id="spanName"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>派发时间：</td>
+                <td>
+                    <span id="spanDistributeTime"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>有效期：</td>
+                <td>
+                    <span id="spanLimitedTime"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>状态：</td>
+                <td>
+                    <span id="spanStatus"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>核销时间：</td>
+                <td>
+                    <span id="spanChargeTime"></span>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div id="divMessage">
+        请输入要查询的完整卡券号，或使用扫一扫功能扫描卡券的二维码（会员可在“卡券”画面点击“使用”显示二维码）。
+    </div>
+    <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+    </div>
+
+    <div id="divCondition" style="display:none">
+        <div>使用条件：</div>
+        <div id="spanCondition" style="font-size:0.12rem;margin-top:0.05rem;"></div>
+        <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+        </div>
+    </div>
+
+    <div>
+        <!--<div style="float:left;width:48%">
+            <input id="btnPointIncrement" name="btnPointIncrement" type="button" class="btn_blue" style="width:100%;" value="核销" />
+        </div>-->
+        <div style="float:right;width:48%">
+            <input id="btnCharge" name="btnCharge" type="button" class="btn_blue" style="width:100%;display:none" value="核销" onclick="charge()" />
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+</div>

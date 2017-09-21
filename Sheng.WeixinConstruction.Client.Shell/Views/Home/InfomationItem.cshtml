@@ -1,0 +1,183 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.InfomationItemViewModel
+
+@{
+    //  ViewBag.SubTitle = Model.Item.Name;
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<link rel="stylesheet" href="/Scripts/swiper/swiper-3.3.1.min.css">
+<script src="/Scripts/swiper/swiper-3.3.1.jquery.min.js"></script>
+
+<style type="text/css">
+    body {
+        margin-top: 0.5rem;
+    }
+
+    #divTopTitle {
+        height: 0.5rem;
+        color: #FFF;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        top: 0rem;
+        z-index: 99999;
+    }
+
+    .divCommodityItem {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        padding: 0.1rem 0.05rem;
+        min-height: 0.8rem;
+        width: 100%;
+        color: #535353;
+        margin-top: 0.1rem;
+    }
+
+    .imgPointCommodity {
+        max-height: 0.8rem;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+
+    #divFooter {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.4rem;
+        font-size: 0.14rem;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+
+    #divImageContainer {
+        background-color: #FFF;
+        text-align: center;
+        margin-top: 0rem;
+        z-index: 0;
+    }
+
+    .swiper-container {
+        width: 100%;
+        height: 2rem;
+    }
+
+        .swiper-container img {
+            max-height: 2rem;
+            max-width: 100%;
+            vertical-align: middle;
+        }
+</style>
+
+<script>
+
+    $(document).ready(function () {
+        var mySwiper = new Swiper('.swiper-container', {
+            loop: true,
+            pagination: '.swiper-pagination',
+        })
+    });
+
+
+
+</script>
+
+<div id="divTopTitle" class="gradient">
+    <div style="padding-top:0.16rem;font-size:0.15rem;">
+        @Model.Item.Name
+    </div>
+    <div style="position:absolute;bottom:0rem;left:0.2rem;right:0.2rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width:0.7rem;" align="left">
+                    <img src="/Content/Images/arrow_up.png" style="width:0.18rem;display:block;margin-left:0.15rem;">
+                </td>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="33%" align="left"></td>
+                            <td width="33%" align="left"></td>
+                            <td width="33%" align="left"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+@if (Model.Item.ImageList != null && Model.Item.ImageList.Count > 0)
+{
+    if (Model.Item.ImageList.Count == 1)
+    {
+        <div id="divImageContainer">
+            @*<a href="@Model.Item.ImageList[0].Url">
+                    <img src="@Model.Item.ImageList[0].Url" name="img" id="img" style="max-height:2rem; max-width:100%;vertical-align:middle;">
+                </a>*@
+            <img src="@Model.Item.ImageList[0].Url" name="img" id="img" style="max-height:2rem; max-width:100%;vertical-align:middle;">
+        </div>
+    }
+    else
+    {
+        <div class="swiper-container" style="z-index: 0;">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.Item.ImageList)
+                {
+                    <div class="swiper-slide">
+                        <table style="width:100%;height:100%" border="0">
+                            <tr>
+                                <td align="center" valign="middle">
+                                    @*<a href="@item.Url">
+                                            <img src="@item.Url" />
+                                        </a>*@
+                                    <img src="@item.Url" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    }
+}
+else
+{
+    <div id="divImageContainer">
+        @*<a href="@Model.Item.Image">
+                <img src="@Model.Item.Image" name="img" id="img" style="max-height:2rem; max-width:100%;vertical-align:middle;">
+            </a>*@
+        <img src="@Model.Item.Image" name="img" id="img" style="max-height:2rem; max-width:100%;vertical-align:middle;">
+    </div>
+}
+
+
+<div style="background-color:#CCC; height:1px;">
+</div>
+
+<div class="divContent" style="margin-top:0.1rem;">
+
+    <div id="divDescription">
+        @Html.Raw(Model.Item.Description)
+    </div>
+
+</div>
+
+
+<div id="divFooter">
+    @if (String.IsNullOrEmpty(Model.Item.PhoneNumber) == false)
+    {
+        <table align="center" style="height:100%">
+            <tr>
+                <td valign="middle" align="center">
+                    <a href="tel:@Model.Item.PhoneNumber" class="defaultColor" style="text-decoration:none;font-size:0.15rem;">点击拨打：@Model.Item.PhoneNumber</a>
+                </td>
+            </tr>
+        </table>
+    }
+</div>
+

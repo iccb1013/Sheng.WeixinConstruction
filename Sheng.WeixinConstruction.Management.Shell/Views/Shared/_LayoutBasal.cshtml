@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/common")
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/validate/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/layer/layer.js")
+
+</head>
+<body>
+    <div id="divTopBar">
+        <div id="divLogo">
+            <span class="font_white_22">升讯威 微信营销系统</span>
+        </div>
+    </div>
+    <div id="divContainer" style="OVERFLOW-Y: auto; ">
+        @RenderBody()
+    </div>
+</body>
+
+</html>

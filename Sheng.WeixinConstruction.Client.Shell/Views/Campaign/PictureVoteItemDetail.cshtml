@@ -1,0 +1,211 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.PictureVoteItemDetailViewModel
+
+@{
+    ViewBag.SubTitle = "活动";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+    .campaignName {
+        font-size: 0.14rem;
+        font-weight: bold;
+    }
+
+    .campaignDescription {
+        font-size: 0.13rem;
+        color: #666;
+    }
+</style>
+
+<script type="text/javascript">
+
+    var _campaignId = getQueryString("campaignId");
+
+    $(document).ready(function () {
+
+        var jsApiConfigStr = "@Newtonsoft.Json.JsonConvert.SerializeObject(Model.JsApiConfig)";
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("&quot;", "gm"), "\"");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\r\n", "gm"), "");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\n", "gm"), "");
+        var jsApiConfig = eval('(' + jsApiConfigStr + ')');
+        wx.config(jsApiConfig);
+    });
+
+    wx.ready(function () {
+        wx.onMenuShareTimeline({
+            title: '@Model.Campaign.ShareTimelineTitle', // 分享标题
+            link: '@Model.ShareUrl', // 分享链接
+            imgUrl: '@Model.Campaign.ShareImageUrl', // 分享图标
+            success: function () {
+                shareSuccess("PictureVoteShareTimeline");
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '@Model.Campaign.ShareAppMessageTitle', // 分享标题
+            desc: '@Model.Campaign.ShareAppMessageDescription', // 分享描述
+            link: '@Model.ShareUrl', // 分享链接
+            imgUrl: '@Model.Campaign.ShareImageUrl', // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                shareSuccess("PictureVoteShareAppMessage");
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+
+    wx.error(function (res) {
+        alert("error:" + res);
+    });
+
+    function shareSuccess(type) {
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/Campaign/" + type + "/@ViewBag.Domain.Id?campaignId=" + _campaignId,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    if (resultObj.Point == 0 && resultObj.Vote == 0)
+                        return;
+
+                    var msg = "";
+                    if (resultObj.Point > 0) {
+                        msg += "获得积分：" + resultObj.Point;
+                    }
+                    if (resultObj.Vote > 0) {
+                        if (msg != "") {
+                            msg += "<br/>";
+                        }
+
+                        msg += "您参与的内容获得系统为您投票：" + resultObj.Vote + " 票/每项";
+                    }
+                    if (msg != "") {
+                        layerAlertBtn(msg);
+                    }
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function removeData() {
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/Campaign/RemovePictureVoteItemByMember/@ViewBag.Domain.Id?id=@Model.PictureVoteItem.Id",
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                if (data.Success) {
+
+                    window.location.href = "/Campaign/PictureVoteUpload/@ViewBag.Domain.Id?campaignId=@Model.PictureVoteItem.CampaignId";
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+</script>
+
+<div id="divImageContainer">
+    <img src="@Model.Campaign.ImageUrl" name="img" id="img" style="width: 100%;">
+</div>
+
+<div class="divContent" style="margin-top:0.1rem;">
+    <div style="margin-top:0.06rem" class="campaignName">
+        @Model.Campaign.Name
+    </div>
+    <div style="margin-top:0.06rem" class="campaignDescription">
+        @Html.Raw(Model.Campaign.Introduction);
+    </div>
+
+    <div style="margin-top:0.15rem;padding-left:0.1rem;padding-right:0.1rem; padding-top:0.1rem;padding-bottom:0.1rem;
+            background-color:#FFF2E6;border: 1px solid #FF9673;">
+        @switch (Model.PictureVoteItem.ApproveStatus)
+        {
+            case Sheng.WeixinConstruction.Infrastructure.EnumCampaignPictureVoteItemApproveStatus.Waiting:
+                @:您上传的照片正在审核，请稍候...
+                break;
+            case Sheng.WeixinConstruction.Infrastructure.EnumCampaignPictureVoteItemApproveStatus.Approved:
+                <span>编号：</span>@Model.PictureVoteItem.SerialNumber<br/>
+                <span>当前票数：</span><span class="font_red_b">@Model.PictureVoteItem.VoteQuantity</span>
+                break;
+            case Sheng.WeixinConstruction.Infrastructure.EnumCampaignPictureVoteItemApproveStatus.Rejected:
+                <text>
+                    您上传的照片被拒绝，原因：@Model.PictureVoteItem.RejectedMessage
+                    <br/>
+                    <div class="divRectangle" style="margin-top: 0.1rem; " onclick="removeData()">
+                        删除并重新上传
+                    </div>
+                </text>
+                break;
+            default:
+                @:未知状态
+                break;
+        }
+
+        @if (Model.PictureVoteItem.Lock)
+        {
+            @:<br/>因刷票嫌疑已被锁定，如有异议请与管理员联系。
+        }
+
+    </div>
+
+    <div class="divBorder" style="margin-top:0.15rem;">
+        <div>
+            <div id="divPhoto" >
+                <img id="imgPhoto" src="@Model.PictureVoteItem.Url" style="width: 100%;" />
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top:0.15rem">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="height:0.35rem;width:0.7rem">名称：</td>
+                <td>@Model.PictureVoteItem.Title</td>
+            </tr>
+
+            <tr>
+                <td style="height:0.35rem;">说明：</td>
+                <td style="line-height:0.25rem;">
+                    @Model.PictureVoteItem.Description
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,130 @@
+----------------------------------------
+Timestamp: 2016/6/17 0:41:02
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/17 0:41:03
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/23 23:42:12
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/23 23:42:17
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/23 23:42:55
+
+Title:指定的 domoainId 不存在
+
+Message: f6aad430-ca1f-4afd-b2b0-6e0d2fabb622
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 0:00:25
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 0:00:25
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 0:04:46
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 0:04:47
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 0:11:09
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 0:11:10
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 0:17:06
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 0:17:06
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------

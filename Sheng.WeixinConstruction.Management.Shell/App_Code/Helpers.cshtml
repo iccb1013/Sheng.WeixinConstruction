@@ -1,0 +1,1574 @@
+﻿@helper VipIcon()
+{
+       <script>
+           function vipIcon(){
+               layerAlert("只有 VIP 用户才可使用此功能。");
+           }
+       </script>
+    
+    <span style="color:red;font-size:13px;font-style:italic;cursor:pointer" onclick="vipIcon()">VIP</span>
+}
+
+@helper InputForm()
+{
+
+    <script type="text/html" id="divInputForm">
+        <div style="margin-left: 10px; margin-right: 10px; margin-top: 20px; margin-bottom: 10px;">
+            <div style="width: 100%;">
+                <div>
+                    <span style="margin-left: 20px;" id="spanInputFormTitle"></span>
+                </div>
+                <div style="width: 100%; margin-left: 0px; margin-top: 20px;">
+                    <form id="formInputForm">
+                        <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="130" height="36">
+                                    <input name="txtInputForm_Text" type="text" class="input_16" style="width: 100%;" id="txtInputForm_Text" maxlength="100" />
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div style="width: 100%; margin-top: 20px; margin-left: 0px;">
+                    <div style="float: right">
+                        <input name="btnInputFormSave" type="button" class="btn_blue" id="btnInputFormSave" value="确 定" onclick="__inputFormSave()" />
+                        <input name="btnInputFormCancel" type="button" class="btn_blue" id="btnInputFormCancel" value="取 消" onclick="__inputFormCancel()" />
+                    </div>
+                    <div style="clear: both">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/javascript">
+
+        var __inputFormCallback;
+        var __inputFormLayerIndex;
+        var __inputFormRequired;
+        var __inputFormDivHtml = $("#divInputForm").html();
+
+        function __showInputForm(callback,title,maxlength,required) {
+
+            __inputFormCallback = callback;
+            __inputFormRequired = required;
+
+            __inputFormLayerIndex = layer.open({
+                type: 1,
+                area: ['500px', '170px'], //宽高
+                closeBtn: false,
+                title: "",
+                shift: _layerShift,
+                content: __inputFormDivHtml,
+                success: function (layero, index) {
+
+                    $("#spanInputFormTitle").html(title);
+                    $("#txtInputForm_Text").attr("maxlength",maxlength);
+
+                    $(layero).focus();
+
+                }
+            });
+        }
+
+        function __inputFormSave(){
+
+            if(__inputFormRequired){
+                if($("#formInputForm").validate({
+                    onfocusout: false,
+                    onkeyup: false,
+                    showErrors: hightlightValidationErrors,
+                    rules: {
+                        "txtInputForm_Text": "required"
+                },
+                    messages: {
+                        "txtInputForm_Text": "*"
+                }
+                }).form() == false)
+                    return;
+            }
+
+            var text = $("#txtInputForm_Text").val();
+            layer.close(__inputFormLayerIndex);
+            if (__inputFormCallback != undefined && __inputFormCallback != null) {
+                __inputFormCallback(text);
+            }
+        }
+
+        function __inputFormCancel() {
+            layer.close(__inputFormLayerIndex);
+        }
+
+    </script>
+}
+
+@helper FileUpload()
+{
+    <script type="text/javascript" src='/Scripts/jquery.form.js'></script>
+
+    <script type="text/html" id="divUpload">
+        <div style="margin-left: 10px; margin-right: 10px; margin-top: 20px; margin-bottom: 10px;">
+            <div id="divFileUpload_Mask" style="display: none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; background-color: white">
+                <div style="margin-left: 30px; margin-top: 20px;">正在上传，请稍候...</div>
+            </div>
+
+            <div style="width: 100%;">
+                <div>
+                    <span class="font_blue_20">文件上传 </span>
+                </div>
+
+
+                <div style="width: 100%; margin-left: 0px; margin-top: 20px;">
+                    <form id="formFileUpload">
+                        <input type="hidden" id="txtFileUpload_Id" name="txtFileUpload_Id" />
+                        <input type="hidden" id="txtFileUpload_UserId" name="txtFileUpload_UserId" />
+                        <input type="hidden" id="txtFileUpload_Domain" name="txtFileUpload_Domain" />
+                        <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="130" height="36">
+                                    <input name="txtFileUpload_Name" type="file" class="input_16" style="width: 100%;" id="txtFileUpload_Name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="36">
+                                    <a href="http://docs.shengxunwei.com/Home/Browser/wxcm/003c0be0-ad31-4ef6-a4fa-9983f5655e60/d33ea213-09ce-4168-afd3-119068e46b39" target="_blank">上传图片文件之前请压缩图片以提高访问速度，点击查看</a>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </form>
+                </div>
+                <div style="width: 100%; margin-top: 20px; margin-left: 0px;">
+                    <div style="float: right">
+                        <input name="btnSave" type="button" class="btn_blue" id="btnSave" value="上 传" onclick="__fileUpload()" />
+
+                        <input name="btnCancel" type="button" class="btn_blue" id="btnCancel" value="取 消" onclick="__closeFileUpload()" />
+
+                    </div>
+                    <div style="clear: both">
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </script>
+
+    <script type="text/javascript">
+
+        var __fileUploadDivHtml;
+        var __fileUploadLayerIndex;
+        var __fileServiceAddress;//= "http://localhost:8012/";
+        //var _resultDomId;
+        var __fileUploadCallback;
+
+        var __fileUploadArgs;
+
+        $(document).ready(function () {
+            __fileUploadDivHtml = $("#divUpload").html();
+            $("#divUpload").html("");
+        });
+
+        function __showFileUpload(callback, fileUploadArgs) {
+            //_resultDomId = resultDomId;
+            __fileUploadCallback = callback;
+
+            if (fileUploadArgs != undefined && fileUploadArgs != null) {
+                __fileUploadArgs = fileUploadArgs;
+            }
+            else {
+                __fileUploadArgs = new Object();
+                __fileUploadArgs.uploadMethod = "Upload";
+                __fileUploadArgs.getUploadResultApi = "/Api/Settings/GetFileUploadResult?fileId={0}";
+            }
+
+            __fileUploadLayerIndex = layer.open({
+                type: 1,
+                area: ['500px', '220px'], //宽高
+                closeBtn: false,
+                title: "",
+                shift: _layerShift,
+                content: __fileUploadDivHtml,
+                success: function (layero, index) {
+                    $(layero).focus();
+
+                    //请求文件上传参数
+                    __getFileUploadParameter(function () {
+                        //跨域上传，通过HTTP返回代码判断结果
+                        $("#formFileUpload").submit(function () {
+                            //alert($("#txtFileUpload_Id").val());
+
+                            $("#formFileUpload").ajaxSubmit({
+                                type: "post",
+                                dataType: "json",
+                                url: __fileServiceAddress + "File/" + __fileUploadArgs.uploadMethod,
+                                success: function (data) {
+                                    __getUploadResult();
+                                },
+                                error: function (msg) {
+                                    __getUploadResult();
+
+                                    //IE下虽然进ERROR，但返回200
+                                    //CHROME下连200状态都得不到，返回0
+                                    //alert("error:" + msg.status);
+                                    ////{ "readyState": 4, "responseText": "", "status": 200, "statusText": "OK" }
+                                    //if (msg.status == 200)
+                                    //{
+
+                                    //    var url = __fileServiceAddress + "File/Get?id=" + $("#txtFileUpload_Id").val();
+                                    //    $("#" + resultDomId).val(url);
+                                    //    layer.close(__fileUploadLayerIndex);
+                                    //    if (callback != null && callback != undefined)
+                                    //    {
+                                    //        callback();
+                                    //    }
+                                    //}
+                                    //else
+                                    //{
+                                    //    //alert(JSON.stringify(msg));
+                                    //    alert(msg.responseText);
+                                    //}
+                                }
+                            });
+                            return false;
+                        });
+                    });
+                }
+            });
+        }
+
+        function __getUploadResult() {
+            var url = String.format(__fileUploadArgs.getUploadResultApi, $("#txtFileUpload_Id").val());
+            //alert(url);
+
+            $.ajax({
+                url: url,//__fileUploadArgs.getUploadResultApi + "?fileId=" + $("#txtFileUpload_Id").val(),
+                type: "POST", //如果用GET要注意浏览器缓存
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    //alert(JSON.stringify(data));
+                    //FileUploadResult
+                    if (data.Success) {
+                        // var url = __fileServiceAddress + data.StoreFilePath;
+                        //$("#" + _resultDomId).val(url);
+
+                        layer.close(__fileUploadLayerIndex);
+                        if (__fileUploadCallback != undefined && __fileUploadCallback != null) {
+                            //__fileUploadCallback(__fileServiceAddress, data.Data);
+                            __fileUploadCallback(__fileServiceAddress, data);
+                        }
+
+                    } else {
+                        $("#divFileUpload_Mask").hide();
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+        function __closeFileUpload() {
+            layer.close(__fileUploadLayerIndex);
+        }
+
+        function __fileUpload() {
+            var fileName = $("#txtFileUpload_Name").val();
+
+            if (fileName == "") {
+                layerAlert("请选择要上传的文件。");
+                return;
+            }
+
+            var fileExtName = fileName.substr(fileName.lastIndexOf(".")).toLowerCase();//获得文件后缀名
+
+            if (fileExtName != '.jpeg' && fileExtName != '.jpg' && fileExtName != '.gif' && fileExtName != '.png') {
+                layerAlert("请上传图片文件，您可以上传的文件类型：jpeg，jpg，gif，png。");
+                return;
+            }
+
+            $("#divFileUpload_Mask").show();
+            $("#formFileUpload").submit();
+        }
+
+        function __getFileUploadParameter(callback) {
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/UserContext/GetFileUploadParameter",
+                type: "POST", //如果用GET要注意浏览器缓存
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    layer.close(loadLayerIndex);
+                    if (data.Success) {
+                        var parameter = data.Data;
+                        $("#txtFileUpload_Id").val(parameter.Id);
+                        $("#txtFileUpload_UserId").val(parameter.UserId);
+                        $("#txtFileUpload_Domain").val(parameter.DomainId);
+                        __fileServiceAddress = parameter.FileService;
+                        //alert(__fileServiceAddress);
+                        callback();
+
+                    } else {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+    </script>
+
+}
+
+@helper MaterialSelect(bool text, bool image, bool article)
+{
+    <style type="text/css">
+        .divImageMaterialContainer {
+            width: 170px;
+            background-color: #FFF;
+        }
+
+        .tableImageMaterialContainer {
+            width: 100%;
+            border-collapse: collapse;
+            border: solid #E7E7EB;
+            border-width: 1px 0 0 1px;
+        }
+
+            .tableImageMaterialContainer td {
+                border: 1px solid #E7E7EB;
+            }
+
+        .divArticleMaterialContainer {
+            width: 230px;
+            background-color: #FFF;
+            font-size: 13px;
+        }
+
+        .tableArticleMaterialContainer {
+            width: 100%;
+            border-collapse: collapse;
+            border: solid #E7E7EB;
+            border-width: 1px 0 0 1px;
+        }
+
+            .tableArticleMaterialContainer td {
+                border: 1px solid #E7E7EB;
+            }
+
+        .tableNoBorder {
+            border: 0px;
+        }
+
+            .tableNoBorder td {
+                border: 0px;
+            }
+
+        .divFirstArticleTitle {
+            position: absolute;
+            line-height: 24px;
+            padding-left: 7px;
+            vertical-align: middle;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            height: 24px;
+            background-color: #000000;
+            color: white;
+            filter: alpha(opacity=70);
+            -moz-opacity: 0.7;
+            -khtml-opacity: 0.7;
+            opacity: 0.7;
+        }
+
+        .divArticleFirstItem {
+            border: 2px solid #FFF;
+            position: relative;
+            height: 100px;
+        }
+
+
+        .divArticleItem {
+            margin-top: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+            border: 2px solid #FFF;
+        }
+
+
+        .divArticleItemActive {
+            border: 2px solid skyblue;
+        }
+    </style>
+
+    <script id="articleTemplate" type="text/html">
+
+        <div class="divArticleMaterialContainer">
+            <table class="tableArticleMaterialContainer">
+                <tr>
+                    <td valign="top">
+                        <div>
+                            <div>
+                                <div class="divArticleFirstItem">
+                                    <div style="position: absolute; left: 0px; right: 0px; height: 100px; overflow: hidden">
+                                        <img src="{{ d[0].thumbUrl }}" style="width: 100%;">
+                                    </div>
+                                    <div class="divFirstArticleTitle">
+                                        <a style="color: white" target="_blank" href="{{ d[0].url }}">{{ d[0].title }}</a>
+                                    </div>
+                                </div>
+
+                                {{# for(var i = 1, len = d.length; i < len; i++){ }}
+                                <div class="divDotLine" style="margin-top: 10px;">
+                                </div>
+                                <div class="divArticleItem">
+                                    <table class="tableNoBorder" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td>
+                                                <a style="color: black" target="_blank" href="{{ d[i].url }}">{{ d[i].title }}</a>
+                                            </td>
+                                            <td width="75" align="right">
+                                                <img src="{{ d[i].thumbUrl }}" width="70" height="70">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                {{# } }}
+                            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30" valign="middle" bgcolor="#F4F5F9">
+                        <div>
+                            <div style="float: right; margin-right: 10px;">
+                                <img src="/Content/Images/ico_remove.jpg" width="20" height="20" onclick="__removeMaterialArticle()">
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </script>
+
+    <script id="tableMaterialImageTemplate" type="text/html">
+
+        <div class="divImageMaterialContainer">
+            <table class="tableImageMaterialContainer">
+                <tr>
+                    <td height="150" align="center">
+                        <img style="max-width: 166px; max-height: 100%" src="{{ d.Url }}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30" style="word-wrap: break-word; word-break: break-all;">
+                        <span class="font_gray_15" style="margin-left: 10px;">{{ d.Name }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30" valign="middle" bgcolor="#F4F5F9">
+                        <div>
+                            @*<div style="float: left; margin-left: 10px;">
+                                    <img src="/Content/Images/ico_edit.jpg" width="20" height="20">
+                                </div>*@
+                            <div style="float: right; margin-right: 10px;">
+                                <img src="/Content/Images/ico_remove.jpg" width="20" height="20" onclick="__removeMaterialImage()">
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+    </script>
+
+    <script type="text/javascript">
+
+        var __materialSelectAllowedText = @text.ToString().ToLower();
+        var __materialSelectAllowedImage = @image.ToString().ToLower();
+        var __materialSelectAllowedArticle = @article.ToString().ToLower();
+
+        //0文字 1图片 2图文
+        var __materialType = -1;
+        //选择的图像对象
+        var __materialImage;
+        var __materialArticleId;
+
+        //选择图片或图文时，此处为mediaId
+        var __materialSelect_mediaId;
+        //选择图片或图文时，此处为本地Id
+        var __materialSelect_materialId;
+
+        var __materialSelectValidator_text;
+        var __materialSelectValidator_image;
+        var __materialSelectValidator_article;
+
+        var __settedMaterial = false;
+
+        $(document).ready(function () {
+            __materialSelectValidator_text = $("#form_materialSelect_text").validate({
+                onfocusout: false,
+                onkeyup: false,
+                showErrors: showValidationErrors,
+                rules: {
+                    "txtMaterialSelectTextContent": "required"
+                },
+                messages: {
+                    "txtMaterialSelectTextContent": "请输入文字内容；"
+                }
+            });
+
+            __materialSelectValidator_image = $("#form_materialSelect_image").validate({
+                ignore: "", // 开启hidden验证， 1.9版本后默认关闭
+                onfocusout: false,
+                onkeyup: false,
+                showErrors: showValidationErrors,
+                rules: {
+                    "txtMaterialSelectImageMediaId": "required"
+                },
+                messages: {
+                    "txtMaterialSelectImageMediaId": "请选择图片；"
+                }
+            });
+
+            __materialSelectValidator_article = $("#form_materialSelect_article").validate({
+                ignore: "", // 开启hidden验证， 1.9版本后默认关闭
+                onfocusout: false,
+                onkeyup: false,
+                showErrors: showValidationErrors,
+                rules: {
+                    "txtMaterialSelectArticleId": "required"
+                },
+                messages: {
+                    "txtMaterialSelectArticleId": "请选择图文；"
+                }
+            });
+
+            if(__settedMaterial==false){
+                if(__materialSelectAllowedText){
+                    __switchMaterialText();
+                }else if(__materialSelectValidator_image){
+                    __switchMaterialImage();
+                }
+                else if(__materialSelectValidator_article){
+                    __switchMaterialArticle();
+                }
+            }
+        });
+
+        function __validateMaterialSelect() {
+
+            //if (__materialType == -1) {
+            //    layerAlert("请选择资源。", function () { return false;});
+            //}
+
+            switch (__materialType) {
+                case 0:  //文字
+                    return __materialSelectValidator_text.form();
+                case 1:  //图片
+                    return __materialSelectValidator_image.form();
+                case 2:  //图文
+                    return __materialSelectValidator_article.form();
+                default:
+                    alert("验证失败");
+                    break;
+            }
+        }
+
+        function __setMaterial(materialType,text,materialId) {
+
+            __settedMaterial = true;
+
+            switch (materialType) {
+                case 0:
+                    __showMaterialText(text);
+                    __switchMaterialText();
+                    break;
+                case 1:
+                    __loadMaterialImage(materialId);
+                    __switchMaterialImage();
+                    break;
+                case 2:
+                    __loadMaterialArticle(materialId);
+                    __switchMaterialArticle();
+                    break;
+                default:
+                    alert("未知 MaterialType");
+                    break;
+            }
+        }
+
+        function __loadMaterialImage(id) {
+
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/Material/GetNormalMaterial?id=" + id,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    layer.close(loadLayerIndex);
+                    if (data.Success) {
+                        //图文素材被删除后返回null
+                        if (data.Data != null) {
+                            // alert(JSON.stringify(data.Data));
+                            __materialImage = new Object();
+                            __materialImage.Id = data.Data.Id;
+                            __materialImage.Name = data.Data.Name;
+                            __materialImage.MediaId = data.Data.MediaId;
+                            __materialImage.Url = data.Data.Url;
+
+                            __materialSelect_materialId = data.Data.Id;
+                            __materialSelect_mediaId = data.Data.MediaId;
+
+                            $("#txtMaterialSelectImageMediaId").val(__materialSelect_mediaId);
+
+                            var gettpl = document.getElementById('tableMaterialImageTemplate').innerHTML;
+                            laytpl(gettpl).render(data.Data, function (html) {
+                                document.getElementById('divMaterialImage_Image').innerHTML = html;
+                            });
+
+                            $("#divMaterialImage_Select").hide();
+                            $("#divMaterialImage_Image").show();
+
+                        } else {
+                            //TODO:应该要有删除按钮，否则没法再选了
+                            document.getElementById('divMaterialImage_Image').innerHTML = "指定的图片素材不存在，请确认是否已被删除。";
+                        }
+
+                    } else {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+        function __loadMaterialArticle(id) {
+
+            __materialArticleId = id;
+            $("#txtMaterialSelectArticleId").val(id);
+
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/Material/GetArticleMaterial?id=" + id,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    layer.close(loadLayerIndex);
+                    if (data.Success) {
+                        //图文素材被删除后返回null
+                        if (data.Data != null) {
+                            __materialSelect_materialId = data.Data.id;
+                            __materialSelect_mediaId = data.Data.mediaId;
+
+                            var gettpl = document.getElementById('articleTemplate').innerHTML;
+                            laytpl(gettpl).render(data.Data.articles, function (html) {
+                                $("#divMaterialArticle_Select").hide();
+                                $("#divMaterialArticle_Article").show();
+                                document.getElementById('divMaterialArticle_Article').innerHTML = html;
+                            });
+                        } else {
+                            //TODO:要能删除重选
+                            document.getElementById('divMaterialArticle_Article').innerHTML = "指定的图文素材不存在，请确认是否已被删除。";
+                        }
+
+                    } else {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+        function __switchMaterialText() {
+            __materialType = 0;
+
+            $("#divMaterialTab_Text").show();
+            $("#divMaterialTab_Image").hide();
+            $("#divMaterialTab_Article").hide();
+
+            $("#imgMaterialTitle_Text").attr("src", "/Content/Images/ico_edit2.jpg");
+            $("#spanMaterialTitle_Text").attr("class", "font_black_16");
+
+            $("#imgMaterialTitle_Image").attr("src", "/Content/Images/ico_image.jpg");
+            $("#spanMaterialTitle_Image").attr("class", "font_gray_16");
+
+            $("#imgMaterialTitle_Article").attr("src", "/Content/Images/ico_image.jpg");
+            $("#spanMaterialTitle_Article").attr("class", "font_gray_16");
+        }
+
+        function __switchMaterialImage() {
+            __materialType = 1;
+
+            $("#divMaterialTab_Text").hide();
+            $("#divMaterialTab_Image").show();
+            $("#divMaterialTab_Article").hide();
+
+            $("#imgMaterialTitle_Text").attr("src", "/Content/Images/ico_edit.jpg");
+            $("#spanMaterialTitle_Text").attr("class", "font_gray_16");
+
+            $("#imgMaterialTitle_Image").attr("src", "/Content/Images/ico_image2.jpg");
+            $("#spanMaterialTitle_Image").attr("class", "font_black_16");
+
+            $("#imgMaterialTitle_Article").attr("src", "/Content/Images/ico_image.jpg");
+            $("#spanMaterialTitle_Article").attr("class", "font_gray_16");
+
+            if (__materialImage != undefined && __materialImage != null && __materialImage.MediaId != null) {
+                $("#divMaterialImage_Select").hide();
+                $("#divMaterialImage_Image").show();
+            }
+            else {
+                $("#divMaterialImage_Select").show();
+                $("#divMaterialImage_Image").hide();
+            }
+
+        }
+
+        function __switchMaterialArticle() {
+            __materialType = 2;
+
+            $("#divMaterialTab_Text").hide();
+            $("#divMaterialTab_Image").hide();
+            $("#divMaterialTab_Article").show();
+
+            $("#imgMaterialTitle_Text").attr("src", "/Content/Images/ico_edit.jpg");
+            $("#spanMaterialTitle_Text").attr("class", "font_gray_16");
+
+            $("#imgMaterialTitle_Image").attr("src", "/Content/Images/ico_image.jpg");
+            $("#spanMaterialTitle_Image").attr("class", "font_gray_16");
+
+            $("#imgMaterialTitle_Article").attr("src", "/Content/Images/ico_image2.jpg");
+            $("#spanMaterialTitle_Article").attr("class", "font_black_16");
+
+
+        }
+
+        function __showMaterialImageSelect() {
+            layer.open({
+                type: 2,
+                area: ['760px', '450px'], //宽高
+                closeBtn: false,
+                title: "",
+                shift: _layerShift,
+                content: '/Material/ImageSelect'
+            });
+        }
+
+        function __selectMaterialImageResult(image, layerIndex) {
+            if (layerIndex != undefined && layerIndex != null) {
+                layer.close(layerIndex);
+            }
+
+            __showMaterialImage(image);
+
+            $("#divMaterialImage_Select").hide();
+            $("#divMaterialImage_Image").show();
+        }
+
+        function __showMaterialImage(image) {
+            __materialImage = image;
+            __materialSelect_materialId = __materialImage.Id;
+            __materialSelect_mediaId = __materialImage.MediaId;
+
+            $("#txtMaterialSelectImageMediaId").val(__materialImage.MediaId);
+
+            var gettpl = document.getElementById('tableMaterialImageTemplate').innerHTML;
+            laytpl(gettpl).render(image, function (html) {
+                document.getElementById('divMaterialImage_Image').innerHTML = html;
+            });
+        }
+
+        function __removeMaterialImage() {
+            __materialImage = null;
+            __materialSelect_materialId = null;
+            __materialSelect_mediaId = null;
+
+            $("#txtMaterialSelectImageMediaId").val("");
+
+            $("#divMaterialImage_Select").show();
+            $("#divMaterialImage_Image").hide();
+        }
+
+        function __showMaterialText(content) {
+            $("#txtMaterialSelectTextContent").val(content);
+        }
+
+        function __getMaterialText() {
+            return $("#txtMaterialSelectTextContent").val();
+        }
+
+        function __showMaterialArticleSelect() {
+            layer.open({
+                type: 2,
+                area: ['860px', '550px'], //宽高
+                closeBtn: false,
+                title: "",
+                shift: _layerShift,
+                content: '/Material/ArticleSelect'
+            });
+        }
+
+        function __selectMaterialArticleResult(id, layerIndex) {
+            if (layerIndex != undefined && layerIndex != null) {
+                layer.close(layerIndex);
+            }
+
+            __loadMaterialArticle(id);
+        }
+
+        function __removeMaterialArticle() {
+            __materialArticleId = null;
+            __materialSelect_materialId = null;
+            __materialSelect_mediaId = null;
+
+            $("#txtMaterialSelectArticleId").val("");
+
+            $("#divMaterialArticle_Select").show();
+            $("#divMaterialArticle_Article").hide();
+        }
+
+    </script>
+
+    <div>
+        <div style="margin-top: 20px;">
+            @if (text)
+            {
+            <div id="divTitle_Text" style="float: left; cursor: pointer; margin-right: 20px;" onclick="__switchMaterialText()">
+                <img id="imgMaterialTitle_Text" src="/Content/Images/ico_edit2.jpg" />
+                <span class="font_black_16" id="spanMaterialTitle_Text">
+                    文字
+                </span>
+            </div>
+            }
+            @if (image)
+            {
+            <div id="divTitle_Image" style="float: left; cursor: pointer; margin-right: 20px;" onclick="__switchMaterialImage()">
+                <img id="imgMaterialTitle_Image" src="/Content/Images/ico_image.jpg" />
+                <span class="font_gray_16" id="spanMaterialTitle_Image">
+                    图片
+                </span>
+            </div>
+            }
+            @if (article)
+            {
+            <div id="divTitle_Article" style="float: left; cursor: pointer; margin-right: 20px;" onclick="__switchMaterialArticle()">
+                <img id="imgMaterialTitle_Article" src="/Content/Images/ico_image.jpg" />
+                <span class="font_gray_16" id="spanMaterialTitle_Article">
+                    图文消息
+                </span>
+            </div>
+            }
+            <div style="clear: both"></div>
+        </div>
+
+        <div id="divMaterialTab_Text" class="divBorder_gray" style="margin-top: 20px; display: none">
+            <form id="form_materialSelect_text">
+                @*关键词自动回复中长度限制是300，不过是独立画面设置的，用的不是这个*@
+                <textarea name="txtMaterialSelectTextContent" rows="6" class="input_18_noBorder" id="txtMaterialSelectTextContent" maxlength="600"></textarea>
+            </form>
+        </div>
+
+        <div id="divMaterialTab_Image" class="divBorder_gray" style="margin-top: 20px; display: none">
+            <form id="form_materialSelect_image">
+                <input type="hidden" id="txtMaterialSelectImageMediaId" name="txtMaterialSelectImageMediaId" />
+                <div id="divMaterialImage_Select">
+                    <div class="divDotBorder_gray" style="width: 150px; height: 150px; cursor: pointer" onclick="__showMaterialImageSelect()">
+                        <table height="100%" style="vertical-align: middle" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td align="center" valign="middle">
+                                    <div>
+                                        <img src="/Content/Images/plus.jpg" width="35" height="35">
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        从素材库选择
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+                <div id="divMaterialImage_Image">
+                </div>
+            </form>
+        </div>
+
+        <div id="divMaterialTab_Article" class="divBorder_gray" style="margin-top: 20px; display: none">
+            <form id="form_materialSelect_article">
+                <input type="hidden" id="txtMaterialSelectArticleId" name="txtMaterialSelectArticleId" />
+                <div id="divMaterialArticle_Select">
+                    <div class="divDotBorder_gray" style="width: 150px; height: 150px; cursor: pointer" onclick="__showMaterialArticleSelect()">
+                        <table height="100%" style="vertical-align: middle" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td align="center" valign="middle">
+                                    <div>
+                                        <img src="/Content/Images/plus.jpg" width="35" height="35">
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        从素材库选择
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+                <div id="divMaterialArticle_Article">
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+@helper CampaignBaseEdit()
+{
+    <form id="formCampaign">
+        <input type="hidden" id="txtId" />
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="200" height="36">名称：</td>
+                <td>
+                    <input id="txtName" name="txtName" type="text" class="input_16" style="width: 96%;" maxlength="50" />
+                </td>
+            </tr>
+            <tr>
+                <td height="36">简要说明：</td>
+                <td>
+                    <textarea name="txtIntroduction" rows="3" class="input_16" id="txtIntroduction" style="width: 96%;" maxlength="150"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        显示在标题下方的简短说明。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td height="36">详细说明：</td>
+                <td>
+                    <div style="width:96%">
+                        <div id="divDescriptionEditor" style='height:300px; '></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <div style="width:96%;">
+                        <div style="float:right;">
+                            <input name="btnUpload" type="button" class="btn_white" id="btnUpload" value="上传图片" onclick="uploadDescriptionFile()" />
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        说明内容将显示在活动的介绍页面上。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+
+                    <div style="margin-top: 5px;">
+                        分享小图片：
+                    </div>
+                </td>
+                <td valign="top">
+                    <div class="divBorder_gray" style="margin-bottom:5px;width:96%;">
+                        <div style="padding:5px;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="110">
+                                        <img id="shareImage" src="" alt="" style="max-height:100px;" />
+                                    </td>
+                                    <td align="right">
+                                        <input id="txtShareImageUrl" name="txtShareImageUrl" type="hidden" class="input_16" style="width: 96%;" maxlength="500" />
+                                        <a href="javascript:void(0)" onclick="uploadShareImage()">上传新图片</a><br />
+                                        <a href="javascript:void(0)" onclick="removeShareImage()">删除图片</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            @*<tr>
+                    <td height="36">&nbsp;</td>
+                    <td>
+                        <input id="txtShareImageUrl" name="txtShareImageUrl" type="text" class="input_16" style="width: 96%;" maxlength="500" />
+                    </td>
+                </tr>*@
+            <tr>
+                <td></td>
+                <td valign="top">
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        在微信中分享活动时，使用的正方形小图片。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="140" height="36">分享到朋友圈标题：</td>
+                <td>
+                    <input id="txtShareTimelineTitle" name="txtShareTimelineTitle" type="text" class="input_16" style="width: 96%;" maxlength="50" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        将活动页面分享到朋友圈时显示的标题文字。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="140" height="36">分享给好友标题：</td>
+                <td>
+                    <input id="txtShareAppMessageTitle" name="txtShareAppMessageTitle" type="text" class="input_16" style="width: 96%;" maxlength="50" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        将活动页面分享给好友时显示的标题文字。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="140" height="36">分享给好友描述：</td>
+                <td>
+                    <input id="txtShareAppMessageDescription" name="txtShareAppMessageDescription" type="text" class="input_16" style="width: 96%;" maxlength="100" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        将活动页面分享给好友时显示的标题下方的一段描述文字。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td  valign="top">
+                    <div style="margin-top: 5px;">
+                        主题图片：
+                    </div>
+                </td>
+                <td valign="top">
+                    <div class="divBorder_gray" style="margin-bottom:5px;width:96%;">
+                        <div style="padding:5px;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="310">
+                                        <img id="image" src="" alt="" style="max-width: 300px;" />
+                                    </td>
+                                    <td align="right">
+                                        <input id="txtImageUrl" name="txtImageUrl" type="hidden" class="input_16" style="width: 96%;" maxlength="500" />
+                                        <a href="javascript:void(0)" onclick="uploadImage()">上传新图片</a><br />
+                                        <a href="javascript:void(0)" onclick="removeImage()">删除图片</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td valign="top">
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        活动的主题图片。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td height="36">仅关注者可参与：</td>
+                <td>
+                    <select id="selectOnlyMember" name="selectOnlyMember" class="input_16" style="width: 130px;">
+                        <option value="true">是</option>
+                        <option value="false">否</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        当仅关注者才可参与时，未关注公众号者将被引导到“引导关注页面”。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="140" height="36">分享朋友圈奖励积分：</td>
+                <td>
+                    <input id="txtShareTimelinePoint" name="txtShareTimelinePoint" type="text" class="input_16" style="width: 130px;" value="1" />
+                </td>
+            </tr>
+            <tr>
+                <td width="140" height="36">分享好友奖励积分：</td>
+                <td>
+                    <input id="txtShareAppMessagePoint" name="txtShareAppMessagePoint" type="text" class="input_16" style="width: 130px;" value="1" />
+                </td>
+            </tr>
+            <tr>
+                <td width="140" height="36">引导关注页面：</td>
+                <td>
+                    <input id="txtGuideSubscribeUrl" name="txtGuideSubscribeUrl" type="text" class="input_16" style="width: 96%;" maxlength="500" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        如果留空，将以全局设置为准，也可以在此指定一个针对本活动的特殊引导关注页面。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="140" height="36">备注：</td>
+                <td>
+                    <input id="txtRemark" name="txtRemark" type="text" class="input_16" style="width: 96%;" maxlength="250" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        内部备注，关注者不可见。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="140" height="36">最大参与人数：</td>
+                <td>
+                    <input id="txtMaxParticipant" name="txtMaxParticipant" type="text" class="input_16" style="width: 130px;" value="0" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        最多允许参与的人数，输入 0 表示不限制。
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <link rel="stylesheet" type="text/css" href="/Scripts/wangEditor/css/wangEditor.min.css">
+    <script type="text/javascript" src='/Scripts/wangEditor/js/wangEditor.min.js'></script>
+    <style>
+        .wangEditor-container .wangEditor-txt p,
+        .wangEditor-container .wangEditor-txt h1,
+        .wangEditor-container .wangEditor-txt h2,
+        .wangEditor-container .wangEditor-txt h3,
+        .wangEditor-container .wangEditor-txt h4,
+        .wangEditor-container .wangEditor-txt h5 {
+            margin: 0px 0;
+            line-height: 1.8;
+        }
+    </style>
+    <script type="text/javascript">
+
+        var _campaign;
+
+        var _editor;
+        var _campaignBaseInfoValidator;
+
+        $(document).ready(function () {
+            $("#txtShareImageUrl").blur(function () {
+                loadShareImage();
+            });
+
+            $("#txtImageUrl").blur(function () {
+                loadImage();
+            });
+
+            _editor = new wangEditor('divDescriptionEditor');
+            _editor.config.menus = [
+            'source',
+            '|', 'bold', 'underline', 'italic', 'strikethrough', 'eraser', 'forecolor', 'bgcolor',
+            '|','quote','fontfamily','fontsize','head','unorderlist','orderlist','alignleft','aligncenter','alignright',
+            '|','link','unlink','table',
+            '|','undo','redo','fullscreen'
+            ];
+            _editor.create();
+
+            _campaignBaseInfoValidator = $("#formCampaign").validate({
+                onfocusout: false,
+                onkeyup: false,
+                showErrors: showValidationErrors,
+                rules: {
+                    "txtName": "required",
+                    "txtImageUrl": "required",
+                    "txtShareImageUrl": "required",
+                    "txtShareTimelineTitle":"required",
+                    "txtShareAppMessageTitle":"required",
+                    "txtShareAppMessageDescription":"required",
+                    "txtShareTimelinePoint": {
+                        required: true,
+                        number: true,
+                        digits: true,
+                        range: [0, 1000]
+                    },
+                    "txtShareAppMessagePoint": {
+                        required: true,
+                        number: true,
+                        digits: true,
+                        range: [0, 1000]
+                    },
+                    "txtMaxParticipant": {
+                        required: true,
+                        number: true,
+                        digits: true,
+                        range: [0, 99999]
+                    }
+                },
+                messages: {
+                    "txtName": "请输入名称；",
+                    "txtImageUrl": "请选择主题图片；",
+                    "txtShareImageUrl": "请选择分享小图片；",
+                    "txtShareTimelineTitle":"请输入分享到朋友圈标题；",
+                    "txtShareAppMessageTitle":"请输入分享给好友标题；",
+                    "txtShareAppMessageDescription":"请输入分享给好友描述；",
+                    "txtShareTimelinePoint": {
+                        required: "请输入分享朋友圈奖励积分；",
+                        number: "分享朋友圈奖励积分请输入有效整数字；",
+                        digits: "分享朋友圈奖励积分请输入有效整数字；",
+                        range: "分享朋友圈奖励积分值请介于 0 到 1000 之间；"
+                    },
+                    "txtShareAppMessagePoint": {
+                        required: "请输入分享好友奖励积分；",
+                        number: "分享好友奖励积分请输入有效整数字；",
+                        digits: "分享好友奖励积分请输入有效整数字；",
+                        range: "分享好友奖励积分值请介于 0 到 1000 之间；"
+                    },
+                    "txtMaxParticipant": {
+                        required: "请输入最大参与人数；",
+                        number: "最大参与人数请输入有效整数字；",
+                        digits: "最大参与人数请输入有效整数字；",
+                        range: "最大参与人数请介于 0 到 99999 之间；"
+                    }
+                }
+            });
+        });
+
+        function uploadShareImage() {
+            __showFileUpload(getUploadShareImageResult);
+        }
+
+        function getUploadShareImageResult(fileServiceAddress, result) {
+            var url = fileServiceAddress + result.Data.StoreFilePath;
+            $("#txtShareImageUrl").val(url);
+            loadShareImage();
+        }
+
+        function loadShareImage() {
+            $("#shareImage").attr("src", $("#txtShareImageUrl").val());
+        }
+
+        function removeShareImage() {
+            $("#txtShareImageUrl").val("");
+            loadShareImage();
+        }
+
+        //////////
+
+        function uploadImage() {
+            __showFileUpload(getUploadImageResult);
+        }
+
+        function getUploadImageResult(fileServiceAddress, result) {
+            var url = fileServiceAddress + result.Data.StoreFilePath;
+            $("#txtImageUrl").val(url);
+            loadImage();
+        }
+
+        function loadImage() {
+            $("#image").attr("src", $("#txtImageUrl").val());
+        }
+
+        function removeImage() {
+            $("#txtImageUrl").val("");
+            loadImage();
+        }
+
+        ////详细图片
+
+        function uploadDescriptionFile() {
+            __showFileUpload(getUploadDescriptionFileResult);
+        }
+
+        function getUploadDescriptionFileResult(fileServiceAddress, result) {
+            var url = fileServiceAddress + result.Data.StoreFilePath;
+            _editor.$txt.append("<img src='" + url + "' style='max-width:100%' />");
+        }
+
+        function getCampaign() {
+            if (_campaign == undefined || _campaign == null) {
+                _campaign = new Object();
+            }
+
+            var id = $("#txtId").val();
+            if (id != undefined && id != "") {
+                _campaign.Id = id;
+            }
+
+            _campaign.Name = $("#txtName").val();
+            //_campaign.Introduction = $('#txtIntroduction').val();
+            _campaign.Introduction = $("#txtIntroduction").val().replace(new RegExp("\n", "gm"), "<br/>");
+            _campaign.Description = _editor.$txt.html();
+            _campaign.ShareImageUrl = $("#txtShareImageUrl").val();
+            _campaign.ShareTimelineTitle  = $("#txtShareTimelineTitle").val();
+            _campaign.ShareAppMessageTitle  = $("#txtShareAppMessageTitle").val();
+            _campaign.ShareAppMessageDescription  = $("#txtShareAppMessageDescription").val();
+            _campaign.ImageUrl = $("#txtImageUrl").val();
+            _campaign.OnlyMember = $("#selectOnlyMember").val();
+            _campaign.GuideSubscribeUrl = $("#txtGuideSubscribeUrl").val();
+            _campaign.ShareTimelinePoint = $("#txtShareTimelinePoint").val();
+            _campaign.ShareAppMessagePoint = $("#txtShareAppMessagePoint").val();
+            _campaign.Remark = $("#txtRemark").val();
+            _campaign.MaxParticipant = $("#txtMaxParticipant").val();
+
+            return _campaign;
+        }
+
+        function setCampaign(campaign) {
+            _campaign = campaign;
+
+            $("#txtId").val(campaign.Id);
+            $("#txtName").val(campaign.Name);
+            //$("#txtIntroduction").val(campaign.Introduction);
+            $("#txtIntroduction").val(campaign.Introduction.replace(new RegExp("<br/>", "gm"), "\n"));
+            _editor.$txt.html(campaign.Description)
+            $("#txtShareImageUrl").val(campaign.ShareImageUrl);
+            $("#txtShareTimelineTitle").val(campaign.ShareTimelineTitle);
+            $("#txtShareAppMessageTitle").val( campaign.ShareAppMessageTitle);
+            $("#txtShareAppMessageDescription").val(campaign.ShareAppMessageDescription);
+            $("#txtImageUrl").val(campaign.ImageUrl);
+            $("#selectOnlyMember").find("option[value='" + campaign.OnlyMember + "']").attr("selected", true);
+            $("#txtGuideSubscribeUrl").val(campaign.GuideSubscribeUrl);
+            $("#txtShareTimelinePoint").val(campaign.ShareTimelinePoint);
+            $("#txtShareAppMessagePoint").val(campaign.ShareAppMessagePoint);
+            $("#txtRemark").val(campaign.Remark);
+            $("#txtMaxParticipant").val(campaign.MaxParticipant);
+
+            loadImage();
+            loadShareImage();
+        }
+
+        function setOnlyMember() {
+            $("#selectOnlyMember").find("option[value='true']").attr("selected", true);
+            $("#selectOnlyMember").attr("disabled", "disabled");
+        }
+
+    </script>
+}
+
+@helper MemberSelect()
+{
+
+    <script type="text/javascript">
+        var __member;
+
+        function __selectMember(){
+            layer.open({
+                type: 2,
+                area: ['100%', '100%'], //宽高
+                closeBtn: false,
+                title: "",
+                shift: _layerShift,
+                content: '/Member/MemberSelect'
+            });
+        }
+
+        function __selectMemberResult(member, layerIndex) {
+            if (layerIndex != undefined && layerIndex != null) {
+                layer.close(layerIndex);
+            }
+
+            __showMember(member);
+
+        }
+
+        function __showMember(member){
+            __member = member;
+
+            $("#__imgMemberHeadimgurl").attr("src",member.Headimgurl);
+            $("#__spanMemberNickName").html(member.NickName);
+        }
+
+        function __clearMember(){
+            __member = null;
+
+            $("#__imgMemberHeadimgurl").attr("src","");
+            $("#__spanMemberNickName").html("");
+        }
+
+        function __setMember(id) {
+
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/Member/GetMember?id=" + id,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    layer.close(loadLayerIndex);
+                    if (data.Success) {
+                        //图文素材被删除后返回null
+                        if (data.Data != null) {
+                            __showMember(data.Data);
+
+                        } else {
+                            __clearMember();
+                        }
+
+                    } else {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+    </script>
+
+    <div class="divBorder_gray" style="width:100%; ">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="60" valign="middle"><img id="__imgMemberHeadimgurl" style="width:46px;" /></td>
+                <td><span id="__spanMemberNickName"></span></td>
+                <td valign="middle" align="right" width="160">
+                    <input name="btnMemberSelect" type="button" class="btn_white" id="btnMemberSelect" value="选择" onclick="__selectMember()" />
+                    <input name="btnMemberClear" type="button" class="btn_white" id="btnMemberClear" value="清除" onclick="__clearMember()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+}
+
+@helper AdvertisingSelect(string key)
+{
+
+    <script type="text/javascript">
+        var __advertising@(key);
+
+        function __selectAdvertising@(key)(){
+            layer.open({
+                type: 2,
+                area: ['900px', '100%;'], //宽高
+                closeBtn: false,
+                title: "",
+                shift: _layerShift,
+                content: '/Settings/AdvertisingSelect?key=@(key)'
+            });
+        }
+
+        function ____selectAdvertisingResult@(key)(advertising, layerIndex) {
+            if (layerIndex != undefined && layerIndex != null) {
+                layer.close(layerIndex);
+            }
+
+            __showAdvertising@(key)(advertising);
+
+        }
+
+        function __showAdvertising@(key)(advertising){
+            __advertising@(key) = advertising;
+
+            $("#__imgAdvertisingImage@(key)").attr("src",advertising.ImageUrl);
+            $("#__spanAdvertisingName@(key)").html(advertising.Name);
+        }
+
+        function __clearAdvertising@(key)(){
+            __advertising@(key) = null;
+
+            $("#__imgAdvertisingImage@(key)").attr("src","");
+            $("#__spanAdvertisingName@(key)").html("");
+        }
+
+        function __setAdvertising@(key)(id) {
+
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/Advertising/GetAdvertising?id=" + id,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    layer.close(loadLayerIndex);
+                    if (data.Success) {
+                        //图文素材被删除后返回null
+                        if (data.Data != null) {
+                            __showAdvertising@(key)(data.Data);
+
+                        } else {
+                            __clearAdvertising@(key)();
+                        }
+
+                    } else {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+    </script>
+
+    <div class="divBorder_gray" style="width:100%; ">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="60" valign="middle"><img id="__imgAdvertisingImage@(key)" style="max-width:300px;" /></td>
+                <td><span id="__spanAdvertisingName@(key)" style="margin-left:10px;"></span></td>
+                <td valign="middle" align="right" width="160">
+                    <input name="btnMemberSelect" type="button" class="btn_white" id="btnMemberSelect" value="选择" onclick="__selectAdvertising@(key)()" />
+                    <input name="btnMemberClear" type="button" class="btn_white" id="btnMemberClear" value="清除" onclick="__clearAdvertising@(key)()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+}

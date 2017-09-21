@@ -1,0 +1,196 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Areas.Staff.Models.PictureVoteItemListViewModel
+
+@{
+    ViewBag.SubTitle = "最美投票";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .divPictureVoteItemImage {
+        float: left;
+        width: 1.2rem;
+    }
+
+    .divPictureVoteItemImageContent {
+        vertical-align: middle;
+        display: table-cell;
+    }
+
+    .imgPictureVoteItem {
+        max-width: 1rem;
+        vertical-align: middle;
+    }
+</style>
+
+<script type="text/javascript">
+
+    //当前页
+    var _orderBy = "UploadTime";
+    var _currentPage = 1;
+    var _totalPage = 1;
+    var _campaignId = getQueryString("campaignId");
+
+    $(document).ready(function () {
+
+        $("#selectSearch_ApproveStatus").change(function () {
+            loadData();
+        });
+
+        $("#selectSearch_ApproveStatus").val("0");
+
+        loadData();
+    });
+
+    function loadData(targetPage) {
+        if (targetPage > _totalPage)
+            return;
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.PageSize = 10;
+        args.OrderBy = _orderBy;
+
+        var approveStatus = $("#selectSearch_ApproveStatus").val();
+        if (approveStatus != "-1") {
+            args.ApproveStatus = approveStatus;
+        }
+
+        //if (_status == 2) {
+        //    args.OrderBy = "VoteQuantity";
+        //}
+
+        $.ajax({
+            url: "/Api/Campaign/GetPictureVoteAllItemList/@ViewBag.Domain.Id?campaignId=" + _campaignId,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    _currentPage = resultObj.Page;
+                    _totalPage = resultObj.TotalPage;
+                    if (_currentPage >= _totalPage) {
+                        $("#divPagingContainer").html("没有更多了");
+                    }
+
+                    if (_currentPage == 1) {
+                        document.getElementById('pictureVoteItemContainer').innerHTML = "";
+                    }
+
+                    var gettpl = document.getElementById('pictureVoteItemListTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html) {
+                        document.getElementById('pictureVoteItemContainer').innerHTML += html;
+                    });
+
+                    //if (_status == 2) {
+                    //    var gettpl = document.getElementById('endPictureVoteItemListTemplate').innerHTML;
+                    //    laytpl(gettpl).render(resultObj.ItemList, function (html) {
+                    //        document.getElementById('pictureVoteItemContainer').innerHTML += html;
+                    //    });
+                    //} else {
+                    //    var gettpl = document.getElementById('pictureVoteItemListTemplate').innerHTML;
+                    //    laytpl(gettpl).render(resultObj.ItemList, function (html) {
+                    //        document.getElementById('pictureVoteItemContainer').innerHTML += html;
+                    //    });
+                    //}
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function detail(id) {
+        window.location.href = "/Staff/Campaign/PictureVoteItemDetail/@ViewBag.Domain.Id?campaignId=" + _campaignId + "&itemId=" + id;
+    }
+
+</script>
+
+
+<script id="pictureVoteItemListTemplate" type="text/html">
+    {{# for(var i = 0, len = d.length; i < len; i=i+1){ }}
+
+    <div class="divBorder" style="margin-top: 0.2rem; margin-left: 0rem; margin-right: 0rem; font-size: 0.13rem" onclick="detail('{{ d[i].Id }}')">
+        <div style="">
+            <div class="divPictureVoteItemImage">
+                <div class="divPictureVoteItemImageContent">
+                    <img src="{{ d[i].Url }}" class="imgPictureVoteItem">
+                </div>
+            </div>
+            <div style="margin-top: 0.05rem; float: left; width: 40%">
+                <div>标题：{{ d[i].Title }}</div>
+                <div>上传者：{{ d[i].MemberNickName }}</div>
+                <div>编号：{{ d[i].SerialNumber }}</div>
+                <div>当前票数：{{ d[i].VoteQuantity }}</div>
+                <div style="margin-top: 0.05rem;">
+                    {{# if(d[i].ApproveStatus == 0){ }}
+                    未审核
+                    {{# }else if(d[i].ApproveStatus == 1){ }}
+                    审核通过
+                    {{# }else if(d[i].ApproveStatus == 2){ }}
+                    已拒绝
+                    {{# } }}
+                </div>
+                {{# if(d[i].ApproveStatus == 2 && d[i].RejectedMessage != null){ }}
+                    <div>原因：
+                         {{ d[i].RejectedMessage }}
+                    </div>
+                 {{# } }}
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+
+    {{# } }}
+
+</script>
+
+<div class="divContent">
+
+    <div class="font_16_b" style="margin-top:0.5rem">
+        @Model.Campaign.Name
+    </div>
+
+    <div style="margin-top:0.15rem">
+        <div style="float:left;margin-right:0.2rem;padding:0.1rem; " onclick="goUrl('/Staff/Campaign/PictureVote/@ViewBag.Domain.Id?campaignId=' + _campaignId)">
+            摘要
+        </div>
+        <div style="float:left;margin-right:0.2rem;padding:0.1rem;background-color:#EEEEEE " >
+            管理内容
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div class="divDotLine" style="margin-top: 0.05rem; margin-bottom: 0.05rem;">
+    </div>
+
+    <div>
+        <select id="selectSearch_ApproveStatus" name="selectSearch_ApproveStatus" class="input_16">
+            <option value="-1">全部</option>
+            <option value="0">未审核</option>
+            <option value="1">审核通过</option>
+            <option value="2">已拒绝</option>
+        </select>
+    </div>
+
+    <div id="pictureVoteItemContainer" style="margin-top: 0.06rem">
+    </div>
+
+    <div id="divPagingContainer" class="divPagingContainer" style="margin-top: 0.2rem; text-align: center" onclick="loadData(_currentPage+1)">
+        查看更多
+    </div>
+</div>

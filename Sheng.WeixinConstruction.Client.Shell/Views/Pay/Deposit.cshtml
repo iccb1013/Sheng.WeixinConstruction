@@ -1,0 +1,203 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.PayViewModel
+
+@{
+    ViewBag.SubTitle = "现金账户";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+    body {
+        margin-top: 0.9rem;
+        margin-bottom: 0.55rem;
+    }
+
+    .divBillTitle {
+        font-size: 0.13rem;
+    }
+
+    .divBillDateTime {
+        font-size: 0.13rem;
+    }
+
+    .divPointIncrement {
+        color: #FF541B;
+        font-weight: bold;
+        font-size: 0.16rem;
+    }
+
+    .divPointDecrement {
+        color: #00B200;
+        font-weight: bold;
+        font-size: 0.16rem;
+    }
+
+    #divFooter {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.4rem;
+        font-size: 0.14rem;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+</style>
+
+<script>
+
+    var _validator;
+    var _getBrandWCPayRequestArgs;
+
+    $(document).ready(function () {
+
+        _validator = $("#form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txtFee": {
+                    required: true,
+                    number: true,
+                    digits: true,
+                    range: [1, 100000]
+                },
+            },
+            messages: {
+                "txtFee": {
+                    required: "请输入要充值的金额；",
+                    number: "充值金额请输入有效整数字；",
+                    digits: "充值金额请输入有效整数字；",
+                    range: "充值金额请介于 1 到 100000 之间；"
+                },
+            }
+        });
+
+        $("#txtFee").focus();
+    });
+
+
+    //调用微信JS api 支付
+    function jsApiCall() {
+        // alert(_getBrandWCPayRequestArgs);
+        var argsObj = eval('(' + _getBrandWCPayRequestArgs + ')');
+
+        WeixinJSBridge.invoke(
+        'getBrandWCPayRequest',
+        argsObj,//josn串
+         function (res) {
+             //WeixinJSBridge.log(res.err_msg);
+             // alert("err_code:" + res.err_code + ", err_desc:" + res.err_desc + ", err_msg:" + res.err_msg);
+
+             if (res.err_msg == "get_brand_wcpay_request:ok") {
+                 layerAlertBtn("支付成功！<br/>注意由于银行系统处理需要时间，到账可能稍有延迟。", function () {
+                     layer.open({
+                         type: 2,
+                         shadeClose: false,
+                         content: '请稍候...'
+                     });
+
+                     window.location.href = "/Pay/CashAccountTrack/@ViewBag.Domain.Id";
+                 });
+             }
+         }
+         );
+    }
+
+    function callpay() {
+        if (typeof WeixinJSBridge == "undefined") {
+            if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            }
+            else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }
+        else {
+            jsApiCall();
+        }
+    }
+
+    function deposit() {
+        @if (ViewBag.DomainContext.Pay == false)
+        {
+            <text>
+        layerAlert(@(ViewBag.Authorizer.NickName) 未开通对接微信支付，请使用线下现金充值方式为您的账户充值。);
+        return;
+        </text>
+       }
+        if (_validator.form() == false) {
+            return;
+        }
+
+        var fee = $("#txtFee").val();
+
+        var confirmLayerIndex = layer.open({
+            content: '确认充值人民币 ' + fee + ' 元吗？',
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function () {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                var args = new Object();
+                args.Fee = fee;
+
+                $.ajax({
+                    url: "/Api/Pay/Deposit/@ViewBag.Domain.Id",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(args),
+                    success: function (data, status, jqXHR) {
+                        layer.close(loadLayerIndex);
+                        if (data.Success) {
+                            _getBrandWCPayRequestArgs = data.Data;
+
+                            callpay();
+
+                        } else {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest) {
+                        layer.close(loadLayerIndex);
+                        //alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+</script>
+
+@Helpers.HeaderArea(ViewBag, "cash")
+
+@*<div id="divMemberInfo">
+        您的账户余额：<span class="font_red_b">@(ViewBag.Member.CashAccount / 100f)</span> 元
+    </div>*@
+<div class="divContent">
+    <form id="form">
+        <div style="font-size:0.14rem;">
+            充值金额（元）：
+        </div>
+        <div style="margin-top:0.2rem;">
+            <input id="txtFee" name="txtFee" type="text" class="input_16" value="" maxlength="6">
+        </div>
+        <div style="margin-top:0.3rem; margin-left:auto; margin-right:auto;width:1.5rem;">
+            <input name="" type="button" class="button" value="立即充值" style="width:100%" onclick="deposit()" @if (ViewBag.DomainContext.Pay == false) { @Html.Raw("disabled")  }>
+        </div>
+    </form>
+    @if (ViewBag.DomainContext.Pay == false)
+    {
+        <div style="margin-top:0.2rem;">
+            <span>@(ViewBag.Authorizer.NickName) 未开通对接微信支付，请使用线下现金充值方式为您的账户充值。</span>
+        </div>
+    }
+</div>
+

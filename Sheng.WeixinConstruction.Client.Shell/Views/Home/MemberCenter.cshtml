@@ -1,0 +1,294 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.MemberCenterViewModel
+
+@{
+    ViewBag.SubTitle = "会员中心";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style>
+    body {
+        margin-bottom: 0.55rem;
+    }
+
+    #divTopTitle {
+        height: 0.65rem;
+        color: #FFF;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+    }
+
+    #divFooter {
+        background-color: white;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.4rem;
+        font-size: 0.13rem;
+        text-align: center;
+    }
+
+
+    #divCard {
+        font-size: 0.13rem;
+        height: 1.3rem;
+        width: 2.1rem;
+        top: 0.2rem;
+        right: 0.2rem;
+        position: absolute;
+        -moz-border-radius: 0.1rem;
+        -webkit-border-radius: 0.1rem;
+        border-radius: 0.1rem;
+        z-index: 0;
+        background-size: 100% 100%;
+    }
+
+    #divHeadimg {
+        width: 0.5rem;
+        height: 0.5rem;
+        left: 0.2rem;
+        margin-top: -0.35rem;
+        position: absolute;
+    }
+
+    #divQRCode {
+        width: 0.5rem;
+        height: 0.5rem;
+        left: 0.23rem;
+        margin-top: 0.3rem;
+        position: absolute;
+    }
+
+    #divCardBackground {
+        height: 1.0rem;
+    }
+
+
+    .divQRCodeTitle {
+        background-color: #FF4D4D;
+        height: 0.35rem;
+        line-height: 0.35rem;
+        text-align: center;
+        font-size: 0.16rem;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+
+
+    .divCloseButton {
+        padding-top: 0.04rem;
+        padding-right: 0.03rem;
+        padding-bottom: 0.04rem;
+        padding-left: 0.03rem;
+        margin-top: 0.01rem;
+        font-size: 0.14rem;
+        margin-top: 0.04rem;
+        text-align: center;
+        background-color: #FF4D4D;
+        color: white;
+        -moz-border-radius: 0.1rem; /* Gecko browsers */
+        -webkit-border-radius: 0.1rem; /* Webkit browsers */
+        border-radius: 0.1rem; /* W3C syntax */
+    }
+</style>
+
+ @Scripts.Render("~/Scripts/jquery.qrcode.js")
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#spanCardNumber").html($("#spanCardNumber").html().replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1 "));
+    });
+
+    function showQRCode() {
+
+        var gettpl = document.getElementById('qrCodeTemplate').innerHTML;
+
+        var pageii = layer.open({
+            type: 1,
+            content: gettpl,
+            style: 'border:none;width:2.5rem;height:3rem',
+            success: function (elem) {
+
+                $.ajax({
+                    url: "/Api/Member/GetMemberCenterQRCode/@ViewBag.Domain.Id",
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data, status, jqXHR) {
+                        if (data.Success) {
+
+                            //$("#imgQRCode").attr("src", data.Data);
+                            buildQRCodeImage(data.Data);
+                            $("#spanMessage").html("请在服务人员需要时<br/>出示此二维码");
+
+                        } else {
+                            $("#spanMessage").html(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest) {
+                        //alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+
+            }
+        });
+    }
+
+    function buildQRCodeImage(url) {
+        var fontSize = document.documentElement.style.fontSize.replace('px', '');
+        var size = accMul(1.5, parseFloat(fontSize));
+        $('#qrcode').qrcode({ width: size, height: size, correctLevel: 0, foreground: "#000000", text: url });
+    }
+
+    function showMemberInfo() {
+        $("#tdMemberInfoTab").attr("class", "defaultColor");
+        $("#tdMemberInfoTabLine").attr("class", "defaultBgColor");
+        $("#tdMemberInfoTabLine").removeAttr("bgcolor");
+
+        $("#tdPrivilegeTab").removeAttr("class");
+        $("#tdPrivilegeTabLine").removeAttr("class");
+        $("#tdPrivilegeTabLine").attr("bgcolor", "#E4E4E4");
+
+        $("#divMemberInfo").show();
+        $("#divPrivilege").hide();
+
+
+    }
+
+    function showPrivilege() {
+        $("#tdPrivilegeTab").attr("class", "defaultColor");
+        $("#tdPrivilegeTabLine").attr("class", "defaultBgColor");
+        $("#tdPrivilegeTabLine").removeAttr("bgcolor");
+
+        $("#tdMemberInfoTab").removeAttr("class");
+        $("#tdMemberInfoTabLine").removeAttr("class");
+        $("#tdMemberInfoTabLine").attr("bgcolor", "#E4E4E4");
+
+        $("#divMemberInfo").hide();
+        $("#divPrivilege").show();
+
+    }
+</script>
+
+<script type="text/html" id="qrCodeTemplate">
+    <div class="divQRCodeTitle defaultBgColor">
+        会员二维码
+    </div>
+    <div id="qrcode" style="text-align:center;margin-top:0.2rem;">
+        @*<img id="imgQRCode" src="" style="width:1.5rem;height:1.5rem;" />*@
+    </div>
+    <div style="text-align:center;margin-top:0.1rem;">
+        <span id="spanMessage">请稍候...</span>
+    </div>
+    <div style="position:fixed;bottom:0.1rem;left:0.1rem;right:0.1rem;">
+        <div class="divRectangle_Gray" style="margin-top:0.1rem;" onclick="layer.closeAll()">
+            关 闭
+        </div>
+    </div>
+</script>
+
+<div id="divTopTitle" class="gradient">
+    <div style="padding-top:0.2rem;">
+    </div>
+</div>
+
+<div id="divCardBackground">
+    <div id="divHeadimg">
+        <img src="@ViewBag.Member.Headimgurl_64" style="width:0.5rem; height:0.5rem">
+    </div>
+    <div id="divQRCode">
+        <img src="/Content/Images/qrcodeIcon.jpg" style="width:0.4rem;" onclick="showQRCode()" />
+    </div>
+    <div id="divCard" style="background-image:url(@if (Model.MemberCard!=null && String.IsNullOrEmpty(Model.MemberCard.ImageUrl) == false)
+                                                  {
+                                                       @Model.MemberCard.ImageUrl
+                                                  }else{
+                                                       <text>/Content/Images/memberCard.jpg</text>
+                                                  })">
+        <div style="position:absolute; bottom:0.1rem;left:0.1rem;color:@if (Model.MemberCard!=null && String.IsNullOrEmpty(Model.MemberCard.CardNumberColor) == false)
+                                                  {
+                                                       @Model.MemberCard.CardNumberColor
+                                                  }else{
+                                                       <text>white</text>
+                                                  }">
+            卡号：<span id="spanCardNumber">@ViewBag.Member.CardNumber</span>
+        </div>
+    </div>
+
+</div>
+
+
+<div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:100%">
+        <tr style="height:0.27rem;">
+            <td id="tdMemberInfoTab" width="33%" align="center" class="defaultColor" onclick="showMemberInfo()">会员信息</td>
+            @*<td id="tdPrivilegeTab" width="33%" align="center" onclick="showPrivilege()">会员特权</td>*@
+            <td id="tdPrivilegeTab" width="33%" align="center"></td>
+        </tr>
+        <tr style="height:0.03rem;">
+            <td id="tdMemberInfoTabLine" class="defaultBgColor"></td>
+            <td id="tdPrivilegeTabLine" bgcolor="#E4E4E4"></td>
+            <td bgcolor="#E4E4E4"></td>
+        </tr>
+    </table>
+</div>
+
+<div id="divMemberInfo" class="divContent" style="margin-top:0.2rem;margin-left:0.2rem;margin-right:0.2rem;">
+    <div onclick="goUrl('/Home/PersonalInfo/@ViewBag.Domain.Id')">
+        <div style="float:left">
+            个人信息
+        </div>
+        <div class="defaultColor" style="float:right;color:#777777">
+            @ViewBag.Member.NickName
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div class="divDotLine" style="margin-top:0.1rem;margin-bottom:0.1rem;"></div>
+    <div onclick="goUrl('/Home/PointAccount/@ViewBag.Domain.Id')">
+        <div style="float:left">
+            积分
+        </div>
+        <div class="defaultColor" style="float:right;font-weight:bold">
+            @ViewBag.Member.Point
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div class="divDotLine" style="margin-top:0.1rem;margin-bottom:0.1rem;"></div>
+    <div onclick="goUrl('/Pay/CashAccountTrack/@ViewBag.Domain.Id')">
+        <div style="float:left">
+            现金
+        </div>
+        <div class="defaultColor" style="float:right;font-weight:bold">
+            @(ViewBag.Member.CashAccount / 100f)
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div class="divDotLine" style="margin-top:0.1rem;margin-bottom:0.1rem;"></div>
+    <div onclick="goUrl('/Home/Coupon/@ViewBag.Domain.Id')">
+        <div style="float:left">
+            卡券
+        </div>
+        <div class="defaultColor" style="float:right;font-weight:bold">
+            @ViewBag.ValidCouponCount
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+</div>
+
+<div id="divPrivilege" class="divContent" style="margin-top:0.2rem;margin-left:0.2rem;margin-right:0.2rem;display:none">
+    这是特权信息
+</div>
+
+<div id="divFooter" onclick="goUrl('/Home/RecommendUrl/@ViewBag.Domain.Id')">
+    <table align="center" style="height:100%;width:100%">
+        <tr>
+            <td style="background-color: #F5F5F5;height:0.01rem;"></td>
+        </tr>
+        <tr>
+            <td class="defaultColor" valign="middle" align="center">
+                推广赚积分 >
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,319 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.MemberQRCodeViewModel
+
+@{
+    ViewBag.SubTitle = "活动";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+    .campaignName {
+        font-size: 0.14rem;
+        font-weight: bold;
+    }
+
+    .campaignDescription {
+        font-size: 0.13rem;
+        color: #666;
+    }
+
+    #divMemberInfo {
+        font-size: 0.14rem;
+        line-height: 0.14rem;
+        text-align: center;
+        margin-top: 0.05rem;
+    }
+
+   
+
+    #divShareMask {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        text-align: right;
+        filter: alpha(opacity=80);
+        -moz-opacity: 0.8;
+        -khtml-opacity: 0.8;
+        opacity: 0.8;
+    }
+</style>
+
+<script>
+
+    var _campaignId = getQueryString("campaignId");
+
+    $(document).ready(function ()
+    {
+        $(document).scroll(function ()
+        {
+            $("#divShareMask").css("top", document.body.scrollTop);
+        });
+
+        var jsApiConfigStr = "@Newtonsoft.Json.JsonConvert.SerializeObject(Model.JsApiConfig)";
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("&quot;", "gm"), "\"");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\r\n", "gm"), "");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\n", "gm"), "");
+        var jsApiConfig = eval('(' + jsApiConfigStr + ')');
+
+        wx.config(jsApiConfig);
+
+        loadData();
+    });
+
+    wx.ready(function ()
+    {
+        wx.onMenuShareTimeline({
+            title: '@Model.Campaign.ShareTimelineTitle', // 分享标题
+            link: '@Request.Url.Scheme://@Request.Url.Host/Campaign/MemberQRCodeShare/@Model.Campaign.Domain?campaignId=@Model.Campaign.Id&memberId=@ViewBag.Member.Id', // 分享链接
+            imgUrl: '@Model.Campaign.ShareImageUrl', // 分享图标
+            success: function ()
+            {
+                shareSuccess("ShareTimeline");
+            },
+            cancel: function ()
+            {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '@Model.Campaign.ShareAppMessageTitle', // 分享标题
+            desc: '@Model.Campaign.ShareAppMessageDescription', // 分享描述
+            link: '@Request.Url.Scheme://@Request.Url.Host/Campaign/MemberQRCodeShare/@Model.Campaign.Domain?campaignId=@Model.Campaign.Id&memberId=@ViewBag.Member.Id', // 分享链接
+            imgUrl: '@Model.Campaign.ShareImageUrl', // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function ()
+            {
+                shareSuccess("ShareAppMessage");
+            },
+            cancel: function ()
+            {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+
+    wx.error(function (res)
+    {
+        alert("error:" + res);
+    });
+
+    function shareSuccess(type)
+    {
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/Campaign/" + type + "/@ViewBag.Domain.Id?campaignId=" + _campaignId,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR)
+            {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    var resultObj = data.Data;
+
+                    if (resultObj.Point == 0)
+                        return;
+
+                    var msg = "";
+                    if (resultObj.Point > 0)
+                    {
+                        msg += "获得积分：" + resultObj.Point;
+                    }
+                    if (msg != "")
+                    {
+                        layerAlertBtn(msg);
+                    }
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function loadData()
+    {
+        $.ajax({
+            url: "/Api/Campaign/GetMemberQRCodeItem/@ViewBag.Domain.Id?campaignId=" + _campaignId,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR)
+            {
+                if (data.Success)
+                {
+                    var resultObj = data.Data;
+                    $("#divChoose").hide();
+                    $("#divQRCode").show();
+                    $("#imgQRCode").attr("src", resultObj.QRCodeUrl);
+
+                } else
+                {
+                    $("#spanMessage").html(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function showCampaignDescription()
+    {
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/Campaign/GetCampaignDescription/@ViewBag.Domain.Id?id=" + _campaignId,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR)
+            {
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    var resultObj = data.Data;
+
+                    var gettpl = document.getElementById('campaignDescription').innerHTML;
+
+                    laytpl(gettpl).render(resultObj, function (html)
+                    {
+                        var pageii = layer.open({
+                            type: 1,
+                            content: html,
+                            shadeClose: false,
+                            style: 'position:fixed; left:0.1rem; top:0.1rem;right:0.1rem; bottom:0.1rem; border:none;'
+                        });
+                    });
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+
+    }
+
+    function showShareMask()
+    {
+        $("#divShareMask").css("top", document.body.scrollTop);
+        $("#divShareMask").show();
+
+    }
+
+    function hideShareMask()
+    {
+        $("#divShareMask").hide();
+
+    }
+
+</script>
+
+<script type="text/html" id="campaignDescription">
+    <div style="position: fixed; top: 0.1rem; left: 0.1rem; right: 0.1rem; bottom: 0.45rem; overflow: auto;">
+        {{ d }}
+    </div>
+    <div style="position: fixed; bottom: 0.1rem; left: 0.1rem; right: 0.1rem;">
+        <div class="divRectangle_Gray" style="margin-top: 0.1rem; " onclick="layer.closeAll()">
+            关 闭
+        </div>
+    </div>
+</script>
+
+<div id="divImageContainer">
+    <img src="@Model.Campaign.ImageUrl" name="img" id="img" style="width: 100%;">
+</div>
+
+<div class="divContent">
+    <div style="margin-top: 0.06rem" class="campaignName">
+        @Model.Campaign.Name
+    </div>
+    <div style="margin-top: 0.06rem" class="campaignDescription">
+        @Html.Raw(Model.Campaign.Introduction)
+    </div>
+
+    <div style="text-align:center">
+        <div class="divRectangle" style="margin-top: 0.1rem;" onclick="showCampaignDescription()">
+            查看活动详情
+        </div>
+    </div>
+
+     <div style="text-align: center; margin-top: 0.1rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="33%" align="center">参与人数<br />
+                    <span class="defaultColor" style="font-weight:bold">@Model.DataReport.MemberCount</span>
+                </td>
+                <td width="33%" align="center">扫码次数<br />
+                    <span class="defaultColor" style="font-weight:bold">@Model.DataReport.LandingCount</span>
+                </td>
+                <td width="33%" align="center">围观次数<br />
+                    <span class="defaultColor" style="font-weight:bold">@Model.DataReport.PageVisitCount</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.05rem; margin-bottom:0.1rem;">
+    </div>
+    <div id="divMemberInfo" onclick="showShareMask()">
+        <table border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="left" style="width:0.3rem"><img src="/Content/Images/shareTimeLine.jpg" style="width:0.2rem;"></td>
+                <td align="left"><div style="line-height:0.2rem">可以直接分享本页<br />或将图片保存到您的相册再分享。</div></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="divBorder" style="margin-top: 0.15rem;">
+        <div id="divChoose">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center"><span id="spanMessage">正在生成，请稍候...</span></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <div id="divQRCode" style="display: none">
+            <img id="imgQRCode" src="" style="width: 100%;" />
+        </div>
+    </div>
+
+</div>
+
+<div id="divShareMask" style="display:none" onclick="hideShareMask()">
+    <img src="/Content/Images/share.PNG" width="200" height="145">
+</div>

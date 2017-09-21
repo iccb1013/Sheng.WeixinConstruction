@@ -1,0 +1,251 @@
+﻿@helper HeaderArea(dynamic ViewBag, string arrowPostion)
+{
+    //arrowPostion:
+    //headimg,point,cash,coupon
+
+    <style type="text/css">
+        #divTopTitle {
+            /*height: 1rem;*/
+            height: 0.7rem;
+            color: #FFF;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+            position: fixed;
+            left: 0rem;
+            right: 0rem;
+            top: 0rem;
+        }
+    </style>
+
+    <div id="divTopTitle" class="gradient">
+        @*<div style="padding-top:0.2rem;">*@
+        <div style="padding-top:0.08rem;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="width:0.7rem;">
+                        <img src="@ViewBag.Member.Headimgurl_64" style="width:0.5rem; height:0.5rem" onclick="goUrl('/Home/MemberCenter/@ViewBag.Domain.Id')">
+                    </td>
+                    <td>
+                        @*<div>@ViewBag.Member.NickName</div>*@
+                        <div style="margin-top:0rem;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="33%" align="left"><div onclick="goUrl('/Home/PointAccount/@ViewBag.Domain.Id')">@ViewBag.Member.Point<br />积分</div></td>
+                                    <td width="33%" align="left"><div onclick="goUrl('/Pay/CashAccountTrack/@ViewBag.Domain.Id')">@(ViewBag.Member.CashAccount / 100f)<br />现金</div></td>
+                                    <td width="33%" align="left"><div onclick="goUrl('/Home/Coupon/@ViewBag.Domain.Id')">@ViewBag.ValidCouponCount<br />卡券</div></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="position:absolute;bottom:0rem;left:0.2rem;right:0.2rem;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="width:0.7rem;" align="left">
+                        @if (arrowPostion == "headimg")
+                        {
+                            <img src="/Content/Images/arrow_up.png" style="width:0.18rem;display:block;margin-left:0.15rem;">
+                        }
+                    </td>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="33%" align="left">
+                                    @if (arrowPostion == "point")
+                                    {
+                                        <img src="/Content/Images/arrow_up.png" style="width:0.18rem;display:block">
+                                    }
+                                </td>
+                                <td width="33%" align="left">
+                                    @if (arrowPostion == "cash")
+                                    {
+                                        <img src="/Content/Images/arrow_up.png" style="width:0.18rem;display:block">
+                                    }
+                                </td>
+                                <td width="33%" align="left">
+                                    @if (arrowPostion == "coupon")
+                                    {
+                                        <img src="/Content/Images/arrow_up.png" style="width:0.18rem;display:block">
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+
+@helper Advertising(dynamic ViewBag)
+{
+    if (ViewBag.Domain.Type == Sheng.WeixinConstruction.Infrastructure.EnumDomainType.Free)
+    {
+        <div class="divAd" style="padding-top:0.1rem;" onclick="goUrl('http://wx.shengxunwei.com/m')">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>升讯威微信营销系统<br />wx.shengxunwei.com</td>
+                </tr>
+            </table>
+        </div>
+    }
+    else if (ViewBag.Domain.Type == Sheng.WeixinConstruction.Infrastructure.EnumDomainType.Sponsor)
+    {
+        <div class="divAd_Sponsor" style="padding-top:0.1rem;" onclick="goUrl('http://wx.shengxunwei.com/m')">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>升讯威微信营销系统<br />wx.shengxunwei.com</td>
+                </tr>
+            </table>
+        </div>
+    }
+}
+
+@helper InputForm()
+{
+
+    <script type="text/html" id="divInputForm">
+        <div style="margin-left: 0.1rem; margin-right: 0.1rem; margin-top: 0.2rem; margin-bottom: 0.1rem;">
+            <div style="width: 100%;">
+                <div>
+                    <span style="margin-left: 0.2rem;" id="spanInputFormTitle"></span>
+                </div>
+                <div style="width: 100%; margin-left: 0rem; margin-top: 0.2rem;">
+                    <form id="formInputForm">
+                        <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td style="width:1.3rem; height:0.36rem;">
+                                    <input name="txtInputForm_Text" type="text" class="input_16" style="width: 100%;" id="txtInputForm_Text" maxlength="100" />
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div style="width: 100%; margin-top: 0.2rem; margin-left: 0rem;">
+                    <div style="float: right">
+                        <input name="btnInputFormSave" type="button" class="btn_blue" id="btnInputFormSave" value="确 定" onclick="__inputFormSave()" />
+                        <input name="btnInputFormCancel" type="button" class="btn_blue" id="btnInputFormCancel" value="取 消" onclick="__inputFormCancel()" />
+                    </div>
+                    <div style="clear: both">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/javascript">
+
+        var __inputFormCallback;
+        var __inputFormLayerIndex;
+        var __inputFormRequired;
+        var __inputFormDivHtml = $("#divInputForm").html();
+
+        function __showInputForm(callback, title, maxlength, required) {
+
+            __inputFormCallback = callback;
+            __inputFormRequired = required;
+
+            __inputFormLayerIndex = layer.open({
+                type: 1,
+                content: __inputFormDivHtml,
+                shadeClose: false,
+                style: 'position:fixed; left:0.1rem; right:0.1rem; top:0.1rem; border:none;',
+                success: function (elem) {
+                    $("#spanInputFormTitle").html(title);
+                    $("#txtInputForm_Text").attr("maxlength", maxlength);
+
+                    $("#txtInputForm_Text").focus();
+                }
+            });
+        }
+
+        function __inputFormSave() {
+
+            if (__inputFormRequired) {
+                if ($("#formInputForm").validate({
+                    onfocusout: false,
+                    onkeyup: false,
+                    showErrors: hightlightValidationErrors,
+                    rules: {
+                        "txtInputForm_Text": "required"
+                },
+                    messages: {
+                        "txtInputForm_Text": "*"
+                }
+                }).form() == false)
+                    return;
+            }
+
+            var text = $("#txtInputForm_Text").val();
+            layer.close(__inputFormLayerIndex);
+            if (__inputFormCallback != undefined && __inputFormCallback != null) {
+                __inputFormCallback(text);
+            }
+        }
+
+        function __inputFormCancel() {
+            layer.close(__inputFormLayerIndex);
+        }
+
+    </script>
+}
+
+
+@helper OneDollarBuyingIntroduction()
+{
+    <style>
+        .divItemDetailTitle {
+            height: 0.35rem;
+            line-height: 0.35rem;
+            text-align: center;
+            font-size: 0.16rem;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+    </style>
+
+    <script>
+        function introduction() {
+
+            var introductionHtml = document.getElementById('introductionTemplate').innerHTML;
+
+            var pageii = layer.open({
+                type: 1,
+                content: introductionHtml,
+                style: 'position:fixed; left:0.1rem; top:0.1rem;right:0.1rem; border:none;background-color:#FFF8DE'
+            });
+        }
+
+        function introductionNext() {
+            $("#divIntroductionTitle").html("恭喜小明1元获得宝贝！");
+            $("#divIntroductionTitle").attr("class", "font_red_b");
+            $("#imgIntroduction").attr("src", "/Content/Images/oneDollarBuyingIntroduction2.jpg");
+            $("#divIntroductionNext").hide();
+            $("#divIntroductionFinish").show();
+        }
+    </script>
+
+    <script type="text/html" id="introductionTemplate">
+        <div class="divItemDetailTitle defaultBgColor">
+            什么是1元夺宝
+        </div>
+        <div style="font-size:0.18rem;padding:0.1rem;padding-bottom:0.2rem;">
+            <div style="font-size:0.15rem;font-weight:bold;text-align:center" id="divIntroductionTitle">
+                <span class="font_red_b">1元参与</span>，凑单夺宝，满员开奖
+            </div>
+            <div style="margin-top:0.2rem;text-align:center;">
+                <img id="imgIntroduction" src="/Content/Images/oneDollarBuyingIntroduction1.jpg" style=" height:2.5rem;">
+            </div>
+            <div style="margin-top:0.2rem;">
+                <div id="divIntroductionNext" class="divRectangle" style="margin-left:0.4rem;margin-right:0.4rem;" onclick="introductionNext()">
+                    继续
+                </div>
+                <div id="divIntroductionFinish" class="divRectangle" style="margin-left:0.4rem;margin-right:0.4rem;display:none" onclick="layer.closeAll()">
+                    开始1元夺宝
+                </div>
+            </div>
+        </div>
+    </script>
+}

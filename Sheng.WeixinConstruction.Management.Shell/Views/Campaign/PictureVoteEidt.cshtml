@@ -1,0 +1,370 @@
+﻿@{
+    ViewBag.MainMenu = "Campaign";
+    ViewBag.LeftMenu = "PictureVote";
+
+    ViewBag.Title = "投票";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script language="javascript">
+
+    var _mode = "create";//modify
+    var _validator;
+
+    var _pictureVote;
+
+    $(document).ready(function () {
+
+        setOnlyMember();
+
+        _validator = $("#formExtra").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                //"txtMaxPublishTimes": {
+                //    required: true,
+                //    number: true,
+                //    digits: true,
+                //    range: [1, 100]
+                //},
+                "txtMaxVoteTimes": {
+                    required: true,
+                    number: true,
+                    digits: true,
+                    range: [1, 100]
+                },
+                "txtApprovedPoint": {
+                    required: true,
+                    number: true,
+                    digits: true,
+                    range: [1, 1000]
+                },
+                "txtShareTimelineVote": {
+                    required: true,
+                    number: true,
+                    digits: true,
+                    range: [1, 100]
+                },
+                "txtShareAppMessageVote": {
+                    required: true,
+                    number: true,
+                    digits: true,
+                    range: [1, 100]
+                }
+            },
+            messages: {
+                //"txtMaxPublishTimes": {
+                //    required: "请输入允许发布条数；",
+                //    number: "允许发布条数请输入有效整数字；",
+                //    digits: "允许发布条数请输入有效整数字；",
+                //    range: "允许发布条数请介于 0 到 100 之间；"
+                //},
+                "txtMaxVoteTimes": {
+                    required: "请输入每人可投票数；",
+                    number: "每人可投票数请输入有效整数字；",
+                    digits: "每人可投票数请输入有效整数字；",
+                    range: "每人可投票数请介于 0 到 100 之间；"
+                },
+                "txtApprovedPoint": {
+                    required: "请输入参与活动奖励积分；",
+                    number: "参与活动奖励积分请输入有效整数字；",
+                    digits: "参与活动奖励积分请输入有效整数字；",
+                    range: "参与活动奖励积分请介于 0 到 1000 之间；"
+                },
+                "txtShareTimelineVote": {
+                    required: "请输入分享朋友圈奖励票数；",
+                    number: "分享朋友圈奖励票数请输入有效整数字；",
+                    digits: "分享朋友圈奖励票数请输入有效整数字；",
+                    range: "分享朋友圈奖励票数请介于 0 到 100 之间；"
+                },
+                "txtShareAppMessageVote": {
+                    required: "请输入分享好友奖励票数；",
+                    number: "分享好友奖励票数请输入有效整数字；",
+                    digits: "分享好友奖励票数请输入有效整数字；",
+                    range: "分享好友奖励票数请介于 0 到 100 之间；"
+                }
+            }
+        });
+
+        loadData();
+    });
+
+    function loadData() {
+        var id = getQueryString("id");
+        if (id == undefined || id == "") {
+            return;
+        }
+
+        _mode = "modify";
+        $("#btnRemove").show();
+
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        $.ajax({
+            url: "/Api/Campaign/GetPictureVoteBundle?id=" + id,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var campaign = data.Data.Campaign;
+                    _pictureVote = data.Data.PictureVote;
+
+                    setCampaign(campaign);
+
+                    $("#selectPublishType").find("option[value='" + _pictureVote.PublishType + "']").attr("selected", true);
+                    //$("#txtMaxPublishTimes").val(_pictureVote.MaxPublishTimes);
+                    $("#txtMaxVoteTimes").val(_pictureVote.MaxVoteTimes);
+                    $("#txtApprovedPoint").val(_pictureVote.ApprovedPoint);
+                    $("#txtShareTimelineVote").val(_pictureVote.ShareTimelineVote);
+                    $("#txtShareAppMessageVote").val(_pictureVote.ShareAppMessageVote);
+                    $("#selectVoteType").find("option[value='" + _pictureVote.VoteType + "']").attr("selected", true);
+                    $("#selectAllowedNoAttentionVote").find("option[value='" + _pictureVote.AllowedNoAttentionVote + "']").attr("selected", true);
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function save() {
+        if (_campaignBaseInfoValidator.form() == false || _validator.form() == false) {
+            return;
+        }
+
+        var campaign = getCampaign();
+
+        if (_pictureVote == undefined || _pictureVote == null) {
+            _pictureVote = new Object();
+        }
+
+        _pictureVote.PublishType = $("#selectPublishType").val();
+        //_pictureVote.MaxPublishTimes = $("#txtMaxPublishTimes").val();
+        _pictureVote.MaxVoteTimes = $("#txtMaxVoteTimes").val();
+        _pictureVote.ApprovedPoint = $("#txtApprovedPoint").val();
+        _pictureVote.ShareTimelineVote = $("#txtShareTimelineVote").val();
+        _pictureVote.ShareAppMessageVote = $("#txtShareAppMessageVote").val();
+        _pictureVote.VoteType = $("#selectVoteType").val();
+        _pictureVote.AllowedNoAttentionVote = $("#selectAllowedNoAttentionVote").val();
+
+        var bundle = new Object();
+        bundle.Campaign = campaign;
+        bundle.PictureVote = _pictureVote;
+
+        var url = "/Api/Campaign/CreatePictureVote";
+
+        if (_mode == "modify") {
+            campaign.Id = $("#txtId").val();
+            url = "/Api/Campaign/UpdatePictureVote";
+        }
+
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(bundle),
+            success: function (data, status, jqXHR) {
+                if (data.Success) {
+                    var url = "PictureVote_Preparatory";
+                    if (campaign.Status != undefined && campaign.Status != null) {
+                        switch (campaign.Status) {
+                            case 0:
+                                url = "PictureVote_Preparatory";
+                                break;
+                            case 1:
+                                url = "PictureVote_Ongoing";
+                                break;
+                            case 2:
+                                url = "PictureVote_End";
+                                break;
+
+                        }
+                    }
+                    window.location.href = "/Campaign/" + url;
+
+                } else {
+                    layer.close(loadLayerIndex);
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function cancel() {
+        window.location.href = "/Campaign/PictureVote_Preparatory";
+    }
+
+    function removeData() {
+        var id = $("#txtId").val();
+        if (id == undefined || id == "") {
+            return;
+        }
+
+        var msg = "是否确认删除该活动？"
+
+        var confirmLayerIndex = layer.confirm(msg, {
+            btn: ['确认', '取消'], //按钮
+            shade: [0.4, '#393D49'],
+            title: false,
+            closeBtn: false,
+            shift: _layerShift
+        }, function () {
+            layer.close(confirmLayerIndex);
+
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/Campaign/RemovePictureVote?id=" + id,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    if (data.Success) {
+                        window.location.href = "/Campaign/PictureVote_Preparatory";
+                    } else {
+                        layer.close(loadLayerIndex);
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        });
+    }
+
+</script>
+
+
+<div style="margin-top: 25px; margin-left: 10px;" class="font_black_24">
+    发起活动
+</div>
+
+<div class="divDotLine" style="margin-top: 15px;"></div>
+
+<div style="margin-top: 25px;">
+    @Helpers.CampaignBaseEdit()
+</div>
+
+<div style="margin-top: 0px;">
+    <form id="formExtra">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="200" height="36">发布方式：</td>
+                <td>
+                    <select id="selectPublishType" name="selectPublishType" class="input_16" style="width: 130px;">
+                        <option value="0">用户上传</option>
+                    </select>
+                </td>
+            </tr>
+            @*<tr>
+                <td height="36">每人允许发布条数：</td>
+                <td>
+                    <input id="txtMaxPublishTimes" name="txtMaxPublishTimes" type="text" class="input_16" style="width: 130px;" value="1" disabled /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        每个参与者最多可以发布多少条被投票项目。
+                    </div>
+                </td>
+            </tr>*@
+            <tr>
+                <td width="140" height="36">每人可投票数：</td>
+                <td>
+                    <input id="txtMaxVoteTimes" name="txtMaxVoteTimes" type="text" class="input_16" style="width: 130px;" value="1" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        每个投票者手中的票数。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="200" height="36">投票方式：</td>
+                <td>
+                    <select id="selectVoteType" name="selectVoteType" class="input_16" style="width: 250px;">
+                        <option value="0">不允许重复给同一个人投票</option>
+                        <option value="1">每天可重复给同一个人投票</option>
+                    </select>
+                    @Helpers.VipIcon()
+                </td>
+            </tr>
+             <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        如果选择“每天可重复给同一个人投票”，则“每人可投票数”会在每天重置。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="200" height="36">允许未关注者投票：</td>
+                <td>
+                    <select id="selectAllowedNoAttentionVote" name="selectAllowedNoAttentionVote" class="input_16" style="width: 250px;">
+                        <option value="true" selected>是</option>
+                        <option value="false">否</option>
+                    </select>
+                    @Helpers.VipIcon()
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        是否必须先关注公众号才可以投票。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="140" height="36">参与活动奖励积分：</td>
+                <td>
+                    <input id="txtApprovedPoint" name="txtApprovedPoint" type="text" class="input_16" style="width: 130px;" value="1" />
+                </td>
+            </tr>
+            <tr>
+                <td width="140" height="36">分享朋友圈奖励票数：</td>
+                <td>
+                    <input id="txtShareTimelineVote" name="txtShareTimelineVote" type="text" class="input_16" style="width: 130px;" value="1" /></td>
+            </tr>
+            <tr>
+                <td width="140" height="36">分享好友奖励票数：</td>
+                <td>
+                    <input id="txtShareAppMessageVote" name="txtShareAppMessageVote" type="text" class="input_16" style="width: 130px;" value="1" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div style="margin-top: 25px;">
+    <div style="float: right;">
+        <input name="btnRemove" type="button" class="btn_red" id="btnRemove" value="删 除" style="display: none" onclick="removeData()" />
+    </div>
+    <div style="float: left">
+        <input name="btnSave" type="button" class="btn_blue" id="btnSave" value="保 存" onclick="save()" />
+        <input name="btnCancel" type="button" class="btn_blue" id="btnCancel" value="取 消" onclick="cancel()" />
+    </div>
+    <div style="clear: both"></div>
+</div>
+@Helpers.FileUpload()

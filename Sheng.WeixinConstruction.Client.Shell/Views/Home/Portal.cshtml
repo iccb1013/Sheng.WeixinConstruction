@@ -1,0 +1,141 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.PortalViewModel
+
+@{
+    ViewBag.Title = "Portal";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Authorizer.NickName</title>
+    <link href="/Content/CustomTemplate/portalStyle.css" rel="stylesheet" type="text/css">
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/layer.m/layer.m.js"></script>
+    <script src="/Scripts/CustomTemplate/portalCommon.js"></script>
+
+    <script>
+
+        var _member = new Object();
+        _member.point = @ViewBag.Member.Point;
+        _member.signedIn = false;
+
+        $(document).ready(function () {
+            @if (ViewBag.Member.SignInDate != null && DateTime.Parse(ViewBag.Member.SignInDate.ToShortDateString()) >= DateTime.Parse(DateTime.Now.ToShortDateString()))
+            {
+                <text>
+            _member.signedIn = true;
+            </text>
+            }
+            
+            if(isExitsFunction("documentReady")){
+                documentReady();
+            }
+        });
+
+        function isExitsFunction(funcName) {
+            try {
+                if (typeof (eval(funcName)) == "function") {
+                    return true;
+                }
+            } catch (e) { }
+            return false;
+        }
+
+        function signIn() {
+            var result = new Object();
+            result.reason = -1;
+            result.signInPoint = 0;
+
+            if (_member.signedIn) {
+                if(isExitsFunction("signInCallback")){
+                    result.reason = 1;
+                    signInCallback(result);
+                }else{
+                    layerAlert("今天已经签到过了哦~");
+                }
+                return;
+            }
+
+            var loadLayerIndex = layer.open({
+                type: 2,
+                shadeClose: false,
+                content: '请稍候...'
+            });
+
+            $.ajax({
+                url: "/Api/Member/SignIn/@ViewBag.Domain.Id",
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    layer.close(loadLayerIndex);
+                    if (data.Success) {
+                        var resultObj = data.Data;
+
+                        if (resultObj.Success) {
+                            _member.signedIn = true;
+                            _member.point = resultObj.Point;
+                           
+                            if(isExitsFunction("signInCallback")){
+                                result.reason = 0;
+                                result.signInPoint = resultObj.SignInPoint;
+                                signInCallback(result);
+                            }else{
+                                layerAlert("签到成功！获得积分 <b>" + resultObj.SignInPoint + "</b> 点~");
+                            }
+
+                        } else {
+                            if(isExitsFunction("signInCallback")){
+                                result.reason = resultObj.Reason;
+                                signInCallback(result);
+                            }else{
+                                switch (resultObj.Reason) {
+                                    case 1:
+                                        layerAlert("今天已经签到过了哦~");
+                                        break;
+                                    default:
+                                        layerAlert("未知错误：" + resultObj.Reason);
+                                        break;
+                                }
+                            }
+                        }
+                    } else {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+                    //alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+    </script>
+
+    <!-- Piwik -->
+    @*<script type="text/javascript">
+        var _paq = _paq || [];
+        _paq.push(["setCookieDomain", "*.wxc.shengxunwei.com"]);
+        _paq.push(["setDomains", ["*.wxc.shengxunwei.com"]]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//tools.shengxunwei.com/piwik/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', 2]);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <noscript><p><img src="//tools.shengxunwei.com/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>*@
+    <!-- End Piwik Code -->
+
+</head>
+
+<body>
+    @Html.Raw(Model.ViewHtml)
+</body>
+
+</html>

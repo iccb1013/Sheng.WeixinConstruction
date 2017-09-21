@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Authorizer.NickName</title>
+
+    <link href="/Content/Style.css" rel="stylesheet" type="text/css">
+
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/layer.m/layer.m.js"></script>
+    @Scripts.Render("~/Scripts/validate/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/laytpl.js")
+    @Scripts.Render("~/bundles/common")
+    @Scripts.Render("~/Scripts/math.js")
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+
+    <style>
+        .divMoreMenuItem {
+            font-size: 0.18rem;
+            padding-top: 0.15rem;
+            padding-bottom: 0.15rem;
+            text-align: center;
+            color: #66ABF0;
+        }
+    </style>
+
+    <script>
+
+        //$(document).ready(function ()
+        //{
+
+
+        //});
+
+        function showMoreMenu() {
+            layer.open({
+                anim: true,
+                type: 1,
+                content: document.getElementById('moreMenu').innerHTML,
+                style: 'width:2.2rem; height:auto; border:none;overflow-y:auto;'
+            });
+        }
+
+        function goBack() {
+            window.history.back();
+            //window.location.href = document.referrer;
+        }
+
+    </script>
+
+    <script type="text/html" id="moreMenu">
+
+        <div style="margin-left:10px; margin-right:10px;">
+
+            <div class="divMoreMenuItem" onclick="goUrl('/Staff/Home/Portal/@ViewBag.Domain.Id')">
+                主 页
+            </div>
+
+            @*<div class="divDotLine">
+                </div>
+
+                <div class="divMoreMenuItem" onclick="goUrl('/Staff/Campaign/CampaignList/@ViewBag.Domain.Id')">
+                    活动管理
+                </div>*@
+
+            @*<div class="divDotLine">
+                </div>
+
+                <div class="divMoreMenuItem" onclick="goUrl('/Staff/Home/PointCommodityOrder/@ViewBag.Domain.Id')">
+                    积分商城
+                </div>*@
+
+        </div>
+
+    </script>
+
+</head>
+<body>
+
+    <div id="divTopTitle_Staff">
+        <table height="100%" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="50" align="center" valign="middle"><img src="/Content/Images/leftArrow.png" style="vertical-align:middle; width:0.15rem;height:0.24rem;" onclick="goBack()"></td>
+                <td align="center" valign="middle">
+                    <table id="tableTopTitle_Staff" height="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="30">&nbsp;</td>
+                            <td>@ViewBag.SubTitle</td>
+                            <td width="30">&nbsp;</td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="50" align="center" valign="middle"><img src="/Content/Images/moreMenu.png" style="vertical-align:middle;width:0.26rem;height:0.19rem;" onclick="showMoreMenu()"></td>
+            </tr>
+        </table>
+
+    </div>
+
+    @RenderBody()
+
+</body>
+</html>

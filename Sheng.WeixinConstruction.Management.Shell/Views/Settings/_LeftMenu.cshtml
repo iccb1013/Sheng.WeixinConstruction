@@ -1,0 +1,35 @@
+﻿<div class="leftMenuItem @if(ViewBag.LeftMenu == "Docking"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("微信对接", "Docking", "Settings", null, new { @class = ViewBag.LeftMenu == "Docking" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "Base"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("基本设置", "Base", "Settings", null, new { @class = ViewBag.LeftMenu == "Base" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "MemberCardLevel"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("会员卡级别", "MemberCardLevel", "Settings", null, new { @class = ViewBag.LeftMenu == "MemberCardLevel" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "AutoReply"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("自动回复", "AutoReplyOnSubscribe", "Settings", null, new { @class = ViewBag.LeftMenu == "AutoReply" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "ScenicQRCode"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("场景二维码", "ScenicQRCode", "Settings", null, new { @class = ViewBag.LeftMenu == "ScenicQRCode" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "Material"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("素材管理", "Article", "Material", null, new { @class = ViewBag.LeftMenu == "Material" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "AdvancedArticle"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("增强图文素材", "AdvancedArticle", "Settings", null, new { @class = ViewBag.LeftMenu == "AdvancedArticle" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "Advertising"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("广告", "Advertising", "Settings", null, new { @class = ViewBag.LeftMenu == "Advertising" ? "a_white_16" : "a_black_16" })
+</div>
+
+@*<div style="margin-left:10px;margin-right:20px;margin-top:20px; font-size:13px;color:gray;">
+    注意:菜单设置移到了微官网下
+</div>*@

@@ -1,0 +1,1702 @@
+----------------------------------------
+Timestamp: 2016/8/6 15:49:10
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 15:49:11
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 15:56:54
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 15:56:54
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 15:59:35
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 15:59:36
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:00:37
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Q3aWREyClaQG_Ag8akGMkZwVJRJLYM2dFMhIDYvtvgYyWM1KaeIQl1wuRZExnb_npR0Ezp0P3bJth8TDD_iIv92NNwX-P6regn8ZhzEAM4LIpg8VEBj-QbfFS277h4YsSFOiAHDXKT
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [zE6Fqa0435vr23] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:00:37
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [zE6Fqa0435vr23] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:00:37
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Q3aWREyClaQG_Ag8akGMkZwVJRJLYM2dFMhIDYvtvgYyWM1KaeIQl1wuRZExnb_npR0Ezp0P3bJth8TDD_iIv92NNwX-P6regn8ZhzEAM4LIpg8VEBj-QbfFS277h4YsSFOiAHDXKT&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [Edl4BA0435vr22] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:01:37
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Q3aWREyClaQG_Ag8akGMkZwVJRJLYM2dFMhIDYvtvgYyWM1KaeIQl1wuRZExnb_npR0Ezp0P3bJth8TDD_iIv92NNwX-P6regn8ZhzEAM4LIpg8VEBj-QbfFS277h4YsSFOiAHDXKT
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [60495vr18] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:01:37
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [60495vr18] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:01:37
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Q3aWREyClaQG_Ag8akGMkZwVJRJLYM2dFMhIDYvtvgYyWM1KaeIQl1wuRZExnb_npR0Ezp0P3bJth8TDD_iIv92NNwX-P6regn8ZhzEAM4LIpg8VEBj-QbfFS277h4YsSFOiAHDXKT&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [pGX99a0495vr19] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:02:36
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Q3aWREyClaQG_Ag8akGMkZwVJRJLYM2dFMhIDYvtvgYyWM1KaeIQl1wuRZExnb_npR0Ezp0P3bJth8TDD_iIv92NNwX-P6regn8ZhzEAM4LIpg8VEBj-QbfFS277h4YsSFOiAHDXKT
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [0555vr21] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:02:36
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [0555vr21] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:02:36
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Q3aWREyClaQG_Ag8akGMkZwVJRJLYM2dFMhIDYvtvgYyWM1KaeIQl1wuRZExnb_npR0Ezp0P3bJth8TDD_iIv92NNwX-P6regn8ZhzEAM4LIpg8VEBj-QbfFS277h4YsSFOiAHDXKT&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [XW0oTa0555vr22] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:17:00
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:17:00
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:18:33
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:18:33
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:21:34
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 16:21:34
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:05:14
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:05:14
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:13:19
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:13:19
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:14:00
+
+Title:将截断字符串或二进制数据。
+语句已终止。
+
+Message: 
+@Id,bab92c11-ea17-4928-a8c3-befc87dba649 | @Domain,2a58d820-de07-4c8f-80b9-b5cb5a1028b4 | @Information,1da9a815-a70c-4486-b7c0-ece1ed3a8b8a | @Name,女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装 | @Image,http://wxcfile1.zkebao.com/FileStore/2a58d820-de07-4c8f-80b9-b5cb5a1028b4/adc01e5e-43db-48a3-bc53-326fed207c31.jpg | @CreateTime,2016/3/21 1:30:00 | @CreateUser,2f90c9d6-30b0-4480-8dc7-4a97c95578c2 | 
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:14:21
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [tJpuxa0859vr21] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:14:21
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [tJpuxa0859vr21] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:14:21
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [cJPMFa0859vr20] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:15:20
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [NR0919vr20] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:15:20
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [NR0919vr20] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:15:20
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [Zx0oCA0919vr20] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:16:31
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:16:31
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:17:34
+
+Title:将截断字符串或二进制数据。
+语句已终止。
+
+Message: UPDATE [InformationCategory] SET [Id]=@Id,[Domain]=@Domain,[Information]=@Information,[Name]=@Name,[Image]=@Image,[CreateTime]=@CreateTime,[CreateUser]=@CreateUser WHERE [Id]=@Id
+@Id,bab92c11-ea17-4928-a8c3-befc87dba649 | @Domain,2a58d820-de07-4c8f-80b9-b5cb5a1028b4 | @Information,1da9a815-a70c-4486-b7c0-ece1ed3a8b8a | @Name,女装女装女装女装女装女装女装女装女装女装女装 | @Image,http://wxcfile1.zkebao.com/FileStore/2a58d820-de07-4c8f-80b9-b5cb5a1028b4/adc01e5e-43db-48a3-bc53-326fed207c31.jpg | @CreateTime,2016/3/21 1:30:00 | @CreateUser,2f90c9d6-30b0-4480-8dc7-4a97c95578c2 | 
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:18:37
+
+Title:超时时间已到。超时时间已到，但是尚未从池中获取连接。出现这种情况可能是因为所有池连接均在使用，并且达到了最大池大小。
+
+Message: SELECT [LastUpdateTime] FROM [Domain] WHERE [Id] = @id
+[{"ParameterName":"@id","Value":"2a58d820-de07-4c8f-80b9-b5cb5a1028b4"}]
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:18:40
+
+Title:已成功与服务器建立连接，但是在登录前的握手期间发生错误。 (provider: SSL Provider, error: 0 - 等待的操作过时。)
+
+Message: SELECT [LastUpdateTime] FROM [Domain] WHERE [Id] = @id
+[{"ParameterName":"@id","Value":"2a58d820-de07-4c8f-80b9-b5cb5a1028b4"}]
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:18:40
+
+Title:已成功与服务器建立连接，但是在登录前的握手期间发生错误。 (provider: SSL Provider, error: 0 - 等待的操作过时。)
+
+Message: SELECT t.* FROM
+                (
+                    SELECT * FROM [Campaign_LotteryPeriod] WHERE [Drawn] = 0 AND [EndTime] <= GETDATE()
+                ) t
+                INNER JOIN [Campaign]
+                ON t.[CampaignId] = [Campaign].[Id]
+                WHERE [Campaign].[Status] = 1 OR [Campaign].[Status] = 2
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:18:43
+
+Title:已成功与服务器建立连接，但是在登录前的握手期间发生错误。 (provider: SSL Provider, error: 0 - 等待的操作过时。)
+
+Message: SELECT t.* FROM
+                (
+                    SELECT * FROM [Campaign_LotteryPeriod] WHERE [Drawn] = 0 AND [EndTime] <= GETDATE()
+                ) t
+                INNER JOIN [Campaign]
+                ON t.[CampaignId] = [Campaign].[Id]
+                WHERE [Campaign].[Status] = 1 OR [Campaign].[Status] = 2
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:36:31
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:36:31
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:37:15
+
+Title:将截断字符串或二进制数据。
+语句已终止。
+
+Message: UPDATE [InformationCategory] SET [Id]=@Id,[Domain]=@Domain,[Information]=@Information,[Name]=@Name,[Image]=@Image,[CreateTime]=@CreateTime,[CreateUser]=@CreateUser WHERE [Id]=@Id
+@Id:bab92c11-ea17-4928-a8c3-befc87dba649 , @Domain:2a58d820-de07-4c8f-80b9-b5cb5a1028b4 , @Information:1da9a815-a70c-4486-b7c0-ece1ed3a8b8a , @Name:女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装 , @Image:http://wxcfile1.zkebao.com/FileStore/2a58d820-de07-4c8f-80b9-b5cb5a1028b4/adc01e5e-43db-48a3-bc53-326fed207c31.jpg , @CreateTime:2016/3/21 1:30:00 , @CreateUser:2f90c9d6-30b0-4480-8dc7-4a97c95578c2 , 
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:37:33
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [hBK50251vr23] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:37:33
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [hBK50251vr23] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:37:33
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [33cW70251vr20] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:38:33
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [aWMQaa0311vr19] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:38:33
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [aWMQaa0311vr19] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:38:33
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [DLTmsA0311vr18] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:39:21
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:39:21
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:40:11
+
+Title:将截断字符串或二进制数据。
+语句已终止。
+
+Message: UPDATE [InformationCategory] SET [Id]=@Id,[Domain]=@Domain,[Information]=@Information,[Name]=@Name,[Image]=@Image,[CreateTime]=@CreateTime,[CreateUser]=@CreateUser WHERE [Id]=@Id
+@Id:bab92c11-ea17-4928-a8c3-befc87dba649 , @Domain:2a58d820-de07-4c8f-80b9-b5cb5a1028b4 , @Information:1da9a815-a70c-4486-b7c0-ece1ed3a8b8a , @Name:女装女装女装女装女装女装女装女装女装女装女装 , @Image:http://wxcfile1.zkebao.com/FileStore/2a58d820-de07-4c8f-80b9-b5cb5a1028b4/adc01e5e-43db-48a3-bc53-326fed207c31.jpg , @CreateTime:2016/3/21 1:30:00 , @CreateUser:2f90c9d6-30b0-4480-8dc7-4a97c95578c2 , 
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:40:23
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [gtaYWa0422vr20] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:40:23
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [gtaYWa0422vr20] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:40:23
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [DUUsVa0422vr22] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:49:32
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:49:32
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:50:01
+
+Title:将截断字符串或二进制数据。
+语句已终止。
+
+Message: UPDATE [InformationCategory] SET [Id]=@Id,[Domain]=@Domain,[Information]=@Information,[Name]=@Name,[Image]=@Image,[CreateTime]=@CreateTime,[CreateUser]=@CreateUser WHERE [Id]=@Id
+@Id:bab92c11-ea17-4928-a8c3-befc87dba649 , @Domain:2a58d820-de07-4c8f-80b9-b5cb5a1028b4 , @Information:1da9a815-a70c-4486-b7c0-ece1ed3a8b8a , @Name:女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装女装 , @Image:http://wxcfile1.zkebao.com/FileStore/2a58d820-de07-4c8f-80b9-b5cb5a1028b4/adc01e5e-43db-48a3-bc53-326fed207c31.jpg , @CreateTime:2016/3/21 1:30:00 , @CreateUser:2f90c9d6-30b0-4480-8dc7-4a97c95578c2 , 
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Linkup.Data.DatabaseWrapper.ExcuteSqlExpression(SqlExpression sqlExpression) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 305
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:50:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [sQ49ea0032vr21] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:50:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [sQ49ea0032vr21] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:50:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [rav9.a0032vr20] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:51:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [Vg3j0092vr18] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:51:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [Vg3j0092vr18] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:51:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [tI6v0092vr20] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:52:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [1F7gRA0153vr23] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:52:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [1F7gRA0153vr23] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:52:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [WYiP40153vr19] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:53:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [6p5k5a0212vr23] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:53:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [6p5k5a0212vr23] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:53:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [bfYfAA0212vr18] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:54:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [O0ZQEa0272vr18] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:54:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [O0ZQEa0272vr18] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:54:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [iv9N8a0272vr19] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:55:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [qIdd7a0332vr19] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:55:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [qIdd7a0332vr19] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:55:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [ge.P6a0332vr20] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:56:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [T0392vr18] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:56:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [T0392vr18] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:56:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [WFV6la0392vr22] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:57:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [8XO3_a0452vr21] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:57:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [8XO3_a0452vr21] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:57:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [xT4630452vr21] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:58:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [4qBscA0512vr21] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:58:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [4qBscA0512vr21] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:58:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [Gcvx0a0513vr19] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:59:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [LRgG8a0572vr19] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:59:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [LRgG8a0572vr19] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 17:59:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [aMAqea0572vr18] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 18:00:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [mkD0ra0632vr21] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 18:00:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [mkD0ra0632vr21] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 18:00:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [u.V_ma0632vr18] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 18:01:34
+
+Title:ThirdPartyApi.GetGroupList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [w7RHda0692vr20] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 18:01:34
+
+Title:RefreshGroupList 失败
+
+Message: 61004-access clientip is not registered hint: [w7RHda0692vr20] requestIP: 36.62.186.127
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 18:01:34
+
+Title:UserApi.GetUserList 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/user/get?access_token=Cel198F34YhFiZI73Ku_5HGFlGKKLrCbb8dJaNcc8SfRKQxeRmQdWJjZ7dc3-SlRPGZrZEXRXtT-dJnXGhl3UcSnTuUzI-ZjdHVyup2vp97Z2QvsBB3S99j1FojSrBjWOFJaAIDKBF&next_openid=
+发送的内容：
+
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered hint: [_BJGoA0692vr22] requestIP: 36.62.186.127"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:14:56
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:14:56
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:19:31
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:20:08
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:20:38
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:20:56
+
+Title:在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: TCP Provider, error: 0 - 等待的操作过时。)
+
+Message: SELECT t.* FROM
+                (
+                    SELECT * FROM [Campaign_LotteryPeriod] WHERE [Drawn] = 0 AND [EndTime] <= GETDATE()
+                ) t
+                INNER JOIN [Campaign]
+                ON t.[CampaignId] = [Campaign].[Id]
+                WHERE [Campaign].[Status] = 1 OR [Campaign].[Status] = 2
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetNewOpenConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetWrappedConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetOpenConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String tableName)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteDataSet(DbCommand command)
+   在 Linkup.Data.DatabaseWrapper.ExecuteDataSet(CommandType commandType, String commandText, List`1 parameterList, String[] tableNameArray) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 259
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:21:05
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:21:07
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:21:25
+
+Title:在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: TCP Provider, error: 0 - 等待的操作过时。)
+
+Message: SELECT t.* FROM
+                (
+                    SELECT * FROM [Campaign_LotteryPeriod] WHERE [Drawn] = 0 AND [EndTime] <= GETDATE()
+                ) t
+                INNER JOIN [Campaign]
+                ON t.[CampaignId] = [Campaign].[Id]
+                WHERE [Campaign].[Status] = 1 OR [Campaign].[Status] = 2
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetNewOpenConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetWrappedConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetOpenConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String tableName)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteDataSet(DbCommand command)
+   在 Linkup.Data.DatabaseWrapper.ExecuteDataSet(CommandType commandType, String commandText, List`1 parameterList, String[] tableNameArray) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 259
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:21:59
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:22:01
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:27:19
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:27:22
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:37:07
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:37:07
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:39:30
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:39:30
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:42:23
+
+Title:连接超时时间已到。在尝试使用预登录握手确认时超过了此超时时间。这可能是因为预登录握手失败或服务器未能及时响应。  尝试连接到此服务器时花费的持续时间是 - [Pre-Login] initialization=5913；handshake=19819；
+
+Message: SELECT t.* FROM
+                (
+                    SELECT * FROM [Campaign_LotteryPeriod] WHERE [Drawn] = 0 AND [EndTime] <= GETDATE()
+                ) t
+                INNER JOIN [Campaign]
+                ON t.[CampaignId] = [Campaign].[Id]
+                WHERE [Campaign].[Status] = 1 OR [Campaign].[Status] = 2
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetNewOpenConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetWrappedConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetOpenConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String tableName)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteDataSet(DbCommand command)
+   在 Linkup.Data.DatabaseWrapper.ExecuteDataSet(CommandType commandType, String commandText, List`1 parameterList, String[] tableNameArray) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 259
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:43:31
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:43:32
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:53:00
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/6 23:53:00
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 0:07:08
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 0:07:08
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 0:11:24
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 0:11:24
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 10:24:35
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 10:24:36
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 11:27:29
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 11:27:30
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 11:44:34
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 11:44:36
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 12:21:29
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 12:21:29
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 12:31:37
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/7 12:31:37
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/9 23:57:36
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/9 23:57:38
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/12 0:36:52
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/12 0:36:57
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/12 0:51:15
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/12 0:51:17
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------

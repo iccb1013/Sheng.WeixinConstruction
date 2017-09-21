@@ -1,0 +1,438 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.OneDollarBuyingCommodityDetailViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+    body {
+        margin-bottom: 0.55rem;
+    }
+
+     .divItemDetailTitle {
+        height: 0.35rem;
+        line-height: 0.35rem;
+        text-align: center;
+        font-size: 0.16rem;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+
+      .divBorder {
+        border: 1px solid #CCC;
+        height: 0.3rem;
+        font-size: 0.15rem;
+        line-height: 0.3rem;
+    }
+
+
+    #divImageContainer {
+        background-color: #FFF;
+        text-align: center;
+        margin-top: 0rem;
+    }
+
+    #divFooter {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.4rem;
+        font-size: 0.14rem;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+
+    #divOrderNext {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.4rem;
+        font-size: 0.15rem;
+        line-height: 0.4rem;
+        color: black;
+        background-color: white;
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
+    }
+</style>
+
+
+<script>
+
+    var _cashAccount = @(ViewBag.Member.CashAccount / 100f);
+    var _saleId = getQueryString("saleId");
+
+    //当前页
+    var _currentPage = 1;
+    var _totalPage = 1;
+
+    $(document).ready(function () {
+        loadData();
+    });
+
+    function loadData(targetPage) {
+        if (targetPage > _totalPage)
+            return;
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.PageSize = 10;
+        args.SaleId = _saleId;
+
+        $.ajax({
+            url: "/Api/OneDollarBuying/GetForSaleCommodityMemberPartNumber/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    //alert(JSON.stringify(resultObj));
+                    var gettpl = document.getElementById('memberListTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html) {
+                        document.getElementById('divMemberContainer').innerHTML += html;
+                    });
+
+                    _currentPage = resultObj.Page;
+                    _totalPage = resultObj.TotalPage;
+                    if (_currentPage >= _totalPage) {
+                        $("#divPagingContainer").html("没有更多了");
+                    }
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function showOrder() {
+
+        var gettpl = document.getElementById('orderTemplate').innerHTML;
+
+        var pageii = layer.open({
+            type: 1,
+            content: gettpl,
+            style: 'position:fixed; left:0.1rem; top:0.1rem;right:0.1rem; border:none;',
+            success: function (elem) {
+                $("#txtOrderQuantity").focus();
+                setInputLocation(document.getElementById("txtOrderQuantity"), 1)
+            }
+        });
+    }
+
+    function setOrderQuantity(quantity) {
+        $("#txtOrderQuantity").val(quantity).focus();
+        setInputLocation(document.getElementById("txtOrderQuantity"), 10)
+    }
+
+    function order() {
+
+        if($("#formInputForm").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: hightlightValidationErrors,
+            rules: {
+             "txtOrderQuantity": {
+            required: true,
+            number: true,
+            digits: true,
+            range: [1, 10000]
+        }
+        },
+            messages: {
+                        "txtOrderQuantity": {
+            required: "请输入要参与的人次；",
+            number: "参与人次请输入有效整数字；",
+            digits: "参与人次请输入有效整数字；",
+            range: "参与人次请介于 1 到 10000 之间；"
+        }
+        }
+        }).form() == false)
+            return;
+
+        var quantity = $("#txtOrderQuantity").val();
+
+        layer.closeAll();
+
+        if (quantity > _cashAccount) {
+            layerAlert("您的账户余额不足，请充值。");
+            return;
+        }
+
+        var confirmLayerIndex = layer.open({
+            content: '您确认参与 ' + quantity + ' 人次？',
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function () {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                var args = new Object();
+                args.SaleId = _saleId;
+                args.Quantity = quantity;
+
+                $.ajax({
+                    url: "/Api/OneDollarBuying/OrderOneDollarBuyingCommodity/@ViewBag.Domain.Id",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(args),
+                    success: function (data, status, jqXHR) {
+                        layer.close(loadLayerIndex);
+                        if (data.Success) {
+                            var resultObj = data.Data;
+
+                            if (resultObj.Success) {
+                                layerAlertBtn("参与成功！请留意揭晓结果~", function () {
+                                    layer.open({
+                                        type: 2,
+                                        shadeClose: false,
+                                        content: '请稍候...'
+                                    });
+                                    window.location.reload();
+                                });
+
+                            } else {
+                                switch (resultObj.Reason) {
+                                    case 1:
+                                        layerAlert("该商品本期已售罄，请继续参与新的一期。");
+                                        break;
+                                    case 2:
+                                        layerAlert("您的余额不足，请充值。");
+                                        break;
+                                    case 3:
+                                        layerAlert("无效商品。");
+                                        break;
+                                    default:
+                                        layerAlert("未知错误：" + resultObj.Reason);
+                                        break;
+                                }
+                            }
+                        } else {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest) {
+                        layer.close(loadLayerIndex);
+                        //alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+
+    }
+
+</script>
+
+<script id="memberListTemplate" type="text/html">
+
+    {{# for(var i = 0, len = d.length; i < len; i++){ }}
+    {{# var headimg = fitHeadImage(d[i].Headimgurl,46) }}
+
+    <div style="margin-top:0.1rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width:0.6rem;"><img src="{{headimg}}" style="width:0.5rem; height:0.5rem"></td>
+                <td valign="top">
+                    <div style="font-size:0.15rem;color:#000000">{{ d[i].NickName }}</div>
+                </td>
+                <td valign="top" align="right" style="width:0.6rem;">
+                    <div><span class="defaultColor">{{ d[i].SoldPart }}</span>人次</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    {{# } }}
+
+</script>
+
+<script type="text/html" id="orderTemplate">
+    <form id="formInputForm">
+        <div class="divItemDetailTitle defaultBgColor">
+            参与
+        </div>
+        <div style="font-size:0.18rem;padding:0.1rem;padding-bottom:0.2rem;">
+            <div style="font-size:0.15rem;font-weight:bold">@Model.Commodity.Name</div>
+            <div style="margin-top:0.15rem;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="width:1rem;">参与人次：</td>
+                        <td><input name="txtOrderQuantity" type="text" class="input_16" style="width:100%" id="txtOrderQuantity" maxlength="5" value="1" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin-top:0.15rem;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:0.3rem;">
+                    <tr>
+                        <td width="20%" align="center"><div class="divBorder" onclick="setOrderQuantity(1)">1</div></td>
+                        <td width="20%" align="center"><div class="divBorder" onclick="setOrderQuantity(5)">5</div></td>
+                        <td width="20%" align="center"><div class="divBorder" onclick="setOrderQuantity(10)">10</div></td>
+                        <td width="20%" align="center"><div class="divBorder" onclick="setOrderQuantity(20)">20</div></td>
+                        <td width="20%" align="center"><div class="divBorder" onclick="setOrderQuantity(30)">30</div></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin-top:0.2rem;">
+                <div class="divRectangle" style="margin-left:0.4rem;margin-right:0.4rem;" onclick="order()">
+                    参与
+                </div>
+                <div class="divRectangle_Gray" style="margin-top:0.1rem;margin-left:0.4rem;margin-right:0.4rem;" onclick="layer.closeAll()">
+                    取消
+                </div>
+            </div>
+        </div>
+
+    </form>
+</script>
+
+<div id="divImageContainer">
+    <img src="@Model.Commodity.ImageUrl" name="img" id="img" style="max-height:2rem; max-width:100%;vertical-align:middle;">
+</div>
+
+<div style="background-color:#CCC; height:1px;">
+</div>
+
+<div class="divContent" style="margin-top:0.1rem;">
+    <div class="defaultColor" style="font-size:0.16rem">@Model.Commodity.Name</div>
+    <div style="font-size:0.13rem;color:#555555;margin-top:0.1rem;">@Model.Commodity.Introduction</div>
+    <div style="font-size:0.13rem;color:#555555;margin-top:0.05rem;">期号：@Model.ForSale.PeriodNumber</div>
+    @if (Model.ForSale.LuckyMember.HasValue)
+    {
+        <div class="defaultBorderColor" style="margin-top:0.1rem;">
+            <div class="defaultBgColor" style="color:white;font-size:0.15rem;padding-left:0.1rem;padding-top:0.05rem;padding-bottom:0.05rem;">
+                幸运号码：@Model.ForSale.LuckyPartNumber
+            </div>
+            <div style="padding:0.1rem;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="width:0.6rem;"><img src="@Model.LuckyMember.Headimgurl_64" style="width:0.5rem; height:0.5rem"></td>
+                        <td valign="top">
+                            <div style="font-size:0.15rem;color:#000000">@Model.LuckyMember.NickName</div>
+                            <div style="margin-top:0.05rem;">揭晓时间：@Model.ForSale.DrawTime</div>
+                            <div style="margin-top:0.05rem;">本期参与：<span class="defaultColor">@Model.LuckyMemberPartNumberCount</span>人次</div>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        if (Model.ForSale.SoldPart >= Model.ForSale.TotalPart)
+        {
+            <div class="defaultBorderColor defaultBgColor" style="margin-top:0.1rem;text-align:center;padding:0.03rem;color:white;">
+                请稍候，马上揭晓...
+            </div>
+        }
+        else
+        {
+            <div style="font-size:0.13rem;color:#555555;margin-top:0.05rem;">
+                <div style="float:left">总需人次：<span class="defaultColor">@Model.ForSale.TotalPart</span></div>
+                <div style="float:right">剩余人次：<span class="defaultColor">@(Model.ForSale.TotalPart - Model.ForSale.SoldPart)</span></div>
+                <div style="clear:both"></div>
+            </div>
+        }
+    }
+
+    <div class="divDotLine" style="margin-top:0.1rem;">
+    </div>
+    <div style="margin-top:0.05rem;font-size:0.13rem;color:#555555;">
+        <div>您参与了：<span class="defaultColor">@Model.MyPartNumberList.Count</span>人次</div>
+        <div style="margin-top:0.05rem;">
+            <div style="float:left">参与号码：</div>
+            @foreach (var item in Model.MyPartNumberList)
+            {
+                <div style="float:left">@item，</div>
+            }
+            <div style="clear:both"></div>
+        </div>
+    </div>
+    <div class="divDotLine" style="margin-top:0.1rem;">
+    </div>
+
+    @*<div style="font-size:0.15rem;color:#000000;margin-top:0.1rem;">
+            <div style="float:left">图文详情</div>
+            <div style="float:right">往期揭晓</div>
+            <div style="clear:both"></div>
+        </div>
+
+        <div class="divDotLine" style="margin-top:0.1rem;">
+        </div>*@
+
+    <div style="font-size:0.15rem;color:#000000;margin-top:0.1rem;">
+        <div style="float:left">所有参与记录</div>
+        <div style="font-size:0.13rem;color:#555555;float:right">@Model.ForSale.ForSaleTime 开始</div>
+        <div style="clear:both"></div>
+    </div>
+
+    <div id="divMemberContainer" style="font-size:0.13rem;color:#555555;">
+
+    </div>
+
+    <div id="divPagingContainer" class="divPagingContainer" style="margin-top: 0.2rem; text-align: center" onclick="loadData(_currentPage + 1)">
+        查看更多
+    </div>
+
+</div>
+
+
+@if (Model.ForSale.SoldPart < Model.ForSale.TotalPart)
+{
+    <div id="divFooter" >
+        <table align="center" style="height:100%">
+            <tr>
+                <td valign="middle" align="center">
+                    <input  type="button" class="button" value="立即参与" style="width:1.5rem;" onclick="showOrder()">
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+    if (Model.AvailableSaleId.HasValue)
+    {
+        <div id="divOrderNext">
+            <div class="divDotLine" style="margin-top:0rem;">
+            </div>
+            <div>
+                <table border="0" align="center" cellpadding="0" cellspacing="0" style="width:100%;">
+                    <tr>
+                        <td align="left">
+                            新一期正在火爆进行中...
+                        </td>
+                        <td style="width: 0.6rem" align="right">
+                            <input type="button" class="button" value="参与" onclick="goUrl('/Campaign/OneDollarBuyingCommodityDetail/@ViewBag.Domain.Id?commodityId=@Model.Commodity.Id&saleId=@Model.AvailableSaleId')" />
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+   
+    }
+}

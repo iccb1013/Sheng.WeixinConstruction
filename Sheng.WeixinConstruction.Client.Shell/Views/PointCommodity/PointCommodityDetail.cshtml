@@ -1,0 +1,220 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.PointCommodityDetailViewModel
+
+@{
+    ViewBag.SubTitle = "积分商城";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<link rel="stylesheet" href="/Scripts/swiper/swiper-3.3.1.min.css">
+<script src="/Scripts/swiper/swiper-3.3.1.jquery.min.js"></script>
+
+<style type="text/css">
+    body {
+        margin-bottom: 0.55rem;
+    }
+
+    #divFooter {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.4rem;
+        font-size: 0.14rem;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+
+    #divImageContainer{
+        text-align:center;
+    }
+
+    .swiper-container {
+        width: 100%;
+        height: 2rem;
+    }
+
+        .swiper-container img {
+            max-height: 2rem;
+            max-width: 100%;
+            vertical-align: middle;
+        }
+</style>
+
+
+<script>
+
+    $(document).ready(function ()
+    {
+        var mySwiper = new Swiper('.swiper-container', {
+            loop: true,
+            pagination: '.swiper-pagination',
+        })
+    });
+
+    function addToCart(){
+        if(@Model.PointCommodity.Stock <= 0 ){
+
+            layer.open({
+                content: '该商品已售罄。'
+            });
+
+            return;
+        }
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose:false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.PointCommodity = '@Model.PointCommodity.Id';
+        args.Quantity = 1;
+
+        $.ajax({
+            url: "/Api/PointCommodity/AddToCart/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR)
+            {
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    $("#btnShoppingCart").val("购物车 " + data.Data.Data.PointCommodityCount);
+                    layerAlert("已成功添加到购物车。");
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function order()
+    {
+        var checkout = new Object();
+        checkout.ItemList = new Array();
+
+        var checkoutPointCommodity = new Object();
+        checkoutPointCommodity.Id = '@Model.PointCommodity.Id';
+        checkoutPointCommodity.Quantity = 1;
+        checkoutPointCommodity.Price = @Model.PointCommodity.Price;
+        checkoutPointCommodity.Point = @Model.PointCommodity.Point;
+        checkoutPointCommodity.Name = '@Model.PointCommodity.Name';
+        checkoutPointCommodity.ImageUrl = '@Model.PointCommodity.ImageUrl';
+
+        checkout.ItemList[0] = checkoutPointCommodity;
+
+        checkout.TotalPrice = @(Model.PointCommodity.Price/100f);
+        checkout.TotalPoint = @Model.PointCommodity.Point;
+
+        localStorage.checkout = JSON.stringify(checkout);
+
+        window.location.href = "/PointCommodity/Checkout/@ViewBag.Domain.Id";
+    }
+
+
+</script>
+
+@if (Model.PointCommodity.ImageList != null && Model.PointCommodity.ImageList.Count > 0)
+{
+    if (Model.PointCommodity.ImageList.Count == 1)
+    {
+        <div id="divImageContainer">
+            @*<a href="@Model.PointCommodity.ImageList[0].Url">
+                    <img src="@Model.PointCommodity.ImageList[0].Url" name="img" id="img" style="max-height:2rem; max-width:100%;vertical-align:middle;">
+                </a>*@
+            <img src="@Model.PointCommodity.ImageList[0].Url" name="img" id="img" style="max-height:2rem; max-width:100%;vertical-align:middle;">
+        </div>
+    }
+    else
+    {
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.PointCommodity.ImageList)
+                {
+                    <div class="swiper-slide">
+                        <table style="width:100%;height:100%" border="0">
+                            <tr>
+                                <td align="center" valign="middle">
+                                    @*<a href="@item.Url">
+                                            <img src="@item.Url" />
+                                        </a>*@
+                                    <img src="@item.Url" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    }
+}
+else
+{
+    <div id="divImageContainer">
+        @*<a href="@Model.PointCommodity.ImageUrl">
+                <img src="@Model.PointCommodity.ImageUrl" name="img" id="img" style="max-height:2rem; max-width:100%;vertical-align:middle;">
+            </a>*@
+        <img src="@Model.PointCommodity.ImageUrl" name="img" id="img" style="max-height:2rem; max-width:100%;vertical-align:middle;">
+    </div>
+}
+
+<div style="background-color:#CCC; height:1px;">
+</div>
+
+<div class="divContent" style="margin-top:0.1rem;">
+
+    <div class="defaultColor" style="font-size:0.14rem;">@Model.PointCommodity.Name</div>
+
+    @*<div style="margin-top:0.1rem;color:#545454">
+            超级好喝的无敌乌龙茶。
+        </div>*@
+
+    <div style="margin-top:0.1rem;color:#545454">
+        <div style="float:left">@(Model.PointCommodity.Price / 100f) 元 + @Model.PointCommodity.Point 积分</div>
+        <div style="float:right">
+            @if (Model.PointCommodity.Stock <= 0)
+            {
+                <span>已售罄</span>
+            }
+            else
+            {
+                <span>库存：</span><span>@Model.PointCommodity.Stock</span>
+            }
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem;">
+    </div>
+
+    <div id="divDescription" style="margin-top:0.1rem;color:#545454">
+        @Html.Raw(Model.PointCommodity.Introduction)
+    </div>
+
+</div>
+
+<div id="divFooter">
+    <table align="center" border="0" style="height:100%;width:100%">
+        <tr>
+            <td>
+                <input id="btnShoppingCart" name="" type="button" class="button" value="购物车 @Model.ShoppingCartPointCommodityCount" style="width:90%" onclick="goUrl('/PointCommodity/ShoppingCart/@ViewBag.Domain.Id')">
+            </td>
+            <td valign="middle" align="center" width="33%">
+                <input name="" type="button" class="button" value="加入购物车" style="width:90%" onclick="addToCart()">
+            </td>
+            <td valign="middle" align="center" width="33%">
+                <input name="" type="button" class="button" value="立即购买" style="width:90%" onclick="order()">
+            </td>
+        </tr>
+    </table>
+</div>
+

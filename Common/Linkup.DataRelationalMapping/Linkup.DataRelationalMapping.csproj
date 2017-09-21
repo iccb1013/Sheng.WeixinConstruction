@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7BB22DE3-7422-4CE4-BD77-B51565343DD2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Linkup.DataRelationalMapping</RootNamespace>
+    <AssemblyName>Linkup.DataRelationalMapping</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AttachedWhereItem.cs" />
+    <Compile Include="Attribute\ColumnAttribute.cs" />
+    <Compile Include="Attribute\ConvertAttribute.cs" />
+    <Compile Include="Attribute\JustEnumFormValueConvertAttribute.cs" />
+    <Compile Include="Attribute\JustGuidFormStringConvertAttribute.cs" />
+    <Compile Include="Attribute\KeyAttribute.cs" />
+    <Compile Include="Attribute\JsonAttribute.cs" />
+    <Compile Include="Attribute\NotMappedAttribute.cs" />
+    <Compile Include="Attribute\OrderByAttribute.cs" />
+    <Compile Include="Attribute\PartialAttribute.cs" />
+    <Compile Include="Attribute\RelationalMappingAttribute.cs" />
+    <Compile Include="Attribute\RelationAttribute.cs" />
+    <Compile Include="Attribute\StringToGuidConvertAttribute.cs" />
+    <Compile Include="Attribute\TableAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelationalMappingUnity.cs" />
+    <Compile Include="SqlExpression.cs" />
+    <Compile Include="SqlExpressionArgs.cs" />
+    <Compile Include="SqlStructureBuild.cs" />
+    <Compile Include="TypeMappingCache.cs" />
+    <Compile Include="TypeMappingDescription.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Linkup.Common\Linkup.Common.csproj">
+      <Project>{2753ed31-d787-41f3-893c-58df187da1d8}</Project>
+      <Name>Linkup.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,84 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.MemberQRCodeShareViewModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Authorizer.NickName</title>
+
+    <link href="/Content/Style.css" rel="stylesheet" type="text/css">
+
+    @if (ViewBag.DomainContext.StyleSettings.Theme != null)
+    {
+        switch ((string)ViewBag.DomainContext.StyleSettings.Theme)
+        {
+            case "blue":
+                <link href="/Content/Style_Blue.css" rel="stylesheet" type="text/css">
+                break;
+            case "yellow":
+            <link href="/Content/Style_Yellow.css" rel="stylesheet" type="text/css">
+                break;
+            default:
+            <link href="/Content/Style_Red.css" rel="stylesheet" type="text/css">
+                break;
+        }
+    }
+    else
+    {
+        <link href="/Content/Style_Red.css" rel="stylesheet" type="text/css">
+    }
+
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/layer.m/layer.m.js"></script>
+    @Scripts.Render("~/bundles/common")
+
+    <script>
+
+        $(document).ready(function () {
+
+        });
+
+        function showCampaign() {
+            window.location.href = "/Campaign/MemberQRCode/@Model.Campaign.Domain?campaignId=@Model.Campaign.Id";
+        }
+
+    </script>
+
+    <style type="text/css">
+        body {
+            margin-top: 0rem;
+            background-color: #FDFDFB;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div>
+        <img src="@Model.QRCodeItem.QRCodeUrl" style="width:100%">
+    </div>
+    <div class="divContent">
+        <div style="margin-top:0.2rem;text-align:center">
+            请长按图片，选择“识别图中二维码”
+        </div>
+
+        <div class="divDotLine" style="margin-top: 0.05rem; margin-bottom: 0.1rem;">
+        </div>
+
+        <div>
+            @Html.Raw(Model.Campaign.Introduction);
+        </div>
+
+        <div style="margin-top:0.2rem;text-align:center">
+            <div class="divRectangle" style="width:2rem;margin-left:auto;margin-right:auto" onclick="showCampaign()">
+                我要参与
+            </div>
+        </div>
+    </div>
+</body>
+</html>

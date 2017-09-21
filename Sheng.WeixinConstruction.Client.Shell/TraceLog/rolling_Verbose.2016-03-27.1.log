@@ -1,0 +1,620 @@
+----------------------------------------
+Timestamp: 2016/3/18 11:02:34
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/18 11:02:40
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/18 11:02:56
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/18 11:02:56
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/18 11:23:00
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/18 11:23:20
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/18 11:23:23
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/18 11:23:23
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:39:00
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:39:03
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:39:57
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:39:57
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:39:59
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:39:59
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:56:50
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:56:50
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:58:04
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:58:04
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:59:22
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 15:59:22
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 16:24:05
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 16:24:05
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 16:24:07
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/20 16:24:07
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 21:53:55
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 21:53:56
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 21:55:05
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 21:55:05
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 22:05:30
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 22:05:30
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 22:05:32
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 22:05:32
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 22:51:04
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 22:51:04
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 22:51:16
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 22:51:16
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/23 23:59:59
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 0:00:00
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 0:00:21
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 0:00:21
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 0:31:17
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 0:31:17
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:17:14
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:17:15
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:17:30
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:17:30
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:18:36
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:18:37
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:18:45
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:18:45
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:22:06
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:22:07
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:22:13
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/24 2:22:13
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/26 10:39:46
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/26 10:39:47
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/26 10:40:08
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/26 10:40:08
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/26 11:08:35
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/26 11:08:35
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/26 11:35:42
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/26 11:35:42
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwOkqIrihLgpgn1pYwjargXc
+
+Severity: Verbose
+
+----------------------------------------

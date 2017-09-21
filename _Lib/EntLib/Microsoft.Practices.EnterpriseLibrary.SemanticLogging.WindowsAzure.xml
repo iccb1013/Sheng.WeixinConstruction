@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.EnterpriseLibrary.SemanticLogging.WindowsAzure</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.WindowsAzure.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.WindowsAzure.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.WindowsAzure.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.WindowsAzure.Properties.Resources.InvalidTableName">
+            <summary>
+              Looks up a localized string similar to Table names may contain only alphanumeric characters, cannot begin with a numeric character and must be from 3 to 63 characters long..
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Utility.CloudEventEntryExtensions">
+            <summary>
+            Extensions for <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.EventEntry"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Utility.CloudEventEntryExtensions.SubscribeWithConversion(System.IObservable{Microsoft.Practices.EnterpriseLibrary.SemanticLogging.EventEntry},System.IObserver{Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry})">
+            <summary>
+            Subscribes an <see cref="T:System.IObserver`1"/> sink by doing a straight projection of a sequence of <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.EventEntry"/>
+            and converting it to a <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry"/> entity.
+            </summary>
+            <param name="source">The original stream of events.</param>
+            <param name="sink">The underlying sink.</param>
+            <returns>A subscription token to unsubscribe to the event stream.</returns>
+            <remarks>When using Reactive Extensions (Rx), this is equivalent to doing a Select statement on the <paramref name="source"/> to convert it to <see cref="T:System.IObservable`1"/> and then
+            calling Subscribe on it.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Utility.CloudEventEntryExtensions.TryConvertToCloudEventEntry(Microsoft.Practices.EnterpriseLibrary.SemanticLogging.EventEntry)">
+            <summary>
+            Converts an <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.EventEntry"/> to a <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry"/>.
+            </summary>
+            <param name="entry">The entry to convert.</param>
+            <returns>A converted entry, or <see langword="null"/> if the payload is invalid.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry">
+            <summary>
+            Represents a log entry in a Windows Azure Table.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.CreateKey(System.Boolean,System.Int32)">
+            <summary>
+            Create a key for the entity.
+            </summary>
+            <param name="sortKeysAscending"><see langword="true" /> generates WAD-style keys, otherwise it uses an key generated from a reversed tick value that is sorted from newest to oldest.</param>
+            <param name="salt">The salt for the key.</param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.EventId">
+            <summary>
+            Gets or sets the event identifier.
+            </summary>
+            <value>
+            The event id.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.EventDate">
+            <summary>
+            Gets or sets the event date.
+            </summary>
+            <value>
+            The event date.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.Keywords">
+            <summary>
+            Gets or sets the keywords for the event.
+            </summary>
+            <value>
+            The keywords.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.ProviderId">
+            <summary>
+            Gets or sets the unique identifier for the provider, which is typically the class derived from <see cref="T:System.Diagnostics.Tracing.EventSource"/>.
+            </summary>
+            <value>
+            The provider ID.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.ProviderName">
+            <summary>
+            Gets or sets the friendly name of the class that is derived from the event source.
+            </summary>
+            <value>
+            The name of the event source.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.InstanceName">
+            <summary>
+            Gets or sets the instance name where the entries are generated from.
+            </summary>
+            <value>
+            The name of the instance.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.Level">
+            <summary>
+            Gets or sets the level of the event.
+            </summary>
+            <value>
+            The level.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.Message">
+            <summary>
+            Gets or sets the message for the event.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.Opcode">
+            <summary>
+            Gets or sets the operation code for the event.
+            </summary>
+            <value>
+            The operation code.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.Task">
+            <summary>
+            Gets or sets the task for the event.
+            </summary>
+            <value>
+            The task code.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.Version">
+            <summary>
+            Gets or sets the version of the event.
+            </summary>
+            <value>
+            The version.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.Payload">
+            <summary>
+            Gets or sets the payload for the event.
+            </summary>
+            <value>
+            The payload.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.PartitionKey">
+            <summary>
+            Gets or sets the entity's partition key.
+            </summary>
+            <value>
+            The partition key.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry.RowKey">
+            <summary>
+            Gets or sets the entity's partition key.
+            </summary>
+            <value>
+            The row key.
+            </value>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink">
+            <summary>
+            Sink that asynchronously writes entries to a Windows Azure table.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.#ctor(System.String,System.String,System.String,System.TimeSpan,System.Int32,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink"/> class with the specified connection string and table address.
+            </summary>
+            <param name="instanceName">The name of the instance originating the entries.</param>
+            <param name="connectionString">The connection string for the storage account.</param>
+            <param name="tableAddress">Either the name of the table, or the absolute URI to the table.</param>
+            <param name="bufferInterval">The buffering interval to wait for events to accumulate before sending them to Windows Azure Storage.</param>
+            <param name="maxBufferSize">The maximum number of entries that can be buffered while it's sending to Windows Azure Storage before the sink starts dropping entries.</param>
+            <param name="onCompletedTimeout">Defines a timeout interval for when flushing the entries after an <see cref="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.OnCompleted"/> call is received and before disposing the sink.
+            This means that if the timeout period elapses, some event entries will be dropped and not sent to the store. Normally, calling <see cref="M:System.IDisposable.Dispose"/> on 
+            the <see cref="T:System.Diagnostics.Tracing.EventListener"/> will block until all the entries are flushed or the interval elapses.
+            If <see langword="null"/> is specified, then the call will block indefinitely until the flush operation finishes.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.FlushAsync">
+            <summary>
+            Causes the buffer to be written immediately.
+            </summary>
+            <returns>The Task that flushes the buffer.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.Dispose">
+            <summary>
+            Releases all resources used by the current instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.OnCompleted">
+            <summary>
+            Notifies the observer that the provider has finished sending push-based notifications.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.OnError(System.Exception)">
+            <summary>
+            Notifies the observer that the provider has experienced an error condition.
+            </summary>
+            <param name="error">An object that provides additional information about the error.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.OnNext(Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.CloudEventEntry)">
+            <summary>
+            Provides the sink with new data to write.
+            </summary>
+            <param name="value">The current entry to write to Windows Azure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.Dispose(System.Boolean)">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <param name="disposing">A value indicating whether or not the class is disposing.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.NormalizeInstanceName(System.String)">
+            <summary>
+            Normalizes the instance name, as it will be used as part of the row key for each of the entries.
+            </summary>
+            <param name="instanceName">The original desired instance name.</param>
+            <returns>A normalized string that is limited in its length and removes reserved characters.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.GetStorageAccount(System.String)">
+            <summary>
+            Validate the Azure connection string or throws an exception.
+            </summary>
+            <param name="connectionString">The connection string value.</param>
+            <exception cref="T:System.ArgumentNullException">Null or empty connection string.</exception>
+            <exception cref="T:System.ArgumentException">Invalid connection string.</exception>
+            <returns>The <see cref="T:Microsoft.WindowsAzure.Storage.CloudStorageAccount"/>.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.SortKeysAscending">
+            <summary>
+            Gets or sets a value indicating whether to sort the row keys in ascending order.
+            </summary>
+            <value>The value indicating whether to sort the row keys in ascending order.</value>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.DateTimeExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.DateTime"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.DateTimeExtensions.GeneratePartitionKey(System.DateTime)">
+            <summary>
+            Generates a PartitionKey representation based on the specified <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="dateTime">The DateTime.</param>
+            <returns>A string representing the Partition Key.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzure.DateTimeExtensions.GeneratePartitionKeyReversed(System.DateTime)">
+            <summary>
+            Generates a PartitionKey representation (in reverse order) based on the specified <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="dateTime">The DateTime.</param>
+            <returns>A string representing the Partition Key (in reverse order).</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.WindowsAzureTableLog">
+            <summary>
+            Factories and helpers for using the <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.WindowsAzureTableLog.DefaultTableName">
+            <summary>
+            The default table name where logs are written to.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.WindowsAzureTableLog.LogToWindowsAzureTable(System.IObservable{Microsoft.Practices.EnterpriseLibrary.SemanticLogging.EventEntry},System.String,System.String,System.String,System.Nullable{System.TimeSpan},System.Boolean,System.Nullable{System.TimeSpan},System.Int32)">
+            <summary>
+            Subscribes to an <see cref="T:System.IObservable`1"/> using a <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink"/>.
+            </summary>
+            <param name="eventStream">The event stream. Typically this is an instance of <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.ObservableEventListener"/>.</param>
+            <param name="instanceName">The name of the instance originating the entries.</param>
+            <param name="connectionString">The connection string for the storage account.</param>
+            <param name="tableAddress">Either the name of the table, or the absolute URI to the table.</param>
+            <param name="bufferingInterval">The buffering interval between each batch publishing. Default value is <see cref="F:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Utility.Buffering.DefaultBufferingInterval"/>.</param>
+            <param name="sortKeysAscending">The value indicating whether to sort the row keys in ascending order.</param>
+            <param name="onCompletedTimeout">Defines a timeout interval for when flushing the entries after an <see cref="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink.OnCompleted"/> call is received and before disposing the sink.</param>
+            <param name="maxBufferSize">The maximum number of entries that can be buffered while it's sending to Windows Azure Storage before the sink starts dropping entries.
+            This means that if the timeout period elapses, some event entries will be dropped and not sent to the store. Normally, calling <see cref="M:System.IDisposable.Dispose"/> on
+            the <see cref="T:System.Diagnostics.Tracing.EventListener"/> will block until all the entries are flushed or the interval elapses.
+            If <see langword="null"/> is specified, then the call will block indefinitely until the flush operation finishes.</param>
+            <returns>
+            A subscription to the sink that can be disposed to unsubscribe the sink and dispose it, or to get access to the sink instance.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.WindowsAzureTableLog.CreateListener(System.String,System.String,System.String,System.Nullable{System.TimeSpan},System.Boolean,System.Nullable{System.TimeSpan},System.Int32)">
+            <summary>
+            Creates an event listener that logs using a <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink"/>.
+            </summary>
+            <param name="instanceName">The name of the instance originating the entries.</param>
+            <param name="connectionString">The connection string for the storage account.</param>
+            <param name="tableAddress">Either the name of the table, or the absolute URI to the table.</param>
+            <param name="bufferingInterval">The buffering interval between each batch publishing.</param>
+            <param name="sortKeysAscending">The value indicating whether to sort the row keys in ascending order.</param>
+            <param name="listenerDisposeTimeout">Defines a timeout interval for the flush operation when the listener is disposed.</param>
+            <param name="maxBufferSize">The maximum number of entries that can be buffered while it's sending to Windows Azure Storage before the sink starts dropping entries.
+            This means that if the timeout period elapses, some event entries will be dropped and not sent to the store. Calling <see cref="M:System.IDisposable.Dispose"/> on
+            the <see cref="T:System.Diagnostics.Tracing.EventListener"/> will block until all the entries are flushed or the interval elapses.
+            If <see langword="null"/> is specified, then the call will block indefinitely until the flush operation finishes.</param>
+            <returns>
+            An event listener that uses <see cref="T:Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Sinks.WindowsAzureTableSink"/> to log events.
+            </returns>
+        </member>
+    </members>
+</doc>

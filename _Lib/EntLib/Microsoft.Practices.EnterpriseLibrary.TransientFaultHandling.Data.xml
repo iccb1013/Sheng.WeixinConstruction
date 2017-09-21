@@ -1,0 +1,1018 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.ConnectionHasNotBeenInitialized">
+            <summary>
+              Looks up a localized string similar to Connection property has not been initialized..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.StringCannotBeEmpty">
+            <summary>
+              Looks up a localized string similar to The specified string argument {0} must not be empty..
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection">
+            <summary>
+            Provides a reliable way of opening connections to, and executing commands against, the SQL Database 
+            databases taking potential network unreliability and connection retry requirements into account.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection"/> class with the specified connection string. Uses the default
+            retry policy for connections and commands unless retry settings are provided in the connection string.
+            </summary>
+            <param name="connectionString">The connection string used to open the SQL Database.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.#ctor(System.String,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection"/> class with the specified connection string
+            and a policy that defines whether to retry a request if a connection or command
+            fails.
+            </summary>
+            <param name="connectionString">The connection string used to open the SQL Database.</param>
+            <param name="retryPolicy">The retry policy that defines whether to retry a request if a connection or command fails.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.#ctor(System.String,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection"/> class with the specified connection string
+            and a policy that defines whether to retry a request if a connection or command
+            fails.
+            </summary>
+            <param name="connectionString">The connection string used to open the SQL Database.</param>
+            <param name="connectionRetryPolicy">The retry policy that defines whether to retry a request if a connection fails to be established.</param>
+            <param name="commandRetryPolicy">The retry policy that defines whether to retry a request if a command fails to be executed.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.Open">
+            <summary>
+            Opens a database connection with the settings specified by the ConnectionString and ConnectionRetryPolicy properties.
+            </summary>
+            <returns>An object that represents the open connection.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.Open(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Opens a database connection with the settings specified by the connection string and the specified retry policy.
+            </summary>
+            <param name="retryPolicy">The retry policy that defines whether to retry a request if the connection fails to open.</param>
+            <returns>An object that represents the open connection.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.ExecuteCommand``1(System.Data.IDbCommand)">
+            <summary>
+            Executes a SQL command and returns a result that is defined by the specified type <typeparamref name="T"/>. This method uses the retry policy specified when 
+            instantiating the SqlAzureConnection class (or the default retry policy if no policy was set at construction time).
+            </summary>
+            <typeparam name="T">IDataReader, XmlReader, or any other .NET Framework type that defines the type of result to be returned.</typeparam>
+            <param name="command">The SQL command to be executed.</param>
+            <returns>An instance of an IDataReader, XmlReader, or any other .NET Framework object that contains the result.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.ExecuteCommand``1(System.Data.IDbCommand,System.Data.CommandBehavior)">
+            <summary>
+            Executes a SQL command and returns a result that is defined by the specified type <typeparamref name="T"/>. This method uses the retry policy specified when 
+            instantiating the SqlAzureConnection class (or the default retry policy if no policy was set at construction time).
+            </summary>
+            <typeparam name="T">IDataReader, XmlReader, or any other .NET Framework type that defines the type of result to be returned.</typeparam>
+            <param name="command">The SQL command to be executed.</param>
+            <param name="behavior">A description of the results of the query and its effect on the database.</param>
+            <returns>An instance of an IDataReader, XmlReader, or any other .NET Frameork object that contains the result.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.ExecuteCommand``1(System.Data.IDbCommand,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes a SQL command by using the specified retry policy, and returns a result that is defined by the specified type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">IDataReader, XmlReader, or any other .NET Framework type that defines the type of result to be returned.</typeparam>
+            <param name="command">The SQL command to be executed.</param>
+            <param name="retryPolicy">The retry policy that defines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>An instance of an IDataReader, XmlReader, or any other .NET Frameork object that contains the result.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.ExecuteCommand``1(System.Data.IDbCommand,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,System.Data.CommandBehavior)">
+            <summary>
+            Executes a SQL command by using the specified retry policy, and returns a result that is defined by the specified type <typeparamref name="T"/>
+            </summary>
+            <typeparam name="T">IDataReader, XmlReader, or any other .NET Framework type that defines the type of result to be returned.</typeparam>
+            <param name="command">The SQL command to be executed.</param>
+            <param name="retryPolicy">The retry policy that defines whether to retry a command if a connection fails while executing the command.</param>
+            <param name="behavior">A description of the results of the query and its effect on the database.</param>
+            <returns>An instance of an IDataReader, XmlReader, or any other .NET Frameork object that contains the result.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.ExecuteCommand(System.Data.IDbCommand)">
+            <summary>
+            Executes a SQL command and returns the number of rows affected.
+            </summary>
+            <param name="command">The SQL command to be executed.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.ExecuteCommand(System.Data.IDbCommand,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes a SQL command and returns the number of rows affected.
+            </summary>
+            <param name="command">The SQL command to be executed.</param>
+            <param name="retryPolicy">The retry policy that defines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.BeginTransaction(System.Data.IsolationLevel)">
+            <summary>
+            Begins a database transaction with the specified System.Data.IsolationLevel value.
+            </summary>
+            <param name="il">One of the enumeration values that specifies the isolation level for the transaction.</param>
+            <returns>An object that represents the new transaction.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.BeginTransaction">
+            <summary>
+            Begins a database transaction.
+            </summary>
+            <returns>An object that represents the new transaction.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.ChangeDatabase(System.String)">
+            <summary>
+            Changes the current database for an open Connection object.
+            </summary>
+            <param name="databaseName">The name of the database to use in place of the current database.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.System#Data#IDbConnection#Open">
+            <summary>
+            Opens a database connection with the settings specified by the ConnectionString
+            property of the provider-specific Connection object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.Close">
+            <summary>
+            Closes the connection to the database.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.CreateCommand">
+            <summary>
+            Creates and returns a SqlCommand object that is associated with the underlying SqlConnection.
+            </summary>
+            <returns>A System.Data.SqlClient.SqlCommand object that is associated with the underlying connection.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.System#Data#IDbConnection#CreateCommand">
+            <summary>
+            Creates and returns an object that implements the IDbCommand interface that is associated 
+            with the underlying SqlConnection.
+            </summary>
+            <returns>A System.Data.SqlClient.SqlCommand object that is associated with the underlying connection.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.System#ICloneable#Clone">
+            <summary>
+            Creates a new connection that is a copy of the current instance, including the connection
+            string, connection retry policy, and command retry policy.
+            </summary>
+            <returns>A new object that is a copy of this instance.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.Dispose">
+            <summary>
+            Performs application-defined tasks that are associated with freeing, releasing, or
+            resetting managed and unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.Dispose(System.Boolean)">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or
+            resetting managed and unmanaged resources.
+            </summary>
+            <param name="disposing">A flag indicating that managed resources must be released.</param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.ConnectionString">
+            <summary>
+            Gets or sets the connection string for opening a connection to the SQL Database.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.ConnectionRetryPolicy">
+            <summary>
+            Gets the policy that determines whether to retry a connection request, based on how many 
+            times the request has been made and the reason for the last failure. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.CommandRetryPolicy">
+            <summary>
+            Gets the policy that determines whether to retry a command, based on how many 
+            times the request has been made and the reason for the last failure. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.Current">
+            <summary>
+            Gets an instance of the SqlConnection object that represents the connection to a SQL Database instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.SessionTracingId">
+            <summary>
+            Gets the CONTEXT_INFO value that was set for the current session. This value can be used to trace query execution problems. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.ConnectionTimeout">
+            <summary>
+            Gets a value that specifies the time to wait while trying to establish a connection before terminating
+            the attempt and generating an error.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.Database">
+            <summary>
+            Gets the name of the current database or the database to be used after a
+            connection is opened.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.State">
+            <summary>
+            Gets the current state of the connection.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.NonQueryResult">
+            <summary>
+            This helpers class is intended to be used exclusively for fetching the number of affected records when executing a command by using ExecuteNonQuery.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ReliableSqlConnection.NetworkConnectivityErrorDetectionStrategy">
+            <summary>
+            Implements a strategy that detects network connectivity errors such as "host not found".
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerSqlExtensions">
+            <summary>
+            Extends the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager"/> class to use it with the SQL Database retry strategy.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerSqlExtensions.DefaultStrategyCommandTechnologyName">
+            <summary>
+            The technology name that can be used to get the default SQL command retry strategy.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerSqlExtensions.DefaultStrategyConnectionTechnologyName">
+            <summary>
+            The technology name that can be used to get the default SQL connection retry strategy.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerSqlExtensions.GetDefaultSqlCommandRetryStrategy(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry strategy for SQL commands.
+            </summary>
+            <returns>The default retry strategy for SQL commands (or the default strategy, if no default could be found).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerSqlExtensions.GetDefaultSqlCommandRetryPolicy(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with SQL commands.
+            </summary>
+            <returns>The retry policy for SQL commands with the corresponding default strategy (or the default strategy, if no retry strategy assigned to SQL commands was found).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerSqlExtensions.GetDefaultSqlConnectionRetryStrategy(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry strategy for SQL connections.
+            </summary>
+            <returns>The default retry strategy for SQL connections (or the default strategy, if no default could be found).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerSqlExtensions.GetDefaultSqlConnectionRetryPolicy(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with SQL connections.
+            </summary>
+            <returns>The retry policy for SQL connections with the corresponding default strategy (or the default strategy, if no retry strategy for SQL connections was found).</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlDatabaseTransientErrorDetectionStrategy">
+            <summary>
+            Provides the transient error detection logic for transient faults that are specific to SQL Database.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlDatabaseTransientErrorDetectionStrategy.IsTransient(System.Exception)">
+            <summary>
+            Determines whether the specified exception represents a transient failure that can be compensated by a retry.
+            </summary>
+            <param name="ex">The exception object to be verified.</param>
+            <returns>true if the specified exception is considered as transient; otherwise, false.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlDatabaseTransientErrorDetectionStrategy.ProcessNetLibErrorCode">
+            <summary>
+            Error codes reported by the DBNETLIB module.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.WindowsAzure.TransientFaultHandling.SqlAzure.SqlAzureTransientErrorDetectionStrategy">
+            <summary>
+            This class is obsolete. The non-obsolete alternative is <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlDatabaseTransientErrorDetectionStrategy"/>.
+            Provides the transient error detection logic for transient faults that are specific to SQL Database.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.WindowsAzure.TransientFaultHandling.SqlAzure.SqlAzureTransientErrorDetectionStrategy.IsTransient(System.Exception)">
+            <summary>
+            Determines whether the specified exception represents a transient failure that can be compensated by a retry.
+            </summary>
+            <param name="ex">The exception object to be verified.</param>
+            <returns>true if the specified exception is considered transient; otherwise, false.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions">
+            <summary>
+            Provides a set of extension methods that add retry capabilities to the standard System.Data.SqlClient.SqlCommand implementation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteNonQueryWithRetry(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Executes a Transact-SQL statement against the connection and returns the number of rows affected. Uses the default retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteNonQueryWithRetry(System.Data.SqlClient.SqlCommand,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes a Transact-SQL statement against the connection and returns the number of rows affected. Uses the specified retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteNonQueryWithRetry(System.Data.SqlClient.SqlCommand,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes a Transact-SQL statement against the connection and returns the number of rows affected. Uses the specified retry policies when executing the command
+            and establishing a connection.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="cmdRetryPolicy">The command retry policy that determines whether to retry a command if it fails while executing.</param>
+            <param name="conRetryPolicy">The connection retry policy that determines whether to re-establish a connection if it drops while executing the command.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteReaderWithRetry(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Sends the specified command to the connection and builds a SqlDataReader object that contains the results.
+            Uses the default retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <returns>A System.Data.SqlClient.SqlDataReader object.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteReaderWithRetry(System.Data.SqlClient.SqlCommand,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds a SqlDataReader object that contains the results.
+            Uses the specified retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>A System.Data.SqlClient.SqlDataReader object.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteReaderWithRetry(System.Data.SqlClient.SqlCommand,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds a SqlDataReader object that contains the results.
+            Uses the specified retry policies when executing the command and
+            establishing a connection.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="cmdRetryPolicy">The command retry policy that determines whether to retry a command if it fails while executing.</param>
+            <param name="conRetryPolicy">The connection retry policy that determines whether to re-establish a connection if it drops while executing the command.</param>
+            <returns>A System.Data.SqlClient.SqlDataReader object.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteReaderWithRetry(System.Data.SqlClient.SqlCommand,System.Data.CommandBehavior)">
+            <summary>
+            Sends the specified command to the connection and builds a SqlDataReader object by using the specified 
+            command behavior. Uses the default retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="behavior">One of the enumeration values that specifies the command behavior.</param>
+            <returns>A System.Data.SqlClient.SqlDataReader object.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteReaderWithRetry(System.Data.SqlClient.SqlCommand,System.Data.CommandBehavior,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds a SqlDataReader object by using the specified
+            command behavior. Uses the specified retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="behavior">One of the enumeration values that specifies the command behavior.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>A System.Data.SqlClient.SqlDataReader object.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteReaderWithRetry(System.Data.SqlClient.SqlCommand,System.Data.CommandBehavior,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds a SqlDataReader object by using the specified
+            command behavior. Uses the specified retry policies when executing the command
+            and establishing a connection.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="behavior">One of the enumeration values that specifies the command behavior.</param>
+            <param name="cmdRetryPolicy">The command retry policy that determines whether to retry a command if it fails while executing.</param>
+            <param name="conRetryPolicy">The connection retry policy that determines whether to re-establish a connection if it drops while executing the command.</param>
+            <returns>A System.Data.SqlClient.SqlDataReader object.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteScalarWithRetry(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Executes the query, and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored.
+            Uses the default retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <returns> The first column of the first row in the result set, or a null reference if the result set is empty. Returns a maximum of 2033 characters.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteScalarWithRetry(System.Data.SqlClient.SqlCommand,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes the query, and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored.
+            Uses the specified retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry a command if a connection fails while executing the command.</param>
+            <returns> The first column of the first row in the result set, or a null reference if the result set is empty. Returns a maximum of 2033 characters.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteScalarWithRetry(System.Data.SqlClient.SqlCommand,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Executes the query, and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored.
+            Uses the specified retry policies when executing the command and establishing a connection.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="cmdRetryPolicy">The command retry policy that determines whether to retry a command if it fails while executing.</param>
+            <param name="conRetryPolicy">The connection retry policy that determines whether to re-establish a connection if it drops while executing the command.</param>
+            <returns> The first column of the first row in the result set, or a null reference if the result set is empty. Returns a maximum of 2033 characters.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteXmlReaderWithRetry(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Sends the specified command to the connection and builds an XmlReader object that contains the results.
+            Uses the default retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <returns>An System.Xml.XmlReader object.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteXmlReaderWithRetry(System.Data.SqlClient.SqlCommand,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds an XmlReader object that contains the results.
+            Uses the specified retry policy when executing the command.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry a command if a connection fails while executing the command.</param>
+            <returns>An System.Xml.XmlReader object.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandExtensions.ExecuteXmlReaderWithRetry(System.Data.SqlClient.SqlCommand,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Sends the specified command to the connection and builds an XmlReader object that contains the results.
+            Uses the specified retry policies when executing the command and establishing a connection.
+            </summary>
+            <param name="command">The command object that is required for the extension method declaration.</param>
+            <param name="cmdRetryPolicy">The command retry policy that determines whether to retry a command if it fails while executing.</param>
+            <param name="conRetryPolicy">The connection retry policy that determines whether to re-establish a connection if it drops while executing the command.</param>
+            <returns>An System.Xml.XmlReader object.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandFactory">
+            <summary>
+            Provides factory methods for instantiating SQL commands.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandFactory.DefaultCommandTimeoutSeconds">
+            <summary>
+            Returns the default time-out that will be applied to all SQL commands constructed by this factory class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandFactory.CreateCommand(System.Data.IDbConnection)">
+            <summary>
+            Creates a generic command of type Stored Procedure and assigns the default command time-out.
+            </summary>
+            <param name="connection">The database connection object to be associated with the new command.</param>
+            <returns>A new SQL command that is initialized with the Stored Procedure command type and initial settings.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandFactory.CreateCommand(System.Data.IDbConnection,System.String)">
+            <summary>
+            Creates a generic command of type Stored Procedure and assigns the specified command text and default command time-out to it.
+            </summary>
+            <param name="connection">The database connection object to be associated with the new command.</param>
+            <param name="commandText">The text of the command to run against the data source.</param>
+            <returns>A new SQL command that is initialized with the Stored Procedure command type, specified text, and initial settings.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlCommandFactory.CreateGetContextInfoCommand(System.Data.IDbConnection)">
+            <summary>
+            Creates a SQL command that is intended to return the connection's context ID, which is useful for tracing purposes.
+            </summary>
+            <param name="connection">The database connection object to be associated with the new command.</param>
+            <returns>A new SQL command that is initialized with the specified connection.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlConnectionExtensions">
+            <summary>
+            Provides a set of extension methods that add retry capabilities to the standard <see cref="T:System.Data.SqlClient.SqlConnection"/> implementation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlConnectionExtensions.OpenWithRetry(System.Data.SqlClient.SqlConnection)">
+            <summary>
+            Opens a database connection with the connection settings specified in the ConnectionString property of the connection object.
+            Uses the default retry policy when opening the connection.
+            </summary>
+            <param name="connection">The connection object that is required for the extension method declaration.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlConnectionExtensions.OpenWithRetry(System.Data.SqlClient.SqlConnection,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy)">
+            <summary>
+            Opens a database connection with the connection settings specified in the ConnectionString property of the connection object.
+            Uses the specified retry policy when opening the connection.
+            </summary>
+            <param name="connection">The connection object that is required for the extension method declaration.</param>
+            <param name="retryPolicy">The retry policy that defines whether to retry a request if the connection fails.</param>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader">
+            <summary>
+            Provides a disposable wrapper for SQL XML data reader, which synchronizes the SQL connection
+            disposal with its own life cycle.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.#ctor(System.Data.IDbConnection,System.Xml.XmlReader)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader"/> class that is associated with the specified SQL connection and the original XML reader.
+            </summary>
+            <param name="connection">The SQL connection that provides access to the XML data for this reader.</param>
+            <param name="innerReader">The original XML reader that is to be wrapped by this instance.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.GetAttribute(System.String)">
+            <summary>
+            Returns the value of the attribute that has the specified name.
+            </summary>
+            <param name="name">The qualified name of the attribute.</param>
+            <returns>The value of the specified attribute, or null if the attribute isn't found or its value is <see cref="F:System.String.Empty"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.GetAttribute(System.Int32)">
+            <summary>
+            Returns the value of the attribute that has the specified index.
+            </summary>
+            <param name="i">The index of the attribute. The index is zero-based. (The first attribute has an index of 0.)</param>
+            <returns>The value of the specified attribute. This method does not move the reader.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.GetAttribute(System.String,System.String)">
+            <summary>
+            Returns the value of the attribute that has the specified name and namespace URI.
+            </summary>
+            <param name="name">The local name of the attribute.</param>
+            <param name="namespaceUri">The namespace URI of the attribute.</param>
+            <returns>The value of the specified attribute, or null if the attribute isn't found or its value is <see cref="F:System.String.Empty"/>. This method does not move the reader.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.Close">
+            <summary>
+            Closes both the original <see cref="T:System.Xml.XmlReader"/> and the associated SQL connection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.LookupNamespace(System.String)">
+            <summary>
+            Resolves a namespace prefix in the current element's scope.
+            </summary>
+            <param name="prefix">The prefix whose namespace URI you want to resolve. To match the default namespace, pass an empty string.</param>
+            <returns>The namespace URI to which the prefix maps, or null if no matching prefix is found.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.MoveToAttribute(System.String,System.String)">
+            <summary>
+            Moves to the attribute that has the specified name and namespace URI.
+            </summary>
+            <param name="name">The local name of the attribute.</param>
+            <param name="ns">The namespace URI of the attribute.</param>
+            <returns>true if the attribute is found; otherwise, false. If false, the reader's position does not change.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.MoveToAttribute(System.String)">
+            <summary>
+            Moves to the attribute that has the specified name.
+            </summary>
+            <param name="name">The qualified name of the attribute.</param>
+            <returns>true if the attribute is found; otherwise, false. If false, the reader's position does not change.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.MoveToElement">
+            <summary>
+            Moves to the element that contains the current attribute node.
+            </summary>
+            <returns>true if the reader is positioned on an attribute (in which case, the reader moves to the element that owns the attribute); false if the reader is not positioned on an attribute (in which case, the position of the reader does not change).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.MoveToFirstAttribute">
+            <summary>
+            Moves to the first attribute.
+            </summary>
+            <returns>true if an attribute exists (in which case, the reader moves to the first attribute); otherwise, false (in which case, the position of the reader does not change).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.MoveToNextAttribute">
+            <summary>
+            Moves to the next attribute.
+            </summary>
+            <returns>true if there is a next attribute; false if there are no more attributes.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.Read">
+            <summary>
+            Reads the next node from the stream.
+            </summary>
+            <returns>true if the next node was read successfully; false if there are no more nodes to read.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.ReadAttributeValue">
+            <summary>
+            Parses the attribute value into one or more Text, EntityReference, or EndEntity nodes.
+            </summary>
+            <returns>true if there are nodes to return, false if the reader is not positioned on an attribute node when the initial call is made or if all the attribute values have been read. An empty attribute such as misc="" returns true with a single node that has a value of <see cref="F:System.String.Empty"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.ResolveEntity">
+            <summary>
+            Resolves the entity reference for EntityReference nodes.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.AttributeCount">
+            <summary>
+            Returns the number of attributes on the current node.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.BaseURI">
+            <summary>
+            Returns the base Uniform Resource Identifier (URI) of the current node.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.Depth">
+            <summary>
+            Returns the depth of the current node in the XML document.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.EOF">
+            <summary>
+            Returns a value that indicates whether the reader is positioned at the end of the stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.HasValue">
+            <summary>
+            Returns a value that indicates whether the current node can have a <see cref="P:System.Xml.XmlReader.Value"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.IsEmptyElement">
+            <summary>
+            Returns a value that indicates whether the current node is an empty element.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.LocalName">
+            <summary>
+            Returns the local name of the current node.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.NameTable">
+            <summary>
+            Returns the <see cref="T:System.Xml.XmlNameTable"/> that is associated with this implementation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.NamespaceURI">
+            <summary>
+            Returns the namespace URI (as defined in the W3C Namespace specification) of the node on which the reader is positioned.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.NodeType">
+            <summary>
+            Returns the type of the current node.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.Prefix">
+            <summary>
+            Returns the namespace prefix that is associated with the current node.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.ReadState">
+            <summary>
+            Returns the state of the reader.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.SqlXmlReader.Value">
+            <summary>
+            Returns the text value of the current node.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingMode">
+            <summary>
+            Defines the possible throttling modes in SQL Database.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingMode.NoThrottling">
+            <summary>
+            Corresponds to the "No Throttling" throttling mode, in which all SQL statements can be processed.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingMode.RejectUpdateInsert">
+            <summary>
+            Corresponds to the "Reject Update / Insert" throttling mode, in which SQL statements such as INSERT, UPDATE, CREATE TABLE, and CREATE INDEX are rejected.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingMode.RejectAllWrites">
+            <summary>
+            Corresponds to the "Reject All Writes" throttling mode, in which SQL statements such as INSERT, UPDATE, DELETE, CREATE, and DROP are rejected.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingMode.RejectAll">
+            <summary>
+            Corresponds to the "Reject All" throttling mode, in which all SQL statements are rejected.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingMode.Unknown">
+            <summary>
+            Corresponds to an unknown throttling mode whereby throttling mode cannot be determined with certainty.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingType">
+            <summary>
+            Defines the possible throttling types in SQL Database.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingType.None">
+            <summary>
+            Indicates that no throttling was applied to a given resource.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingType.Soft">
+            <summary>
+            Corresponds to a soft throttling type. Soft throttling is applied when machine resources such as, CPU, I/O, storage, and worker threads exceed 
+            predefined safety thresholds despite the load balancer’s best efforts. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingType.Hard">
+            <summary>
+            Corresponds to a hard throttling type. Hard throttling is applied when the machine is out of resources, for example storage space.
+            With hard throttling, no new connections are allowed to the databases hosted on the machine until resources are freed up.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingType.Unknown">
+            <summary>
+            Corresponds to an unknown throttling type in the event that the throttling type cannot be determined with certainty.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottledResourceType">
+            <summary>
+            Defines the types of resources in SQL Database that may be subject to throttling conditions.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottledResourceType.PhysicalDatabaseSpace">
+            <summary>
+            Corresponds to the "Physical Database Space" resource, which may be subject to throttling.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottledResourceType.PhysicalLogSpace">
+            <summary>
+            Corresponds to the "Physical Log File Space" resource, which may be subject to throttling.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottledResourceType.LogWriteIoDelay">
+            <summary>
+            Corresponds to the "Transaction Log Write IO Delay" resource, which may be subject to throttling.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottledResourceType.DataReadIoDelay">
+            <summary>
+            Corresponds to the "Database Read IO Delay" resource, which may be subject to throttling.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottledResourceType.Cpu">
+            <summary>
+            Corresponds to the "CPU" resource, which may be subject to throttling.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottledResourceType.DatabaseSize">
+            <summary>
+            Corresponds to the "Database Size" resource, which may be subject to throttling.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottledResourceType.WorkerThreads">
+            <summary>
+            Corresponds to the "SQL Worker Thread Pool" resource, which may be subject to throttling.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottledResourceType.Internal">
+            <summary>
+            Corresponds to an internal resource that may be subject to throttling.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottledResourceType.Unknown">
+            <summary>
+            Corresponds to an unknown resource type in the event that the actual resource cannot be determined with certainty.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition">
+            <summary>
+            Implements an object that holds the decoded reason code returned from SQL Database when throttling conditions are encountered.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.ThrottlingErrorNumber">
+            <summary>
+            Gets the error number that corresponds to the throttling conditions reported by SQL Database.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.throttledResources">
+            <summary>
+            Maintains a collection of key/value pairs where a key is the resource type and a value is the type of throttling applied to the given resource type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.sqlErrorCodeRegEx">
+            <summary>
+            Provides a compiled regular expression used to extract the reason code from the error message.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.FromException(System.Data.SqlClient.SqlException)">
+            <summary>
+            Determines throttling conditions from the specified SQL exception.
+            </summary>
+            <param name="ex">The <see cref="T:System.Data.SqlClient.SqlException"/> object that contains information relevant to an error returned by SQL Server when throttling conditions were encountered.</param>
+            <returns>An instance of the object that holds the decoded reason codes returned from SQL Database when throttling conditions were encountered.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.FromError(System.Data.SqlClient.SqlError)">
+            <summary>
+            Determines the throttling conditions from the specified SQL error.
+            </summary>
+            <param name="error">The <see cref="T:System.Data.SqlClient.SqlError"/> object that contains information relevant to a warning or error returned by SQL Server.</param>
+            <returns>An instance of the object that holds the decoded reason codes returned from SQL Database when throttling conditions were encountered.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.FromReasonCode(System.Int32)">
+            <summary>
+            Determines the throttling conditions from the specified reason code.
+            </summary>
+            <param name="reasonCode">The reason code returned by SQL Database that contains the throttling mode and the exceeded resource types.</param>
+            <returns>An instance of the object holding the decoded reason codes returned from SQL Database when encountering throttling conditions.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.ToString">
+            <summary>
+             Returns a textual representation of the current ThrottlingCondition object, including the information held with respect to throttled resources.
+            </summary>
+            <returns>A string that represents the current ThrottlingCondition object.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.Unknown">
+            <summary>
+            Gets an unknown throttling condition in the event that the actual throttling condition cannot be determined.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.ThrottlingMode">
+            <summary>
+            Gets the value that reflects the throttling mode in SQL Database.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.ThrottledResources">
+            <summary>
+            Gets a list of the resources in the SQL Database that were subject to throttling conditions.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.IsThrottledOnDataSpace">
+            <summary>
+            Gets a value that indicates whether physical data file space throttling was reported by SQL Database.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.IsThrottledOnLogSpace">
+            <summary>
+            Gets a value that indicates whether physical log space throttling was reported by SQL Database.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.IsThrottledOnLogWrite">
+            <summary>
+            Gets a value that indicates whether transaction activity throttling was reported by SQL Database.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.IsThrottledOnDataRead">
+            <summary>
+            Gets a value that indicates whether data read activity throttling was reported by SQL Database.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.IsThrottledOnCpu">
+            <summary>
+            Gets a value that indicates whether CPU throttling was reported by SQL Database.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.IsThrottledOnDatabaseSize">
+            <summary>
+            Gets a value that indicates whether database size throttling was reported by SQL Database.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.IsThrottledOnWorkerThreads">
+            <summary>
+            Gets a value that indicates whether concurrent requests throttling was reported by SQL Database.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.ThrottlingCondition.IsUnknown">
+            <summary>
+            Gets a value that indicates whether throttling conditions were not determined with certainty.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope">
+            <summary>
+            Provides support for retry policy-aware transactional scope.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class. 
+            Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class with the specified retry policy.
+            </summary>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class with the specified requirements.
+            Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,System.TimeSpan,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class with the specified time-out value and requirements.
+            Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="scopeTimeout">The TimeSpan after which the transaction scope times out and aborts the transaction.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class with the specified time-out value, transaction scope options, and retry policy.
+            Uses the ReadCommitted isolation level by default.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="scopeTimeout">The TimeSpan after which the transaction scope times out and aborts the transaction.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,System.Transactions.TransactionOptions,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class with the specified requirements.
+            Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="transactionOptions">A <see cref="T:System.Transactions.TransactionOptions"/> structure that describes the transaction options to use if a new transaction is created. If an existing transaction is used, the time-out value in this parameter applies to the transaction scope. If that time expires before the scope is disposed, the transaction is aborted.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,System.Transactions.TransactionOptions,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class with the specified requirements and retry policy.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="transactionOptions">A <see cref="T:System.Transactions.TransactionOptions"/> structure that describes the transaction options to use if a new transaction is created. If an existing transaction is used, the time-out value in this parameter applies to the transaction scope. If that time expires before the scope is disposed, the transaction is aborted.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(System.Transactions.TransactionScopeOption,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class with the specified requirements and retry policy.
+            Uses the ReadCommitted isolation level by default.
+            </summary>
+            <param name="scopeOption">One of the enumeration values that specifies the transaction requirements associated with this transaction scope.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(System.Transactions.Transaction,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class and sets the specified transaction as the ambient transaction, 
+            so that transactional work performed inside the scope uses this transaction. Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="tx">The transaction to be set as the ambient transaction, so that transactional work performed inside the scope uses this transaction.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(System.Transactions.Transaction,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class with the specified retry policy and sets the specified transaction as the ambient transaction, 
+            so that transactional work performed inside the scope uses this transaction.
+            </summary>
+            <param name="tx">The transaction to be set as the ambient transaction, so that transactional work performed inside the scope uses this transaction.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(System.Transactions.Transaction,System.TimeSpan,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class with the specified time-out value, and sets the specified transaction as the ambient transaction, 
+            so that transactional work performed inside the scope uses this transaction. Implements no retry policy, but just invokes the unit of work exactly once.
+            </summary>
+            <param name="tx">The transaction to be set as the ambient transaction, so that transactional work performed inside the scope uses this transaction.</param>
+            <param name="scopeTimeout">The TimeSpan after which the transaction scope times out and aborts the transaction.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.#ctor(System.Transactions.Transaction,System.TimeSpan,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy,System.Action)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope"/> class with the specified time-out value, and sets the specified transaction as the ambient transaction, 
+            so that transactional work performed inside the scope uses this transaction. Uses the specified retry policy.
+            </summary>
+            <param name="tx">The transaction to be set as the ambient transaction, so that transactional work performed inside the scope uses this transaction.</param>
+            <param name="scopeTimeout">The TimeSpan after which the transaction scope times out and aborts the transaction.</param>
+            <param name="retryPolicy">The retry policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.</param>
+            <param name="unitOfWork">A delegate that represents the executable unit of work that will be retried upon failure.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.InvokeUnitOfWork">
+            <summary>
+            Executes the underlying unit of work and retries as prescribed by the current retry policy.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.Complete">
+            <summary>
+            Indicates that all operations within the scope have been completed successfully.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.Dispose">
+            <summary>
+            Ends the transaction scope.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.InitializeRetryPolicy">
+            <summary>
+            Configures the specified retry policy to work with a transactional scope.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TransactionRetryScope.RetryPolicy">
+            <summary>
+            Gets the policy that determines whether to retry the execution of the entire scope if a transient fault is encountered.
+            </summary>
+        </member>
+    </members>
+</doc>

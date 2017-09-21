@@ -1,0 +1,352 @@
+----------------------------------------
+Timestamp: 2017/5/21 11:01:36
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:01:36
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:03:50
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:06:18
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:06:24
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:06:29
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:10:54
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:10:58
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:11:35
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:11:57
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:15:36
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:15:37
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:29:19
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:29:20
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:37:16
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:37:17
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:39:13
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 11:39:13
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 12:09:29
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 12:09:30
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 12:10:29
+
+Title:找不到存储过程 'GetCampaign_DonationList'。
+
+Message: GetCampaign_DonationList
+[{"ParameterName":"@domainId","Value":"2a58d820-de07-4c8f-80b9-b5cb5a1028b4"},{"ParameterName":"@appId","Value":"wx8c36b3c0000a0a49"},{"ParameterName":"@page","Value":1},{"ParameterName":"@pageSize","Value":10},{"ParameterName":"@status","Value":1}]
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.DoLoadDataSet(IDbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String tableName)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteDataSet(DbCommand command)
+   在 Linkup.Data.DatabaseWrapper.ExecuteDataSet(CommandType commandType, String commandText, List`1 parameterList, String[] tableNameArray) 位置 D:\Workfolder\WeixinConstruction\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 268
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 12:17:19
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 12:17:20
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:56:46
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 21:56:47
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 22:02:34
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 22:02:35
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:13:19
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:13:20
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:14:59
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:15:00
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:26:30
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:26:32
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------

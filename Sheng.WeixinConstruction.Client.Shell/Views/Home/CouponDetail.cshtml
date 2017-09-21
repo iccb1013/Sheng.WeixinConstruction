@@ -1,0 +1,104 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.CouponDetailViewModel
+
+@{
+    ViewBag.SubTitle = "卡券";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+
+    ViewBag.BodyClass = "defaultBgColorLight";
+}
+
+
+
+<script>
+
+    var _recordId = getQueryString("recordId");
+    var _serialNumber = getQueryString("serialNumber");
+
+    $(document).ready(function () {
+        $("#spanSerialNumber").html($("#spanSerialNumber").html().replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1 "));
+
+        showQRCode();
+    });
+
+    function showQRCode() {
+
+        $.ajax({
+            url: "/Api/Coupon/GetCouponRecordQRCode/@ViewBag.Domain.Id?recordId=" + _recordId + "&serialNumber=" + _serialNumber,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                if (data.Success) {
+                    $("#divQRCodeMessage").hide();
+                    $("#imgQRCode").attr("src", data.Data);
+                    $("#imgQRCode").show();
+
+                } else {
+                    $("#divQRCodeMessage").html(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+
+</script>
+
+@*<div id="divImageContainer">
+        <img src="@Model.Coupon.ImageUrl" name="img" id="img" style="max-height:2rem; max-width:100%;vertical-align:middle;">
+    </div>*@
+
+<div style="position:absolute;top:0.15rem;left:0.15rem;right:0.15rem;bottom:0.15rem;background-color:white">
+    <div style="background-color:#FAFAFA;height:0.4rem;text-align:center;line-height:0.4rem;color:#999999;">
+        @ViewBag.Authorizer.NickName
+    </div>
+    <div class="divDotLine"></div>
+    <div style="position:absolute;top:0.42rem;bottom:0rem;left:0rem;right:0rem;overflow:auto">
+        <div style="font-size:0.18rem;text-align:center;margin-top:0.2rem;">
+            @Model.Coupon.Name
+        </div>
+        <div style="text-align:center;margin-top:0.1rem;">
+            @if (Model.Record.Status == Sheng.WeixinConstruction.Infrastructure.EnumCouponStatus.Unused)
+            {
+                <div class="divRectangle" style="width:0.7rem;margin-left:auto;margin-right:auto">
+                    未使用
+                </div>
+            }
+            else if (Model.Record.Status == Sheng.WeixinConstruction.Infrastructure.EnumCouponStatus.Deal)
+            {
+                <div class="divRectangle_Gray" style="width:1.7rem;margin-left:auto;margin-right:auto">
+                    已使用于：<br/>@Model.Record.ChargeTime
+                </div>
+            }
+
+        </div>
+        <div id="divQRCodeContainer" style="text-align:center;margin-top:0.1rem;">
+            <div id="divQRCodeMessage">请稍候...</div>
+            <img id="imgQRCode" src="" style="width:1.8rem;height:1.8rem;display:none" />
+        </div>
+        <div style="color:#878787;margin-top:0.2rem;margin-left:0.15rem;margin-right:0.15rem;">
+            <div style="margin-top:0.1rem;">
+                卡券号：<span id="spanSerialNumber">@Model.Record.SerialNumber</span>
+            </div>
+            @if (Model.Record.LimitedTime.HasValue)
+            {
+                <div style="margin-top:0.1rem;">
+                    有效期：@Model.Record.LimitedTime.Value.ToShortDateString()
+                </div>
+            }
+            <div style="margin-top:0.1rem;text-decoration:underline">
+                使用条件：
+            </div>
+            <div style="margin-top:0.1rem;">
+                @Model.Coupon.Condition
+            </div>
+            <div style="margin-top:0.1rem;text-decoration:underline">
+                详细说明：
+            </div>
+            <div style="margin-top:0.1rem;">
+                @Html.Raw(Model.Coupon.Description)
+            </div>
+        </div>
+    </div>
+</div>

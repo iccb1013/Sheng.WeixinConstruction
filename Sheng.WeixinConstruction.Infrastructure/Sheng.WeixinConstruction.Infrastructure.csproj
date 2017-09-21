@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E571E2E2-191F-4B60-8BC2-F848FEFEA6B9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sheng.WeixinConstruction.Infrastructure</RootNamespace>
+    <AssemblyName>Sheng.WeixinConstruction.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Campaign\Donation\Campaign_DonationLogEntity.cs" />
+    <Compile Include="Campaign\Donation\Campaign_DonationEntity.cs" />
+    <Compile Include="Campaign\Donation\Campaign_DonationBundle.cs" />
+    <Compile Include="Campaign\Donation\GetCampaign_DonationListArgs.cs" />
+    <Compile Include="Campaign\Donation\GetCampaign_DonationLogListArgs.cs" />
+    <Compile Include="Campaign\Donation\DonationPayArgs.cs" />
+    <Compile Include="Campaign\ShakingLottery\Campaign_ShakingLotteryDataReport.cs" />
+    <Compile Include="Campaign\ShakingLottery\Campaign_ShakingLotteryBundle.cs" />
+    <Compile Include="Campaign\ShakingLottery\Campaign_ShakingLotteryEntity.cs" />
+    <Compile Include="Campaign\ShakingLottery\Campaign_ShakingLotteryGiftEntity.cs" />
+    <Compile Include="Campaign\ShakingLottery\Campaign_ShakingLotteryGiftWrapper.cs" />
+    <Compile Include="Campaign\ShakingLottery\Campaign_ShakingLotteryLogEntity.cs" />
+    <Compile Include="Campaign\ShakingLottery\Campaign_ShakingLotteryPeriodEntity.cs" />
+    <Compile Include="Campaign\ShakingLottery\Enums.cs" />
+    <Compile Include="Campaign\ShakingLottery\GetCampaign_ShakingLotteryGiftWinningListArgs.cs" />
+    <Compile Include="Campaign\ShakingLottery\ShakingLotteryGiftProjectiveData.cs" />
+    <Compile Include="Coupon\CouponChargeArgs.cs" />
+    <Compile Include="Coupon\CouponDistributeArgs.cs" />
+    <Compile Include="Coupon\CouponEntity.cs" />
+    <Compile Include="Coupon\CouponRecordEntity.cs" />
+    <Compile Include="Coupon\Enums.cs" />
+    <Compile Include="Coupon\GetCouponListArgs.cs" />
+    <Compile Include="Coupon\GetDistributedCouponListArgs.cs" />
+    <Compile Include="Coupon\CouponStockAdjustmentArgs.cs" />
+    <Compile Include="Coupon\GetMemberCouponListArgs.cs" />
+    <Compile Include="CustomForm\CustomFormContentEntity.cs" />
+    <Compile Include="CustomForm\CustomFormEntity.cs" />
+    <Compile Include="CustomForm\Enums.cs" />
+    <Compile Include="CustomForm\GetCustomFormContentListArgs.cs" />
+    <Compile Include="CustomForm\GetCustomFormListArgs.cs" />
+    <Compile Include="CustomForm\SaveCustomFormContentArgs.cs" />
+    <Compile Include="Giftbag\Enums.cs" />
+    <Compile Include="Giftbag\GiftbagCouponWrapper.cs" />
+    <Compile Include="Giftbag\NewMemberGiftbagSettingsEntity.cs" />
+    <Compile Include="IdListArgs.cs" />
+    <Compile Include="Campaign\CampaignEntity.cs" />
+    <Compile Include="Member\MemberCardLevelEntity.cs" />
+    <Compile Include="Member\SetMemberLevelArgs.cs" />
+    <Compile Include="Misc\AdvancedArticle.cs" />
+    <Compile Include="Member\MemberStatisticData.cs" />
+    <Compile Include="Pay\CashAccountDepositArgs.cs" />
+    <Compile Include="Pay\CashAccountTrackResult.cs" />
+    <Compile Include="PointCommodity\PointCommodityAddToCartArgs.cs" />
+    <Compile Include="PointCommodity\PointCommodityCheckoutOrderArgs.cs" />
+    <Compile Include="PointCommodity\PointCommodityOrderItemEntity.cs" />
+    <Compile Include="PointCommodity\PointCommodityOrderLogEntity.cs" />
+    <Compile Include="PointCommodity\PointCommodityOrderPayArgs.cs" />
+    <Compile Include="PointCommodity\PointCommodityOrderStatisticData.cs" />
+    <Compile Include="PointCommodity\PointCommodityShoppingCartEntity.cs" />
+    <Compile Include="PointCommodity\PointCommodityShoppingCartOperateResult.cs" />
+    <Compile Include="RecommendUrl\GetRecommendUrlDownlineListArgs.cs" />
+    <Compile Include="RecommendUrl\RecommendUrlEntity.cs" />
+    <Compile Include="RecommendUrl\RecommendUrlLogEntity.cs" />
+    <Compile Include="RecommendUrl\RecommendUrlSettingsEntity.cs" />
+    <Compile Include="RecommendUrl\RefereeUplineWrapper.cs" />
+    <Compile Include="Settings\AdvertisingEntity.cs" />
+    <Compile Include="Settings\GetGetAdvertisingListArgs.cs" />
+    <Compile Include="Settings\SaveSettingsArgs.cs" />
+    <Compile Include="Settings\StyleSettings\StyleSettingsEntity.cs" />
+    <Compile Include="Settings\StyleSettings\ThemeStyleSettingsEntity.cs" />
+    <Compile Include="Settings\ShortcutMenuEntity.cs" />
+    <Compile Include="System\GetQRCodeImageArgs.cs" />
+    <Compile Include="System\ShareLogEntity.cs" />
+    <Compile Include="Campaign\Lottery\Campaign_LotteryEntity.cs" />
+    <Compile Include="Campaign\Lottery\Campaign_LotteryPeriodEntity.cs" />
+    <Compile Include="Campaign\Lottery\Campaign_LotterySignLogEntity.cs" />
+    <Compile Include="Campaign\Lottery\Campaign_LotteryBundle.cs" />
+    <Compile Include="Campaign\Lottery\Campaign_LotteryDataReport.cs" />
+    <Compile Include="Campaign\Lottery\Enums.cs" />
+    <Compile Include="Campaign\Lottery\GetCampaign_LotteryListArgs.cs" />
+    <Compile Include="Campaign\Lottery\GetLotteryPeriodListArgs.cs" />
+    <Compile Include="Campaign\Lottery\GetLotteryPeriodLogListArgs.cs" />
+    <Compile Include="Campaign\Lottery\GetLotteryWinnerListResult.cs" />
+    <Compile Include="Campaign\Lottery\LotterySignArgs.cs" />
+    <Compile Include="Campaign\LuckyTicket\Campaign_LuckyTicketBundle.cs" />
+    <Compile Include="Campaign\LuckyTicket\Campaign_LuckyTicketEntity.cs" />
+    <Compile Include="Campaign\LuckyTicket\Campaign_LuckyTicketLogEntity.cs" />
+    <Compile Include="Campaign\LuckyTicket\Campaign_LuckyTicketDataReport.cs" />
+    <Compile Include="Campaign\LuckyTicket\DrawLuckyTicketArgs.cs" />
+    <Compile Include="Campaign\LuckyTicket\GetCampaign_LuckyTicketListArgs.cs" />
+    <Compile Include="Campaign\LuckyTicket\GetCampaign_LuckyTicketLogListArgs.cs" />
+    <Compile Include="Campaign\LuckyTicket\GetCampaign_LuckyTicketLogListByMemberArgs.cs" />
+    <Compile Include="Campaign\LuckyTicket\GetCampaign_LuckyTicketWinLogListArgs.cs" />
+    <Compile Include="Campaign\MemberQRCode\Campaign_MemberQRCodeEntity.cs" />
+    <Compile Include="Campaign\MemberQRCode\Campaign_MemberQRCodeItemEntity.cs" />
+    <Compile Include="Campaign\MemberQRCode\Campaign_MemberQRCodeLandingLogEntity.cs" />
+    <Compile Include="Campaign\MemberQRCode\Campaign_MemberQRCodeBundle.cs" />
+    <Compile Include="Campaign\MemberQRCode\Campaign_MemberQRCodeDataReport.cs" />
+    <Compile Include="Campaign\MemberQRCode\GetCampaign_MemberQRCodeListArgs.cs" />
+    <Compile Include="Campaign\MemberQRCode\GetCampaign_MemberQRCodeImageArgs.cs" />
+    <Compile Include="Campaign\MemberQRCode\GetCampaign_MemberQRCodeItemListArgs.cs" />
+    <Compile Include="Campaign\MemberQRCode\GetCampaign_MemberQRCodeDataAnalyseArgs.cs" />
+    <Compile Include="Campaign\PictureVote\Campaign_PictureVoteEntity.cs" />
+    <Compile Include="Campaign\PictureVote\Campaign_PictureVoteItemEntity.cs" />
+    <Compile Include="Campaign\PictureVote\Campaign_PictureVoteLogEntity.cs" />
+    <Compile Include="Campaign\PictureVote\Campaign_PictureVoteBundle.cs" />
+    <Compile Include="Campaign\Enums.cs" />
+    <Compile Include="Campaign\GetCampaignCountResult.cs" />
+    <Compile Include="Campaign\GetCampaignListArgs.cs" />
+    <Compile Include="Campaign\PictureVote\GetCampaign_PictureVoteListArgs.cs" />
+    <Compile Include="Campaign\PictureVote\GetCampaign_PictureVoteDataAnalyseArgs.cs" />
+    <Compile Include="Campaign\PictureVote\GetCampaign_PictureVoteItemListArgs.cs" />
+    <Compile Include="Campaign\PictureVote\GetCampaign_PictureVoteItemLogMemberListArgs.cs" />
+    <Compile Include="Campaign\PictureVote\Campaign_PictureVoteDataReport.cs" />
+    <Compile Include="Campaign\PictureVote\Campaign_PictureVoteItemApproveArgs.cs" />
+    <Compile Include="Campaign\PictureVote\Campaign_PictureVoteArgs.cs" />
+    <Compile Include="Campaign\PictureVote\Campaign_PictureVoteShareResult.cs" />
+    <Compile Include="Campaign\PictureVote\Campaign_PictureVoteItemRejectedArgs.cs" />
+    <Compile Include="System\ShareResult.cs" />
+    <Compile Include="Domain\AuthorizerAccessTokenWrapper.cs" />
+    <Compile Include="Domain\AuthorizerEntity.cs" />
+    <Compile Include="Domain\CreateAuthorizerResult.cs" />
+    <Compile Include="ImageWrapper.cs" />
+    <Compile Include="Material\MaterialImgMapping.cs" />
+    <Compile Include="Member\MemberPersonInfo.cs" />
+    <Compile Include="OneDollarBuying\GetOneDollarBuyingCommodityMemberPartNumberArgs.cs" />
+    <Compile Include="OneDollarBuying\GetOneDollarBuyingCommodityListArgs.cs" />
+    <Compile Include="OneDollarBuying\GetOneDollarBuyingCommodityForSaleListArgs.cs" />
+    <Compile Include="OneDollarBuying\GetOneDollarBuyingCommodityParticipatedListArgs.cs" />
+    <Compile Include="OneDollarBuying\OneDollarBuyingCommodityEntity.cs" />
+    <Compile Include="OneDollarBuying\OneDollarBuyingCommodityForSaleEntity.cs" />
+    <Compile Include="OneDollarBuying\OneDollarBuyingCommoditySoldPartEntity.cs" />
+    <Compile Include="OneDollarBuying\OneDollarBuyingCommodityStockAdjustmentArgs.cs" />
+    <Compile Include="OneDollarBuying\OneDollarBuyingDealInfo.cs" />
+    <Compile Include="OneDollarBuying\OrderOneDollarBuyingCommodityArgs.cs" />
+    <Compile Include="Pay\CashAccountTrackEntity.cs" />
+    <Compile Include="Message\GetMessageListArgs.cs" />
+    <Compile Include="Pay\AuthorizerPayConfig.cs" />
+    <Compile Include="Pay\CashAccountChargeArgs.cs" />
+    <Compile Include="Pay\CreatePayOrderArgs.cs" />
+    <Compile Include="Pay\Enums.cs" />
+    <Compile Include="Pay\GetCashAccountTrackListArgs.cs" />
+    <Compile Include="Pay\GetPayOrderListArgs.cs" />
+    <Compile Include="Pay\PayOrderEntity.cs" />
+    <Compile Include="Pay\CashAccountCashDepositArgs.cs" />
+    <Compile Include="Pay\CashAccountCashRefundArgs.cs" />
+    <Compile Include="Misc\PageEntity.cs" />
+    <Compile Include="Settings\StyleSettings\PortalStyleSettingsEntity.cs" />
+    <Compile Include="Settings\SettingsEntity.cs" />
+    <Compile Include="Domain\AuthorizerJsApiTicketWrapper.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="FileUploadParameter.cs" />
+    <Compile Include="GetItemListArgs.cs" />
+    <Compile Include="Group\MemberGroupEntity.cs" />
+    <Compile Include="Group\MoveMemberListToGroupArgs.cs" />
+    <Compile Include="GroupMessage\GroupMessageEntity.cs" />
+    <Compile Include="GroupMessage\SendGroupMessageArgs.cs" />
+    <Compile Include="Information\InformationCategoryEntity.cs" />
+    <Compile Include="Information\InformationItemEntity.cs" />
+    <Compile Include="Information\GetCategoryListArgs.cs" />
+    <Compile Include="Information\GetInformationItemListArgs.cs" />
+    <Compile Include="Member\AddMemberArgs.cs" />
+    <Compile Include="Member\PointTrackArgs.cs" />
+    <Compile Include="Movie\MovieEntity.cs" />
+    <Compile Include="Movie\MoviePlanEntity.cs" />
+    <Compile Include="Movie\MovieSettingsEntity.cs" />
+    <Compile Include="Movie\MovieTimesBundle.cs" />
+    <Compile Include="Movie\MovieTimesEntity.cs" />
+    <Compile Include="NormalResult.cs" />
+    <Compile Include="Information\InformationEntity.cs" />
+    <Compile Include="ScenicQRCode\GetScenicQRCodeListArgs.cs" />
+    <Compile Include="ScenicQRCode\ScenicQRCodeEntity.cs" />
+    <Compile Include="ScenicQRCode\ScenicQRCodeLandingLogEntity.cs" />
+    <Compile Include="System\OperatedLogEntity.cs" />
+    <Compile Include="System\OperationData.cs" />
+    <Compile Include="System\PortalPresetTemplateEntity.cs" />
+    <Compile Include="Tag\MemberBatchTaggingArgs.cs" />
+    <Compile Include="Tag\MemberTagEntity.cs" />
+    <Compile Include="User\GetUserListArgs.cs" />
+    <Compile Include="User\Role\Authorization.cs" />
+    <Compile Include="User\Role\AuthorizationWrapper.cs" />
+    <Compile Include="User\Role\RoleEntity.cs" />
+    <Compile Include="User\Role\RoleAuthorizationEntity.cs" />
+    <Compile Include="User\Role\RoleAuthorizationRelation.cs" />
+    <Compile Include="User\Role\RoleUserEntity.cs" />
+    <Compile Include="User\UpdatePasswordArgs.cs" />
+    <Compile Include="WxConfigurationSection.cs" />
+    <Compile Include="Material\AddArticleMaterialResult.cs" />
+    <Compile Include="Material\ArticleMaterialEntity.cs" />
+    <Compile Include="Material\GetArticleMaterialListArgs.cs" />
+    <Compile Include="Material\GetMaterialListArgs.cs" />
+    <Compile Include="Material\ArticleMaterialItemEntity.cs" />
+    <Compile Include="Material\PublishArticleMaterialResult.cs" />
+    <Compile Include="Member\Enums.cs" />
+    <Compile Include="Member\GetMemberListArgs.cs" />
+    <Compile Include="Member\GetPointAccountArgs.cs" />
+    <Compile Include="Member\MemberEntity.cs" />
+    <Compile Include="Member\MemberContext.cs" />
+    <Compile Include="Member\MemberPointTrackEntity.cs" />
+    <Compile Include="Member\SignInResult.cs" />
+    <Compile Include="Member\UpdatePersonalInfoArgs.cs" />
+    <Compile Include="Message\MessageEntity.cs" />
+    <Compile Include="PointCommodity\Enums.cs" />
+    <Compile Include="PointCommodity\GetPointCommodityListArgs.cs" />
+    <Compile Include="PointCommodity\GetMemberPointCommodityOrderListArgs.cs" />
+    <Compile Include="PointCommodity\GetPointCommodityOrderListArgs.cs" />
+    <Compile Include="PointCommodity\OrderPointCommodityArgs.cs" />
+    <Compile Include="PointCommodity\OrderPointCommodityResult.cs" />
+    <Compile Include="PointCommodity\PointCommodityEntity.cs" />
+    <Compile Include="PointCommodity\PointCommodityOrderEntity.cs" />
+    <Compile Include="PointCommodity\PointCommodityStockAdjustmentArgs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Material\NormalMaterialEntity.cs" />
+    <Compile Include="Settings\AutoReply.cs" />
+    <Compile Include="Settings\AutoReplyOnKeyWordsContentEntity.cs" />
+    <Compile Include="Settings\AutoReplyOnKeyWordsRuleEntity.cs" />
+    <Compile Include="Settings\AutoReplyOnMessageEntity.cs" />
+    <Compile Include="Settings\AutoReplyOnSubscribeEntity.cs" />
+    <Compile Include="Settings\IAutoReply.cs" />
+    <Compile Include="SortDigest.cs" />
+    <Compile Include="Domain\DomainEntity.cs" />
+    <Compile Include="User\LoginArgs.cs" />
+    <Compile Include="Settings\MenuEntity.cs" />
+    <Compile Include="User\ResetPasswordArgs.cs" />
+    <Compile Include="User\UserEntity.cs" />
+    <Compile Include="User\UserContext.cs" />
+    <Compile Include="User\UserRegisterArgs.cs" />
+    <Compile Include="User\UserRegisterResult.cs" />
+    <Compile Include="ValidateCode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Linkup.Common\Linkup.Common.csproj">
+      <Project>{2753ed31-d787-41f3-893c-58df187da1d8}</Project>
+      <Name>Linkup.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Linkup.DataRelationalMapping\Linkup.DataRelationalMapping.csproj">
+      <Project>{7bb22de3-7422-4ce4-bd77-b51565343dd2}</Project>
+      <Name>Linkup.DataRelationalMapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.WeixinContract\Sheng.WeixinConstruction.WeixinContract.csproj">
+      <Project>{19972c3f-7a6f-46c0-a501-5a89001148e6}</Project>
+      <Name>Sheng.WeixinConstruction.WeixinContract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

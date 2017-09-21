@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3536193D-DFF5-4BE6-A4FD-18E3EA42FA76}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sheng.WeixinConstruction.Management.Shell</RootNamespace>
+    <AssemblyName>Sheng.WeixinConstruction.Management.Shell</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Enyim.Caching">
+      <HintPath>..\_Lib\Enyim.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging">
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Database">
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\AdvertisingController.cs" />
+    <Compile Include="Areas\Api\Controllers\CampaignController.cs" />
+    <Compile Include="Areas\Api\Controllers\CouponController.cs" />
+    <Compile Include="Areas\Api\Controllers\CustomFormController.cs" />
+    <Compile Include="Areas\Api\Controllers\InformationController.cs" />
+    <Compile Include="Areas\Api\Controllers\MaterialController.cs" />
+    <Compile Include="Areas\Api\Controllers\MemberController.cs" />
+    <Compile Include="Areas\Api\Controllers\MovieController.cs" />
+    <Compile Include="Areas\Api\Controllers\OneDollarBuyingController.cs" />
+    <Compile Include="Areas\Api\Controllers\AdvancedArticleController.cs" />
+    <Compile Include="Areas\Api\Controllers\PageController.cs" />
+    <Compile Include="Areas\Api\Controllers\PayController.cs" />
+    <Compile Include="Areas\Api\Controllers\PointCommodityController.cs" />
+    <Compile Include="Areas\Api\Controllers\PortalController.cs" />
+    <Compile Include="Areas\Api\Controllers\PortalPresetTemplateController.cs" />
+    <Compile Include="Areas\Api\Controllers\RecommendUrlController.cs" />
+    <Compile Include="Areas\Api\Controllers\ScenicQRCodeController.cs" />
+    <Compile Include="Areas\Api\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Api\Controllers\SMSController.cs" />
+    <Compile Include="Areas\Api\Controllers\SystemController.cs" />
+    <Compile Include="Areas\Api\Controllers\UserContextController.cs" />
+    <Compile Include="Areas\Api\Controllers\UserController.cs" />
+    <Compile Include="Areas\M\Controllers\HomeController.cs" />
+    <Compile Include="Areas\M\MAreaRegistration.cs" />
+    <Compile Include="Controllers\BasalController.cs" />
+    <Compile Include="Controllers\CampaignController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
+    <Compile Include="Controllers\PortalController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
+    <Compile Include="Filters\AllowedAnonymous.cs" />
+    <Compile Include="Filters\DefaultExceptionFilter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Campaign\Donation\DonationDetailViewModel.cs" />
+    <Compile Include="Models\Campaign\Lottery\LotteryDetailViewModel.cs" />
+    <Compile Include="Models\Campaign\Lottery\LotteryPeriodListViewModel.cs" />
+    <Compile Include="Models\Campaign\Lottery\Lottery_PreparatoryViewModel.cs" />
+    <Compile Include="Models\Campaign\LuckyTicket\LuckyTicketDetailViewModel.cs" />
+    <Compile Include="Models\Campaign\LuckyTicket\LuckyTicketLogListViewModel.cs" />
+    <Compile Include="Models\Campaign\LuckyTicket\LuckyTicket_PreparatoryViewModel.cs" />
+    <Compile Include="Models\Campaign\MemberQRCode\MemberQRCodeDetailViewModel.cs" />
+    <Compile Include="Models\Campaign\MemberQRCode\MemberQRCodeItemListViewModel.cs" />
+    <Compile Include="Models\Campaign\MemberQRCode\MemberQRCode_PreparatoryViewModel.cs" />
+    <Compile Include="Models\Campaign\CampaignListViewModel.cs" />
+    <Compile Include="Models\Campaign\ShakingLottery\ShakingLotteryDetailViewModel.cs" />
+    <Compile Include="Models\Campaign\ShakingLottery\ShakingLotteryGiftListViewModel.cs" />
+    <Compile Include="Models\Campaign\ShakingLottery\ShakingLotteryGiftEditViewModel.cs" />
+    <Compile Include="Models\Campaign\ShakingLottery\ShakingLotteryGiftWinningProjectiveViewModel.cs" />
+    <Compile Include="Models\Member\DistributedCouponViewModel.cs" />
+    <Compile Include="Models\Pay\OneDollarBuyingCommodityForSaleListViewModel.cs" />
+    <Compile Include="Models\Pay\OneDollarBuyingDealInfoViewModel.cs" />
+    <Compile Include="Models\Campaign\PictureVote\PictureVoteDetailViewModel.cs" />
+    <Compile Include="Models\Campaign\PictureVote\PictureVoteItemDetailViewModel.cs" />
+    <Compile Include="Models\Campaign\PictureVote\PictureVoteItemListViewModel.cs" />
+    <Compile Include="Models\Campaign\PictureVote\PictureVote_PreparatoryViewModel.cs" />
+    <Compile Include="Models\Member\GroupMessageDetailViewModel.cs" />
+    <Compile Include="Models\Member\MemberGroupMessageViewModel.cs" />
+    <Compile Include="Models\Member\MemberInfoViewModel.cs" />
+    <Compile Include="Models\Member\MemberViewModel.cs" />
+    <Compile Include="Models\Portal\CustomFormContentViewModel.cs" />
+    <Compile Include="Models\Portal\DashboardViewModel.cs" />
+    <Compile Include="Models\Portal\InformationItemViewModel.cs" />
+    <Compile Include="Models\Member\PointCommodityOrderDetailViewModel.cs" />
+    <Compile Include="Models\Settings\ScenicQRCodeViewViewModel.cs" />
+    <Compile Include="Models\Settings\AuthorizationCallbackDemoViewModel.cs" />
+    <Compile Include="Models\Settings\BaseViewModel.cs" />
+    <Compile Include="Models\Settings\DockingViewModel.cs" />
+    <Compile Include="Models\Portal\MovieTimesViewModel.cs" />
+    <Compile Include="Models\Portal\PortalStyle_CustomViewModel.cs" />
+    <Compile Include="Models\Portal\PortalTemplateSelectViewModel.cs" />
+    <Compile Include="Models\Portal\PortalStyle_TemplateViewModel.cs" />
+    <Compile Include="Models\System\CurrentUserInfoViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionContainer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Images\139-15030G00I0.jpg" />
+    <Content Include="Content\Images\dashboard_tileNumber_bg.jpg" />
+    <Content Include="Content\Images\dashboard_tileTitle_bg.jpg" />
+    <Content Include="Content\Images\docking_btn.jpg" />
+    <Content Include="Content\Images\docking_ico1.gif" />
+    <Content Include="Content\Images\docking_ico2.gif" />
+    <Content Include="Content\Images\docking_ico3.gif" />
+    <Content Include="Content\Images\dotLine.png" />
+    <Content Include="Content\Images\huajin\donation_logo.png" />
+    <Content Include="Content\Images\huajin\huajing_bg1.jpg" />
+    <Content Include="Content\Images\huajin\huajing_bg2.jpg" />
+    <Content Include="Content\Images\huajin\logo.jpg" />
+    <Content Include="Content\Images\huajin\qrcode.png" />
+    <Content Include="Content\Images\ico_article.jpg" />
+    <Content Include="Content\Images\ico_edit.jpg" />
+    <Content Include="Content\Images\ico_edit2.jpg" />
+    <Content Include="Content\Images\ico_image.jpg" />
+    <Content Include="Content\Images\ico_image2.jpg" />
+    <Content Include="Content\Images\ico_remove.jpg" />
+    <Content Include="Content\Images\iphone_bottom.jpg" />
+    <Content Include="Content\Images\iphone_left.jpg" />
+    <Content Include="Content\Images\iphone_left_b.jpg" />
+    <Content Include="Content\Images\iphone_right.jpg" />
+    <Content Include="Content\Images\iphone_title.jpg" />
+    <Content Include="Content\Images\iphone_top.jpg" />
+    <Content Include="Content\Images\login3_bg.jpg" />
+    <Content Include="Content\Images\login3_loginareabg.jpg" />
+    <Content Include="Content\Images\login3_loginareabottom.jpg" />
+    <Content Include="Content\Images\login3_logo.jpg" />
+    <Content Include="Content\Images\login_bg.jpg" />
+    <Content Include="Content\Images\login_bg2.jpg" />
+    <Content Include="Content\Images\login_ico1.png" />
+    <Content Include="Content\Images\login_ico2.png" />
+    <Content Include="Content\Images\login_ico3.png" />
+    <Content Include="Content\Images\login_ico4.png" />
+    <Content Include="Content\Images\login_logo.jpg" />
+    <Content Include="Content\Images\login_logo.png" />
+    <Content Include="Content\Images\login_logo2.png" />
+    <Content Include="Content\Images\microletAdown.png" />
+    <Content Include="Content\Images\microletAleft.png" />
+    <Content Include="Content\Images\microletAright.png" />
+    <Content Include="Content\Images\microletAup.png" />
+    <Content Include="Content\Images\plus.jpg" />
+    <Content Include="Content\Images\QQGroup2.jpg" />
+    <Content Include="Content\Images\qrcode_for_gh_2eaaab12bf43_258.jpg" />
+    <Content Include="Content\Images\WeixinGroup2.jpg" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Content\M\Images\dotLine.png" />
+    <Content Include="Content\M\Images\leftArrow.png" />
+    <Content Include="Content\M\Images\moreMenu.png" />
+    <Content Include="Content\M\Images\staff_topTitle_bg.jpg" />
+    <Content Include="Content\M\Images\staff_top_bg.jpg" />
+    <Content Include="Content\M\Images\topbar_bg.jpg" />
+    <Content Include="Content\M\Style.css" />
+    <Content Include="Content\PortalTemplatePreview\portalStyle.css" />
+    <Content Include="Content\Style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Areas\Api\Views\web.config" />
+    <Content Include="App_Code\Helpers.cshtml" />
+    <Content Include="Areas\M\Views\web.config" />
+    <Content Include="Areas\M\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\M\Views\Home\Login.cshtml" />
+    <Content Include="Areas\M\Views\Home\Portal.cshtml" />
+    <Content Include="Areas\M\Views\Home\Register.cshtml" />
+    <Content Include="Areas\M\Views\Home\Register2.cshtml" />
+    <None Include="Properties\PublishProfiles\default.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Content\Images\arrow_down.png" />
+    <Content Include="Content\Images\arrow_up.png" />
+    <Content Include="Content\Images\dot.png" />
+    <Content Include="Content\Images\leftMenuItem_active_bg.jpg" />
+    <Content Include="Content\Images\leftMenu_bg.jpg" />
+    <Content Include="Content\Images\leftTitle_bg.jpg" />
+    <Content Include="Content\Images\loginBg.jpg" />
+    <Content Include="Content\Images\mainMenu_active.jpg" />
+    <Content Include="Content\Images\searchArea_bottom.jpg" />
+    <Content Include="Content\Images\tableTitle_bg.jpg" />
+    <Content Include="Content\Images\topbar_bg.jpg" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\echarts.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\laydate\laydate.js" />
+    <Content Include="Scripts\laydate\need\laydate.css" />
+    <Content Include="Scripts\laydate\skins\default\icon.png" />
+    <Content Include="Scripts\laydate\skins\default\laydate.css" />
+    <Content Include="Scripts\laydate\skins\molv\icon.png" />
+    <Content Include="Scripts\laydate\skins\molv\laydate.css" />
+    <Content Include="Scripts\layer\extend\layer.ext.js" />
+    <Content Include="Scripts\layer\layer.js" />
+    <Content Include="Scripts\layer\skin\default\icon-ext.png" />
+    <Content Include="Scripts\layer\skin\default\icon.png" />
+    <Content Include="Scripts\layer\skin\default\loading-0.gif" />
+    <Content Include="Scripts\layer\skin\default\loading-1.gif" />
+    <Content Include="Scripts\layer\skin\default\loading-2.gif" />
+    <Content Include="Scripts\layer\skin\layer.css" />
+    <Content Include="Scripts\layer\skin\layer.ext.css" />
+    <Content Include="Scripts\laypage\laypage.js" />
+    <Content Include="Scripts\laypage\skin\laypage.css" />
+    <Content Include="Scripts\laytpl.js" />
+    <Content Include="Scripts\math.js" />
+    <Content Include="Scripts\MD5.js" />
+    <Content Include="Scripts\M\common.js" />
+    <Content Include="Scripts\M\layer.m\layer.m.js" />
+    <Content Include="Scripts\M\layer.m\need\layer.css" />
+    <Content Include="Scripts\PortalTemplatePreview\portalCommon.js" />
+    <Content Include="Scripts\string.js" />
+    <Content Include="Scripts\UserAgent.js" />
+    <Content Include="Scripts\validate\additional-methods.js" />
+    <Content Include="Scripts\validate\additional-methods.min.js" />
+    <Content Include="Scripts\validate\jquery.validate.js" />
+    <Content Include="Scripts\validate\jquery.validate.min.js" />
+    <Content Include="Scripts\validate\localization\messages_zh.js" />
+    <Content Include="Scripts\validate\localization\messages_zh.min.js" />
+    <Content Include="Scripts\wangEditor\css\fonts\icomoon.eot" />
+    <Content Include="Scripts\wangEditor\css\fonts\icomoon.svg" />
+    <Content Include="Scripts\wangEditor\css\fonts\icomoon.ttf" />
+    <Content Include="Scripts\wangEditor\css\fonts\icomoon.woff" />
+    <Content Include="Scripts\wangEditor\css\wangEditor.css" />
+    <Content Include="Scripts\wangEditor\css\wangEditor.min.css" />
+    <Content Include="Scripts\wangEditor\js\wangEditor.min.js" />
+    <Content Include="Scripts\wangEditor\wangEditor-2.1.13.txt" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\_LayoutBlank.cshtml" />
+    <Content Include="Views\Shared\_LayoutBasal.cshtml" />
+    <Content Include="Views\Shared\_LayoutSimple.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Member\PointCommodity.cshtml" />
+    <Content Include="Views\Portal\_LeftMenu.cshtml" />
+    <Content Include="Views\Member\PointCommodityEdit.cshtml" />
+    <Content Include="Views\Portal\Menu.cshtml" />
+    <Content Include="Views\Settings\_LeftMenu.cshtml" />
+    <Content Include="Views\Portal\MenuEdit.cshtml" />
+    <Content Include="Views\Member\PointCommodityOrder.cshtml" />
+    <Content Include="Views\Member\PointCommodityOrderDetail.cshtml" />
+    <Content Include="Views\Settings\Docking.cshtml" />
+    <Content Include="Views\Settings\Base.cshtml" />
+    <Content Include="Views\Member\Member.cshtml" />
+    <Content Include="Views\Campaign\Index.cshtml" />
+    <Content Include="Views\Campaign\_LeftMenu.cshtml" />
+    <Content Include="Views\Material\Image.cshtml" />
+    <Content Include="Views\Material\_LeftMenu.cshtml" />
+    <Content Include="Views\Settings\AutoReplyOnSubscribe.cshtml" />
+    <Content Include="Views\Material\ImageSelect.cshtml" />
+    <Content Include="Views\Settings\AutoReplyOnMessage.cshtml" />
+    <Content Include="Views\Settings\AutoReplyOnKeywordsRule.cshtml" />
+    <Content Include="Views\Settings\AutoReplyOnKeywords.cshtml" />
+    <Content Include="Views\Settings\AutoReplyText.cshtml" />
+    <Content Include="Views\Settings\AutoReplyOnKeywordsKeywordEdit.cshtml" />
+    <Content Include="Views\Home\ResetPassword.cshtml" />
+    <Content Include="Views\Material\Article.cshtml" />
+    <Content Include="Views\Material\ArticleEdit.cshtml" />
+    <Content Include="Views\Material\ArticleSelect.cshtml" />
+    <Content Include="Views\Member\_LeftMenu.cshtml" />
+    <Content Include="Views\Member\MemberGroupEdit.cshtml" />
+    <Content Include="Views\Member\GroupMessage.cshtml" />
+    <Content Include="Views\Member\SentGroupMessage.cshtml" />
+    <Content Include="Views\Member\GroupMessageDetail.cshtml" />
+    <Content Include="Views\Settings\DockingDemo.cshtml" />
+    <Content Include="Views\Settings\AuthorizationCallbackDemo.cshtml" />
+    <Content Include="Views\Campaign\PictureVote_Preparatory.cshtml" />
+    <Content Include="Views\Campaign\PictureVoteEidt.cshtml" />
+    <Content Include="Views\Campaign\PictureVote_Ongoing.cshtml" />
+    <Content Include="Views\Campaign\PictureVote_End.cshtml" />
+    <Content Include="Views\Campaign\PictureVoteDetail.cshtml" />
+    <Content Include="Views\Campaign\PictureVoteItemList.cshtml" />
+    <Content Include="Views\Campaign\PictureVoteItemDetail.cshtml" />
+    <Content Include="Views\Campaign\MemberQRCode_Preparatory.cshtml" />
+    <Content Include="Views\Campaign\MemberQRCode_Ongoing.cshtml" />
+    <Content Include="Views\Campaign\MemberQRCode_End.cshtml" />
+    <Content Include="Views\Campaign\MemberQRCodeEidt.cshtml" />
+    <Content Include="Views\Campaign\MemberQRCodeDetail.cshtml" />
+    <Content Include="Views\Campaign\MemberQRCodeItemList.cshtml" />
+    <Content Include="Views\Campaign\Lottery_Preparatory.cshtml" />
+    <Content Include="Views\Campaign\Lottery_Ongoing.cshtml" />
+    <Content Include="Views\Campaign\LotteryEidt.cshtml" />
+    <Content Include="Views\Campaign\LotteryDetail.cshtml" />
+    <Content Include="Views\Campaign\LotteryPeriodList.cshtml" />
+    <Content Include="Views\Campaign\LotteryPeriodEdit.cshtml" />
+    <Content Include="Views\Campaign\LotteryPeriodSignLogList.cshtml" />
+    <Content Include="Views\Campaign\LotteryPeriodWinnerList.cshtml" />
+    <Content Include="Views\Campaign\Lottery_End.cshtml" />
+    <Content Include="Views\Portal\MovieTimes.cshtml" />
+    <Content Include="Views\Portal\Information.cshtml" />
+    <Content Include="Views\Settings\ScenicQRCode.cshtml" />
+    <Content Include="Views\Settings\ScenicQRCodeCreate.cshtml" />
+    <Content Include="Views\Settings\ScenicQRCodeView.cshtml" />
+    <Content Include="Views\Portal\InformationEdit.cshtml" />
+    <Content Include="Views\Portal\InformationCategory.cshtml" />
+    <Content Include="Views\Portal\InformationCategoryEdit.cshtml" />
+    <Content Include="Views\Portal\InformationItem.cshtml" />
+    <Content Include="Views\Portal\InformationItemEdit.cshtml" />
+    <Content Include="Views\Portal\PortalStyle_Template.cshtml" />
+    <Content Include="Views\System\Password.cshtml" />
+    <Content Include="Views\System\_LeftMenu.cshtml" />
+    <Content Include="Views\System\CurrentUserInfo.cshtml" />
+    <Content Include="Views\System\OperatedLog.cshtml" />
+    <Content Include="Views\System\DomainType.cshtml" />
+    <Content Include="Views\Portal\PortalTemplateSelect.cshtml" />
+    <Content Include="Views\Portal\PortalStyle_Custom.cshtml" />
+    <Content Include="Views\Campaign\LuckyTicket_Preparatory.cshtml" />
+    <Content Include="Views\Campaign\LuckyTicketEidt.cshtml" />
+    <Content Include="Views\Campaign\LuckyTicket_Ongoing.cshtml" />
+    <Content Include="Views\Campaign\LuckyTicketDetail.cshtml" />
+    <Content Include="Views\Campaign\LuckyTicket_End.cshtml" />
+    <Content Include="Views\Campaign\LuckyTicketLogList.cshtml" />
+    <Content Include="Views\Portal\Page.cshtml" />
+    <Content Include="Views\Portal\PageEdit.cshtml" />
+    <Content Include="Views\Pay\OneDollarBuyingCommodity.cshtml" />
+    <Content Include="Views\Pay\OneDollarBuyingCommodityEdit.cshtml" />
+    <Content Include="Views\Pay\OneDollarBuyingCommodityForSaleList.cshtml" />
+    <Content Include="Views\Pay\OneDollarBuyingDealInfo.cshtml" />
+    <Content Include="Views\Portal\CustomForm.cshtml" />
+    <Content Include="Views\Portal\CustomFormEdit.cshtml" />
+    <Content Include="Views\Portal\CustomFormContent.cshtml" />
+    <Content Include="Views\Member\MemberInfo.cshtml" />
+    <Content Include="Views\Pay\_LeftMenu.cshtml" />
+    <Content Include="Scripts\wangEditor\css\wangEditor.less" />
+    <Content Include="Views\Member\Coupon.cshtml" />
+    <Content Include="Views\Member\CouponEdit.cshtml" />
+    <Content Include="Views\Member\DistributedCoupon.cshtml" />
+    <Content Include="Views\Member\CouponDistribute.cshtml" />
+    <Content Include="Views\Settings\MemberCardLevel.cshtml" />
+    <Content Include="Views\Settings\MemberCardLevelEdit.cshtml" />
+    <Content Include="Views\System\UserList.cshtml" />
+    <Content Include="Views\System\UserEdit.cshtml" />
+    <Content Include="Views\Member\MemberSelect.cshtml" />
+    <Content Include="Views\Settings\AdvancedArticle.cshtml" />
+    <Content Include="Views\Settings\AdvancedArticleEdit.cshtml" />
+    <Content Include="Views\Settings\Advertising.cshtml" />
+    <Content Include="Views\Settings\AdvertisingEdit.cshtml" />
+    <Content Include="Views\Settings\AdvertisingSelect.cshtml" />
+    <Content Include="Scripts\M\layer.m\layer.m.rar" />
+    <Content Include="Views\Portal\PortalTemplatePreview.cshtml" />
+    <Content Include="Views\Portal\ShortcutMenu.cshtml" />
+    <Content Include="Views\Portal\ShortcutMenuEdit.cshtml" />
+    <Content Include="Views\Portal\Dashboard.cshtml" />
+    <Content Include="Views\Portal\GetVip.cshtml" />
+    <Content Include="Views\Portal\GetPay.cshtml" />
+    <Content Include="Views\Member\RecommendUrl.cshtml" />
+    <Content Include="Views\Campaign\ShakingLottery_Preparatory.cshtml" />
+    <Content Include="Views\Campaign\ShakingLotteryEidt.cshtml" />
+    <Content Include="Views\Campaign\ShakingLottery_Ongoing.cshtml" />
+    <Content Include="Views\Campaign\ShakingLotteryDetail.cshtml" />
+    <Content Include="Views\Campaign\ShakingLottery_End.cshtml" />
+    <Content Include="Views\Campaign\ShakingLotteryGiftList.cshtml" />
+    <Content Include="Views\Campaign\ShakingLotteryGiftEdit.cshtml" />
+    <Content Include="Views\Campaign\ShakingLotteryGiftWinningList.cshtml" />
+    <Content Include="Views\Campaign\ShakingLotteryGiftWinningProjective.cshtml" />
+    <Content Include="Views\Campaign\ShakingLotteryPeriodList.cshtml" />
+    <Content Include="Views\Campaign\ShakingLotteryPeriodEdit.cshtml" />
+    <Content Include="Views\Campaign\Donation_Ongoing.cshtml" />
+    <Content Include="Views\Campaign\DonationEidt.cshtml" />
+    <Content Include="Views\Campaign\Donation_Preparatory.cshtml" />
+    <Content Include="Views\Campaign\Donation_End.cshtml" />
+    <Content Include="Views\Campaign\DonationDetail.cshtml" />
+    <Content Include="Views\Campaign\DonationLogList.cshtml" />
+    <Content Include="Views\Campaign\DonationProjective.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\Advertising\" />
+    <Folder Include="Areas\Api\Views\Campaign\" />
+    <Folder Include="Areas\Api\Views\CustomForm\" />
+    <Folder Include="Areas\Api\Views\Material\" />
+    <Folder Include="Areas\Api\Views\Member\" />
+    <Folder Include="Areas\Api\Views\OneDollarBuying\" />
+    <Folder Include="Areas\Api\Views\Page\" />
+    <Folder Include="Areas\Api\Views\Pay\" />
+    <Folder Include="Areas\Api\Views\PointCommodity\" />
+    <Folder Include="Areas\Api\Views\Portal\" />
+    <Folder Include="Areas\Api\Views\RecommendUrl\" />
+    <Folder Include="Areas\Api\Views\ScenicQRCode\" />
+    <Folder Include="Areas\Api\Views\Settings\" />
+    <Folder Include="Areas\Api\Views\Shared\" />
+    <Folder Include="Areas\Api\Views\SMS\" />
+    <Folder Include="Areas\Api\Views\System\" />
+    <Folder Include="Areas\Api\Views\UserContext\" />
+    <Folder Include="Areas\Api\Views\User\" />
+    <Folder Include="Areas\M\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Linkup.Common\Linkup.Common.csproj">
+      <Project>{2753ed31-d787-41f3-893c-58df187da1d8}</Project>
+      <Name>Linkup.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Linkup.DataRelationalMapping\Linkup.DataRelationalMapping.csproj">
+      <Project>{7bb22de3-7422-4ce4-bd77-b51565343dd2}</Project>
+      <Name>Linkup.DataRelationalMapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Linkup.Data\Linkup.Data.csproj">
+      <Project>{bdf82c46-173e-4db0-b2bf-923571528a9e}</Project>
+      <Name>Linkup.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.ApiContract\Sheng.WeixinConstruction.ApiContract.csproj">
+      <Project>{55b9beb8-0cbf-4ed7-a686-3b22e1102f3d}</Project>
+      <Name>Sheng.WeixinConstruction.ApiContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.Core\Sheng.WeixinConstruction.Core.csproj">
+      <Project>{3e09fa4f-e711-42df-9e35-a954bc626361}</Project>
+      <Name>Sheng.WeixinConstruction.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.Infrastructure\Sheng.WeixinConstruction.Infrastructure.csproj">
+      <Project>{e571e2e2-191f-4b60-8bc2-f848fefea6b9}</Project>
+      <Name>Sheng.WeixinConstruction.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.Management.Core\Sheng.WeixinConstruction.Management.Core.csproj">
+      <Project>{46eebf24-ec9f-4d19-8e81-c8b77fd222c7}</Project>
+      <Name>Sheng.WeixinConstruction.Management.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.Service\Sheng.WeixinConstruction.Service.csproj">
+      <Project>{b693996b-ef3c-4ed8-a237-36e445f3f745}</Project>
+      <Name>Sheng.WeixinConstruction.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.WeixinContract\Sheng.WeixinConstruction.WeixinContract.csproj">
+      <Project>{19972c3f-7a6f-46c0-a501-5a89001148e6}</Project>
+      <Name>Sheng.WeixinConstruction.WeixinContract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57275</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57275/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,185 @@
+﻿@{
+    ViewBag.SubTitle = "积分商城";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+
+    ViewBag.BodyClass = "defaultBgColorLight";
+}
+
+<style type="text/css">
+    body {
+        /*margin-top: 1.5rem;*/
+        margin-top: 1.15rem;
+        /*margin-bottom: 0.55rem;*/
+    }
+
+    #divTopTitleBar {
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        /*top: 1rem;*/
+        top: 0.7rem;
+        height: 0.4rem;
+        background-color: white;
+    }
+
+    #divFooter {
+        background-color: white;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.4rem;
+        font-size: 0.13rem;
+        text-align: center;
+    }
+
+    .divCommodityItem {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        padding: 0.1rem 0.05rem;
+        min-height: 0.8rem;
+        width: 100%;
+        color: #535353;
+        margin-top: 0.05rem;
+        background-color: white;
+        border-radius: 0.05rem;
+    }
+
+    .imgPointCommodity {
+        max-height: 0.8rem;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+</style>
+
+<script type="text/javascript">
+
+    //当前页
+    var _currentPage = 1;
+    var _totalPage = 1;
+
+    $(document).ready(function ()
+    {
+        loadData();
+    });
+
+    function loadData(targetPage)
+    {
+        if (targetPage > _totalPage)
+            return;
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.PageSize = 10;
+
+        $.ajax({
+            url: "/Api/PointCommodity/GetPointCommodityList/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR)
+            {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    var resultObj = data.Data;
+
+                    //alert(JSON.stringify(resultObj));
+                    var gettpl = document.getElementById('pointCommodityListTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html)
+                    {
+                        document.getElementById('pointCommodityContainer').innerHTML += html;
+                    });
+
+                    _currentPage = resultObj.Page;
+                    _totalPage = resultObj.TotalPage;
+                    if (_currentPage >= _totalPage)
+                    {
+                        $("#divPagingContainer").html("没有更多了");
+                    }
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+
+</script>
+
+<script id="pointCommodityListTemplate" type="text/html">
+
+    {{# for(var i = 0, len = d.length; i < len; i=i+1){ }}
+    {{# var price = accDiv(d[i].Price,100) }}
+    <div class="divCommodityItem" style="" onclick="goUrl('/Home/PointCommodityDetail/@ViewBag.Domain.Id?id={{ d[i].Id }}')">
+        <div style="float:left;width:35%;text-align:center">
+            <img src="{{ d[i].ImageUrl }}" class="imgPointCommodity">
+        </div>
+        <div style="float:right;width:60%;">
+            <div class="defaultColor" style="font-size:0.14rem;">{{ d[i].Name }}</div>
+            @*<div style="margin-top:0.05rem;">这个呢是超级好喝的无敌冰红茶。</div>*@
+            <div style="margin-top:0.05rem;">{{ price }} 元 + {{ d[i].Point }} 积分</div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+    {{# } }}
+
+</script>
+
+@Helpers.HeaderArea(ViewBag, "headimg")
+
+<div id="divTopTitleBar">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:100%">
+        <tr style="height:0.27rem;">
+            <td width="33%" align="center" class="defaultColor"><div onclick="goUrl('/PointCommodity/PointCommodity/@ViewBag.Domain.Id')">积分商城</div></td>
+            <td width="33%" align="center"><div onclick="goUrl('/PointCommodity/ShoppingCart/@ViewBag.Domain.Id')">购物车</div></td>
+            <td width="33%" align="center"><div onclick="goUrl('/PointCommodity/OrderList/@ViewBag.Domain.Id')">我的订单</div></td>
+        </tr>
+        <tr style="height:0.03rem;">
+            @*<td class="defaultBgColor"></td>*@
+            <td bgcolor="#E4E4E4"></td>
+            <td bgcolor="#E4E4E4"></td>
+            <td bgcolor="#E4E4E4"></td>
+        </tr>
+    </table>
+</div>
+
+<div style="margin-left:0.05rem;margin-right:0.05rem;">
+    <div id="pointCommodityContainer">
+    </div>
+
+    <div id="divPagingContainer" class="divPagingContainer" style="margin-top:0.1rem; text-align:center" onclick="loadData(_currentPage+1)">
+        查看更多
+    </div>
+</div>
+
+@*<div id="divFooter">
+    <table align="center" style="height:100%;width:100%">
+        <tr>
+            <td style="background-color: #F5F5F5;height:0.01rem;"></td>
+        </tr>
+        <tr>
+            <td class="defaultColor" valign="middle" align="center">
+                做任务，赚积分 >
+            </td>
+        </tr>
+    </table>
+</div>*@

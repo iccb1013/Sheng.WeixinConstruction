@@ -1,0 +1,752 @@
+----------------------------------------
+Timestamp: 2016/12/4 0:15:41
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/4 0:15:43
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/4 14:25:51
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/4 14:25:57
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/4 15:02:36
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/4 15:02:38
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/4 15:07:22
+
+Title:列名 'MediaId' 无效。
+
+Message: SELECT [CampaignId],[Domain],[Member],[QRCodeUrl],[MediaId],[CreateTime],[LandingCount],[LandingPersonCount] FROM [Campaign_MemberQRCodeItem] WHERE [CampaignId]=@CampaignId AND [Member]=@Member
+[{"ParameterName":"@CampaignId","Value":"eeb3caf5-dfcd-4d28-99c2-151c443a583a"},{"ParameterName":"@Member","Value":"ed638a09-f7aa-4d24-850e-a889a95bd454"}]
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.DoLoadDataSet(IDbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String tableName)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteDataSet(DbCommand command)
+   在 Linkup.Data.DatabaseWrapper.ExecuteDataSet(CommandType commandType, String commandText, List`1 parameterList, String[] tableNameArray) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 268
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/4 23:19:21
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/4 23:19:22
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/4 23:19:25
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/4 23:19:26
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/5 1:22:38
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/5 1:22:39
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/6 1:06:33
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/6 1:06:35
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/6 1:09:04
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/6 1:09:04
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 10:21:09
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 10:21:11
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 10:23:35
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 10:23:36
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 10:46:43
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 10:46:44
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 11:01:21
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 11:01:22
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 11:09:04
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 11:09:05
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 11:22:24
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 11:22:25
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 11:58:30
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 11:58:31
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:04:42
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:04:43
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:05:49
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:05:49
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:11:03
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:11:04
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:17:37
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:17:37
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:20:01
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:20:02
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:29:12
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/7 12:29:13
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/8 12:09:44
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/8 12:09:47
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/8 12:14:35
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/8 12:14:36
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/8 12:30:37
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/8 12:30:39
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/8 12:32:20
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/8 12:32:20
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/8 13:12:37
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/8 13:12:38
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:32:44
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:32:45
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:34:41
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:34:41
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:41:06
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:41:07
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:48:46
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:48:47
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:50:21
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:50:21
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:52:52
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 2:52:53
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 12:41:12
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 12:41:14
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 12:46:38
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/9 12:46:39
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/10 15:01:56
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/10 15:01:58
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/10 15:05:09
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/10 15:05:10
+
+Title:Redis 连接成功
+
+Message: 
+
+Severity: Information
+
+----------------------------------------

@@ -1,0 +1,231 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.InformationCategoryViewModel
+
+@{
+    // ViewBag.SubTitle = Model.Information.Name;
+   // ViewBag.SubTitle = Model.Category.Name;
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+    body {
+        margin-top: 1.0rem;
+    }
+
+    #divTopTitle {
+        height: 0.5rem;
+        color: #FFF;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        top: 0rem;
+    }
+
+    #divTopTitleBar {
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        top: 0.5rem;
+        height: 0.4rem;
+        background-color: white;
+    }
+
+    .divItem {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        padding: 0.1rem 0.05rem;
+        min-height: 0.8rem;
+        width: 100%;
+        color: #535353;
+        margin-top: 0.1rem;
+    }
+
+    .imgItem {
+        max-height: 0.8rem;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    //当前页
+    var _currentPage = 1;
+    var _totalPage = 1;
+
+    $(document).ready(function () {
+        loadData();
+    });
+
+    function loadData(targetPage) {
+        if (targetPage > _totalPage)
+            return;
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.PageSize = 10;
+        args.CategoryId = "@Model.Category.Id";
+        args.Keyword = $("#txtKeyword").val();
+
+        $.ajax({
+            url: "/Api/Information/GetInformationItemList/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    _currentPage = resultObj.Page;
+                    _totalPage = resultObj.TotalPage;
+                    if (_currentPage >= _totalPage) {
+                        $("#divPagingContainer").html("没有更多了");
+                    }
+
+                    if (_currentPage == 1) {
+                        document.getElementById('informationItemContainer').innerHTML = "";
+                    }
+
+                    var gettpl = document.getElementById('itemListTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html) {
+                        document.getElementById('informationItemContainer').innerHTML += html;
+                    });
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+
+    function showDetail(itemId) {
+
+        window.location.href = "/Home/InfomationItem/@ViewBag.Domain.Id?itemId=" + itemId;
+
+        @*var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/Information/GetInformationItem/@ViewBag.Domain.Id?id=" + itemId,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    var gettpl = document.getElementById('itemDetailTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj, function (html) {
+                        var pageii = layer.open({
+                            type: 1,
+                            content: html,
+                            shadeClose: false,
+                            style: 'position:fixed; left:0.1rem; top:0.1rem;right:0.1rem; bottom:0.1rem; border:none;'
+                        });
+                    });                  
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });*@
+    }
+
+</script>
+
+<script id="itemListTemplate" type="text/html">
+
+    {{# for(var i = 0, len = d.length; i < len; i=i+1){ }}
+
+    <div class="divBorder_dotted divItem" style="" onclick="showDetail('{{ d[i].Id }}')">
+        <div style="float:left;width:35%;text-align:center">
+            <img src="{{ d[i].Image }}" class="imgItem">
+        </div>
+        <div style="float:right;width:60%;">
+            <div class="defaultColor" style="font-size:0.14rem;">{{ d[i].Name }}</div>
+            <div style="margin-top:0.05rem;">
+                {{# if(d[i].Introduction != undefined && d[i].Introduction != null){ }}
+                {{ d[i].Introduction }}
+                {{# } }}
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+    {{# } }}
+
+</script>
+
+<div id="divTopTitle" class="gradient">
+    <div style="padding-top:0.16rem;font-size:0.15rem;">
+        @Model.Category.Name
+    </div>
+    <div style="position:absolute;bottom:0rem;left:0.2rem;right:0.2rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width:0.7rem;" align="left">
+                    <img src="/Content/Images/arrow_up.png" style="width:0.18rem;display:block;margin-left:0.15rem;">
+                </td>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="33%" align="left"></td>
+                            <td width="33%" align="left"></td>
+                            <td width="33%" align="left"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="divTopTitleBar">
+
+    <div style="margin-top:0.1rem;margin-left:0.1rem;margin-right:0.1rem;">
+        <div style="float:left;width:80%;">
+            <input id="txtKeyword" name="txtKeyword" type="text" class="input_16" maxlength="10" />
+        </div>
+        <div style="float:right;width:18%;">
+            <input  type="button" class="button" value="查找" style="width:100%" onclick="loadData()">
+        </div>
+        <div style="clear:both"></div>
+    </div>
+</div>
+
+<div class="divContent">
+
+    <div id="informationItemContainer" style="padding-left: 0.1rem; padding-right: 0.1rem;margin-top:0.2rem;">
+    </div>
+
+    <div id="divPagingContainer" class="divPagingContainer" style="margin-top: 0.2rem; text-align: center" onclick="loadData(_currentPage + 1)">
+        查看更多
+    </div>
+
+</div>

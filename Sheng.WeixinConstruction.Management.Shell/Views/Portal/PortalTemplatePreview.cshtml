@@ -1,0 +1,91 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta charset="utf-8" />
+    <title>PortalTemplatePreview</title>
+    @Styles.Render("~/Content/PortalTemplatePreview/portalStyle.css")
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/M/layer.m/layer.m.js")
+    @Scripts.Render("~/Scripts/PortalTemplatePreview/portalCommon.js")
+
+    <script>
+
+        var _template;
+        var _portalImageUrl;
+
+        $(document).ready(function () {
+            window.parent.iframeReady();
+        });
+
+        function setTemplate(id) {
+            //alert(0);
+            _template = null;
+            loadTemplate(id);
+        }
+
+        function setPortalImage(url) {
+
+            _portalImageUrl = url;
+
+            if (_template != null) {
+
+                if (_portalImageUrl == null || _portalImageUrl == "") {
+                    _portalImageUrl = _template.BackgroundImageUrl;
+                }
+
+                $("body").html(_template.PreviewHtml.replace("{{#PortalImageUrl}}", _portalImageUrl));
+            }
+        }
+
+        function loadTemplate(id) {
+            if (id == undefined || id == "") {
+                return;
+            }
+
+            var loadLayerIndex = layer.open({
+                type: 2,
+                shadeClose: false,
+                content: '请稍候...'
+            });
+
+            $.ajax({
+                url: "/Api/PortalPresetTemplate/GetTemplate?id=" + id,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    layer.close(loadLayerIndex);
+                    if (data.Success) {
+                        _template = data.Data;
+                       
+                        if (_portalImageUrl == null || _portalImageUrl == "") {
+                            _portalImageUrl = _template.BackgroundImageUrl;
+                        } 
+
+                        $("body").html(_template.PreviewHtml.replace("{{#PortalImageUrl}}", _portalImageUrl));
+
+                    } else {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <div style="text-align:center;margin-top:0.1rem;font-size:0.18rem;">请选择模版</div>
+</body>
+</html>

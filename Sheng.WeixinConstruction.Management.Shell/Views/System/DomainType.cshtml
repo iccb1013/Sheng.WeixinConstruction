@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.MainMenu = "System";
+    ViewBag.LeftMenu = "DomainType";
+
+    ViewBag.Title = "账户信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.Domain.Type == Sheng.WeixinConstruction.Infrastructure.EnumDomainType.Free)
+{
+    <div style="margin-top:20px;">您的账户类型：免费</div>
+}
+else
+{
+    <div style="margin-top:20px;">您的账户类型：VIP</div>
+    
+    if (ViewBag.Domain.LimitedDate != null)
+    {
+        <div style="margin-top:10px;">
+            有效期至：
+            @ViewBag.Domain.LimitedDate.ToString("yyyy-MM-dd")
+        </div>
+    }
+}
+
+<div style="height:1px; margin-top:15px; background-color:#cccccc"></div>
+
+<div style="margin-top:10px;">升讯威微信营销系统的核心功能是免费的，您在注册并扫码对接后即可拥有微官网、微会员 、活动中心、营销辅助功能。</div>
+
+<div style="margin-top:15px;">
+    <div>
+        如果您需要在核心功能基础上获得更多附属功能、或需要对接微信支付，可与我们的售前顾问进行联系。
+    </div>
+    <div style="margin-top:20px;">
+        详询 电话：0550-3926191 / 18114009195  QQ：279060597
+    </div>
+    <div style="margin-top:20px;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="5" bordercolor="#E0E0E0">
+            <tr>
+                <td width="10" bgcolor="#eeeeee">&nbsp;</td>
+                <td width="200" height="36" bgcolor="#eeeeee">服务项目</td>
+                <td bgcolor="#eeeeee">说明</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td height="36">技术咨询</td>
+                <td style="font-size:14px;">向您提供微信公众号相关技术解答及咨询、注册开通及接入本系统的指导。</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td height="36">增强功能</td>
+                <td style="font-size:14px;">在核心功能的基础上获得更多的可定制性，以及数据分析反馈等。</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td height="36">定制开发</td>
+                <td style="font-size:14px;">定制您的专属微官网、或根据您的需求开发特殊功能或对接您的既有其它系统。</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td height="36">对接微信支付</td>
+                <td style="font-size:14px;">对接微信支付后，可在公众号中开展发红包，1元夺宝等营销活动，以及开通微会员充值消费等功能。</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td height="36">代理运营</td>
+                <td style="font-size:14px;">代理运营或协助运营、活动策划、提供运营周报月报，客户主任一对一服务。</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td height="36">大客户</td>
+                <td style="font-size:14px;">提供专用服务器集群、网络带宽、CDN分发，定制开发全套微官网内容、代理运营或协助运营、活动策划、提供运营周报月报，客户主任一对一服务。</td>
+            </tr>
+        </table>
+
+    </div>
+  
+    <!--
+      <div class="divDotlineBorder" style="margin-top:40px;padding:10px;">
+          对公账户：1313002109300211331<br />
+          户名：滁州市升讯威软件技术有限公司<br />
+          开户行：中国工商银行 安徽省滁州市 琅琊支行<br /><br />
+          支付宝账户：cao.silhouette@msn.com<br />
+    </div>
+      -->
+</div>

@@ -1,0 +1,314 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Areas.Staff.Models.PictureVoteItemDetailViewModel
+
+@{
+    ViewBag.SubTitle = "最美投票";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .divPictureVoteItemImage {
+        width: 100%;
+    }
+</style>
+
+<script type="text/javascript">
+
+    var _lock;
+    var _id = '@Model.PictureVoteItem.Id';
+
+    $(document).ready(function ()
+    {
+        var status = @((int)Model.PictureVoteItem.ApproveStatus);
+        //Waiting
+        if(status == 0){
+            $("#btnApprove").show();
+            $("#btnReject").show();
+            $("#btnLock").hide();
+        }
+            //Approved
+        else if(status == 1){
+            $("#btnApprove").hide();
+            $("#btnReject").hide();
+            $("#btnLock").show();
+        }
+            //Rejected
+        else{
+            $("#btnApprove").hide();
+            $("#btnReject").hide();
+            $("#btnLock").hide();
+        }
+
+        _lock = @Model.PictureVoteItem.Lock.ToString().ToLower();
+        if(_lock){
+            $("#btnLock").val("解 锁");
+        }else{
+            $("#btnLock").val("锁 定");
+        }
+
+    });
+
+    function approve()
+    {
+        var msg = "是否确认审核通过？"
+
+        var confirmLayerIndex = layer.open({
+            content: msg,
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function ()
+            {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                var args = new Object();
+                args.CampaignId = "@Model.PictureVoteItem.CampaignId";
+                args.ItemId = _id;
+
+                @if (Model.PictureVoteItem.Member.HasValue)
+        {
+            <text>
+                args.MemberId = "@Model.PictureVoteItem.Member.Value";
+                </text>
+        }
+
+                $.ajax({
+                    url: "/Api/Campaign/PictureVoteItemApprove/@ViewBag.Domain.Id",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(args),
+                    success: function (data, status, jqXHR)
+                    {
+                        layer.close(loadLayerIndex);
+                        if (data.Success)
+                        {
+                            layerAlertBtn("审核通过~", function () {
+                                window.location.href = '/Staff/Campaign/PictureVoteItemList/@ViewBag.Domain.Id?campaignId=@Model.PictureVoteItem.CampaignId';
+                            });
+
+                        } else
+                        {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest)
+                    {
+                        layer.close(loadLayerIndex);
+                        alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+    function reject(message)
+    {
+        var args = new Object();
+        args.CampaignId = "@Model.PictureVoteItem.CampaignId";
+        args.ItemId = _id;
+        args.Message = message;
+
+        @if (Model.PictureVoteItem.Member.HasValue)
+        {
+            <text>
+        args.MemberId = "@Model.PictureVoteItem.Member.Value";
+        </text>
+        }
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/Campaign/PictureVoteItemRejected/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR)
+            {
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    layerAlertBtn("已拒绝~", function () {
+                        window.location.href = '/Staff/Campaign/PictureVoteItemList/@ViewBag.Domain.Id?campaignId=@Model.PictureVoteItem.CampaignId';
+                    });
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function lock(){
+
+        var confirmMsg = "是否确认锁定该项目？"
+        if(_lock){
+            confirmMsg = "是否确认解除该项目的锁定？";
+        }
+
+        var confirmLayerIndex = layer.open({
+            content: confirmMsg,
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function ()
+            {
+                layer.close(confirmLayerIndex);
+
+                var url = "/Api/Campaign/PictureVoteItemLock/@ViewBag.Domain.Id?id=" + _id;
+                var msg = "该项目已被锁定，不再允许投票。";
+
+                if(_lock){
+                    url = "/Api/Campaign/PictureVoteItemUnLock/@ViewBag.Domain.Id?id=" + _id;
+                    msg = "该项目已解除锁定。";
+                }
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data, status, jqXHR)
+                    {
+                        layer.close(loadLayerIndex);
+                        if (data.Success)
+                        {
+                            layerAlertBtn(msg,function(){
+                                window.location.reload();
+                            });
+
+                        } else
+                        {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest)
+                    {
+                        layer.close(loadLayerIndex);
+                        alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+
+    function removeData()
+    {
+        if (_id == undefined || _id == "")
+        {
+            return;
+        }
+
+        var msg = "是否确认删除该投票项目？"
+
+        var confirmLayerIndex = layer.open({
+            content: msg,
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function ()
+            {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                $.ajax({
+                    url: "/Api/Campaign/RemovePictureVoteItem/@ViewBag.Domain.Id?id=" + _id,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data, status, jqXHR)
+                    {
+                        layer.close(loadLayerIndex);
+                        if (data.Success)
+                        {
+                            window.location.href = '/Staff/Campaign/PictureVoteItemList/@ViewBag.Domain.Id?campaignId=@Model.PictureVoteItem.CampaignId';
+                        } else
+                        {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest)
+                    {
+                        layer.close(loadLayerIndex);
+                        alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+    function cancel(){
+        window.location.href = '/Staff/Campaign/PictureVoteItemList/@ViewBag.Domain.Id?campaignId=@Model.PictureVoteItem.CampaignId';
+    }
+
+</script>
+
+<div>
+    <img src="@Model.PictureVoteItem.Url" class="divPictureVoteItemImage" />
+</div>
+
+<div class="divContent">
+
+    <div class="divDotLine" style="margin-top: 0.05rem; margin-bottom: 0.05rem;">
+    </div>
+
+    <div style="margin-top:0.05rem;">
+        标题：@Model.PictureVoteItem.Title
+    </div>
+    <div style="margin-top:0.05rem;">
+        上传者：@Model.PictureVoteItem.MemberEntity.NickName
+    </div>
+    <div style="margin-top:0.05rem;">
+        编号：@Model.PictureVoteItem.SerialNumber
+    </div>
+    <div style="margin-top:0.05rem;">
+        当前票数：@Model.PictureVoteItem.VoteQuantity
+    </div>
+    <div style="margin-top: 0.05rem;">
+        审核状态：@Model.PictureVoteItem.ApproveStatusString
+    </div>
+    @if (Model.PictureVoteItem.ApproveStatus == Sheng.WeixinConstruction.Infrastructure.EnumCampaignPictureVoteItemApproveStatus.Rejected)
+    {
+        <div style="margin-top: 0.05rem;">
+            拒绝原因：@Model.PictureVoteItem.RejectedMessage
+        </div>
+    }
+
+    <div class="divDotLine" style="margin-top: 0.05rem; margin-bottom: 0.05rem;">
+    </div>
+    <div>
+
+        <input name="btnApprove" type="button" id="btnApprove" value="审 核" style="width: 100%;margin-bottom:0.1rem;height:0.3rem;font-size:0.14rem;" onclick="approve()" />
+        <input name="btnReject" type="button" id="btnReject" value="拒 绝" style="width: 100%;margin-bottom:0.1rem;height:0.3rem;font-size:0.14rem;" onclick="__showInputForm(reject,'拒绝原因',100,true);" />
+        <input name="btnLock" type="button" id="btnLock" value="锁 定" style="width: 100%;margin-bottom:0.1rem;height:0.3rem;font-size:0.14rem;" onclick="lock()" />
+        <input name="btnRemove" type="button" id="btnRemove" value="删 除" style="width: 100%;margin-bottom:0.1rem;height:0.3rem;font-size:0.14rem;" onclick="removeData()" />
+        <input name="btnCancel" type="button" id="btnCancel" value="关 闭" style="width: 100%;margin-bottom:0.1rem;height:0.3rem;font-size:0.14rem;" onclick="cancel()" />
+
+    </div>
+
+</div>
+@Helpers.InputForm()

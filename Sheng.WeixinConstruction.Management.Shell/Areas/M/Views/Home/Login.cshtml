@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "登录";
+    Layout = "~/Areas/M/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+    function login() {
+        window.location.href = "/M/Home/Portal";
+    }
+
+    function register() {
+        window.location.href = "/M/Home/Register";
+    }
+
+</script>
+
+<div class="divContent" style="margin-top:0.6rem;">
+
+    <div style="margin-left:0.15rem;margin-right:0.15rem;">
+        <div style="float:left;color:#4699EC">
+            登录
+        </div>
+        <div style="float:right">
+            <a href="http://wx.shengxunwei.com/M" style="color:#FF794C;font-size:0.14rem;text-decoration:none">访问官网 ></a>
+        </div>
+        <div style="clear:both">
+        </div>
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+    </div>
+
+    <div style="margin-top:0.2rem; margin-left:0.15rem;margin-right:0.15rem;">
+        <div>
+            账户：
+        </div>
+        <div style="margin-top:0.1rem;">
+            <input id="txtSearch_OrderNumber" name="txtSearch_OrderNumber" type="text" class="input_16" />
+        </div>
+        <div style="margin-top:0.1rem;">
+            密码：
+        </div>
+        <div style="margin-top:0.1rem;">
+            <input id="txtSearch_OrderNumber" name="txtSearch_OrderNumber" type="password" class="input_16" />
+        </div>
+    </div>
+
+    <div style="margin-top:0.3rem;margin-left:0.15rem;margin-right:0.15rem;">
+        <div style="float:left;width:48%">
+            <input id="btnLogin" name="btnLogin" type="button" class="btn_blue" style="width:100%;" value="登 录" onclick="login()" />
+        </div>
+        <div style="float:right;width:48%">
+            <input id="btnRegister" name="btnRegister" type="button" class="btn_blue" style="width:100%;" value="注 册" onclick="register()" />
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+
+
+</div>

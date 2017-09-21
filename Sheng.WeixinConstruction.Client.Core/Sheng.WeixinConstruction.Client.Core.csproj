@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0C4A0DF3-7602-49DB-926D-9C0C25E0BA99}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sheng.WeixinConstruction.Client.Core</RootNamespace>
+    <AssemblyName>Sheng.WeixinConstruction.Client.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="ClientDomainContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClientDomainPool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SessionContainer.cs" />
+    <Compile Include="SessionPool.cs" />
+    <Compile Include="XMLMessageReceiver\AutoReplyHelper.cs" />
+    <Compile Include="XMLMessageReceiver\AutoReplyOnKeyWords.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_GroupMessageFinishEvent.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_LinkMessage.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_LocationMessage.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_ImageMessage.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_ScanEvent.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_SubscribeEvent.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_UnsubscribeEvent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_ShortVideoMessage.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_VideoMessage.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_ClickEvent.cs" />
+    <Compile Include="XMLMessageReceiver\XMLMessageReceiver.cs" />
+    <Compile Include="XMLMessageReceiver\XMLMessageReceiverFactory.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_TextMessage.cs" />
+    <Compile Include="XMLMessageReceiver\Receiver\XMLMessageReceiver_VoiceMessage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Linkup.Common\Linkup.Common.csproj">
+      <Project>{2753ed31-d787-41f3-893c-58df187da1d8}</Project>
+      <Name>Linkup.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Linkup.Data\Linkup.Data.csproj">
+      <Project>{bdf82c46-173e-4db0-b2bf-923571528a9e}</Project>
+      <Name>Linkup.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.ApiContract\Sheng.WeixinConstruction.ApiContract.csproj">
+      <Project>{55b9beb8-0cbf-4ed7-a686-3b22e1102f3d}</Project>
+      <Name>Sheng.WeixinConstruction.ApiContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.Core\Sheng.WeixinConstruction.Core.csproj">
+      <Project>{3e09fa4f-e711-42df-9e35-a954bc626361}</Project>
+      <Name>Sheng.WeixinConstruction.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.Infrastructure\Sheng.WeixinConstruction.Infrastructure.csproj">
+      <Project>{e571e2e2-191f-4b60-8bc2-f848fefea6b9}</Project>
+      <Name>Sheng.WeixinConstruction.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.Service\Sheng.WeixinConstruction.Service.csproj">
+      <Project>{b693996b-ef3c-4ed8-a237-36e445f3f745}</Project>
+      <Name>Sheng.WeixinConstruction.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.WeixinContract\Sheng.WeixinConstruction.WeixinContract.csproj">
+      <Project>{19972c3f-7a6f-46c0-a501-5a89001148e6}</Project>
+      <Name>Sheng.WeixinConstruction.WeixinContract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Campaign\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

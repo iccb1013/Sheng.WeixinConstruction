@@ -1,0 +1,272 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.PortalViewModel
+
+@{
+    ViewBag.Title = "Portal";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Authorizer.NickName</title>
+
+    <link href="/Content/Style.css" rel="stylesheet" type="text/css">
+    @*<link href="/Content/Portal.css" rel="stylesheet" type="text/css">*@
+
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/layer.m/layer.m.js"></script>
+    @Scripts.Render("~/bundles/common")
+
+    <script>
+
+        //$(document).ready(function ()
+        //{
+
+        //});
+
+        function signIn()
+        {
+            if ($("#spanSignIn").html() == "已签到")
+            {
+                layerAlert("今天已经签到过了哦~");
+                return;
+            }
+
+            var loadLayerIndex = layer.open({
+                type: 2,
+                shadeClose: false,
+                content: '请稍候...'
+            });
+
+            $.ajax({
+                url: "/Api/Member/SignIn/@ViewBag.Domain.Id",
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR)
+                {
+                    layer.close(loadLayerIndex);
+                    if (data.Success)
+                    {
+                        var resultObj = data.Data;
+
+                        if (resultObj.Success)
+                        {
+                            layerAlert("签到成功！获得活力值 <b>" + resultObj.SignInPoint + "</b> 点~");
+                            $("#spanPoint").html(resultObj.Point);
+                            $("#spanSignIn").html("已签到");
+                        } else
+                        {
+                            switch (resultObj.Reason)
+                            {
+                                case 1:
+                                    layerAlert("今天已经签到过了哦~");
+                                    break;
+                                default:
+                                    layerAlert("未知错误：" + resultObj.Reason);
+                                    break;
+                            }
+                        }
+                    } else
+                    {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest)
+                {
+                    layer.close(loadLayerIndex);
+                    //alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+    </script>
+
+    <style>
+        #divBackground {
+            top: 0rem;
+            bottom: 0rem;
+            left: 0rem;
+            right: 0rem;
+            position: absolute;
+            z-index: 0;
+        }
+
+        #divMemberInfo {
+            font-size: 0.15rem;
+            position: absolute;
+            bottom: 1.1rem;
+            left: 0.3rem;
+            right: 0.3rem;
+        }
+
+        #divMemberInfoBackground {
+            font-size: 0.15rem;
+            position: absolute;
+            bottom: 1.1rem;
+            left: 0.3rem;
+            right: 0.3rem;
+            height: 0.5rem;
+            background-color: white;
+            filter: alpha(opacity=60);
+            -moz-opacity: 0.6;
+            -khtml-opacity: 0.6;
+            opacity: 0.6;
+        }
+
+
+        #divMainMenu {
+            position: absolute;
+            bottom: 0.3rem;
+            left: 0.2rem;
+            right: 0.2rem;
+        }
+
+        .divMainMenuTitleItem {
+            position: relative;
+            margin-left: 0.05rem;
+            margin-right: 0.05rem;
+            margin-top: 0.07rem;
+        }
+
+        .divMainMenuTitle {
+            color: #333333;
+            line-height: 0.3rem;
+            text-align: center;
+            position: relative;
+            font-size: 0.14rem;
+        }
+
+        .divMainMenuTitleBackground {
+            background-color: white;
+            filter: alpha(opacity=60);
+            -moz-opacity: 0.6;
+            -khtml-opacity: 0.6;
+            opacity: 0.6;
+            height: 100%;
+            position: absolute;
+            top: 0rem;
+            left: 0rem;
+            right: 0rem;
+            bottom: 0rem;
+        }
+
+        #divFooter {
+            position: absolute;
+            bottom: 0.04rem;
+            left: 0.2rem;
+            right: 0.2rem;
+            font-size: 0.1rem;
+            text-align: center;
+            color: #333333;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="divBackground">
+       
+        @if (String.IsNullOrEmpty(ViewBag.DomainContext.PortalImageUrl))
+        {
+            <img src="http://wxcfile1.zkebao.com/FileStore/2a58d820-de07-4c8f-80b9-b5cb5a1028b4/e66b0659-e866-457b-905c-13a1fb0fe879.jpg" alt="" style="height:100%; width:100%;" />
+        }
+        else
+        {
+            <img src="@ViewBag.DomainContext.PortalImageUrl" alt="" style="height:100%; width:100%;" />
+        }
+    </div>
+    <div id="divMemberInfoBackground">
+    </div>
+    <div id="divMemberInfo">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width:0.6rem;">
+                    <img src="@ViewBag.Member.Headimgurl_64" style="width:0.5rem; height:0.5rem">
+                </td>
+                <td valign="middle">
+                    <div style="line-height:0.23rem;">
+                        欢迎您，@ViewBag.Member.NickName<br />
+                        活力值：<span id="spanPoint" class="font_red_b">@ViewBag.Member.Point</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="divMainMenu">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="33%" align="center">
+                    <div class="divMainMenuTitleItem" onclick="signIn()">
+                        <div class="divMainMenuTitleBackground">
+                        </div>
+                        <div class="divMainMenuTitle">
+                            @if (ViewBag.Member.SignInDate != null && DateTime.Parse(ViewBag.Member.SignInDate.ToShortDateString()) >= DateTime.Parse(DateTime.Now.ToShortDateString()))
+                            {
+                                <span id="spanSignIn">已签到</span>
+                            }
+                            else
+                            {
+                                <span id="spanSignIn">每日签到</span>
+                            }
+                        </div>
+                    </div>
+                </td>
+                <td width="33%" align="center">
+                    <div class="divMainMenuTitleItem" onclick="goUrl('/Home/PointCommodity/@ViewBag.Domain.Id')">
+                        <div class="divMainMenuTitleBackground">
+                        </div>
+                        <div class="divMainMenuTitle">
+                            活力兑换
+                        </div>
+                    </div>
+                </td>
+                <td width="33%" align="center">
+                    <div class="divMainMenuTitleItem" onclick="goUrl('/Home/PointCommodityOrderList/@ViewBag.Domain.Id')">
+                        <div class="divMainMenuTitleBackground">
+                        </div>
+                        <div class="divMainMenuTitle">
+                            我的订单
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <div class="divMainMenuTitleItem" onclick="goUrl('/Home/PointAccount/@ViewBag.Domain.Id')">
+                        <div class="divMainMenuTitleBackground">
+                        </div>
+                        <div class="divMainMenuTitle">
+                            帐户信息
+                        </div>
+                    </div>
+                </td>
+                <td align="center">
+                    <div class="divMainMenuTitleItem" onclick="goUrl('/Home/PersonalInfo/@ViewBag.Domain.Id')">
+                        <div class="divMainMenuTitleBackground">
+                        </div>
+                        <div class="divMainMenuTitle">
+                            个人信息
+                        </div>
+                    </div>
+                </td>
+                <td align="center">
+                    <div class="divMainMenuTitleItem" onclick="goUrl('/Campaign/CampaignList/@ViewBag.Domain.Id')">
+                        <div class="divMainMenuTitleBackground">
+                        </div>
+                        <div class="divMainMenuTitle">
+                            当前活动
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div id="divFooter" onclick="">
+        招客宝微信营销系统 wx.zkebao.com
+    </div>
+</body>
+
+</html>

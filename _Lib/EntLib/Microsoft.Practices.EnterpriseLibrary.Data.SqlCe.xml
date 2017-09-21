@@ -1,0 +1,399 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.EnterpriseLibrary.Data.SqlCe</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.Properties.Resources.ExceptionMessageUpdateDataSetRowFailure">
+            <summary>
+              Looks up a localized string similar to Failed to update row .
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.Properties.Resources.ExceptionNullOrEmptyString">
+            <summary>
+              Looks up a localized string similar to The value can not be null or an empty string..
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeConnectionPool">
+            <summary>
+            	This class provides a primitive connection pool for <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeConnectionPool.connections">
+            <summary>
+            	Keeps a list of "keep alive" connections.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeConnectionPool.CloseSharedConnection(Microsoft.Practices.EnterpriseLibrary.Data.Database)">
+            <summary>
+            	Closes the "keep alive" connection that is used by all databases with the same connection
+            	string as the one you provide.
+            </summary>
+            <param name="database">The database with the connection string that defines which connections should be closed.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeConnectionPool.CloseSharedConnections">
+            <summary>
+            	Closes all "keep alive" connections for all database instanced.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeConnectionPool.CreateConnection(Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase,System.Boolean)">
+            <summary>
+            	Creates a new connection. If this is the first connection,  it also creates an extra
+            	"Keep Alive" connection to keep the database open.
+            If <paramref name="usePooledConnection"/> is true, than if this connection has been opened before,
+            the connection from the pool will be returned rather than creating a new one.
+            </summary>
+            <param name="db">The database instance that will be used to create a connection.</param>
+            <param name="usePooledConnection">If true, return an already created connection for this object. If
+            false, always create a new one.</param>
+            <returns>A new connection.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeConnectionPool.CreateConnection(Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase)">
+            <summary>
+            	Creates a new connection. If this is the first connection,  it also creates an extra
+            	"Keep Alive" connection to keep the database open. Always returns a new <see cref="T:System.Data.SqlServerCe.SqlCeConnection"/>
+                object, not a pooled one.
+            </summary>
+            <param name="db">The database instance that will be used to create a connection.</param>
+            <returns>A new connection.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase">
+            <summary>
+            	Provides helper methods to make working with a Sql Server Compact Edition database
+            	easier.
+            </summary>
+            <remarks>
+            	<para>
+            		Because SQL Server CE has no connection pooling and the cost of opening the initial
+            		connection is high, this class implements a simple connection pool.
+            	</para>
+            	<para>
+            		SQL Server CE requires full trust to run, so it cannot be used in partial-trust
+            		environments.
+            	</para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase"/> class with a connection string.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.CloseSharedConnection">
+            <summary>
+            	This will close the "keep alive" connection that is kept open after you first access
+            	the database through this class. Calling this method will close the "keep alive"
+            	connection for all instances. The next database access will open a new "keep alive"
+            	connection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.CreateConnection">
+            <summary>
+            	<para>Creates a connection for this database.</para>
+            </summary>
+            <remarks>
+            	This method has been overridden to support keeping a single connection open until you
+            	explicitly close it with a call to <see cref="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.CloseSharedConnection"/>.
+            </remarks>
+            <returns>
+            	<para>The <see cref="T:System.Data.Common.DbConnection"/> for this database.</para>
+            </returns>
+            <seealso cref="T:System.Data.Common.DbConnection"/>        
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.GetWrappedConnection">
+            <summary>
+            Gets a "wrapped" connection for use outside a transaction.
+            </summary>
+            <returns>The wrapped connection.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.DeriveParameters(System.Data.Common.DbCommand)">
+            <summary>
+            	Don't need an implementation for SQL Server CE.
+            </summary>
+            <param name="discoveryCommand"></param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.SetUpRowUpdatedEvent(System.Data.Common.DbDataAdapter)">
+            <summary>
+            Sets the RowUpdated event for the data adapter.
+            </summary>
+            <param name="adapter">The <see cref="T:System.Data.Common.DbDataAdapter"/> to set the event.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteDataSet(System.String,System.Object[])">
+            <summary>
+            	Stored procedures are not supported in SQL Server CE.
+            </summary>
+            <param name="storedProcedureName"></param>
+            <param name="parameterValues"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">In all cases.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteNonQuery(System.String,System.Object[])">
+            <summary>
+            	Stored procedures are not supported in SQL Server CE.
+            </summary>
+            <param name="storedProcedureName"></param>
+            <param name="parameterValues"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">In all cases.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteScalar(System.String,System.Object[])">
+            <summary>
+            	Stored procedures are not supported in SQL Server CE.
+            </summary>
+            <param name="storedProcedureName"></param>
+            <param name="parameterValues"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">In all cases.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.LoadDataSet(System.String,System.Data.DataSet,System.String[],System.Object[])">
+            <summary>
+            	Stored procedures are not supported in SQL Server CE.
+            </summary>
+            <param name="storedProcedureName"></param>
+            <param name="dataSet"></param>
+            <param name="tableNames"></param>
+            <param name="parameterValues"></param>
+            <exception cref="T:System.NotImplementedException">In all cases.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.GetStoredProcCommand(System.String,System.Object[])">
+            <summary>
+            	Because SQL Server CE doesn't support stored procedures, we've changed queries
+            	that take a stored procedure name to take a SQL statement instead.
+            </summary>
+            <param name="storedProcedureName"></param>
+            <param name="parameterValues"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">In all cases.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.GetStoredProcCommand(System.String)">
+            <summary>
+            	Because SQL Server CE doesn't support stored procedures, we've changed queries
+            	that take a stored procedure name to take a SQL statement instead.
+            </summary>
+            <param name="storedProcedureName">The SQL statement to execute.</param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">In all cases.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.BuildParameterName(System.String)">
+            <summary>
+            Builds a value parameter name for the current database.
+            </summary>
+            <param name="name">The name of the parameter.</param>
+            <returns>A correctly formatted parameter name.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.CreateFile">
+            <summary>
+            	Creates a new, empty database file using the file name provided in the Data Source attribute
+            	of the connection string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.CreateParameter(System.String,System.Data.DbType,System.Int32,System.Object)">
+            <summary>
+            	Creates a new parameter and sets the name of the parameter.
+            </summary>
+            <param name="name">The name of the parameter.</param>
+            <param name="type">The type of the parameter.</param>
+            <param name="size">The size of the parameter.</param>
+            <param name="value">
+            	The value you want to assign to the parameter. A null value will be converted to
+            	a <see cref="T:System.DBNull"/> value in the parameter.
+            </param>
+            <returns>
+            	A new <see cref="T:System.Data.Common.DbParameter"/> instance of the correct type for this database.</returns>
+            <remarks>
+            	The database will automatically add the correct prefix (for example, "@" for SQL Server) to the
+            	parameter name. You can just supply the name without a prefix.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteDataSetSql(System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            	Executes a SQL SELECT statement and returns a dataset.
+            </summary>
+            <param name="sqlCommand"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteNonQuerySql(System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            	Executes a SQL statement directly, because SQL Server CE
+            	doesn't support stored procedures.
+            </summary>
+            <param name="sqlCommand">The SQL statement to execute.</param>
+            <param name="parameters">An optional set of parameters and values.</param>
+            <returns>Number of rows affected.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteNonQuerySql(System.String,System.Int32@,System.Data.Common.DbParameter[])">
+            <summary>
+            	Executes an INSERT statement and given the identity of
+            	the row that was inserted for identity tables.
+            </summary>
+            <param name="sqlCommand">The SQL statement to execute.</param>
+            <param name="lastAddedId">The identity value for the last row added, or <see cref="T:System.DBNull"/>.</param>
+            <param name="parameters">Zero or more parameters.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteReaderSql(System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            	Executes a command and returns a <see cref="T:System.Data.Common.DbDataReader"/> that contains the rows
+            	returned.
+            </summary>
+            <param name="sqlCommand">The SQL query to execute.</param>
+            <param name="parameters">Zero or more parameters for the query.</param>
+            <returns>A <see cref="T:System.Data.Common.DbDataReader"/> that contains the rows returned by the query.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteResultSet(System.Data.Common.DbCommand,System.Data.SqlServerCe.ResultSetOptions,System.Data.Common.DbParameter[])">
+            <summary>
+            	SQL Server CE provides a new type of data reader, the <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/>, that provides
+            	new abilities and better performance over a standard reader. This method provides access to
+            	this reader.
+            </summary>
+            <remarks>
+            	The <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/> returned from this method will close the connection on dispose.
+            </remarks>
+            <param name="command">
+            	The command that contains the SQL SELECT statement to execute.
+            </param>
+            <param name="options">Controls how the <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/> behaves.</param>
+            <param name="parameters">An option set of <see cref="T:System.Data.Common.DbParameter"/> parameters.</param>
+            <returns>The reader in the form of a <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteResultSet(System.Data.Common.DbCommand,System.Data.Common.DbParameter[])">
+            <summary>
+            	SQL Server CE provides a new type of data reader, the <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/>, that provides
+            	new abilities and better performance over a standard reader. This method provides access to
+            	this reader.
+            </summary>
+            <remarks>
+            	The <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/> returned from this method will close the connection on dispose.
+            </remarks>
+            <param name="command">The command that contains the SQL SELECT statement to execute.</param>
+            <param name="parameters">An option set of <see cref="T:System.Data.Common.DbParameter"/> parameters.</param>
+            <returns>The reader in the form of a <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteResultSet(System.Data.Common.DbCommand,System.Data.Common.DbTransaction,System.Data.SqlServerCe.ResultSetOptions,System.Data.Common.DbParameter[])">
+            <summary>
+            	SQL Server CE provides a new type of data reader, the <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/>, that provides
+            	new abilities and better performance over a standard reader. This method provides access to
+            	this reader.
+            </summary>
+            	Unlike other Execute... methods that take a <see cref="T:System.Data.Common.DbCommand"/> instance, this method
+            	does not set the command behavior to close the connection when you close the reader.
+            	That means you'll need to close the connection yourself, by calling the
+            	command.Connection.Close() method after you're finished using the reader.
+            <param name="command">The command that contains the SQL SELECT statement to execute.</param>
+            <param name="transaction">Transaction to execute the command under.</param>
+            <param name="options">Controls how the <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/> behaves.</param>
+            <param name="parameters">An option set of <see cref="T:System.Data.Common.DbParameter"/> parameters.</param>
+            <returns>The reader in the form of a <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteResultSet(System.Data.Common.DbCommand,System.Data.Common.DbTransaction,System.Data.Common.DbParameter[])">
+            <summary>
+            	SQL Server CE provides a new type of data reader, the <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/>, that provides
+            	new abilities and better performance over a standard reader. This method provides access to
+            	this reader.
+            </summary>
+            	Unlike other Execute... methods that take a <see cref="T:System.Data.Common.DbCommand"/> instance, this method
+            	does not set the command behavior to close the connection when you close the reader.
+            	That means you'll need to close the connection yourself, by calling the
+            	command.Connection.Close() method after you're finished using the reader.
+            <param name="command">The command that contains the SQL SELECT statement to execute.</param>
+            <param name="transaction">Transaction to execute the command under.</param>
+            <param name="parameters">An option set of <see cref="T:System.Data.Common.DbParameter"/> parameters.</param>
+            <returns>The reader in the form of a <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ExecuteScalarSql(System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            	Executes the <paramref name="sqlCommand"/> and returns the first column of the first
+            	row in the result set returned by the query. Extra columns or rows are ignored.
+            </summary>
+            <param name="sqlCommand">The SQL statement to execute.</param>
+            <param name="parameters">Zero or more parameters for the query.</param>
+            <returns>
+            <para>
+            	The first column of the first row in the result set.
+            </para>
+            </returns>
+            <seealso cref="M:System.Data.IDbCommand.ExecuteScalar"/>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.GetLastId(System.Data.Common.DbConnection)">
+            <summary>
+            	Returns the ID of the most recently added row.
+            </summary>
+            <returns>
+            	The ID of the row added, or -1 if no row was added or if the table doesn't have an identity column.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.AddParameters(System.Data.Common.DbCommand,System.Data.Common.DbParameter[])">
+            <summary>
+            	Adds any parameters to the command.
+            </summary>
+            <param name="command">The command object you want prepared.</param>
+            <param name="parameters">Zero or more parameters to add to the command.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.TableExists(System.String)">
+            <summary>
+            	Checks to see if a table exists in the open database.
+            </summary>
+            <param name="tableName">Name of the table.</param>
+            <returns>><b>true</b> if the table exists; otherwise, <b>false</b>.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.OnSqlRowUpdated(System.Object,System.Data.SqlServerCe.SqlCeRowUpdatedEventArgs)">
+            <devdoc>
+            Listens for the RowUpdate event on a dataa dapter to support UpdateBehavior.Continue.
+            </devdoc>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase.ParameterToken">
+            <summary>
+            <para>Gets the parameter token used to delimit parameters for the SQL Server database.</para>
+            </summary>
+            <value>
+            <para>The "@" symbol.</para>
+            </value>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabaseData">
+            <summary>
+            Describes a <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase"/> instance, aggregating information from a
+            <see cref="T:System.Configuration.ConnectionStringSettings"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabaseData.#ctor(System.Configuration.ConnectionStringSettings,System.Func{System.String,System.Configuration.ConfigurationSection})">
+             <summary>
+             Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabase"/> class with a connection string and a configuration
+             source.
+            </summary>
+            <param name="connectionStringSettings">The <see cref="T:System.Configuration.ConnectionStringSettings"/> for the represented database.</param>
+            <param name="configurationSource">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource"/> from which additional information can 
+             be retrieved if necessary.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeDatabaseData.BuildDatabase">
+            <summary>
+            Builds the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Data.Database"/> represented by this configuration object.
+            </summary>
+            <returns>
+            A database.
+            </returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.SqlCeResultSetWrapper">
+            <summary>
+            A wrapper around <see cref="T:System.Data.SqlServerCe.SqlCeResultSet"/> which also manages
+            reference counting on the corresponding connection.
+            </summary>
+        </member>
+    </members>
+</doc>

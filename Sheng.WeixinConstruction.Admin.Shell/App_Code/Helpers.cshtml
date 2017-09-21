@@ -1,0 +1,225 @@
+﻿@helper FileUpload()
+{
+    <script type="text/javascript" src='/Scripts/jquery.form.js'></script>
+
+    <script type="text/html" id="divUpload">
+        <div style="margin-left: 10px; margin-right: 10px; margin-top: 20px; margin-bottom: 10px;">
+            <div id="divFileUpload_Mask" style="display: none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; background-color: white">
+                <div style="margin-left: 30px; margin-top: 20px;">正在上传，请稍候...</div>
+            </div>
+
+            <div style="width: 100%;">
+                <div>
+                    <span class="font_blue_20">文件上传 </span>
+                </div>
+
+
+                <div style="width: 100%; margin-left: 0px; margin-top: 20px;">
+                    <form id="formFileUpload">
+                        <input type="hidden" id="txtFileUpload_Id" name="txtFileUpload_Id" />
+                        <input type="hidden" id="txtFileUpload_UserId" name="txtFileUpload_UserId" />
+                        <input type="hidden" id="txtFileUpload_Domain" name="txtFileUpload_Domain" />
+                        <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="130" height="36">
+                                    <input name="txtFileUpload_Name" type="file" class="input_16" style="width: 100%;" id="txtFileUpload_Name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="36">
+                                    <a href="http://docs.shengxunwei.com/Home/Browser/wxcm/003c0be0-ad31-4ef6-a4fa-9983f5655e60/d33ea213-09ce-4168-afd3-119068e46b39" target="_blank">上传图片文件之前请压缩图片以提高访问速度，点击查看</a>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </form>
+                </div>
+                <div style="width: 100%; margin-top: 20px; margin-left: 0px;">
+                    <div style="float: right">
+                        <input name="btnSave" type="button" class="btn_blue" id="btnSave" value="上 传" onclick="__fileUpload()" />
+
+                        <input name="btnCancel" type="button" class="btn_blue" id="btnCancel" value="取 消" onclick="__closeFileUpload()" />
+
+                    </div>
+                    <div style="clear: both">
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </script>
+
+    <script type="text/javascript">
+
+        var __fileUploadDivHtml;
+        var __fileUploadLayerIndex;
+        var __fileServiceAddress;//= "http://localhost:8012/";
+        //var _resultDomId;
+        var __fileUploadCallback;
+
+        var __fileUploadArgs;
+
+        $(document).ready(function () {
+            __fileUploadDivHtml = $("#divUpload").html();
+            $("#divUpload").html("");
+        });
+
+        function __showFileUpload(callback, fileUploadArgs) {
+            //_resultDomId = resultDomId;
+            __fileUploadCallback = callback;
+
+            if (fileUploadArgs != undefined && fileUploadArgs != null) {
+                __fileUploadArgs = fileUploadArgs;
+            }
+            else {
+                __fileUploadArgs = new Object();
+                __fileUploadArgs.uploadMethod = "Upload";
+                __fileUploadArgs.getUploadResultApi = "/Api/Settings/GetFileUploadResult?fileId={0}";
+            }
+
+            __fileUploadLayerIndex = layer.open({
+                type: 1,
+                area: ['500px', '220px'], //宽高
+                closeBtn: false,
+                title: "",
+                shift: _layerShift,
+                content: __fileUploadDivHtml,
+                success: function (layero, index) {
+                    $(layero).focus();
+
+                    //请求文件上传参数
+                    __getFileUploadParameter(function () {
+                        //跨域上传，通过HTTP返回代码判断结果
+                        $("#formFileUpload").submit(function () {
+                            //alert($("#txtFileUpload_Id").val());
+
+                            $("#formFileUpload").ajaxSubmit({
+                                type: "post",
+                                dataType: "json",
+                                url: __fileServiceAddress + "File/" + __fileUploadArgs.uploadMethod,
+                                success: function (data) {
+                                    __getUploadResult();
+                                },
+                                error: function (msg) {
+                                    __getUploadResult();
+
+                                    //IE下虽然进ERROR，但返回200
+                                    //CHROME下连200状态都得不到，返回0
+                                    //alert("error:" + msg.status);
+                                    ////{ "readyState": 4, "responseText": "", "status": 200, "statusText": "OK" }
+                                    //if (msg.status == 200)
+                                    //{
+
+                                    //    var url = __fileServiceAddress + "File/Get?id=" + $("#txtFileUpload_Id").val();
+                                    //    $("#" + resultDomId).val(url);
+                                    //    layer.close(__fileUploadLayerIndex);
+                                    //    if (callback != null && callback != undefined)
+                                    //    {
+                                    //        callback();
+                                    //    }
+                                    //}
+                                    //else
+                                    //{
+                                    //    //alert(JSON.stringify(msg));
+                                    //    alert(msg.responseText);
+                                    //}
+                                }
+                            });
+                            return false;
+                        });
+                    });
+                }
+            });
+        }
+
+        function __getUploadResult() {
+            var url = String.format(__fileUploadArgs.getUploadResultApi, $("#txtFileUpload_Id").val());
+            //alert(url);
+
+            $.ajax({
+                url: url,//__fileUploadArgs.getUploadResultApi + "?fileId=" + $("#txtFileUpload_Id").val(),
+                type: "POST", //如果用GET要注意浏览器缓存
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    //alert(JSON.stringify(data));
+                    //FileUploadResult
+                    if (data.Success) {
+                        // var url = __fileServiceAddress + data.StoreFilePath;
+                        //$("#" + _resultDomId).val(url);
+
+                        layer.close(__fileUploadLayerIndex);
+                        if (__fileUploadCallback != undefined && __fileUploadCallback != null) {
+                            //__fileUploadCallback(__fileServiceAddress, data.Data);
+                            __fileUploadCallback(__fileServiceAddress, data);
+                        }
+
+                    } else {
+                        $("#divFileUpload_Mask").hide();
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+        function __closeFileUpload() {
+            layer.close(__fileUploadLayerIndex);
+        }
+
+        function __fileUpload() {
+            var fileName = $("#txtFileUpload_Name").val();
+
+            if (fileName == "") {
+                layerAlert("请选择要上传的文件。");
+                return;
+            }
+
+            var fileExtName = fileName.substr(fileName.lastIndexOf(".")).toLowerCase();//获得文件后缀名
+
+            if (fileExtName != '.jpeg' && fileExtName != '.jpg' && fileExtName != '.gif' && fileExtName != '.png') {
+                layerAlert("请上传图片文件，您可以上传的文件类型：jpeg，jpg，gif，png。");
+                return;
+            }
+
+            $("#divFileUpload_Mask").show();
+            $("#formFileUpload").submit();
+        }
+
+        function __getFileUploadParameter(callback) {
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/UserContext/GetFileUploadParameter",
+                type: "POST", //如果用GET要注意浏览器缓存
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    layer.close(loadLayerIndex);
+                    if (data.Success) {
+                        var parameter = data.Data;
+                        $("#txtFileUpload_Id").val(parameter.Id);
+                        $("#txtFileUpload_UserId").val(parameter.UserId);
+                        $("#txtFileUpload_Domain").val(parameter.DomainId);
+                        __fileServiceAddress = parameter.FileService;
+                        //alert(__fileServiceAddress);
+                        callback();
+
+                    } else {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+    </script>
+
+}

@@ -1,0 +1,255 @@
+﻿@model Sheng.WeixinConstruction.Management.Shell.Models.ShakingLotteryGiftWinningProjectiveViewModel
+
+@{
+    ViewBag.Title = "摇一摇";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style>
+    body {
+        /*background-color: #800000;*/
+        background:url(/Content/Images/huajin/huajing_bg2.jpg);
+        background-size:100% auto;
+    }
+
+    #divTop {
+        width: 100%;
+        height: 100px;
+        /*box-shadow: 0px 3px 10px #EFEFEF;*/
+        background-color: #fff;
+        z-index: 9000;
+    }
+
+      #divFooter1 {
+	        position:fixed;
+	        bottom:0px;
+	        left:0px;
+	        right:0px;
+            width: 100%;
+            height: 50px;
+            /*box-shadow: 0px 3px 10px #EFEFEF;*/
+            /*background-color: #800000;*/
+            z-index: 9000;
+            color: #FFBF00;
+            font-size: 24px;
+            text-align: center;
+        }
+
+    #divContent {
+        position: absolute;
+        top: 130px;
+        bottom: 0px;
+        width: 100%;
+        margin-top: 0px;
+    }
+
+    .tableHeader1 {
+        height: 55px;
+        /*background-color: #FF1111;*/
+        color: #FFBF00;
+        font-size:24px;
+    }
+
+    #tableBody{
+        color: white;
+        font-size:20px;
+    }
+
+</style>
+
+<script>
+
+    var _id = getQueryString("id");
+
+    $(document).ready(function () {
+        @if ((Model.CampaignBundle.ShakingLottery.Mode == Sheng.WeixinConstruction.Infrastructure.EnumCampaign_ShakingLotteryMode.Period
+        && Model.CurrentPeriod != null) ||
+        (Model.CampaignBundle.ShakingLottery.Mode != Sheng.WeixinConstruction.Infrastructure.EnumCampaign_ShakingLotteryMode.Period &&
+        Model.CampaignBundle.ShakingLottery.Started))
+        {
+            <text>
+       // loadData();
+        setInterval("loadData();", 3000);
+        </text>
+        }
+        else
+        {
+            @:setInterval("window.location.reload()", 2000);
+    }
+
+    });
+
+
+    function loadData(targetPage) {
+
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.CampaignId = _id;
+        args.PageSize = 1000;
+        // args.Name = $("#txtSearch_Name").val();
+
+        $.ajax({
+            url: "/Api/Campaign/GetShakingLotteryGiftProjectiveData",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    //   alert(JSON.stringify(resultObj));
+                    var gettpl = document.getElementById('tableTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.WinningList.ItemList, function (html) {
+                        document.getElementById('divTableBodyContainer').innerHTML = html;
+                        fitTable();
+                    });
+
+                    @if (Model.CampaignBundle.ShakingLottery.Mode == Sheng.WeixinConstruction.Infrastructure.EnumCampaign_ShakingLotteryMode.Period)
+                    {
+                        <text>
+                    //    alert(resultObj.CurrentPeriod.Name);
+                    $("#spanPeriodName").html(resultObj.CurrentPeriod.Name);
+
+                    </text>
+                    }
+
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function scrollHeader() {
+        // alert(divTableBodyContainer.scrollLeft);
+        var ml = 0 - divTableBodyContainer.scrollLeft;
+        document.getElementById("tableHeader").style.cssText = "margin-left:" + ml + "px;";
+    }
+
+    function fitTable() {
+        $("#tableBody").width($("#tableHeader").width());
+
+        $("#tableHeader tr:first").each(function (n, value) {
+            $(this).find("td").each(function (n, value) {
+                $("#tableBody tr:first td:eq(" + n + ")").width(value.width)
+            });
+        });
+    }
+
+
+</script>
+
+
+<script id="tableTemplate" type="text/html">
+
+    <table id="tableBody" border="0" cellspacing="0" cellpadding="0">
+
+        {{# for(var i = 0, len = d.length; i < len; i++){ }}
+        <tr>
+            <td height="35">{{ d[i].MemberNickName }}</td>
+            <td>{{ d[i].GiftName }}</td>
+            <td>{{ d[i].Time }}</td>
+        </tr>
+        {{# } }}
+
+    </table>
+
+</script>
+
+
+
+<div id="divTop" style="text-align:center">
+    <table style="width:100%">
+        <tr>
+            <td align="center">
+                <img src="/Content/Images/Huajin/Logo.jpg" style="margin-top:20px;" />
+            </td>
+        </tr>
+    </table>
+    @*<div class="divDotLine" style="margin-top: 20px; margin-left: 20px; margin-right: 20px;"></div>*@
+
+</div>
+
+
+<div id="divContent" style="OVERFLOW-Y: auto; ">
+    <div style="text-align:center; color: #FFBF00;font-size:24px;">
+        @if (Model.CampaignBundle.ShakingLottery.Mode == Sheng.WeixinConstruction.Infrastructure.EnumCampaign_ShakingLotteryMode.Period)
+        {
+            <span id="spanPeriodName"></span>
+        }
+        else
+        {
+            @:祝您中奖！
+    }
+    </div>
+
+    @if ((Model.CampaignBundle.ShakingLottery.Mode == Sheng.WeixinConstruction.Infrastructure.EnumCampaign_ShakingLotteryMode.Period
+        && Model.CurrentPeriod != null) ||
+        (Model.CampaignBundle.ShakingLottery.Mode != Sheng.WeixinConstruction.Infrastructure.EnumCampaign_ShakingLotteryMode.Period &&
+        Model.CampaignBundle.ShakingLottery.Started))
+    {
+        <div style=" margin-top:10px">
+            <div style="overflow:hidden; padding-left:20px;" class="tableHeader1">
+
+                <table id="tableHeader" border="0" cellspacing="0" cellpadding="0" width="800" height="47">
+                    <tr>
+                        <td width="300">会员昵称</td>
+                        <td width="300">中奖奖品</td>
+                        <td width="200">时间</td>
+                    </tr>
+                </table>
+
+            </div>
+            <div style="margin-top: 10px; margin-left: 10px; margin-right: 20px;height:1px;	background-color:#C10000"></div>
+
+            <div style="margin-top:10px">
+                <!--div必须要设置height，否则滚动条出不来-->
+                <div id="divTableBodyContainer" style="overflow:auto; height:100%;padding-left:20px;" onscroll="scrollHeader()">
+                    @*<div style="background-color:aqua" id="demo1"></div>*@
+                    <!--table必须要有一个确切的宽度，否则无法超出div-->
+                    @*<table id="tableBody" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td><input type="checkbox" /></td>
+                                <td height="35"><a href="#">电子影票一张</a></td>
+                                <td>20</td>
+                                <td>100</td>
+                                <td>12</td>
+                                <td>是</td>
+                            </tr>
+                        </table>*@
+                </div>
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div style="text-align:center;color: #FFBF00;font-size:24px;">
+            活动即将开始，请扫描二维码关注我们访问活动页面：
+        </div>
+
+        <div style="margin-top:30px;text-align:center">
+            <table style="width:100%">
+                <tr>
+                    <td align="center">
+                        <img src="~/Content/Images/huajin/qrcode.png" style="max-width:30%" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+
+</div>
+
+<div id="divFooter1">
+    华晶文化：做事争做奋斗者 做人要有情有义
+</div>

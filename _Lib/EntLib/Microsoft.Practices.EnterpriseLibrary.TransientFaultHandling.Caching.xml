@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Caching</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.CacheTransientErrorDetectionStrategy">
+            <summary>
+            Provides the transient error detection logic that can recognize transient faults when dealing with Windows Azure Caching.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.CacheTransientErrorDetectionStrategy.IsTransient(System.Exception)">
+            <summary>
+            Checks whether or not the specified exception belongs to a category of transient failures that can be compensated by a retry.
+            </summary>
+            <param name="ex">The exception object to be verified.</param>
+            <returns>true if the specified exception belongs to the category of transient errors; otherwise, false.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Caching.DataCacheExceptionChecker">
+            <summary>
+            Checks whether an <see cref="T:System.Exception"/> is of the Microsoft.ApplicationServer.Caching.DataCacheException type,
+            and if so, checks the error code and status code to determine if it is transient.
+            This method dynamically discovers the type, to avoid a hard reference to the 
+            Microsoft.ApplicationServer.Caching.Core assembly (either version 1.0.0.0 or 101.0.0.0).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Caching.DataCacheExceptionChecker.IsTransientDataCacheException(System.Exception)">
+            <summary>
+            Checks whether <paramref name="ex"/> is a transient DataCacheException.
+            </summary>
+            <param name="ex">The exception object to be verified.</param>
+            <returns>
+            <see langword="true"/> if the exception is of type DataCacheException and is transient;
+            <see langword="false"/> if the exception is of type DataCacheException and is not transient;
+            <see langword="null"/> if the exception is not of type DataCacheException.
+            </returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.AssemblyMismatchException">
+            <summary>
+              Looks up a localized string similar to Assembly mismatch for type with name &apos;Microsoft.ApplicationServer.Caching.DataCacheException&apos;. Expected partial assembly name is &apos;Microsoft.ApplicationServer.Caching.Core, PublicKeyToken=31bf3856ad364e35&apos;. The actual assembly name found at runtime for the type is &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.TypeMismatchException">
+            <summary>
+              Looks up a localized string similar to Expected type mismatch for type with partial name &apos;Microsoft.ApplicationServer.Caching.DataCacheException, Microsoft.ApplicationServer.Caching.Core, PublicKeyToken=31bf3856ad364e35&apos;. The supported versions of the assembly defining the type are 1.0.0.0 and 101.0.0.0..
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerCachingExtensions">
+            <summary>
+            Provides extensions to the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager"/> class for using the Windows Azure Caching retry strategy.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerCachingExtensions.DefaultStrategyTechnologyName">
+            <summary>
+            The technology name that can be used to get the default Caching retry strategy name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerCachingExtensions.GetDefaultAzureCachingRetryStrategy(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry strategy for Windows Azure Caching.
+            </summary>
+            <returns>The default Windows Azure Caching retry strategy (or the default strategy if no default could be found for Windows Azure Caching).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerCachingExtensions.GetDefaultAzureCachingRetryPolicy(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with Windows Azure Caching.
+            </summary>
+            <returns>The retry policy for Windows Azure Caching with the corresponding default strategy (or the default strategy if no retry strategy definition assigned to Windows Azure Caching was found).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerCachingExtensions.GetDefaultCachingRetryStrategy(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry strategy for Windows Azure Caching.
+            </summary>
+            <returns>The default Windows Azure Caching retry strategy (or the default strategy if no default could be found for Windows Azure Caching).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerCachingExtensions.GetDefaultCachingRetryPolicy(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with Windows Azure Caching.
+            </summary>
+            <returns>The retry policy for Windows Azure Caching with the corresponding default strategy (or the default strategy if no retry strategy definition for Windows Azure Caching was found).</returns>
+        </member>
+    </members>
+</doc>

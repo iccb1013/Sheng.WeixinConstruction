@@ -1,0 +1,23 @@
+﻿@charset "utf-8";
+
+body {
+	margin: 0px;
+	margin-top: 0rem;
+	margin-bottom: 0rem;
+	font-size: 0.15rem;
+}
+
+
+img {
+    margin: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    vertical-align: middle;
+}
+
+.font_red_b {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}

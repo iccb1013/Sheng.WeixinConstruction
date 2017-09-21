@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F9192315-0BC4-4384-9A5E-A3FFA62E3F8D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sheng.WeixinConstruction.Client.Shell</RootNamespace>
+    <AssemblyName>Sheng.WeixinConstruction.Client.Shell</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging">
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Database, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Lib\EntLib\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
+    <Compile Include="Areas\Api\Controllers\ApiBasalController.cs" />
+    <Compile Include="Areas\Api\Controllers\CampaignController.cs" />
+    <Compile Include="Areas\Api\Controllers\CouponController.cs" />
+    <Compile Include="Areas\Api\Controllers\CustomFormController.cs" />
+    <Compile Include="Areas\Api\Controllers\InformationController.cs" />
+    <Compile Include="Areas\Api\Controllers\MemberController.cs" />
+    <Compile Include="Areas\Api\Controllers\OneDollarBuyingController.cs" />
+    <Compile Include="Areas\Api\Controllers\AdvancedArticleController.cs" />
+    <Compile Include="Areas\Api\Controllers\PayController.cs" />
+    <Compile Include="Areas\Api\Controllers\PointCommodityController.cs" />
+    <Compile Include="Areas\Api\Controllers\PageController.cs" />
+    <Compile Include="Areas\Api\Controllers\PortalController.cs" />
+    <Compile Include="Areas\Api\Controllers\SMSController.cs" />
+    <Compile Include="Areas\Staff\Controllers\CampaignController.cs" />
+    <Compile Include="Areas\Staff\Controllers\PointCommodityController.cs" />
+    <Compile Include="Areas\Staff\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Staff\Models\Campaign\CampaignListViewModel.cs" />
+    <Compile Include="Areas\Staff\Models\Campaign\LuckyTicketDrawViewModel.cs" />
+    <Compile Include="Areas\Staff\Models\Campaign\LuckyTicketViewModel.cs" />
+    <Compile Include="Areas\Staff\Models\Campaign\PictureVoteItemDetailViewModel.cs" />
+    <Compile Include="Areas\Staff\Models\Campaign\PictureVoteViewModel.cs" />
+    <Compile Include="Areas\Staff\Models\Campaign\ShakingLotteryViewModel.cs" />
+    <Compile Include="Areas\Staff\Models\Home\MemberInfoViewModel.cs" />
+    <Compile Include="Areas\Staff\Models\Home\PortalViewModel.cs" />
+    <Compile Include="Areas\Staff\StaffAreaRegistration.cs" />
+    <Compile Include="Controllers\BasalController.cs" />
+    <Compile Include="Controllers\CampaignController.cs" />
+    <Compile Include="Controllers\FunctionController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
+    <Compile Include="Controllers\FileServerCallbackController.cs" />
+    <Compile Include="Controllers\PointCommodityController.cs" />
+    <Compile Include="Filters\AllowedEmptyDomain.cs" />
+    <Compile Include="Filters\AllowedOnlyOpenId.cs" />
+    <Compile Include="Models\Campaign\CreatePictureVoteItemArgs.cs" />
+    <Compile Include="Models\Campaign\LotteryViewModel.cs" />
+    <Compile Include="Models\Campaign\LuckyTicketDrawResultViewModel.cs" />
+    <Compile Include="Models\Campaign\DonationViewModel.cs" />
+    <Compile Include="Models\Campaign\LuckyTicketViewModel.cs" />
+    <Compile Include="Models\Campaign\MemberQRCodeShareViewModel.cs" />
+    <Compile Include="Models\Campaign\MemberQRCodeViewModel.cs" />
+    <Compile Include="Models\Campaign\OneDollarBuyingCommodityDetailViewModel.cs" />
+    <Compile Include="Models\Campaign\PictureVoteItemDetailViewModel.cs" />
+    <Compile Include="Areas\Staff\Models\Campaign\PictureVoteItemListViewModel.cs" />
+    <Compile Include="Models\Campaign\PictureVoteUploadViewModel.cs" />
+    <Compile Include="Models\Campaign\PictureVoteViewModel.cs" />
+    <Compile Include="Models\Campaign\ShakingLotteryViewModel.cs" />
+    <Compile Include="Models\Home\AdvancedArticleViewModel.cs" />
+    <Compile Include="Models\Home\CouponDetailViewModel.cs" />
+    <Compile Include="Models\Home\CustomFormViewModel.cs" />
+    <Compile Include="Models\Home\InfomationItemViewModel.cs" />
+    <Compile Include="Models\Home\InformationCategoryViewModel.cs" />
+    <Compile Include="Models\Home\InformationViewModel.cs" />
+    <Compile Include="Models\Home\MemberCenterViewModel.cs" />
+    <Compile Include="Models\Home\MovieTimesViewModel.cs" />
+    <Compile Include="Models\Home\PageViewModel.cs" />
+    <Compile Include="Models\Home\RecommendUrlViewModel.cs" />
+    <Compile Include="Models\Pay\PayViewModel.cs" />
+    <Compile Include="TestApp.cs" />
+    <Compile Include="Controllers\ClientBasalController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ThirdPartyWeixinApiController.cs" />
+    <Compile Include="ErrorMessage.cs" />
+    <Compile Include="Filters\AllowedAnonymous.cs" />
+    <Compile Include="Filters\DefaultExceptionFilter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Home\ErrorViewModel.cs" />
+    <Compile Include="Models\Home\GuideSubscribeViewModel.cs" />
+    <Compile Include="Models\Home\PersonalInfoViewModel.cs" />
+    <Compile Include="Models\Home\PointCommodityDetailViewModel.cs" />
+    <Compile Include="Models\Home\PointCommodityOrderDetailViewModel.cs" />
+    <Compile Include="Models\Home\PortalViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\CustomTemplate\portalStyle.css" />
+    <Content Include="Content\Images\arrow_down.png" />
+    <Content Include="Content\Images\arrow_up.png" />
+    <Content Include="Content\Images\bg_star.jpg" />
+    <Content Include="Content\Images\coupon_bg.png" />
+    <Content Include="Content\Images\dotLine.png" />
+    <Content Include="Content\Images\dotLine_v.png" />
+    <Content Include="Content\Images\headimg.jpg" />
+    <Content Include="Content\Images\leftArrow.png" />
+    <Content Include="Content\Images\memberCard.jpg" />
+    <Content Include="Content\Images\moreMenu.png" />
+    <Content Include="Content\Images\oneDollarBuyingIntroduction1.jpg" />
+    <Content Include="Content\Images\oneDollarBuyingIntroduction2.jpg" />
+    <Content Include="Content\Images\personalIcon.png" />
+    <Content Include="Content\Images\qrcode.jpg" />
+    <Content Include="Content\Images\qrcodeIcon.jpg" />
+    <Content Include="Content\Images\qrcode_shengxunwei.png" />
+    <Content Include="Content\Images\shaking.jpg" />
+    <Content Include="Content\Images\share.PNG" />
+    <Content Include="Content\Images\shareTimeLine.jpg" />
+    <Content Include="Content\Images\shin.jpg" />
+    <Content Include="Content\Images\staff_topTitle_bg.jpg" />
+    <Content Include="Content\Images\staff_top_bg.jpg" />
+    <Content Include="Content\Images\topbar_bg.jpg" />
+    <Content Include="Content\Images\vip.png" />
+    <Content Include="Content\Style.css" />
+    <Content Include="Content\Style_Blue.css" />
+    <Content Include="Content\Style_Red.css" />
+    <Content Include="Content\Style_Yellow.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Areas\Api\Views\web.config" />
+    <Content Include="App_Code\Helpers.cshtml" />
+    <Content Include="Areas\Staff\Views\web.config" />
+    <Content Include="Areas\Staff\Views\Home\Portal.cshtml" />
+    <Content Include="Areas\Staff\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Staff\Views\Campaign\CampaignList.cshtml" />
+    <Content Include="Areas\Staff\Views\Campaign\PictureVote.cshtml" />
+    <Content Include="Areas\Staff\Views\Campaign\PictureVoteItemList.cshtml" />
+    <Content Include="Areas\Staff\Views\Campaign\PictureVoteItemDetail.cshtml" />
+    <Content Include="Areas\Staff\Views\PointCommodity\PointCommodityOrder.cshtml" />
+    <Content Include="Areas\Staff\Views\Campaign\LuckyTicket.cshtml" />
+    <Content Include="Areas\Staff\Views\Campaign\LuckyTicketDraw.cshtml" />
+    <Content Include="Areas\Staff\Views\Campaign\MemberQRCode.cshtml" />
+    <Content Include="Areas\Staff\Views\Campaign\Lottery.cshtml" />
+    <Content Include="Areas\Staff\Views\Home\OneDollarBuyingDeal.cshtml" />
+    <Content Include="Areas\Staff\Views\Home\MemberInfo.cshtml" />
+    <Content Include="Areas\Staff\Views\Home\CouponRecordDetail.cshtml" />
+    <Content Include="Areas\Staff\Views\Campaign\ShakingLottery.cshtml" />
+    <None Include="Properties\PublishProfiles\default.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\CustomTemplate\portalCommon.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.qrcode.js" />
+    <Content Include="Scripts\layer.m\layer.m.js" />
+    <Content Include="Scripts\layer.m\need\layer.css" />
+    <Content Include="Scripts\laypage\laypage.js" />
+    <Content Include="Scripts\laypage\skin\laypage.css" />
+    <Content Include="Scripts\laytpl.js" />
+    <Content Include="Scripts\math.js" />
+    <Content Include="Scripts\shake.js" />
+    <Content Include="Scripts\swiper\swiper-3.3.1.jquery.min.js" />
+    <Content Include="Scripts\swiper\swiper-3.3.1.min.css" />
+    <Content Include="Scripts\validate\additional-methods.js" />
+    <Content Include="Scripts\validate\additional-methods.min.js" />
+    <Content Include="Scripts\validate\jquery.validate.js" />
+    <Content Include="Scripts\validate\jquery.validate.min.js" />
+    <Content Include="Scripts\validate\localization\messages_zh.js" />
+    <Content Include="Scripts\validate\localization\messages_zh.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Portal.cshtml" />
+    <Content Include="Views\WeixinApi\HandlerTest.cshtml" />
+    <Content Include="Views\PointCommodity\PointCommodity.cshtml" />
+    <Content Include="Views\PointCommodity\PointCommodityDetail.cshtml" />
+    <Content Include="Views\PointCommodity\OrderDetail.cshtml" />
+    <Content Include="Views\PointCommodity\OrderList.cshtml" />
+    <Content Include="Views\Home\PointAccount.cshtml" />
+    <Content Include="Views\Home\PersonalInfo.cshtml" />
+    <Content Include="Views\Home\ErrorView.cshtml" />
+    <Content Include="Views\Home\GuideSubscribe.cshtml" />
+    <Content Include="Views\Home\Redpack.cshtml" />
+    <Content Include="Views\Campaign\CampaignList.cshtml" />
+    <Content Include="Views\Campaign\PictureVote.cshtml" />
+    <Content Include="Views\Campaign\PictureVoteUpload.cshtml" />
+    <Content Include="Views\Campaign\PictureVoteItemDetail.cshtml" />
+    <Content Include="Views\Campaign\MemberQRCode.cshtml" />
+    <Content Include="Views\Campaign\MemberQRCodeShare.cshtml" />
+    <Content Include="Views\Campaign\Lottery.cshtml" />
+    <Content Include="Views\Home\MovieTimes.cshtml" />
+    <Content Include="Views\Home\Information.cshtml" />
+    <Content Include="Views\Home\InformationItemList.cshtml" />
+    <Content Include="Views\Campaign\LuckyTicket.cshtml" />
+    <Content Include="Views\Home\StaffLogin.cshtml" />
+    <Content Include="Views\Campaign\LuckyTicketDrawResult.cshtml" />
+    <Content Include="Views\Pay\CashAccountTrack.cshtml" />
+    <Content Include="Views\Pay\Deposit.cshtml" />
+    <Content Include="Views\Pay\PayOrderList.cshtml" />
+    <Content Include="Views\Pay\PayOrderDetail.cshtml" />
+    <Content Include="Views\Campaign\OneDollarBuying.cshtml" />
+    <Content Include="Views\Campaign\OneDollarBuyingCommodityDetail.cshtml" />
+    <Content Include="Views\Campaign\OneDollarBuyingLuckyList.cshtml" />
+    <Content Include="Views\Campaign\OneDollarBuyingParticipatedList.cshtml" />
+    <Content Include="Views\Home\CustomForm.cshtml" />
+    <Content Include="Views\Home\InfomationItem.cshtml" />
+    <Content Include="Views\Home\Page.cshtml" />
+    <Content Include="Views\Home\MemberCenter.cshtml" />
+    <Content Include="Views\Home\Coupon.cshtml" />
+    <Content Include="Views\Home\CouponDetail.cshtml" />
+    <Content Include="Views\Home\AdvancedArticle.cshtml" />
+    <Content Include="Views\Shared\_LayoutBlank.cshtml" />
+    <Content Include="Views\PointCommodity\ShoppingCart.cshtml" />
+    <Content Include="Views\PointCommodity\Checkout.cshtml" />
+    <Content Include="Views\Home\RecommendUrl.cshtml" />
+    <Content Include="Views\Campaign\ShakingLottery.cshtml" />
+    <Content Include="Views\Campaign\Donation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\Campaign\" />
+    <Folder Include="Areas\Api\Views\Coupon\" />
+    <Folder Include="Areas\Api\Views\Information\" />
+    <Folder Include="Areas\Api\Views\Member\" />
+    <Folder Include="Areas\Api\Views\OneDollarBuying\" />
+    <Folder Include="Areas\Api\Views\Pay\" />
+    <Folder Include="Areas\Api\Views\Portal\" />
+    <Folder Include="Areas\Api\Views\Shared\" />
+    <Folder Include="Views\Basal\" />
+    <Folder Include="Views\CashAccount\" />
+    <Folder Include="Views\FileServerCallback\" />
+    <Folder Include="Views\Function\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Linkup.Common\Linkup.Common.csproj">
+      <Project>{2753ed31-d787-41f3-893c-58df187da1d8}</Project>
+      <Name>Linkup.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.ApiContract\Sheng.WeixinConstruction.ApiContract.csproj">
+      <Project>{55b9beb8-0cbf-4ed7-a686-3b22e1102f3d}</Project>
+      <Name>Sheng.WeixinConstruction.ApiContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.Client.Core\Sheng.WeixinConstruction.Client.Core.csproj">
+      <Project>{0c4a0df3-7602-49db-926d-9c0c25e0ba99}</Project>
+      <Name>Sheng.WeixinConstruction.Client.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.Core\Sheng.WeixinConstruction.Core.csproj">
+      <Project>{3e09fa4f-e711-42df-9e35-a954bc626361}</Project>
+      <Name>Sheng.WeixinConstruction.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.Infrastructure\Sheng.WeixinConstruction.Infrastructure.csproj">
+      <Project>{e571e2e2-191f-4b60-8bc2-f848fefea6b9}</Project>
+      <Name>Sheng.WeixinConstruction.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.Service\Sheng.WeixinConstruction.Service.csproj">
+      <Project>{b693996b-ef3c-4ed8-a237-36e445f3f745}</Project>
+      <Name>Sheng.WeixinConstruction.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sheng.WeixinConstruction.WeixinContract\Sheng.WeixinConstruction.WeixinContract.csproj">
+      <Project>{19972c3f-7a6f-46c0-a501-5a89001148e6}</Project>
+      <Name>Sheng.WeixinConstruction.WeixinContract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56247</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50318/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

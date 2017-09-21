@@ -1,0 +1,34 @@
+创建编辑器时wangEditor方法改为create方法
+http://www.kancloud.cn/wangfupeng/wangeditor2/113965
+http://www.kancloud.cn/wangfupeng/wangeditor2/113975
+
+原来用 textarea ，现在改用 div 作为容器
+由于宽度只能由父容器控制所以外层要多加一层div控制宽度
+
+设置内容_editor.html(); 变为 editor.$txt.html()
+
+获取内容原来用textarea可直接val()取，现在用DIV作容器，获取内容要用
+editor.$txt.html()
+
+追加内容
+_editor.append("<img src='" + url + "' />");
+改为
+_editor.$txt.append("<img src='" + url + "' />");
+
+editor.$txt.append()
+
+在引用 wangeditor的css之后，重写P标签的行距
+<style>
+    .wangEditor-container .wangEditor-txt p,
+    .wangEditor-container .wangEditor-txt h1,
+    .wangEditor-container .wangEditor-txt h2,
+    .wangEditor-container .wangEditor-txt h3,
+    .wangEditor-container .wangEditor-txt h4,
+    .wangEditor-container .wangEditor-txt h5 {
+        margin: 0px 0;
+        line-height: 1.8;
+    }
+</style>
+
+wangEditor-1.3.12.min.js
+http://localhost:57275/Portal/InformationItem?informationId=1da9a815-a70c-4486-b7c0-ece1ed3a8b8a&categoryId=bab92c11-ea17-4928-a8c3-befc87dba649

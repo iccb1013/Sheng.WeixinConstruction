@@ -1,0 +1,31 @@
+﻿@model Sheng.WeixinConstruction.Container.Models.ControlledCacheMonitorViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Monitor</title>
+</head>
+<body>
+    <div> 
+        <table>
+            <tr>
+                <td>key</td>
+                <td>value</td>
+            </tr>
+            @foreach (var item in Model.List)
+            {
+                <tr>
+                    <td>@item.Key</td>
+                    <td>@item.Value</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

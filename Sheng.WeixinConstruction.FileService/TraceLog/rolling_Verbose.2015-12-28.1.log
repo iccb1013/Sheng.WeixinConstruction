@@ -1,0 +1,40 @@
+----------------------------------------
+Timestamp: 2015/12/20 17:18:22
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/20 17:18:23
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/20 22:38:19
+
+Title:Redis 连接中断
+
+Message: SocketFailure on 127.0.0.1:6379/Subscription, origin: CheckForStaleConnection, input-buffer: 0, outstanding: 3, last-read: 18774s ago, last-write: 1s ago, unanswered-write: 3s ago, keep-alive: 60s, pending: 0, state: ConnectedEstablished, in: 147, ar: 0, last-heartbeat: 1s ago, last-mbeat: 1s ago, global: 1s ago, mgr: RecordConnectionFailed_ReportFailure, err: never
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/20 22:38:20
+
+Title:
+
+Message: Redis 连接恢复
+
+Severity: Error
+
+----------------------------------------

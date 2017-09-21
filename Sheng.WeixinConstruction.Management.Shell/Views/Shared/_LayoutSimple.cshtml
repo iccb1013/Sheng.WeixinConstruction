@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/common")
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/validate/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/layer/layer.js")
+
+</head>
+<body>
+    <div id="divTopBar">
+        <div id="divLogo">
+            <span class="font_white_22">升讯威 微信营销系统</span>
+        </div>
+        <div id="divMainMenu">
+            <table id="tableTopBar" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Portal"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("管理", "PointCommodity", "Portal", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Shop"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("活动", "Index", "Shop", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Settings"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("设置", "Index", "Settings", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <div id="divTopRight">
+            <table id="tableTopBar" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="td_MainMenu font_darkBlue_18">@ViewBag.User.Name</td>
+                    <td class="td_MainMenu">@Html.ActionLink("退出", "Logout", "Home", null, new { @class = "a_white_18" })</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="divContainer" style="OVERFLOW-Y: auto; ">
+        @RenderBody()
+    </div>
+</body>
+
+</html>

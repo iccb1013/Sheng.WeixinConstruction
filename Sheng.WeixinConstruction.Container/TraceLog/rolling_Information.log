@@ -1,0 +1,30 @@
+----------------------------------------
+Timestamp: 2017/6/1 23:50:56
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:50:57
+
+Title:从数据库中恢复 AuthorizerAccessTokenWrapper 1 个
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:50:57
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------

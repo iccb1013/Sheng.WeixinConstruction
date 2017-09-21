@@ -1,0 +1,98 @@
+﻿@model Sheng.WeixinConstruction.Management.Shell.Models.PortalTemplateSelectViewModel
+
+@{
+    ViewBag.Title = "PortalTemplateSelect";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<script>
+    function selectTemplate(id, name, description, backgroundImageUrl) {
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+
+        var template = new Object();
+        template.Id = id;
+        template.Name = name;
+        template.Description = description;
+        template.BackgroundImageUrl = backgroundImageUrl;
+
+        parent.selectTemplateResult(template, index);
+    }
+
+    function cancel() {
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.layer.close(index); //再执行关闭
+    }
+</script>
+
+<style type="text/css">
+    .divTemplateContainer {
+        max-width: 170px;
+        float: left;
+        margin-right: 20px;
+        margin-top: 20px;
+        background-color: #FFF;
+        cursor: pointer;
+    }
+
+    .tableTemplateContainer {
+        width: 100%;
+        border-collapse: collapse;
+        border: solid #E7E7EB;
+        border-width: 1px 0 0 1px;
+    }
+
+        .tableTemplateContainer td {
+            border: 1px solid #E7E7EB;
+        }
+</style>
+
+
+<div style="margin-left:20px; margin-right:20px; margin-top:20px;">
+    <span id="spanTitle" class="font_black_24">选择模版</span>
+</div>
+
+<div style=" background-color:#ccc; margin-left:20px; margin-right:20px; margin-top:10px; height:1px;">
+
+</div>
+
+<div style=" position:absolute; overflow:auto ;margin-top:30px;left:30px; right:30px; bottom:60px; top:35px; ">
+
+    <div>
+        @foreach (var item in Model.TemplateList)
+        {
+            <div class="divTemplateContainer" onclick="selectTemplate('@item.Id','@item.Name','@item.Description','@item.BackgroundImageUrl')">
+                <table class="tableTemplateContainer">
+                    <tr>
+                        <td align="center"><img style="max-width:130px;" src="@item.PreviewImageUrl" /></td>
+                    </tr>
+                    <tr>
+                        <td height="30">
+                            <span class="font_gray_15" style="margin-left:10px;">@item.Name</span>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        }
+
+        <div style="clear:both"></div>
+
+    </div>
+
+</div>
+
+<div style=" background-color:#ccc; position:absolute; bottom:55px; left:20px;right:20px; height:1px;">
+
+</div>
+
+<div style="position:absolute; bottom:15px; left:20px;right:20px;">
+
+
+
+    <div style="float:right">
+        <input name="btnSave" type="button" class="btn_blue" id="btnSave" value="关 闭" onclick="cancel()" />
+    </div>
+    <div style="clear:both">
+    </div>
+</div>
+

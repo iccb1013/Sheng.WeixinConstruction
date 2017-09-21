@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Authorizer.NickName</title>
+
+    <link href="/Content/Style.css" rel="stylesheet" type="text/css">
+    @*替换时要全局搜索，有些页面是单独引用的*@
+
+    @if (ViewBag.DomainContext.StyleSettings.Theme != null)
+    {
+        switch ((string)ViewBag.DomainContext.StyleSettings.Theme)
+        {
+            case "blue":
+                <link href="/Content/Style_Blue.css" rel="stylesheet" type="text/css">
+                break;
+            case "yellow":
+            <link href="/Content/Style_Yellow.css" rel="stylesheet" type="text/css">
+                break;
+            default:
+            <link href="/Content/Style_Red.css" rel="stylesheet" type="text/css">
+                break;
+        }
+    }
+    else
+    {
+        <link href="/Content/Style_Red.css" rel="stylesheet" type="text/css">
+    }
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/layer.m/layer.m.js")
+    @Scripts.Render("~/Scripts/validate/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/laytpl.js")
+    @Scripts.Render("~/Scripts/math.js")
+    @Scripts.Render("~/bundles/common")
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+
+    <script>
+
+        // 验证值小数位数不能超过两位
+        jQuery.validator.addMethod("cash", function (value, element) {
+            var decimal = /^-?\d+(\.\d{1,2})?$/;
+            return this.optional(element) || (decimal.test(value));
+        }, $.validator.format("金额的小数位数不能超过两位；"));
+
+
+        var _shortcutMenu;
+
+        $(document).ready(function () {
+
+            @if (ViewBag.ShortcutMenu != null && String.IsNullOrEmpty(ViewBag.ShortcutMenu.Menu) == false)
+    {
+        <text>
+            var shortcutMenuStr = "@ViewBag.ShortcutMenu.Menu";
+            shortcutMenuStr = shortcutMenuStr.replace(new RegExp("&quot;", "gm"), "\"");
+            shortcutMenuStr = shortcutMenuStr.replace(new RegExp("\r\n", "gm"), "");
+            shortcutMenuStr = shortcutMenuStr.replace(new RegExp("\n", "gm"), "");
+            _shortcutMenu = eval('(' + shortcutMenuStr + ')');
+
+            if (_shortcutMenu.button == null || _shortcutMenu.button.length == 0) {
+                $("#divShortcutMenuContainer").hide();
+            }
+            </text>
+    }
+
+            //if (_shortcutMenu.button != undefined && _shortcutMenu.button != null && _shortcutMenu.button.length > 0) {
+
+            //}
+
+            //alert(JSON.stringify(_shortcutMenu));
+        });
+
+        function showShortcutMenu() {
+
+            if (_shortcutMenu == undefined || _shortcutMenu == null || _shortcutMenu.button == null) {
+                layer.open({
+                    anim: true,
+                    type: 1,
+                    content: document.getElementById('defaultShortcutMenuTemplate').innerHTML,
+                    style: 'width:2.2rem; height:auto; border:none;overflow-y:auto;'
+                });
+            }
+            else {
+                var gettpl = document.getElementById('shortcutMenuTemplate').innerHTML;
+                laytpl(gettpl).render(_shortcutMenu, function (html) {
+                    layer.open({
+                        anim: true,
+                        type: 1,
+                        content: html,
+                        style: 'width:2.2rem; height:auto; border:none;overflow-y:auto;'
+                    });
+                });
+            }
+        }
+
+        function shortcutMenuClick(index) {
+            var button = _shortcutMenu.button[index];
+            switch (button.type) {
+                case "wxc_function":
+                    goShortcutMenuButtonFunction(button);
+                    break;
+                case "view":
+                    goShortcutMenuButtonView(button);
+                    break;
+                default:
+                    alert("type:" + type);
+                    break;
+            }
+        }
+
+        function goShortcutMenuButtonFunction(button) {
+            var url = "";
+            switch (button.function) {
+                case "portal":
+                    url = "Home/Portal";
+                    break;
+                case "memberCenter":
+                    url = "Home/MemberCenter";
+                    break;
+                case "pointCommodity":
+                    url = "PointCommodity/PointCommodity";
+                    break;
+                case "pointCommodityOrderList":
+                    url = "PointCommodity/OrderList";
+                    break;
+                case "pointAccount":
+                    url = "Home/PointAccount";
+                    break;
+                case "cashAccount":
+                    url = "Pay/CashAccountTrack";
+                    break;
+                case "oneDollarBuying":
+                    url = "Campaign/OneDollarBuying";
+                    break;
+                case "personalInfo":
+                    url = "Home/PersonalInfo";
+                    break;
+                case "movieTimes":
+                    url = "Home/MovieTimes";
+                    break;
+                case "staff":
+                    url = "Staff/Home/Portal";
+                    break;
+                default:
+                    alert("function:" + button.function);
+                    break;
+            }
+
+            window.location.href = "/" + url + "/@ViewBag.Domain.Id";
+        }
+
+        function goShortcutMenuButtonView(button) {
+            window.location.href = button.url;
+        }
+
+    </script>
+
+    <script type="text/html" id="defaultShortcutMenuTemplate">
+        @if (ViewBag.ShortcutMenu == null || String.IsNullOrEmpty(ViewBag.ShortcutMenu.Menu))
+        {
+            <div style="margin-left:10px; margin-right:10px;">
+                <div class="divShortcutMenuItem defaultColor" onclick="goUrl('/Home/Portal/@ViewBag.Domain.Id')">
+                    主 页
+                </div>
+
+                <div class="divDotLine">
+                </div>
+
+                <div class="divShortcutMenuItem defaultColor" onclick="goUrl('/PointCommodity/PointCommodity/@ViewBag.Domain.Id')">
+                    积分商城
+                </div>
+
+                <div class="divDotLine">
+                </div>
+
+                <div class="divShortcutMenuItem defaultColor" onclick="goUrl('/Home/PointAccount/@ViewBag.Domain.Id')">
+                    积分账户
+                </div>
+
+                <div class="divDotLine">
+                </div>
+
+                <div class="divShortcutMenuItem defaultColor" onclick="goUrl('/Pay/CashAccountTrack/@ViewBag.Domain.Id')">
+                    现金账户
+                </div>
+
+                <div class="divDotLine">
+                </div>
+
+                <div class="divShortcutMenuItem defaultColor" onclick="goUrl('/Home/MemberCenter/@ViewBag.Domain.Id')">
+                    会员中心
+                </div>
+
+
+            </div>
+        }
+    </script>
+
+    <script type="text/html" id="shortcutMenuTemplate">
+        <div style="margin-left:10px; margin-right:10px;">
+            {{# for(var i = 0, len = d.button.length; i < len; i++){ }}
+
+            <div class="divShortcutMenuItem defaultColor" onclick="shortcutMenuClick({{ i }})">
+                {{ d.button[i].name }}
+            </div>
+            {{# if(i < d.button.length -1){ }}
+            <div class="divDotLine">
+            </div>
+            {{# } }}
+            {{# } }}
+        </div>
+    </script>
+
+    <!-- Piwik -->
+    @*<script type="text/javascript">
+        var _paq = _paq || [];
+        _paq.push(["setCookieDomain", "*.wxc.shengxunwei.com"]);
+        _paq.push(["setDomains", ["*.wxc.shengxunwei.com"]]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "//tools.shengxunwei.com/piwik/";
+            _paq.push(['setTrackerUrl', u + 'piwik.php']);
+            _paq.push(['setSiteId', 2]);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <noscript><p><img src="//tools.shengxunwei.com/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>*@
+    <!-- End Piwik Code -->
+
+</head>
+<body @if (ViewBag.BodyClass != null) { @Html.Raw("class='" + ViewBag.BodyClass + "'")   ; }>
+
+    @RenderBody()
+
+    @Helpers.Advertising(ViewBag)
+
+    <div id="divShortcutMenuContainer">
+        <div id="divShortcutMenuCircle" onclick="showShortcutMenu()">
+            MENU
+        </div>
+    </div>
+
+</body>
+</html>

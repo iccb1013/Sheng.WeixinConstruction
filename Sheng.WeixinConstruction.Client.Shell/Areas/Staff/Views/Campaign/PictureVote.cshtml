@@ -1,0 +1,76 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Areas.Staff.Models.PictureVoteViewModel
+
+@{
+    ViewBag.SubTitle = "活动";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    var _campaignId = getQueryString("campaignId");
+
+    //$(document).ready(function () {
+
+    //});
+
+</script>
+
+<div class="divContent" style="margin-top:0.1rem;">
+
+    <div class="font_16_b" style="margin-top:0.5rem">
+        @Model.CampaignBundle.Campaign.Name
+    </div>
+
+    <div style="margin-top:0.15rem">
+        <div style="float:left;margin-right:0.2rem;padding:0.1rem; background-color:#EEEEEE">
+            摘要
+        </div>
+        <div style="float:left;margin-right:0.2rem;padding:0.1rem; " onclick="goUrl('/Staff/Campaign/PictureVoteItemList/@ViewBag.Domain.Id?campaignId=' + _campaignId)">
+            管理内容
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div class="divDotLine" style="margin-top: 0.05rem; margin-bottom: 0.05rem;">
+    </div>
+
+    <div style="margin-top:0.1rem">
+        <img src="@Model.CampaignBundle.Campaign.ImageUrl" style="width:100%">
+    </div>
+    <div style="margin-top:0.1rem">
+        创建时间：@Model.CampaignBundle.Campaign.CreateTime
+    </div>
+    <div style="margin-top:0.1rem">
+        开始时间：@Model.CampaignBundle.Campaign.StartTime
+    </div>
+    <div style="margin-top:0.1rem">
+        @if (Model.CampaignBundle.Campaign.Status == Sheng.WeixinConstruction.Infrastructure.EnumCampaignStatus.Ongoing)
+        {
+            @:参与通道：
+                        if (Model.CampaignBundle.PictureVote.AllowedNewItem)
+                        {
+                            @:打开
+                            }
+                        else
+                        {
+                            @:关闭
+                            }
+        }
+    </div>
+    <div style="margin-top:0.1rem">
+        创建者：@Model.CampaignBundle.Campaign.CreateUserName
+    </div>
+    <div style="margin-top:0.1rem">
+        仅关注者可参与：
+        @if (Model.CampaignBundle.Campaign.OnlyMember)
+        {
+            @:是
+                            }
+        else
+        {
+            @:否
+                            }
+    </div>
+    <div style="margin-top:0.1rem">
+        备注：@Model.CampaignBundle.Campaign.Remark
+    </div>
+</div>

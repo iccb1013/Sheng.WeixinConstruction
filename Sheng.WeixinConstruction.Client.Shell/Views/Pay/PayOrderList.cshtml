@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.SubTitle = "支付订单";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+    body {
+        /*margin-top: 1.5rem;*/
+         margin-top: 1.2rem;
+        margin-bottom: 0.55rem;
+    }
+
+    #divTopTitleBar {
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        /*top: 1rem;*/
+         top:0.7rem;
+        height: 0.4rem;
+        background-color: white;
+    }
+
+    .divPointIncrement {
+        color: #FF541B;
+        font-weight: bold;
+        font-size: 0.16rem;
+    }
+
+    .divPointDecrement {
+        color: #00B200;
+        font-weight: bold;
+        font-size: 0.16rem;
+    }
+</style>
+
+<script type="text/javascript">
+
+    //当前页
+    var _currentPage = 1;
+    var _totalPage = 1;
+
+    $(document).ready(function () {
+        loadData();
+    });
+
+    function loadData(targetPage) {
+        if (targetPage > _totalPage)
+            return;
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.PageSize = 10;
+
+        $.ajax({
+            url: "/Api/Pay/GetPayOrderList/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    _currentPage = resultObj.Page;
+                    _totalPage = resultObj.TotalPage;
+                    if (_currentPage >= _totalPage) {
+                        $("#divPagingContainer").html("没有更多了");
+                    }
+
+                    if (_currentPage == 1) {
+                        document.getElementById('payOrderListContainer').innerHTML = "";
+                    }
+
+                    var gettpl = document.getElementById('itemListTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html) {
+                        document.getElementById('payOrderListContainer').innerHTML += html;
+                    });
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+
+
+</script>
+
+<script id="itemListTemplate" type="text/html">
+
+    {{# for(var i = 0, len = d.length; i < len; i=i+1){ }}
+
+    <div style="margin-top:0.1rem;" onclick="goUrl('/Pay/PayOrderDetail/@ViewBag.Domain.Id?id={{ d[i].Id }}')">
+        <div style="font-size:0.14rem;">
+            <div style="float:left">
+                {{ d[i].Body }}
+            </div>
+            <div style="float:right;color:#DF5966">
+                {{ d[i].TotalFee/100 }} 元
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div style="margin-top:0.1rem; color:#666666">
+            下单时间：{{ d[i].TimeStart }}
+        </div>
+        <div style="margin-top:0.1rem;">
+            {{# if(d[i].TradeState == 2){ }}
+            <div class="divRectangle" style="width:0.7rem;">
+                未支付
+            </div>
+            {{# }else{ }}
+            <div class="divRectangle_Gray" style="width:0.7rem;">
+                {{# if(d[i].TradeState == 0){ }}
+                支付成功
+                {{# }else if(d[i].TradeState == 1){ }}
+                转入退款
+                {{# }else if(d[i].TradeState == 2){ }}
+                未支付
+                {{# }else if(d[i].TradeState == 3){ }}
+                已关闭
+                {{# }else if(d[i].TradeState == 4){ }}
+                已撤销（刷卡支付）
+                {{# }else if(d[i].TradeState == 5){ }}
+                用户支付中
+                {{# }else if(d[i].TradeState == 6){ }}
+                支付失败
+                {{# } }}
+            </div>
+            {{# } }}
+        </div>
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.13rem; margin-bottom:0.13rem; ">
+    </div>
+
+    {{# } }}
+
+</script>
+
+@Helpers.HeaderArea(ViewBag, "cash")
+
+<div id="divTopTitleBar">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:100%">
+        <tr style="height:0.27rem;">
+            <td width="33%" align="center"><div onclick="goUrl('/Home/PointAccount/@ViewBag.Domain.Id')">积分账户</div></td>
+            <td width="33%" align="center"><div onclick="goUrl('/Pay/CashAccountTrack/@ViewBag.Domain.Id')">现金账户</div></td>
+            <td width="33%" align="center"><div onclick="goUrl('/Home/Coupon/@ViewBag.Domain.Id')">我的卡券</div></td>
+        </tr>
+        <tr style="height:0.03rem;">
+            <td bgcolor="#E4E4E4"></td>
+            <td class="defaultBgColor"></td>
+            <td bgcolor="#E4E4E4"></td>
+        </tr>
+    </table>
+
+</div>
+
+<div class="divContent" style="margin-top:0.45rem;">
+
+    <div id="payOrderListContainer" style="padding-left: 0.1rem; padding-right: 0.1rem;margin-top:0.2rem;">
+    </div>
+
+    <div id="divPagingContainer" class="divPagingContainer" style="margin-top: 0.2rem; text-align: center" onclick="loadData(_currentPage + 1)">
+        查看更多
+    </div>
+
+</div>

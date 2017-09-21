@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--接收到的文本消息-->
+<xml>
+  <ToUserName><![CDATA[gh_2eaaab12bf43]]></ToUserName>
+  <FromUserName><![CDATA[oXCfEwEteoWmCygMuCKqhvqshVnQ]]></FromUserName>
+  <CreateTime>1446384124</CreateTime>
+  <MsgType><![CDATA[text]]></MsgType>
+  <Content><![CDATA[0]]></Content>
+  <MsgId>6212172510433904509</MsgId>
+  <Encrypt><![CDATA[xWAPw4oMwGRAQyw5dUSlGm0SOxoZcohtBWfj71wrouSYuaQoA78DpC5WL1ky8Il8L6zf1or0ULYMplbkAPnaYNy6PxFo6QcsoCxkBSew+95SliSkseqWWqLGPrcOkFY+6qS8f6HG3gCTeMsbI4rMJh54ZcbVowqJlLNujgLlNnbgKiShu0lfRcz0FYChkjLy7FsAF1Xok07UOM9XuksdaE9wSsBtmWqTY09Qgnc5sMGvn23YumdjfNKjWlJ1U/513Zj8NiZEUHniLPcSiOrMVDzdzKmZZ8uq6QWBuXYmY40TRanILQ2dEk+dsXbZLra6xzf+Oc4EMx+iq7kSUgHi3v/1GkmP+Plh/ghJwyO5SAqS8Ycn7LUb4GNJbAojCFlau0qmOFtL/280hZZatVFUswy8zhPt7a+p6gGv+5stjVI=]]></Encrypt>
+</xml>
+

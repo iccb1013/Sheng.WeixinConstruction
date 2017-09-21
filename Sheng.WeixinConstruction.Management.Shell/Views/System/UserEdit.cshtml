@@ -1,0 +1,381 @@
+﻿@{
+    ViewBag.Title = "UserEdit";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+@Scripts.Render("~/bundles/md5")
+
+<script type="text/javascript">
+
+    var _id = getQueryString("id");
+
+    var _mode = "create";//modify
+    var _validator; //两个同样FORM的验证器不可
+
+    var _data = null;
+
+    $(document).ready(function () {
+
+        _validator = $("#form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txtName": "required",
+                "txtAccount": {
+                    required: true,
+                    minlength: 5
+                },
+                "txtPassword": "required",
+                "txtPassword2": {
+                    required: true,
+                    minlength: 3,
+                    equalTo: "#txtPassword"
+                }
+            },
+            messages: {
+                "txtName": "请输入姓名；",
+                "txtAccount": {
+                    required: "请输入账户；",
+                    minlength: "账户长度至少 5 位以上；"
+                },
+                "txtPassword": "请输入密码；",
+                "txtPassword2": {
+                    required: "请再次输入密码；",
+                    minlength: "密码长度至少 3 位以上；",
+                    equalTo: "两次密码输入不一致；"
+                }
+            }
+        });
+
+
+
+        $("[keyenter]").keypress(function (e) {
+            if (e.keyCode == 13) {
+                save();
+            }
+        });
+
+        load();
+    });
+
+    function load() {
+        if (_id == undefined || _id == "") {
+            return;
+        }
+
+        _mode = "modify";
+        $("#btnRemove").show();
+        $("#btnResetPassword").show();
+        $("#tablePassword").hide();
+
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        $.ajax({
+            url: "/Api/User/GetUser?id=" + _id,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    _data = data.Data;
+
+                    $("#txtName").val(_data.Name);
+                    $("#txtAccount").val(_data.Account);
+                    $("#txtTelphone").val(_data.Telphone);
+                    $("#txtEmail").val(_data.Email);
+                    $("#txtRemark").val(_data.Remark);
+
+                    if (_data.MemberId != null && _data.MemberId != "") {
+                        __setMember(_data.MemberId);
+                    }
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function save() {
+
+        if (_validator.form() == false) {
+            return;
+        }
+
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        var url = "/Api/User/CreateUser";
+        if (_mode == "modify") {
+            url = "/Api/User/UpdateUser";
+        }
+
+        if (_data == undefined || _data == null) {
+            _data = new Object();
+        }
+
+        _data.Name = $("#txtName").val();
+        _data.Account = $("#txtAccount").val();
+        _data.Password = hex_md5($("#txtPassword").val()).toUpperCase();
+        _data.Telphone = $("#txtTelphone").val();
+        _data.Email = $("#txtEmail").val();
+        _data.Remark = $("#txtRemark").val();
+
+        if (__member != null) {
+            _data.MemberId = __member.Id;
+        }
+        else {
+            _data.MemberId = null;
+        }
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(_data),
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    switch (data.Data.Reason) {
+                        case 0:
+                            var index = parent.layer.getFrameIndex(window.name);
+                            if (_mode == "create") {
+                                parent.loadDataAndCloseLayer(index);
+                            } else {
+                                parent.loadDataOnPageAndCloseLayer(index);
+                            }
+                            break;
+                        case 1:
+                            layerAlert("登录账户被占用，请尝试其它登录账户。");
+                            break;
+                        default:
+                            layerAlert("未知错误：" + data.Data.Reason);
+                            break;
+                    }
+
+                   
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function removeData() {
+        if (_id == undefined || _id == "") {
+            return;
+        }
+
+        var msg = "是否确认删除？"
+
+        var confirmLayerIndex = layer.confirm(msg, {
+            btn: ['确认', '取消'], //按钮
+            shade: [0.4, '#393D49'],
+            title: false,
+            closeBtn: false,
+            shift: _layerShift
+        }, function () {
+            layer.close(confirmLayerIndex);
+
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/User/RemoveUser?id=" + _id,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    layer.close(loadLayerIndex);
+                    if (data.Success) {
+                        switch (data.Data.Reason) {
+                            case 0:
+                                var index = parent.layer.getFrameIndex(window.name);
+                                parent.loadDataOnPageAndCloseLayer(index);
+                                break;
+                            case 1:
+                                layerAlert("超级管理员不可删除。");
+                                break;
+                            default:
+                                layerAlert("未知错误：" + data.Data.Reason);
+                                break;
+                        }
+
+                    } else {
+                        layer.closeAll();
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.closeAll();
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        });
+    }
+
+    function resetPassword() {
+
+        var msg = "是否确认重置该用户的密码？<br/>确认后将生成新的随机密码并发送到该用户的邮件，请确认该用户的登录账户和邮件正确并已保存到系统中。"
+
+        var confirmLayerIndex = layer.confirm(msg, {
+            btn: ['确认', '取消'], //按钮
+            shade: [0.4, '#393D49'],
+            title: false,
+            closeBtn: false,
+            shift: _layerShift
+        }, function () {
+            layer.close(confirmLayerIndex);
+
+            var args = new Object();
+            args.Account = $("#txtAccount").val();
+            args.Email = $("#txtEmail").val();
+
+            layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/User/ResetPassword",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(args),
+                success: function (data, status, jqXHR) {
+                    if (data.Success) {
+                        layer.closeAll();
+
+                        layerAlert("新密码已发送到该用户的邮箱，请稍候查看收件箱（并留意垃圾邮件文件夹）。",
+                            function () { });
+
+                    } else {
+                        layer.closeAll();
+
+                        layerAlert("请检查您输入的登录账户和电子邮件地址是否正确，并是否都保存到了系统中。");
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.closeAll();
+
+                    //responseText
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        });        
+    }
+
+    function cancel() {
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.loadDataOnPageAndCloseLayer(index);
+    }
+
+</script>
+
+
+<div style="margin-left:20px; margin-right:20px; margin-top:20px;">
+    <span id="spanTitle" class="font_black_24">用户</span>
+</div>
+
+<div style=" background-color:#ccc; margin-left:20px; margin-right:20px; margin-top:10px; height:1px;">
+
+</div>
+
+<div style=" position:absolute; overflow:auto ;margin-top:25px;left:30px; right:30px; bottom:60px; top:50px; ">
+
+    <form id="form">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="150" height="36">姓名：</td>
+                <td><input id="txtName" name="txtName" type="text" class="input_16" style="width:96%; " /></td>
+            </tr>
+            <tr>
+                <td height="36">登录账户：</td>
+                <td><input id="txtAccount" name="txtAccount" type="text" class="input_16" style="width:96%; " /></td>
+            </tr>
+            <tr>
+                <td height="28"></td>
+                <td class="font_gray_13" valign="top">推荐使用电子邮件地址或手机号码等唯一性较强的标识作为账户。</td>
+            </tr>
+        </table>
+        <table id="tablePassword" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="150" height="36">密码：</td>
+                <td><input id="txtPassword" name="txtPassword" type="password" class="input_16" style="width:96%; " /></td>
+            </tr>
+            <tr>
+                <td height="36">再次输入密码：</td>
+                <td><input id="txtPassword2" name="txtPassword2" type="password" class="input_16" style="width:96%; " /></td>
+            </tr>
+            <tr>
+                <td height="28"></td>
+                <td class="font_gray_13" valign="top">密码至少3位以上，若无需修改密码留空即可。</td>
+            </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="150" height="36">电话：</td>
+                <td><input id="txtTelphone" name="txtTelphone" type="text" class="input_16" style="width:96%; " /></td>
+            </tr>
+            <tr>
+                <td height="36">电子邮箱：</td>
+                <td><input id="txtEmail" name="txtEmail" type="text" class="input_16" style="width:96%; " /></td>
+            </tr>
+            <tr>
+                <td height="28"></td>
+                <td class="font_gray_13" valign="top">请输入真实有效的电子邮件地址，否则将无法使用找回密码功能。</td>
+            </tr>
+            <tr>
+                <td height="36">微信：</td>
+                <td>
+                    <div style="width:96%; ">
+                        @Helpers.MemberSelect()
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td height="28"></td>
+                <td class="font_gray_13" valign="top">关联微信后，可在微信端使用管理后台。</td>
+            </tr>
+            <tr>
+                <td height="36">备注：</td>
+                <td><input id="txtRemark" name="txtRemark" type="text" class="input_16" style="width:96%; " /></td>
+            </tr>
+        </table>
+
+    </form>
+
+</div>
+
+<div style=" background-color:#ccc; position:absolute; bottom:55px; left:20px;right:20px; height:1px;">
+
+</div>
+
+<div style="position:absolute; bottom:15px; left:20px;right:20px;">
+
+
+    <div style="float:left;">
+        <input name="btnRemove" type="button" class="btn_red" id="btnRemove" value="删 除" style="display:none" onclick="removeData()" />
+        <input name="btnResetPassword" type="button" class="btn_blue" id="btnResetPassword" value="重置密码" style="display:none" onclick="resetPassword()" />
+    </div>
+
+    <div style="float:right">
+        <input name="btnSave" type="button" class="btn_blue" id="btnSave" value="保 存" onclick="save()" />
+        <input name="btnCancel" type="button" class="btn_blue" id="btnCancel" value="取 消" onclick="cancel()" />
+    </div>
+    <div style="clear:both">
+    </div>
+</div>
+
+

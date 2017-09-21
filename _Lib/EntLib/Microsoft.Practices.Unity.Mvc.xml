@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.Unity.Mvc</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.Unity.PerRequestLifetimeManager">
+            <summary>
+            A <see cref="T:Microsoft.Practices.Unity.LifetimeManager"/> that holds onto the instance given to it during
+            the lifetime of a single HTTP request.
+            This lifetime manager enables you to create instances of registered types that behave like
+            singletons within the scope of an HTTP request.
+            See remarks for important usage information.
+            </summary>
+            <remarks>
+            <para>
+            Although the <see cref="T:Microsoft.Practices.Unity.PerRequestLifetimeManager"/> lifetime manager works correctly and can help
+            in working with stateful or thread-unsafe dependencies within the scope of an HTTP request, it is
+            generally not a good idea to use it when it can be avoided, as it can often lead to bad practices or
+            hard to find bugs in the end-user's application code when used incorrectly. 
+            It is recommended that the dependencies you register are stateless and if there is a need to share
+            common state between several objects during the lifetime of an HTTP request, then you can
+            have a stateless service that explicitly stores and retrieves this state using the
+            <see cref="P:System.Web.HttpContext.Items"/> collection of the <see cref="P:System.Web.HttpContext.Current"/> object.
+            </para>
+            <para>
+            For the instance of the registered type to be disposed automatically when the HTTP request completes,
+            make sure to register the <see cref="T:Microsoft.Practices.Unity.Mvc.UnityPerRequestHttpModule"/> with the web application.
+            To do this, invoke the following in the Unity bootstrapping class (typically UnityMvcActivator.cs):
+            <code>DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));</code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Practices.Unity.PerRequestLifetimeManager.GetValue">
+            <summary>
+            Retrieves a value from the backing store associated with this lifetime policy.
+            </summary>
+            <returns>The desired object, or null if no such object is currently stored.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.Unity.PerRequestLifetimeManager.SetValue(System.Object)">
+            <summary>
+            Stores the given value into the backing store for retrieval later.
+            </summary>
+            <param name="newValue">The object being stored.</param>
+        </member>
+        <member name="M:Microsoft.Practices.Unity.PerRequestLifetimeManager.RemoveValue">
+            <summary>
+            Removes the given object from the backing store.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.Unity.Mvc.UnityDependencyResolver">
+            <summary>
+            An implementation of <see cref="T:System.Web.Mvc.IDependencyResolver"/> that wraps a Unity container.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.Unity.Mvc.UnityDependencyResolver.#ctor(Microsoft.Practices.Unity.IUnityContainer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.Unity.Mvc.UnityDependencyResolver"/> class for a container.
+            </summary>
+            <param name="container">The <see cref="T:Microsoft.Practices.Unity.IUnityContainer"/> to wrap with the <see cref="T:System.Web.Mvc.IDependencyResolver"/>
+            interface implementation.</param>
+        </member>
+        <member name="M:Microsoft.Practices.Unity.Mvc.UnityDependencyResolver.GetService(System.Type)">
+            <summary>
+            Resolves an instance of the default requested type from the container.
+            </summary>
+            <param name="serviceType">The <see cref="T:System.Type"/> of the object to get from the container.</param>
+            <returns>The requested object.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.Unity.Mvc.UnityDependencyResolver.GetServices(System.Type)">
+            <summary>
+            Resolves multiply registered services.
+            </summary>
+            <param name="serviceType">The type of the requested services.</param>
+            <returns>The requested services.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.Unity.Mvc.UnityFilterAttributeFilterProvider">
+            <summary>
+            Defines a filter provider for filter attributes that support injection of Unity dependencies.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.Unity.Mvc.UnityFilterAttributeFilterProvider.#ctor(Microsoft.Practices.Unity.IUnityContainer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.Unity.Mvc.UnityFilterAttributeFilterProvider"/> class.
+            </summary>
+            <param name="container">The <see cref="T:Microsoft.Practices.Unity.IUnityContainer"/> that will be used to inject the filters.</param>
+        </member>
+        <member name="M:Microsoft.Practices.Unity.Mvc.UnityFilterAttributeFilterProvider.GetActionAttributes(System.Web.Mvc.ControllerContext,System.Web.Mvc.ActionDescriptor)">
+            <summary>
+            Gets a collection of custom action attributes, and injects them using a Unity container.
+            </summary>
+            <param name="controllerContext">The controller context.</param>
+            <param name="actionDescriptor">The action descriptor.</param>
+            <returns>A collection of custom action attributes.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.Unity.Mvc.UnityFilterAttributeFilterProvider.GetControllerAttributes(System.Web.Mvc.ControllerContext,System.Web.Mvc.ActionDescriptor)">
+            <summary>
+            Gets a collection of controller attributes, and injects them using a Unity container.
+            </summary>
+            <param name="controllerContext">The controller context.</param>
+            <param name="actionDescriptor">The action descriptor.</param>
+            <returns>A collection of controller attributes.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.Unity.Mvc.UnityPerRequestHttpModule">
+            <summary>
+            Implementation of the <see cref="T:System.Web.IHttpModule"/> interface that provides support for using the
+            <see cref="T:Microsoft.Practices.Unity.PerRequestLifetimeManager"/> lifetime manager, and enables it to
+            dispose the instances after the HTTP request ends.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.Unity.Mvc.UnityPerRequestHttpModule.Dispose">
+            <summary>
+            Disposes the resources used by this module.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.Unity.Mvc.UnityPerRequestHttpModule.Init(System.Web.HttpApplication)">
+            <summary>
+            Initializes a module and prepares it to handle requests.
+            </summary>
+            <param name="context">An <see cref="T:System.Web.HttpApplication"/> that provides access to the methods, properties,
+            and events common to all application objects within an ASP.NET application.</param>
+        </member>
+    </members>
+</doc>

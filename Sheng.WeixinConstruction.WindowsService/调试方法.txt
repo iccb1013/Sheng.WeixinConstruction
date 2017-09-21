@@ -1,0 +1,5 @@
+﻿install.bat 安装
+uninstall.bat 卸载
+
+调试方法：
+安装以后，附加进程

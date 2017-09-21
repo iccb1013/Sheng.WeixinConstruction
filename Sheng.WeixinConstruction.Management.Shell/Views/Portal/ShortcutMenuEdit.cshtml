@@ -1,0 +1,314 @@
+﻿@{
+    ViewBag.Title = "ShortcutMenuEdit";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+
+<script>
+
+    //在同一个form中创建多个jValidate验证器不灵
+    var _validator_wxc_function;
+    var _validator_view;
+
+    var _mode //createButton //modifyButton //createSubButton //modifySubButton
+
+    var _buttonIndex;
+    var _button;
+
+    $(document).ready(function () {
+        _mode = getQueryString("mode");
+
+        createValidator();
+
+        switchTypeTable();
+
+        $("#selectType").change(function () {
+            switchTypeTable();
+        });
+
+        $("[keyenter]").keypress(function (e) {
+            if (e.keyCode == 13) {
+                save();
+            }
+        });
+
+        switch (_mode) {
+            case "createButton":
+                break;
+            case "modifyButton":
+                loadButton();
+                break;
+            default:
+                alert("_mode:" + _mode);
+                break;
+        }
+
+    });
+
+    function switchTypeTable() {
+        //alert($("#selectType").val());
+        var type = $("#selectType").val();
+
+        //$("#divTableCollection form").hide();
+
+        //$("#divTableCollection form").each(function (n, value) {
+        //    if ($(value).attr("id") == "form_" + type) {
+        //        $(value).show();
+        //    }
+        //});
+
+        $("#divTableCollection div[buttonTypeDiv='buttonTypeDiv']").hide();
+
+        $("#divTableCollection div[buttonTypeDiv='buttonTypeDiv']").each(function (n, value) {
+            if ($(value).attr("id") == "div_" + type) {
+                $(value).show();
+            }
+        });
+    }
+
+    function createValidator() {
+        _validator_wxc_function = $("#form_wxc_function").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txt_wxc_function_name": "required"
+            },
+            messages: {
+                "txt_wxc_function_name": "请输入名称；"
+            }
+        });
+
+        _validator_view = $("#form_view").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txt_view_name": "required",
+                "txt_view_url": {
+                    required: true,
+                    url: true
+                }
+            },
+            messages: {
+                "txt_view_name": "请输入名称；",
+                "txt_view_url": {
+                    required: "请输入要访问的网址；",
+                    url: "请输入格式正确的网址"
+                }
+            }
+        });
+    }
+
+    function loadButton() {
+        _buttonIndex = getQueryString("button");
+        if (_buttonIndex == undefined || _buttonIndex == "") {
+            return;
+        }
+
+        $("#spanTitle").html("修改菜单");
+        $("#btnRemove").show();
+
+
+        if (_mode == "modifyButton") {
+            _button = parent.getButton(_buttonIndex);
+        }
+
+        $("#selectType").val(_button.type);
+        switchTypeTable();
+
+        switch (_button.type) {
+            case "wxc_function":
+                load_wxc_function();
+                break;
+            case "view":
+                load_view();
+                break;
+            default:
+                alert("type:" + type);
+                break;
+        }
+    }
+
+    function load_wxc_function() {
+        $("#txt_wxc_function_name").val(_button.name);
+        $("#select_wxc_function").val(_button.function);
+    }
+
+    function load_view() {
+        $("#txt_view_name").val(_button.name);
+        $("#txt_view_url").val(_button.url);
+    }
+
+    function save() {
+        var validateResult = false;
+
+        var type = $("#selectType").val();
+        // alert("type:" + type);
+        switch (type) {
+            case "wxc_function":
+                validateResult = save_wxc_function();
+                break;
+            case "view":
+                validateResult = save_view();
+                break;
+            default:
+                alert("type:" + type);
+                break;
+        }
+       
+        if (validateResult == false)
+            return;
+        
+        var layerIndex = parent.layer.getFrameIndex(window.name);
+
+        switch (_mode) {
+            case "createButton":
+                parent.addButtonAndCloseLayer(layerIndex, _button);
+                break;
+            case "modifyButton":
+                parent.closeLayer(layerIndex);
+                break;
+            default:
+                alert("_mode:" + _mode);
+                break;
+        }
+    }
+
+    function save_wxc_function() {
+        if (_validator_wxc_function.form() == false) {
+            return false;
+        }
+
+        if (_button == undefined) {
+            _button = new Object();
+        }
+
+        _button.type = "wxc_function";
+        _button.name = $("#txt_wxc_function_name").val();
+        _button.function = $("#select_wxc_function").val();
+
+        return true;
+    }
+
+    function save_view() {
+        if (_validator_view.form() == false) {
+            return false;
+        }
+
+        if (_button == undefined) {
+            _button = new Object();
+        }
+
+        _button.type = "view";
+        _button.name = $("#txt_view_name").val();
+        _button.url = $("#txt_view_url").val();
+
+        return true;
+    }
+
+    function removeData() {
+        var layerIndex = parent.layer.getFrameIndex(window.name);
+
+        if (_mode == "modifyButton") {
+            parent.removeButtonAndCloseLayer(layerIndex, _buttonIndex);
+        }
+    }
+
+    function cancel() {
+        var layerIndex = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.layer.close(layerIndex); //再执行关闭
+    }
+</script>
+
+
+<div style="margin-left:20px; margin-right:20px; margin-top:20px;">
+    <span id="spanTitle" class="font_black_24">添加菜单</span>
+</div>
+
+<div style=" background-color:#ccc; margin-left:20px; margin-right:20px; margin-top:10px; height:1px;">
+
+</div>
+
+<div style=" position:absolute; overflow:auto ;margin-top:25px;left:30px; right:30px; bottom:60px; top:50px; ">
+
+    <form id="form">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="110" height="36">类型：</td>
+                <td>
+                    <select id="selectType" name="selectType" class="input_16" style="width:96%;" keyenter=keyenter>
+                        <option value="wxc_function">打开功能</option>
+                        <option value="view">访问网址</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div id="divTableCollection">
+        <div id="div_wxc_function" buttontypediv="buttonTypeDiv">
+            <form id="form_wxc_function">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="110" height="36">名称：</td>
+                        <td><input id="txt_wxc_function_name" name="txt_wxc_function_name" type="text" class="input_16" style="width:96%; " maxlength="20" keyenter=keyenter /></td>
+                    </tr>
+                    <tr>
+                        <td width="110" height="36">功能：</td>
+                        <td>
+                            <select id="select_wxc_function" name="select_wxc_function" class="input_16" style="width:96%;" keyenter=keyenter>
+                                <option value="portal">微主页</option>
+                                <option value="memberCenter">会员中心</option>
+                                <option value="pointCommodity">积分商城</option>
+                                <option value="pointCommodityOrderList">积分订单</option>
+                                <option value="pointAccount">积分账户</option>
+                                <option value="cashAccount">现金账户</option>
+                                <option value="oneDollarBuying">1元夺宝</option>
+                                <option value="personalInfo">个人信息</option>
+                                <option value="movieTimes">电影排片</option>
+                                <option value="staff">后台入口</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="div_view" buttontypediv="buttonTypeDiv">
+            <form id="form_view">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="110" height="36">名称：</td>
+                        <td><input id="txt_view_name" name="txt_view_name" type="text" class="input_16" style="width:96%; " keyenter=keyenter maxlength="20" /></td>
+                    </tr>
+                    <tr>
+                        <td width="110" height="36">网址：</td>
+                        <td>
+                            <input id="txt_view_url" name="txt_view_url" type="text" class="input_16" style="width:96%; " keyenter=keyenter maxlength="1000" />
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div style=" background-color:#ccc; position:absolute; bottom:55px; left:20px;right:20px; height:1px;">
+
+</div>
+
+<div style="position:absolute; bottom:15px; left:20px;right:20px;">
+
+
+    <div style="float:left;">
+        <input name="btnRemove" type="button" class="btn_red" id="btnRemove" value="删 除" onclick="removeData()" style="display:none" />
+    </div>
+
+    <div style="float:right">
+        <input name="btnSave" type="button" class="btn_blue" id="btnSave" value="保 存" onclick="save()" />
+        <input name="btnCancel" type="button" class="btn_blue" id="btnCancel" value="取 消" onclick="cancel()" />
+    </div>
+    <div style="clear:both">
+    </div>
+</div>
+

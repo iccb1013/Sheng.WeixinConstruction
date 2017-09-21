@@ -1,0 +1,230 @@
+﻿@model Sheng.WeixinConstruction.Management.Shell.Models.OneDollarBuyingCommodityForSaleListViewModel
+
+@{
+    ViewBag.MainMenu = "Pay";
+    ViewBag.LeftMenu = "OneDollarBuyingCommodity";
+
+    ViewBag.Title = "1元夺宝";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .divBaseSettingsTitle {
+        margin-top: 25px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+</style>
+
+
+
+<script language="javascript">
+
+    var _commodityId = getQueryString("id");
+
+    //当前页
+    var _currentPage = 1;
+
+    $(document).ready(function ()
+    {
+        if (_online == false)
+            return;
+
+        loadData();
+
+        $("[keyenter]").keypress(function (e)
+        {
+            if (e.keyCode == 13)
+            {
+                loadData();
+            }
+        });
+    });
+
+    function loadData(targetPage)
+    {
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.CommodityId = _commodityId;
+
+        $.ajax({
+            url: "/Api/OneDollarBuying/GetCommodityForSaleList",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR)
+            {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    var resultObj = data.Data;
+
+                    _currentPage = resultObj.Page;
+
+                    //alert(JSON.stringify(resultObj));
+                    var gettpl = document.getElementById('tableTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html)
+                    {
+                        document.getElementById('divTableBodyContainer').innerHTML = html;
+                        fitTable();
+                    });
+
+                    laypage({
+                        skin: 'yahei',
+                        cont: document.getElementById('divPagingContainer'),
+                        pages: resultObj.TotalPage, //总页数
+                        curr: resultObj.Page, //当前页
+                        groups: 7, //连续显示分页数
+                        jump: function (obj, first)
+                        {
+                            if (!first)
+                            { //点击跳页触发函数自身，并传递当前页：obj.curr
+                                loadData(obj.curr);
+                            }
+                        }
+                    });
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function scrollHeader()
+    {
+        // alert(divTableBodyContainer.scrollLeft);
+        var ml = 0 - divTableBodyContainer.scrollLeft;
+        document.getElementById("tableHeader").style.cssText = "margin-left:" + ml + "px;";
+    }
+
+    function fitTable()
+    {
+        $("#tableBody").width($("#tableHeader").width());
+
+        $("#tableHeader tr:first").each(function (n, value)
+        {
+            $(this).find("td").each(function (n, value)
+            {
+                $("#tableBody tr:first td:eq(" + n + ")").width(value.width)
+            });
+        });
+    }
+
+    function showDealInfo(saleId) {
+        layer.open({
+            type: 2,
+            area: ['600px', '500px'], //宽高
+            closeBtn: false,
+            title: "",
+            shift: _layerShift,
+            content: 'OneDollarBuyingDealInfo?saleId=' + saleId
+        });
+    }
+
+  
+</script>
+
+<script id="tableTemplate" type="text/html">
+    <table id="tableBody" border="0" cellspacing="0" cellpadding="0">
+        {{# for(var i = 0, len = d.length; i < len; i++){ }}
+
+        <tr>
+            <td height="35">{{ d[i].ForSaleTime }}</td>
+            <td>{{ d[i].TotalPart }}</td>
+            <td>{{ d[i].SoldPart }}</td>
+            <td>
+                {{# if(d[i].LuckyPartNumber != null){ }}
+                    {{ d[i].LuckyPartNumber }}
+                {{# }}}
+            </td>
+            <td>
+                {{# if(d[i].LuckyMemberNickName != null){ }}
+                <a href="javascript:void(0)" onclick="showDealInfo('{{ d[i].Id }}')">{{ d[i].LuckyMemberNickName }}</a>
+                {{# }}}
+           
+            </td>
+            <td>
+                {{# if(d[i].LuckyPartNumber != null){ }}
+                    {{# if(d[i].Deal == true){ }}是{{# }else{ }}否{{# } }}
+                {{# }}}
+            </td>
+            <td>
+            {{# if(d[i].DealTime != null){ }}
+                {{ d[i].DealTime }}
+            {{# }}}
+            </td>
+        </tr>
+        {{# } }}
+
+    </table>
+
+</script>
+
+<div class="divBaseSettingsTitle">
+    <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td class=" font_black_22">@Model.Commodity.Name</td>
+            <td width="35">&nbsp;</td>
+            <td valign="bottom"><a href="/Pay/OneDollarBuyingCommodity">[返回]</a></td>
+        </tr>
+    </table>
+</div>
+
+<div class="divDotLine" style="margin-top:10px; width:400px;"></div>
+
+<div style=" margin-top:20px">
+    <div style="overflow:hidden; padding-left:20px;" class="tableHeader">
+        <table id="tableHeader" border="0" cellspacing="0" cellpadding="0" width="1020" height="47">
+            <tr>
+                <td width="180">上架时间</td>
+                <td width="100">总份数</td>
+                <td width="100">已售份数</td>
+                <td width="180">幸运号码</td>
+                <td width="180">获得者</td>
+                <td width="100">已领取</td>
+                <td width="180">领取时间</td>
+            </tr>
+        </table>
+    </div>
+
+    <div style=" margin-top:10px">
+        <!--div必须要设置height，否则滚动条出不来-->
+        <div id="divTableBodyContainer" style="overflow:auto; height:100%;padding-left:20px;" onscroll="scrollHeader()">
+            @*<div style="background-color:aqua" id="demo1"></div>*@
+            <!--table必须要有一个确切的宽度，否则无法超出div-->
+            @*<table id="tableBody" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td height="35"><a href="#">电子影票一张</a></td>
+                        <td>20</td>
+                        <td>100</td>
+                        <td>12</td>
+                        <td>是</td>
+                    </tr>
+                </table>*@
+        </div>
+
+    </div>
+
+</div>
+
+<div style="height:1px; margin-top:5px; background-color:#cccccc">
+
+</div>
+
+<div id="divPagingContainer" style=" margin-top:20px; margin-bottom:20px;text-align:right; ">
+
+</div>

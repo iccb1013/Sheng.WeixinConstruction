@@ -1,0 +1,409 @@
+﻿
+@{
+    ViewBag.MainMenu = "Portal";
+    ViewBag.LeftMenu = "Menu";
+
+    ViewBag.Title = "菜单设置";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .divWeixinMenu {
+        background-color: #F6F6F6;
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 100%;
+        font-size: 15px;
+    }
+
+    .divWeixinMainMenu {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .divWeixinMenuItem {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .divWeixinMenuItem_Add {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .divWeixinMenuItem_Add a {
+            color: #777777;
+        }
+</style>
+
+<script language="javascript">
+
+    var _menu = new Object();
+    _menu.button = new Array();
+
+    $(document).ready(function ()
+    {
+        if (_online == false)
+            return;
+
+        getMenu();
+    });
+
+    function getMenu()
+    {
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        $.ajax({
+            url: "/Api/Settings/GetMenu",
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR)
+            {
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    if (data.Data != null && data.Data.Menu != "")
+                    {
+                        _menu = eval("(" + data.Data.Menu + ")");
+                    }
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+
+                renderMenu();
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function renderMenu()
+    {
+        //alert(JSON.stringify(_menu));
+
+        var gettpl = document.getElementById('menuTemplate').innerHTML;
+        laytpl(gettpl).render(_menu, function (html)
+        {
+            document.getElementById('divMenuContainer').innerHTML = html;
+        });
+    }
+
+    function createButton()
+    {
+        layer.open({
+            type: 2,
+            area: ['90%', '90%'], //宽高
+            closeBtn: false,
+            title: "",
+            shift: _layerShift,
+            content: 'MenuEdit?mode=createButton'
+        });
+    }
+
+    function modifyButton(index)
+    {
+        layer.open({
+            type: 2,
+            area: ['90%', '90%'], //宽高
+            closeBtn: false,
+            title: "",
+            shift: _layerShift,
+            content: 'MenuEdit?mode=modifyButton&button=' + index
+        });
+    }
+
+    function getButton(index)
+    {
+        return _menu.button[index];
+    }
+
+    function getSubButton(parentButtonIndex, index)
+    {
+        return _menu.button[parentButtonIndex].sub_button[index];
+    }
+
+    function createSubButton(parentButtonIndex)
+    {
+        layer.open({
+            type: 2,
+            area: ['90%', '90%'], //宽高
+            closeBtn: false,
+            title: "",
+            shift: _layerShift,
+            content: 'MenuEdit?mode=createSubButton&parentButton=' + parentButtonIndex
+        });
+    }
+
+    function modifySubButton(parentButtonIndex, index)
+    {
+        layer.open({
+            type: 2,
+            area: ['90%', '90%'], //宽高
+            closeBtn: false,
+            title: "",
+            shift: _layerShift,
+            content: 'MenuEdit?mode=modifySubButton&parentButton=' + parentButtonIndex + '&button=' + index
+        });
+    }
+
+    function addButtonAndCloseLayer(layerIndex, button)
+    {
+        layer.close(layerIndex);
+
+        _menu.button[_menu.button.length] = button;
+
+        renderMenu();
+    }
+
+    function removeButtonAndCloseLayer(layerIndex, index)
+    {
+        layer.close(layerIndex);
+
+        _menu.button.splice(index, 1);
+
+        renderMenu();
+    }
+
+    function addSubButtonAndCloseLayer(layerIndex, parentButtonIndex, button)
+    {
+        layer.close(layerIndex);
+
+        var parentButton = _menu.button[parentButtonIndex];
+        if (parentButton.sub_button == undefined || parentButton.sub_button == null)
+        {
+            parentButton.sub_button = new Array();
+        }
+
+        parentButton.sub_button[parentButton.sub_button.length] = button;
+
+        renderMenu();
+    }
+
+    function removeSubButtonAndCloseLayer(layerIndex, parentButtonIndex, index)
+    {
+        layer.close(layerIndex);
+
+        var parentButton = _menu.button[parentButtonIndex];
+
+        parentButton.sub_button.splice(index, 1);
+
+        renderMenu();
+    }
+
+    function moveSubButtonUp(parentButtonIndex, index)
+    {
+        if (index == 0)
+            return;
+
+        var parentButton = _menu.button[parentButtonIndex];
+        var button = parentButton.sub_button[index];
+
+        parentButton.sub_button.splice(index, 1);
+
+        parentButton.sub_button.splice(index - 1, 0, button);
+
+        renderMenu();
+    }
+
+    function moveSubButtonDown(parentButtonIndex, index)
+    {
+        var parentButton = _menu.button[parentButtonIndex];
+
+        if (index == parentButton.sub_button.length - 1)
+            return;
+
+        var button = parentButton.sub_button[index];
+
+        parentButton.sub_button.splice(index, 1);
+
+        parentButton.sub_button.splice(index + 1, 0, button);
+
+        renderMenu();
+    }
+
+    function moveButtonLeft(index)
+    {
+        if (index == 0)
+            return;
+
+        var button = _menu.button[index];
+
+        _menu.button.splice(index, 1);
+
+        _menu.button.splice(index - 1, 0, button);
+
+        renderMenu();
+    }
+
+    function moveButtonRight(index)
+    {
+        if (index == _menu.button.length - 1)
+            return;
+
+        var button = _menu.button[index];
+
+        _menu.button.splice(index, 1);
+
+        _menu.button.splice(index + 1, 0, button);
+
+        renderMenu();
+    }
+
+    function closeLayer(layerIndex)
+    {
+        layer.close(layerIndex);
+        renderMenu();
+    }
+
+    function saveAndPublish()
+    {
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        $.ajax({
+            url: "/Api/Settings/SaveAndPublishMenu",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(_menu),
+            success: function (data, status, jqXHR)
+            {
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    layerAlert("发布成功，由于微信客户端缓存，需要24小时微信客户端才会展现。测试时可以尝试取消关注公众账号后再次关注，则可以看到创建后的效果。");
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+</script>
+
+<script id="menuTemplate" type="text/html">
+    <div>
+        <div style="height:20px;">
+        </div>
+        <table width="90%" style="height:260px;" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                {{# for(var i = 0, len = d.button.length; i < len; i++){ }}
+                <td width="33%">
+                    <div class="divWeixinMenu">
+                        <table width="100%" height="260" border="0" cellspacing="0">
+                            <tr>
+                                <td valign="bottom">
+                                    {{# if(d.button[i].sub_button == undefined || d.button[i].sub_button.length < 5){ }}
+                                    <div class="divWeixinMenuItem_Add">
+                                        <a href="javascript:void(0)" onclick="createSubButton({{ i }})" class="font_gray_15">+ 点击添加二级菜单</a>
+                                    </div>
+                                    {{# } }}
+                                    {{# if(d.button[i].sub_button != undefined){ }}
+                                    {{# for(var j = 0, lenJ = d.button[i].sub_button.length; j < lenJ; j++){ }}
+                                    <div class="divWeixinMenuItem">
+                                        <div style="float:left">
+                                            <!--指定 line-height:6px，实测高度为 8.5 -->
+                                            <div style="line-height:0px; ">
+                                                <img src="/Content/Images/microletAup.png" height="6" onclick="moveSubButtonUp({{ i }},{{ j }})" />
+                                            </div>
+                                            <div style="line-height:0px; margin-top:6px;">
+                                                <img src="/Content/Images/microletAdown.png" height="6" onclick="moveSubButtonDown({{ i }},{{ j }})" />
+                                            </div>
+                                        </div>
+                                        <div style="float:left; margin-left:15px; line-height:18px;">
+                                            <a href="javascript:void(0)" onclick="modifySubButton({{ i }},{{ j }})">{{ d.button[i].sub_button[j].name }}</a>
+                                        </div>
+                                        <div style="clear:both"></div>
+                                    </div>
+                                    {{# } }}
+                                    {{# } }}
+                                    <div style="height:1px; margin-top:5px; background-color:#cccccc">
+                                    </div>
+                                    <div class="divWeixinMainMenu">
+                                        {{# if(d.button[i] != undefined){ }}
+                                        <div style="line-height:0px; float:left; margin-top:4px;">
+                                            <img src="/Content/Images/microletAleft.png" width="6" height="11" onclick="moveButtonLeft({{ i }})" />
+                                        </div>
+                                        <div style="line-height:0px;float:left; margin-top:4px; margin-left:5px;">
+                                            <img src="/Content/Images/microletAright.png" width="6" height="11" onclick="moveButtonRight({{ i }})" />
+                                        </div>
+                                        <div style="float:left; margin-left:15px;">
+                                            <a href="javascript:void(0)" onclick="modifyButton({{ i }})">{{ d.button[i].name }}</a>
+                                        </div>
+                                        <div style="clear:both"></div>
+                                        {{# }else{ }}
+                                        <a href="javascript:void(0)" onclick="createButton()" class="font_gray_15">
+                                            + 点击添加菜单
+                                        </a>
+                                        {{# } }}
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                {{# } }}
+                {{# if(d.button.length < 3){ }}
+                <td width="33%">
+                    <div class="divWeixinMenu">
+                        <table width="100%" height="260" border="0" cellspacing="0">
+                            <tr>
+                                <td valign="bottom">
+
+                                    <div style="height:1px; margin-top:5px; background-color:#cccccc">
+                                    </div>
+                                    <div class="divWeixinMainMenu">
+                                        <a href="javascript:void(0)" onclick="createButton()" class="font_gray_15">
+                                            + 点击添加菜单
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                {{# } }}
+            </tr>
+        </table>
+    </div>
+</script>
+
+
+<div id="divContentTips">
+    设置公众号底部的菜单，可通过菜单访问微官网的各功能或页面。
+</div>
+
+
+<div style=" margin-top:20px; margin-left:10px; margin-right:10px;" class="font_black_14">
+    自定义菜单最多包括3个一级菜单，每个一级菜单最多包含5个二级菜单。<br />
+    创建或更新自定义菜单后，<b>由于微信自身客户端缓存，最长可能需要24小时微信客户端才会展现出来</b>。测试时可以尝试取消关注公众账号后再次关注，则可以看到创建后的效果。
+</div>
+
+<div id="divMenuContainer" style="background:#DEDEDE; height:300px; margin-top:40px;">
+
+</div>
+
+<div style=" margin-top:20px;">
+    <input name="btnCreate" type="button" class="btn_blue" id="btnCreate" value="保存并发布" onclick="saveAndPublish()" />
+</div>
+

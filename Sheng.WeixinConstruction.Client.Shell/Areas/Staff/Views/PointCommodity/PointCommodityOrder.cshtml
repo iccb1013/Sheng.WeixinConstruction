@@ -1,0 +1,288 @@
+﻿@{
+    ViewBag.SubTitle = "积分商城";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        margin-bottom: 0.2rem;
+    }
+
+    #tableOrderDetail {
+        font-size: 0.14rem;
+    }
+
+        #tableOrderDetail tr {
+            height: 0.24rem;
+        }
+
+    .divCommodityItem {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        padding: 0.1rem 0.05rem;
+        min-height: 0.8rem;
+        width: 100%;
+        margin-top: 0.1rem;
+    }
+
+      .imgPointCommodity {
+        max-height: 0.8rem;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+</style>
+
+<script>
+
+    //$(document).ready(function () {
+
+    //});
+
+    var _order = null;
+
+    function search() {
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var orderNumber = $("#txtSearch_OrderNumber").val();
+
+        $.ajax({
+            url: "/Api/PointCommodity/GetPointCommodityOrderByOrderNumber/@ViewBag.Domain.Id?orderNumber=" + orderNumber,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+
+                    _order = data.Data.Order;
+                    var member = data.Data.Member;
+
+                    $("#spanOrderNumber").html(_order.OrderNumber);
+                    $("#spanMemberName").html(member.NickName);
+                    $("#spanOrderTime").html(_order.OrderTime);
+                    $("#spanPoint").html(_order.Point);
+                    $("#spanPrice").html(accDiv(_order.Price,100));
+                    //$("#spanDealTime").html(_order.DealTime);
+                    $("#spanStatusString").html(_order.StatusString);
+
+                    document.getElementById('pointCommodityContainer').innerHTML = "";
+                    var gettpl = document.getElementById('pointCommodityListTemplate').innerHTML;
+                    laytpl(gettpl).render(data.Data.ItemList, function (html) {
+                        document.getElementById('pointCommodityContainer').innerHTML += html;
+                    });
+
+
+                    $("#divOrderDetail").show();
+                    $("#divOrderItemList").show();
+                    $("#divMessage").hide();
+
+                    if (_order.Status == 1) {
+                        $("#btnDeal").show();
+                    }
+                    else {
+                        $("#btnDeal").hide();
+                    }
+
+
+                } else {
+
+                    _order = null;
+
+                    $("#divOrderDetail").hide();
+                    document.getElementById('pointCommodityContainer').innerHTML = "";
+                    $("#divOrderItemList").hide();
+                    $("#divMessage").show();
+
+                    $("#btnDeal").hide();
+
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function deal() {
+
+        if (_order == undefined || _order == null)
+            return;
+
+        var msg = "是否确认发货？"
+
+        var confirmLayerIndex = layer.open({
+            content: msg,
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function () {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                $.ajax({
+                    url: "/Api/PointCommodity/DealPointCommodityOrder/@ViewBag.Domain.Id?id=" + _order.Id,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data, status, jqXHR) {
+                        layer.close(loadLayerIndex);
+                        if (data.Success) {
+                            //0 成功 1未知状态 2该订单已兑换过 3该订单已取消
+                            switch (data.Data.Result) {
+                                case 0:
+                                    layerAlertBtn("发货成功！", function () {
+                                        layer.closeAll();
+                                        search();
+                                    });
+                                    break;
+                                case 2:
+                                    layerAlert("该订单已发货过，不能再次发货。");
+                                    break;
+                                case 3:
+                                    layerAlert("该订单已被取消，不能发货。");
+                                    break;
+                                default:
+                                    layerAlert("订单状态无效。");
+                                    break;
+                            }
+
+                        } else {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest) {
+                        layer.close(loadLayerIndex);
+                        alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+</script>
+
+<script id="pointCommodityListTemplate" type="text/html">
+
+    {{# for(var i = 0, len = d.length; i < len; i=i+1){ }}
+    {{# var price = accMul(accDiv(d[i].Price,100),d[i].Quantity) }}
+
+    <div style="margin-top:0.1rem; ">
+        <div class="divCommodityItem" style="">
+            <div style="float:left;width:35%;text-align:center">
+                <img src="{{ d[i].ImageUrl }}" class="imgPointCommodity">
+            </div>
+            <div style="float:right;width:60%;">
+                <div style="font-size:0.14rem;">{{ d[i].Name }}</div>
+                <div style="margin-top:0.05rem;">数量：{{ d[i].Quantity }}</div>
+                <div style="margin-top:0.05rem;">{{ price }} 元 + {{ d[i].Quantity * d[i].Point }} 积分</div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+
+    {{# } }}
+
+</script>
+
+
+<div class="divContent" style="margin-top:0.1rem;">
+    <div style="margin-top:0.5rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>订单号：</td>
+                <td align="right"><input name="btnSearch" type="button" class="btn_blue" id="btnSearch" value="查询" onclick="search()" /></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-top:0.1rem;">
+        <input id="txtSearch_OrderNumber" name="txtSearch_OrderNumber" type="text" class="input_16" maxlength="30" />
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+    </div>
+
+    <div id="divOrderDetail" style="display:none">
+        <table id="tableOrderDetail" width="96%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width:1rem;">订单编号：</td>
+                <td>
+                    <span id="spanOrderNumber"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>会员昵称：</td>
+                <td>
+                    <span id="spanMemberName"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>下单时间：</td>
+                <td>
+                    <span id="spanOrderTime"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>积分：</td>
+                <td>
+                    <span id="spanPoint"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>金额：</td>
+                <td>
+                    <span id="spanPrice"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>当前状态：</td>
+                <td>
+                    <span id="spanStatusString"></span>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div id="divOrderItemList" style="display:none">
+        <div style="margin-top:0.1rem; ">
+            订单商品：
+        </div>
+
+        <div style="margin-top:0.1rem; ">
+            <div id="pointCommodityContainer">
+
+            </div>
+        </div>
+    </div>
+    
+   
+
+    <div id="divMessage">
+        请输入要查询的完整订单号。
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+    </div>
+
+    <div>
+        <div style="float:right;">
+            <input id="btnDeal" name="btnDeal" type="button" class="btn_green" style="width:1rem;display:none" value="发 货" onclick="deal()" />
+        </div>
+    </div>
+
+</div>

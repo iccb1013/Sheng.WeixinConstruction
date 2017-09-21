@@ -1,0 +1,1880 @@
+----------------------------------------
+Timestamp: 2015/11/5 16:49:44
+
+Title:Memcached 连接失败。
+Message: Memcached 连接失败。
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 0:25:51
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 0:28:00
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 0:29:53
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 0:33:46
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 0:36:18
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 0:38:41
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 0:47:33
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 0:56:36
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 0:58:46
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 1:01:28
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 1:17:35
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 21:33:28
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 21:37:02
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 22:54:39
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 22:55:08
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 23:19:01
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/26 23:56:14
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/18 11:02:40
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/3/18 11:23:20
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/1 1:29:00
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/1 23:17:29
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 1:08:20
+
+Title:指定的 domoainId 不存在
+
+Message: f6aad430-ca1f-4afd-b2b0-6e0d2fabb622
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 1:10:24
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 1:49:49
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 1:50:15
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 1:50:39
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 1:52:10
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 9:18:22
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 9:50:42
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 9:51:32
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 9:57:25
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 9:57:29
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 9:57:55
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 9:58:44
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 10:13:19
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 10:35:31
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 10:37:52
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 10:37:55
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 10:37:57
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 10:38:13
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 10:44:23
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:07:47
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:07:57
+
+Title:指定的 domoainId 不存在
+
+Message: f6aad430-ca1f-4afd-b2b0-6e0d2fabb622
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:10:01
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:10:05
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:11:21
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:11:53
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:13:12
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:16:11
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:20:11
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:20:47
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:24:20
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:24:48
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:25:14
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:27:24
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:42:58
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:44:38
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:48:40
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:49:23
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/22 14:50:06
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/23 12:23:10
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/23 12:24:03
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/23 12:24:25
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/23 14:25:36
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/23 14:27:21
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/23 14:28:33
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/23 15:18:26
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/23 15:19:05
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/23 15:19:47
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 10:46:09
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 10:48:03
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 14:12:32
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 14:13:18
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (503) 服务器不可用。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 14:13:30
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (503) 服务器不可用。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 14:13:39
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (503) 服务器不可用。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 14:14:42
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (503) 服务器不可用。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 14:15:05
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (503) 服务器不可用。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 14:17:42
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 14:17:58
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (503) 服务器不可用。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 14:18:17
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (503) 服务器不可用。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 16:04:30
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 16:09:26
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 16:12:22
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 16:17:44
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 16:18:05
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (503) 服务器不可用。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 16:27:44
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 16:37:49
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 16:55:31
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 17:09:20
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 17:13:29
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 17:20:24
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 17:28:27
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 17:37:23
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 17:39:46
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 17:59:43
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 18:10:35
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 18:11:11
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:06:17
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:08:54
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:32:08
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:32:51
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:33:32
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:34:01
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:35:26
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:37:49
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:40:54
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:42:22
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:42:51
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 19:47:06
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 20:16:30
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 20:31:25
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 20:36:56
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 21:03:29
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/24 21:08:05
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/5/23 23:59:17
+
+Title:UnifiedOrder 失败
+
+Message: 返回数据签名校验失败。
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"会员充值","Detail":null,"Attach":null,"OutTradeNo":"6a04e356b57c415c90f0c7fdfe1c5dec","FeeType":"CNY","TotalFee":123,"SpbillCreateIp":"::1","TimeStart":"20160523235916","TimeExpire":"20160524005916","GoodsTag":null,"NotifyUrl":"","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwOkqIrihLgpgn1pYwjargXc"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[invalid notify_url]]\u003e\u003c/return_msg\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"返回数据签名校验失败。"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/5/23 23:59:22
+
+Title:UnifiedOrder 失败
+
+Message: 返回数据签名校验失败。
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"会员充值","Detail":null,"Attach":null,"OutTradeNo":"28cb80498476416cbf0686bbe5a0bfe2","FeeType":"CNY","TotalFee":123,"SpbillCreateIp":"::1","TimeStart":"20160523235922","TimeExpire":"20160524005922","GoodsTag":null,"NotifyUrl":"","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwOkqIrihLgpgn1pYwjargXc"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[invalid notify_url]]\u003e\u003c/return_msg\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"返回数据签名校验失败。"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/5/24 0:10:40
+
+Title:UnifiedOrder 失败
+
+Message: 返回数据签名校验失败。
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"会员充值","Detail":null,"Attach":null,"OutTradeNo":"e365b650c97b4c86acf0a9a2a9124a6b","FeeType":"CNY","TotalFee":123,"SpbillCreateIp":"::1","TimeStart":"20160524001039","TimeExpire":"20160524011039","GoodsTag":null,"NotifyUrl":"","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwOkqIrihLgpgn1pYwjargXc"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[invalid notify_url]]\u003e\u003c/return_msg\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"返回数据签名校验失败。"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/5/24 0:10:54
+
+Title:UnifiedOrder 失败
+
+Message: 返回数据签名校验失败。
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"会员充值","Detail":null,"Attach":null,"OutTradeNo":"baf8077799b2459f8b389652fd1214ad","FeeType":"CNY","TotalFee":123,"SpbillCreateIp":"::1","TimeStart":"20160524001054","TimeExpire":"20160524011054","GoodsTag":null,"NotifyUrl":"","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwOkqIrihLgpgn1pYwjargXc"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[invalid notify_url]]\u003e\u003c/return_msg\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"返回数据签名校验失败。"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/5/24 0:14:00
+
+Title:UnifiedOrder 失败
+
+Message: invalid notify_url
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"会员充值","Detail":null,"Attach":null,"OutTradeNo":"a28cfa60cf4f454c8b8104f23143f9f7","FeeType":"CNY","TotalFee":1,"SpbillCreateIp":"::1","TimeStart":"20160524001338","TimeExpire":"20160524011338","GoodsTag":null,"NotifyUrl":"","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwOkqIrihLgpgn1pYwjargXc"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[invalid notify_url]]\u003e\u003c/return_msg\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"invalid notify_url"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/5/24 0:16:27
+
+Title:UnifiedOrder 失败
+
+Message: invalid notify_url
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"会员充值","Detail":null,"Attach":null,"OutTradeNo":"0844091223ff4376bca29b2323367dc9","FeeType":"CNY","TotalFee":123,"SpbillCreateIp":"::1","TimeStart":"20160524001626","TimeExpire":"20160524011626","GoodsTag":null,"NotifyUrl":"","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwOkqIrihLgpgn1pYwjargXc"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[invalid notify_url]]\u003e\u003c/return_msg\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"invalid notify_url"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/5/24 0:17:56
+
+Title:UnifiedOrder 失败
+
+Message: invalid spbill_create_ip
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"会员充值","Detail":null,"Attach":null,"OutTradeNo":"0677c22518134996a2a3bbf5f0688f04","FeeType":"CNY","TotalFee":123,"SpbillCreateIp":"::1","TimeStart":"20160524001755","TimeExpire":"20160524011755","GoodsTag":null,"NotifyUrl":"http://wx.zkebao.com/PayNotify","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwOkqIrihLgpgn1pYwjargXc"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[invalid spbill_create_ip]]\u003e\u003c/return_msg\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"invalid spbill_create_ip"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/5/24 0:18:39
+
+Title:UnifiedOrder 失败
+
+Message: invalid spbill_create_ip
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"会员充值","Detail":null,"Attach":null,"OutTradeNo":"356c9bf5e52b4d27b8198c5c690c89f5","FeeType":"CNY","TotalFee":123,"SpbillCreateIp":"::1","TimeStart":"20160524001809","TimeExpire":"20160524011809","GoodsTag":null,"NotifyUrl":"http://wx.zkebao.com/PayNotify","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwOkqIrihLgpgn1pYwjargXc"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[invalid spbill_create_ip]]\u003e\u003c/return_msg\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"invalid spbill_create_ip"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/5/24 0:19:41
+
+Title:UnifiedOrder 失败
+
+Message: 
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"会员充值","Detail":null,"Attach":null,"OutTradeNo":"032f083b227d455e8669e3e4db8a1a62","FeeType":"CNY","TotalFee":123,"SpbillCreateIp":"127.0.0.1","TimeStart":"20160524001941","TimeExpire":"20160524011941","GoodsTag":null,"NotifyUrl":"http://wx.zkebao.com/PayNotify","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwOkqIrihLgpgn1pYwjargXc"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[SUCCESS]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[OK]]\u003e\u003c/return_msg\u003e\n\u003cappid\u003e\u003c![CDATA[wx8c36b3c0000a0a49]]\u003e\u003c/appid\u003e\n\u003cmch_id\u003e\u003c![CDATA[1277619601]]\u003e\u003c/mch_id\u003e\n\u003cdevice_info\u003e\u003c![CDATA[WEB]]\u003e\u003c/device_info\u003e\n\u003cnonce_str\u003e\u003c![CDATA[Cx8hYPKsno7SU1su]]\u003e\u003c/nonce_str\u003e\n\u003csign\u003e\u003c![CDATA[F7240738246571575A9D90D5A402E34C]]\u003e\u003c/sign\u003e\n\u003cresult_code\u003e\u003c![CDATA[SUCCESS]]\u003e\u003c/result_code\u003e\n\u003cprepay_id\u003e\u003c![CDATA[wx201605240019401b7e8d35f70647330783]]\u003e\u003c/prepay_id\u003e\n\u003ctrade_type\u003e\u003c![CDATA[JSAPI]]\u003e\u003c/trade_type\u003e\n\u003c/xml\u003e"},"ApiResult":{"ReturnCode":"SUCCESS","ReturnMsg":"OK","AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":"Cx8hYPKsno7SU1su","Sign":"F7240738246571575A9D90D5A402E34C","ResultCode":"SUCCESS","ErrCode":null,"ErrCodeDes":null,"TradeType":"JSAPI","PrepayId":"wx201605240019401b7e8d35f70647330783","CodeUrl":null},"Success":false,"Message":null}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/23 23:42:55
+
+Title:指定的 domoainId 不存在
+
+Message: f6aad430-ca1f-4afd-b2b0-6e0d2fabb622
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 1:15:36
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 1:16:32
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 1:21:09
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 21:32:32
+
+Title:在与 SQL Server 建立连接时出现与网络相关的或特定于实例的错误。未找到或无法访问服务器。请验证实例名称是否正确并且 SQL Server 已配置为允许远程连接。 (provider: TCP Provider, error: 0 - 等待的操作过时。)
+
+Message: SELECT [Id],[Name],[PreviewImageUrl],[BackgroundImageUrl],[Template],[PreviewHtml],[PayRequired],[Description],[CreateTime],[UpdateTime] FROM [PortalPresetTemplate]
+[]
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetNewOpenConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetWrappedConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetOpenConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String tableName)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteDataSet(DbCommand command)
+   在 Linkup.Data.DatabaseWrapper.ExecuteDataSet(CommandType commandType, String commandText, List`1 parameterList, String[] tableNameArray) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 264
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 21:34:59
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 21:35:50
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:21:03
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:21:12
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:25:49
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:26:26
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:26:40
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:26:46
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:27:36
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:28:37
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:28:43
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:29:26
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:33:00
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:33:30
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 22:34:03
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:07:33
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:07:37
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:07:46
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:08:22
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:08:37
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:08:43
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:08:46
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:09:10
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:18:52
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:19:09
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:19:39
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:20:41
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/9 23:20:53
+
+Title:AccessTokenGetter.GetJsApiTicket 请求失败
+
+Message: 远程服务器返回错误: (500) 内部服务器错误。
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/27 23:21:41
+
+Title:字符串 ') t2
+		 ' 后的引号不完整。
+') t2
+		 ' 附近有语法错误。
+
+Message: GetPointCommodityOrderListByMember
+[{"ParameterName":"@domainId","Value":"00000000-0000-0000-0000-000000000000"},{"ParameterName":"@appId","Value":null},{"ParameterName":"@page","Value":1},{"ParameterName":"@pageSize","Value":10},{"ParameterName":"@member","Value":"ed638a09-f7aa-4d24-850e-a889a95bd454"}]
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.DoLoadDataSet(IDbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String tableName)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteDataSet(DbCommand command)
+   在 Linkup.Data.DatabaseWrapper.ExecuteDataSet(CommandType commandType, String commandText, List`1 parameterList, String[] tableNameArray) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 268
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/30 23:27:26
+
+Title:UnifiedOrder 失败
+
+Message: OUT_TRADE_NO_USED 商户订单号重复
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"1161029031017","Detail":null,"Attach":null,"OutTradeNo":"ef5049f741aa46d19ea5c726a061b2b4","FeeType":"CNY","TotalFee":111,"SpbillCreateIp":"127.0.0.1","TimeStart":"20160930232725","TimeExpire":"20161001002725","GoodsTag":null,"NotifyUrl":"http://wx8c36b3c0000a0a49.wxc.shengxunwei.com/Api/Pay/PayNotify/2a58d820-de07-4c8f-80b9-b5cb5a1028b4","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwEteoWmCygMuCKqhvqshVnQ"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[SUCCESS]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[OK]]\u003e\u003c/return_msg\u003e\n\u003cappid\u003e\u003c![CDATA[wx8c36b3c0000a0a49]]\u003e\u003c/appid\u003e\n\u003cmch_id\u003e\u003c![CDATA[1277619601]]\u003e\u003c/mch_id\u003e\n\u003cdevice_info\u003e\u003c![CDATA[WEB]]\u003e\u003c/device_info\u003e\n\u003cnonce_str\u003e\u003c![CDATA[36euhQR2elF2rmy7]]\u003e\u003c/nonce_str\u003e\n\u003csign\u003e\u003c![CDATA[BF6EB859A29CDA1DDC45A1D43FD70046]]\u003e\u003c/sign\u003e\n\u003cresult_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/result_code\u003e\n\u003cerr_code\u003e\u003c![CDATA[OUT_TRADE_NO_USED]]\u003e\u003c/err_code\u003e\n\u003cerr_code_des\u003e\u003c![CDATA[商户订单号重复]]\u003e\u003c/err_code_des\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"OUT_TRADE_NO_USED 商户订单号重复"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/30 23:27:30
+
+Title:UnifiedOrder 失败
+
+Message: OUT_TRADE_NO_USED 商户订单号重复
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"1161029031017","Detail":null,"Attach":null,"OutTradeNo":"ef5049f741aa46d19ea5c726a061b2b4","FeeType":"CNY","TotalFee":111,"SpbillCreateIp":"127.0.0.1","TimeStart":"20160930232730","TimeExpire":"20161001002730","GoodsTag":null,"NotifyUrl":"http://wx8c36b3c0000a0a49.wxc.shengxunwei.com/Api/Pay/PayNotify/2a58d820-de07-4c8f-80b9-b5cb5a1028b4","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwEteoWmCygMuCKqhvqshVnQ"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[SUCCESS]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[OK]]\u003e\u003c/return_msg\u003e\n\u003cappid\u003e\u003c![CDATA[wx8c36b3c0000a0a49]]\u003e\u003c/appid\u003e\n\u003cmch_id\u003e\u003c![CDATA[1277619601]]\u003e\u003c/mch_id\u003e\n\u003cdevice_info\u003e\u003c![CDATA[WEB]]\u003e\u003c/device_info\u003e\n\u003cnonce_str\u003e\u003c![CDATA[SwQ6EyAqvMJDGSOZ]]\u003e\u003c/nonce_str\u003e\n\u003csign\u003e\u003c![CDATA[60486182B29D2CCEDC1D37B91EC78944]]\u003e\u003c/sign\u003e\n\u003cresult_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/result_code\u003e\n\u003cerr_code\u003e\u003c![CDATA[OUT_TRADE_NO_USED]]\u003e\u003c/err_code\u003e\n\u003cerr_code_des\u003e\u003c![CDATA[商户订单号重复]]\u003e\u003c/err_code_des\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"OUT_TRADE_NO_USED 商户订单号重复"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/30 23:27:38
+
+Title:UnifiedOrder 失败
+
+Message: OUT_TRADE_NO_USED 商户订单号重复
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"1161029031017","Detail":null,"Attach":null,"OutTradeNo":"ef5049f741aa46d19ea5c726a061b2b4","FeeType":"CNY","TotalFee":111,"SpbillCreateIp":"127.0.0.1","TimeStart":"20160930232738","TimeExpire":"20161001002738","GoodsTag":null,"NotifyUrl":"http://wx8c36b3c0000a0a49.wxc.shengxunwei.com/Api/Pay/PayNotify/2a58d820-de07-4c8f-80b9-b5cb5a1028b4","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwEteoWmCygMuCKqhvqshVnQ"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[SUCCESS]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[OK]]\u003e\u003c/return_msg\u003e\n\u003cappid\u003e\u003c![CDATA[wx8c36b3c0000a0a49]]\u003e\u003c/appid\u003e\n\u003cmch_id\u003e\u003c![CDATA[1277619601]]\u003e\u003c/mch_id\u003e\n\u003cdevice_info\u003e\u003c![CDATA[WEB]]\u003e\u003c/device_info\u003e\n\u003cnonce_str\u003e\u003c![CDATA[7iTKRi9V6nn7GYZw]]\u003e\u003c/nonce_str\u003e\n\u003csign\u003e\u003c![CDATA[CCE6B8F5F8AFFA8257B91786233A9030]]\u003e\u003c/sign\u003e\n\u003cresult_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/result_code\u003e\n\u003cerr_code\u003e\u003c![CDATA[OUT_TRADE_NO_USED]]\u003e\u003c/err_code\u003e\n\u003cerr_code_des\u003e\u003c![CDATA[商户订单号重复]]\u003e\u003c/err_code_des\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"OUT_TRADE_NO_USED 商户订单号重复"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/9/30 23:27:40
+
+Title:UnifiedOrder 失败
+
+Message: OUT_TRADE_NO_USED 商户订单号重复
+{"AppId":"wx8c36b3c0000a0a49","MchId":"1277619601","DeviceInfo":"WEB","NonceStr":null,"Sign":null,"Body":"1161029031017","Detail":null,"Attach":null,"OutTradeNo":"ef5049f741aa46d19ea5c726a061b2b4","FeeType":"CNY","TotalFee":111,"SpbillCreateIp":"127.0.0.1","TimeStart":"20160930232740","TimeExpire":"20161001002740","GoodsTag":null,"NotifyUrl":"http://wx8c36b3c0000a0a49.wxc.shengxunwei.com/Api/Pay/PayNotify/2a58d820-de07-4c8f-80b9-b5cb5a1028b4","TradeType":"JSAPI","ProductId":null,"LimitPay":null,"OpenId":"oXCfEwEteoWmCygMuCKqhvqshVnQ"} {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"\u003cxml\u003e\u003creturn_code\u003e\u003c![CDATA[SUCCESS]]\u003e\u003c/return_code\u003e\n\u003creturn_msg\u003e\u003c![CDATA[OK]]\u003e\u003c/return_msg\u003e\n\u003cappid\u003e\u003c![CDATA[wx8c36b3c0000a0a49]]\u003e\u003c/appid\u003e\n\u003cmch_id\u003e\u003c![CDATA[1277619601]]\u003e\u003c/mch_id\u003e\n\u003cdevice_info\u003e\u003c![CDATA[WEB]]\u003e\u003c/device_info\u003e\n\u003cnonce_str\u003e\u003c![CDATA[NxDrtxd8aoRtoe9z]]\u003e\u003c/nonce_str\u003e\n\u003csign\u003e\u003c![CDATA[490E92B0183A8BC1195982A23CB2B0F3]]\u003e\u003c/sign\u003e\n\u003cresult_code\u003e\u003c![CDATA[FAIL]]\u003e\u003c/result_code\u003e\n\u003cerr_code\u003e\u003c![CDATA[OUT_TRADE_NO_USED]]\u003e\u003c/err_code\u003e\n\u003cerr_code_des\u003e\u003c![CDATA[商户订单号重复]]\u003e\u003c/err_code_des\u003e\n\u003c/xml\u003e"},"ApiResult":null,"Success":false,"Message":"OUT_TRADE_NO_USED 商户订单号重复"}
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/10/10 0:30:58
+
+Title:ShortUrlApi.GetShortUrl 失败
+
+Message: 请求的URL：
+https://api.weixin.qq.com/cgi-bin/shorturl?access_token=gF2SfgVC0hr-pyeTEeT50zB-mpofUK25PLgh8xx1dRVfRdd9S-8VQUWguBNmz8QWQsCe3VcDD_XDPIBEWZL3cA5egKErcuZE48QycPKJFp1KcT2RcnF1vhCwo6ktdyN6IZXfAMDBSQ
+发送的内容：
+{"action":"long2short","long_url":"http://wx8c36b3c0000a0a49.wxc.shengxunwei.com/Function/RecommendUrl/2a58d820-de07-4c8f-80b9-b5cb5a1028b4?id=0e4c1eae-b75d-48cf-a721-9f0976c29ade"}
+返回的内容：
+{"errcode":61004,"errmsg":"access clientip is not registered requestIP: 36.62.185.206 hint: [v5P.Pa0654vr30!]"}
+
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/10/17 23:53:37
+
+Title:必须声明标量变量 "@referrerMemberId"。
+
+Message: SELECT COUNT(1) FROM [Member] WHERE [RefereeMemberId] = @referrerMemberId AND [Attention] = 1
+[{"ParameterName":"@refereeMemberId","Value":"ed638a09-f7aa-4d24-850e-a889a95bd454"}]
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.DoExecuteScalar(IDbCommand command)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteScalar(DbCommand command)
+   在 Linkup.Data.DatabaseWrapper.ExecuteScalar(CommandType commandType, String commandText, List`1 parameterList) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 171
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/4 15:07:22
+
+Title:列名 'MediaId' 无效。
+
+Message: SELECT [CampaignId],[Domain],[Member],[QRCodeUrl],[MediaId],[CreateTime],[LandingCount],[LandingPersonCount] FROM [Campaign_MemberQRCodeItem] WHERE [CampaignId]=@CampaignId AND [Member]=@Member
+[{"ParameterName":"@CampaignId","Value":"eeb3caf5-dfcd-4d28-99c2-151c443a583a"},{"ParameterName":"@Member","Value":"ed638a09-f7aa-4d24-850e-a889a95bd454"}]
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataSet dataSet, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataSet dataSet)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.DoLoadDataSet(IDbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String[] tableNames)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.LoadDataSet(DbCommand command, DataSet dataSet, String tableName)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteDataSet(DbCommand command)
+   在 Linkup.Data.DatabaseWrapper.ExecuteDataSet(CommandType commandType, String commandText, List`1 parameterList, String[] tableNameArray) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 268
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/12/13 22:51:22
+
+Title:已成功与服务器建立连接，但是在登录前的握手期间发生错误。 (provider: SSL Provider, error: 0 - 等待的操作过时。)
+
+Message: SELECT [LastUpdateTime] FROM [Domain] WHERE [Id] = @id
+[{"ParameterName":"@id","Value":"2a58d820-de07-4c8f-80b9-b5cb5a1028b4"}]
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetNewOpenConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetWrappedConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.GetOpenConnection()
+   在 Microsoft.Practices.EnterpriseLibrary.Data.Database.ExecuteScalar(DbCommand command)
+   在 Linkup.Data.DatabaseWrapper.ExecuteScalar(CommandType commandType, String commandText, List`1 parameterList) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 171
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/20 23:36:06
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/20 23:38:03
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/20 23:40:05
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 0:52:58
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 10:20:37
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 22:52:58
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/21 23:01:49
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:34:09
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:38:26
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/5/22 1:43:04
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. UnableToResolvePhysicalConnection on PING
+
+Severity: Error
+
+----------------------------------------

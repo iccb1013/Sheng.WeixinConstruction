@@ -1,0 +1,122 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.RecommendUrlViewModel
+
+@{
+    ViewBag.Title = "RecommendUrl";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+    body {
+        margin-top: 0.9rem;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+
+        var jsApiConfigStr = "@Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.JsApiConfig)";
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("&quot;", "gm"), "\"");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\r\n", "gm"), "");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\n", "gm"), "");
+        var jsApiConfig = eval('(' + jsApiConfigStr + ')');
+
+        wx.config(jsApiConfig);
+    });
+
+    wx.ready(function () {
+        wx.onMenuShareTimeline({
+            title: '@ViewBag.Authorizer.NickName', // 分享标题
+            link: '@if (String.IsNullOrEmpty(Model.RecommendUrl.ShortUrl) == false){@Model.RecommendUrl.ShortUrl}else{@Model.RecommendUrl.Url}', // 分享链接
+            imgUrl: '@ViewBag.Authorizer.QRCodeUrl', // 分享图标
+            success: function () {
+                //shareSuccess("ShareTimeline");
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '@ViewBag.Authorizer.NickName', // 分享标题
+            desc: '', // 分享描述
+            link: '@if (String.IsNullOrEmpty(Model.RecommendUrl.ShortUrl) == false){@Model.RecommendUrl.ShortUrl}else{@Model.RecommendUrl.Url}', // 分享链接
+            imgUrl: '@ViewBag.Authorizer.QRCodeUrl', // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // shareSuccess("ShareAppMessage");
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+
+    wx.error(function (res) {
+        alert("error:" + res);
+    });
+
+
+</script>
+
+@Helpers.HeaderArea(ViewBag, "headimg")
+
+<div class="divContent">
+    <div style="">
+        将我们推荐给您的小伙伴：
+    </div>
+
+    <div class="defaultColor" style="font-size: 0.16rem; font-weight: bold; text-align: center; margin-top: 0.15rem; word-break: break-all">
+        @if (String.IsNullOrEmpty(Model.RecommendUrl.ShortUrl) == false)
+        {
+            @Model.RecommendUrl.ShortUrl
+        }
+        else
+        {
+            @Model.RecommendUrl.Url
+        }
+    </div>
+    <div style="margin-top: 0.15rem;">
+        将此链接地址发送给您的好友。
+    </div>
+    <div style="margin-top: 0.05rem;">
+        @if (Model.Settings.AttentionPoint > 0)
+        {
+            <span>每个好友关注您将获得 @Model.Settings.AttentionPoint 积分。</span>
+        }
+    </div>
+    <div class="divDotLine" style="margin-top: 0.1rem; margin-bottom: 0.1rem;">
+    </div>
+
+    <div>
+        <div style="float: left; font-size: 0.14rem;">
+            链接点击量：
+        </div>
+        <div class="defaultColor" style="float: right">
+            @Model.RecommendUrl.LandingCount
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <div class="divDotLine" style="margin-top: 0.1rem; margin-bottom: 0.1rem;">
+    </div>
+    <div>
+        <div style="float: left; font-size: 0.14rem;">
+            引导关注人数：
+        </div>
+        <div class="defaultColor" style="float: right">
+            @Model.Level1DownlineCount
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    @*<div class="divDotLine" style="margin-top: 0.1rem; margin-bottom: 0.1rem;">
+        </div>
+        <div>
+            <div style="float: left; font-size: 0.14rem;">
+                二级引导关注人数：
+            </div>
+            <div class="defaultColor" style="float: right">
+                @Model.Level2DownlineCount
+            </div>
+            <div style="clear: both"></div>
+        </div>*@
+</div>

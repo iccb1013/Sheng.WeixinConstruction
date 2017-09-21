@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "GetPay";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<script>
+    function cancel() {
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.layer.close(index); //再执行关闭
+    }
+</script>
+
+<div style="margin-left:20px; margin-right:20px; margin-top:20px;">
+    <span id="spanTitle" class="font_black_24">对接微信支付</span>
+</div>
+
+<div style=" background-color:#ccc; margin-left:20px; margin-right:20px; margin-top:10px; height:1px;">
+
+</div>
+
+<div style=" position:absolute; overflow:auto ;margin-top:25px;left:30px; right:30px; bottom:60px; top:50px; ">
+
+    <div style="margin-top:5px;color:#FF5A26;font-size:18px;">
+        只需 1000元/年
+    </div>
+
+    <div style="margin-top:20px;text-decoration:underline;font-size:16px;">
+        服务
+    </div>
+    <div style="margin-top:5px;line-height:24px;font-size:14px;">
+        视频或电话的技术培训及咨询答疑<br />
+        7 x 24 小时技术支持及咨询服务<br />
+        新功能上线后的玩法推送及应用指导
+    </div>
+    <div style="margin-top:5px;text-decoration:underline;font-size:16px;">
+        产品
+    </div>
+    <div style="margin-top:5px;line-height:24px;font-size:14px;">
+        开启会员在线充值<br />
+        在积分商城中销售产品或服务<br />
+        开展发红包活动<br />
+        开展1元夺宝活动<br />
+    </div>
+
+    <div style="margin-top:25px;text-decoration:underline;font-size:16px;">
+        付款方式：
+    </div>
+    <div style="margin-top:5px;line-height:24px;font-size:14px;">
+        对公账户汇款：<br />
+        开户名：滁州市升讯威软件技术有限公司<br />
+        开户行：中国工商银行股份有限公司滁州琅琊支行<br />
+        账号：1313002109300211331<br />
+    </div>
+    <div style="margin-top:5px;line-height:24px;font-size:14px;">
+        微信支付：sheng-incog<br />
+        支付宝支付：cao.silhouette@msn.com<br />
+    </div>
+    <div style="margin-top:25px;text-decoration:underline;font-size:16px;">
+        联系方式：
+    </div>
+    <div style="margin-top:5px;line-height:24px;font-size:14px;">
+        电话：0550-3926191 / 18114009195<br />
+        QQ：279060597<br />
+        微信：sheng-incog<br />
+    </div>
+</div>
+
+<div style=" background-color:#ccc; position:absolute; bottom:55px; left:20px;right:20px; height:1px;">
+
+</div>
+
+<div style="position:absolute; bottom:15px; left:20px;right:20px;">
+    <div style="float:right">
+        <input name="btnCancel" type="button" class="btn_white" id="btnCancel" value="关 闭" onclick="cancel()" />
+    </div>
+    <div style="clear:both">
+    </div>
+</div>
+

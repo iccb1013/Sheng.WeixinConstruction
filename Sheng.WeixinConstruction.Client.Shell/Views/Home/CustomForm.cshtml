@@ -1,0 +1,218 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.CustomFormViewModel
+
+@{
+    ViewBag.SubTitle = Model.CustomForm.Name;
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+   
+
+
+</style>
+
+
+<script type="text/javascript">
+
+    var _formId = getQueryString("formId");
+
+    var _fieldName = @Model.CustomForm.FieldName.ToString().ToLower();
+    var _fieldBirthday = @Model.CustomForm.FieldBirthday.ToString().ToLower();
+    var _fieldMobilePhone = @Model.CustomForm.FieldMobilePhone.ToString().ToLower();
+    var _fieldEmail = @Model.CustomForm.FieldEmail.ToString().ToLower();
+
+    var _fieldNameRequired = @Model.CustomForm.FieldNameRequired.ToString().ToLower();
+    var _fieldBirthdayRequired = @Model.CustomForm.FieldBirthdayRequired.ToString().ToLower();
+    var _fieldMobilePhoneRequired = @Model.CustomForm.FieldMobilePhoneRequired.ToString().ToLower();
+    var _fieldEmailRequired = @Model.CustomForm.FieldEmailRequired.ToString().ToLower();
+
+    $(document).ready(function () {
+
+        var jsApiConfigStr = "@Newtonsoft.Json.JsonConvert.SerializeObject(Model.JsApiConfig)";
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("&quot;", "gm"), "\"");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\r\n", "gm"), "");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\n", "gm"), "");
+        var jsApiConfig = eval('(' + jsApiConfigStr + ')');
+
+        wx.config(jsApiConfig);
+    });
+
+    wx.ready(function () {
+        wx.onMenuShareTimeline({
+            title: '@Model.CustomForm.ShareTimelineTitle', // 分享标题
+            link: '@Request.Url.ToString()', // 分享链接
+            imgUrl: '@Model.CustomForm.ShareImageUrl', // 分享图标
+            success: function () {
+
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '@Model.CustomForm.ShareAppMessageTitle', // 分享标题
+            desc: '@Model.CustomForm.ShareAppMessageDescription', // 分享描述
+            link: '@Request.Url.ToString()', // 分享链接
+            imgUrl: '@Model.CustomForm.ShareImageUrl', // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+
+    wx.error(function (res) {
+        alert("error:" + res);
+    });
+
+
+    function save() {
+
+
+        var args = new Object();
+        args.FormId = _formId;
+
+        @if (Model.Content != null)
+        {
+            @:args.ContentId = '@Model.Content.Id';
+       }
+
+        args.Name = $("#txtName").val();
+        args.Birthday = $("#txtBirthday").val();
+        args.MobilePhone = $("#txtMobilePhone").val();
+        args.Email = $("#txtEmail").val();
+
+        var msg = "";
+        if(_fieldName && _fieldNameRequired && args.Name =="")
+        {
+            msg += "请输入姓名；<br/>";
+        }
+        if(_fieldBirthday && _fieldBirthdayRequired && args.Birthday =="")
+        {
+            msg += "请输入生日；<br/>";
+        }
+        if(_fieldMobilePhone && _fieldMobilePhoneRequired && args.MobilePhone =="")
+        {
+            msg += "请输入手机；<br/>";
+        }
+        if(_fieldEmail && _fieldEmailRequired && args.Email =="")
+        {
+            msg += "请输入邮箱；<br/>";
+        }
+
+        if(msg != ""){
+            layerAlert(msg);
+            return;
+        }
+
+        //保存数据
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/CustomForm/SaveCustomFormContent/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    $("#divCustomForm").hide();
+                    $("#divSuccessful").show();
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+</script>
+
+@if (String.IsNullOrEmpty(Model.CustomForm.ImageUrl) == false)
+{
+    <div id="divImageContainer">
+        <img src="@Model.CustomForm.ImageUrl" name="img" id="img" style="width: 100%;">
+    </div>
+}
+
+<div class="divContent">
+
+    @if (String.IsNullOrEmpty(Model.CustomForm.Introduction) == false)
+    {
+        <div style="margin-top: 0.15rem; font-size: 0.16rem;">
+            @Html.Raw(Model.CustomForm.Introduction)
+        </div>
+
+        <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+        </div>
+    }
+
+    <div id="divCustomForm">
+
+        <div style="font-size: 0.16rem;">
+
+            <div style="@if (Model.CustomForm.FieldName == false){@Html.Raw("display:none")}">
+                <div style="margin-top: 0.15rem; ">姓名：</div>
+                <div style="margin-top: 0.1rem;">
+                    <input id="txtName" name="txtName" type="text" class="input_16" value="@Model.Member.Name" maxlength="10">
+                </div>
+            </div>
+
+            <div style="@if (Model.CustomForm.FieldBirthday == false){@Html.Raw("display:none")}">
+                <div style="margin-top: 0.15rem; ">生日：</div>
+                <div style="margin-top: 0.1rem;">
+                    <input id="txtBirthday" name="txtBirthday" type="date" class="input_16" value="@if (Model.Member.Birthday.HasValue) { @Html.Raw(Model.Member.Birthday.Value.ToString("yyyy-MM-dd")); }" />
+                </div>
+            </div>
+
+            <div style="@if (Model.CustomForm.FieldMobilePhone == false){@Html.Raw("display:none")}">
+                <div style="margin-top: 0.15rem; ">手机：</div>
+                <div style="margin-top: 0.1rem;">
+                    <input id="txtMobilePhone" name="txtMobilePhone" type="text" class="input_16" value="@Model.Member.MobilePhone" maxlength="15">
+                </div>
+            </div>
+
+            <div style="@if (Model.CustomForm.FieldEmail == false){@Html.Raw("display:none")}">
+                <div style="margin-top: 0.15rem; ">邮箱：</div>
+                <div style="margin-top: 0.1rem;">
+                    <input id="txtEmail" name="txtEmail" type="email" class="input_16" value="@Model.Member.Email" maxlength="30">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+        </div>
+
+        <div style="text-align:center">
+            <div class="divRectangle" style="margin-top: 0.15rem;width:2rem;margin-left:auto;margin-right:auto" onclick="save()">
+                提 交
+            </div>
+        </div>
+
+    </div>
+
+    <div id="divSuccessful" style="display:none">
+        <div>
+            @Html.Raw(Model.CustomForm.SuccessfulDescription)
+        </div>
+        <div style="text-align:center">
+            <div class="divRectangle_Gray" style="margin-top: 0.15rem;width:2rem;margin-left:auto;margin-right:auto" onclick="WeixinJSBridge.call('closeWindow')">
+                关 闭
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,127 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.PageViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta charset="utf-8" />
+    <title>
+        @Model.Page.Title
+    </title>
+
+    <link href="/Content/Style.css" rel="stylesheet" type="text/css">
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/layer.m/layer.m.js"></script>
+    @Scripts.Render("~/Scripts/validate/jquery.validate.min.js")
+    @Scripts.Render("~/bundles/common")
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+
+    <style type="text/css">
+      
+    </style>
+
+    <script>
+
+        var _pageId = getQueryString("id");
+
+        $(document).ready(function () {
+
+            var jsApiConfigStr = "@Newtonsoft.Json.JsonConvert.SerializeObject(Model.JsApiConfig)";
+            jsApiConfigStr = jsApiConfigStr.replace(new RegExp("&quot;", "gm"), "\"");
+            jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\r\n", "gm"), "");
+            jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\n", "gm"), "");
+            var jsApiConfig = eval('(' + jsApiConfigStr + ')');
+
+            wx.config(jsApiConfig);
+        });
+
+        wx.ready(function () {
+            wx.onMenuShareTimeline({
+                title: '@Model.Page.ShareTimelineTitle', // 分享标题
+                link: '@Request.Url.ToString()', // 分享链接
+                imgUrl: '@Model.Page.ShareImageUrl', // 分享图标
+                success: function () {
+                    shareSuccess("ShareTimeline");
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+            wx.onMenuShareAppMessage({
+                title: '@Model.Page.ShareAppMessageTitle', // 分享标题
+                desc: '@Model.Page.ShareAppMessageDescription', // 分享描述
+                link: '@Request.Url.ToString()', // 分享链接
+                imgUrl: '@Model.Page.ShareImageUrl', // 分享图标
+                type: 'link', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                    shareSuccess("ShareAppMessage");
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+        });
+
+        wx.error(function (res) {
+            alert("error:" + res);
+        });
+
+        function shareSuccess(type) {
+            var loadLayerIndex = layer.open({
+                type: 2,
+                shadeClose: false,
+                content: '请稍候...'
+            });
+
+            $.ajax({
+                url: "/Api/Page/" + type + "/@ViewBag.Domain.Id?pageId=" + _pageId,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    // alert(data);
+
+                    layer.close(loadLayerIndex);
+                    if (data.Success) {
+                        var resultObj = data.Data;
+
+                        if (resultObj.Point == 0)
+                            return;
+
+                        var msg = "";
+                        if (resultObj.Point > 0) {
+                            msg += "获得积分：" + resultObj.Point;
+                        }
+                        if (msg != "") {
+                            layerAlertBtn(msg);
+                        }
+
+                    } else {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+                    //alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+    </script>
+
+
+</head>
+<body>
+   
+    @Html.Raw(Model.Page.Body)
+</body>
+</html>

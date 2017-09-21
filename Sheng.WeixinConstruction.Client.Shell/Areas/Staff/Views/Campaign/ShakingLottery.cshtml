@@ -1,0 +1,296 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Areas.Staff.Models.ShakingLotteryViewModel
+
+@{
+    ViewBag.SubTitle = "活动";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    var _campaignId = getQueryString("campaignId");
+
+    //$(document).ready(function () {
+
+    //});
+
+    function startShaking() {
+        var msg = "是否确认打开参与通道？"
+
+        var confirmLayerIndex = layer.open({
+            content: msg,
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function () {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                $.ajax({
+                    url: "/Api/Campaign/StartShaking/@ViewBag.Domain.Id?id=" + _campaignId,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data, status, jqXHR) {
+                        layer.close(loadLayerIndex);
+                        if (data.Success) {
+                            layerAlertBtn("参与通道已打开！", function () {
+                                window.location.reload();
+                            });
+
+                        } else {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest) {
+                        layer.close(loadLayerIndex);
+                        alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+
+    function endShaking() {
+        var msg = "是否确认关闭参与通道？"
+
+        var confirmLayerIndex = layer.open({
+            content: msg,
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function () {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                $.ajax({
+                    url: "/Api/Campaign/EndShaking/@ViewBag.Domain.Id?id=" + _campaignId,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data, status, jqXHR) {
+                        layer.close(loadLayerIndex);
+                        if (data.Success) {
+                            layerAlertBtn("参与通道已关闭！", function () {
+                                window.location.reload();
+                            });
+
+                        } else {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest) {
+                        layer.close(loadLayerIndex);
+                        alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+    function clearWinningList() {
+        var msg = "是否确认清除全部中奖结果？注意清除操作无法恢复！"
+
+        var confirmLayerIndex = layer.open({
+            content: msg,
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function () {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                $.ajax({
+                    url: "/Api/Campaign/ClearShakingLotteryGiftWinningList/@ViewBag.Domain.Id?id=" + _campaignId,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data, status, jqXHR) {
+                        layer.close(loadLayerIndex);
+                        if (data.Success) {
+                            layerAlertBtn("中奖结果已全部清除！", function () {
+                                window.location.reload();
+                            });
+
+                        } else {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest) {
+                        layer.close(loadLayerIndex);
+                        alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+    function setPeriod(periodName, periodId) {
+
+        var msg = "是否确认将当前活动周期设置为：" + periodName
+
+        var confirmLayerIndex = layer.open({
+            content: msg,
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function () {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                $.ajax({
+                    url: "/Api/Campaign/SetShakingLotteryPeriod/@ViewBag.Domain.Id?campaignId=" + _campaignId + "&periodId=" + periodId,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data, status, jqXHR) {
+                        layer.close(loadLayerIndex);
+                        if (data.Success) {
+                            layerAlertBtn("活动周期已更新！", function () {
+                                window.location.reload();
+                            });
+
+                        } else {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest) {
+                        layer.close(loadLayerIndex);
+                        alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+
+</script>
+
+<div class="divContent" style="margin-top:0.1rem;">
+
+    <div class="font_16_b" style="margin-top:0.5rem">
+        @Model.CampaignBundle.Campaign.Name
+    </div>
+
+    <div style="margin-top:0.15rem">
+        <div style="float:left;margin-right:0.2rem;padding:0.1rem; background-color:#EEEEEE">
+            摘要
+        </div>
+        @*<div style="float:left;margin-right:0.2rem;padding:0.1rem; " onclick="goUrl('/Staff/Campaign/PictureVoteItemList/@ViewBag.Domain.Id?campaignId=' + _campaignId)">
+                管理内容
+            </div>*@
+        <div style="clear:both"></div>
+    </div>
+    <div class="divDotLine" style="margin-top: 0.05rem; margin-bottom: 0.05rem;">
+    </div>
+
+    <div style="margin-top:0.1rem">
+        <img src="@Model.CampaignBundle.Campaign.ImageUrl" style="width:100%">
+    </div>
+    <div style="margin-top:0.1rem">
+        创建时间：@Model.CampaignBundle.Campaign.CreateTime
+    </div>
+    <div style="margin-top:0.1rem">
+        开始时间：@Model.CampaignBundle.Campaign.StartTime
+    </div>
+    <div style="margin-top:0.1rem">
+        @if (Model.CampaignBundle.ShakingLottery.Mode == Sheng.WeixinConstruction.Infrastructure.EnumCampaign_ShakingLotteryMode.Period)
+        {
+            @:当前周期
+            if (Model.CurrentPeriod != null)
+            {
+                @(Model.CurrentPeriod.Name)
+            }
+        }
+        else
+        {
+
+            if (Model.CampaignBundle.Campaign.Status == Sheng.WeixinConstruction.Infrastructure.EnumCampaignStatus.Ongoing)
+            {
+                @:参与通道：
+                        if (Model.CampaignBundle.ShakingLottery.Started)
+                        {
+                            @:打开
+                            }
+                        else
+                        {
+                            @:关闭
+                            }
+            }
+
+        }
+    </div>
+    <div style="margin-top:0.1rem">
+        创建者：@Model.CampaignBundle.Campaign.CreateUserName
+    </div>
+    <div style="margin-top:0.1rem">
+        仅关注者可参与：
+        @if (Model.CampaignBundle.Campaign.OnlyMember)
+        {
+            @:是
+                            }
+        else
+        {
+            @:否
+                            }
+    </div>
+    <div style="margin-top:0.1rem">
+        备注：@Model.CampaignBundle.Campaign.Remark
+    </div>
+    <div class="divDotLine" style="margin-top: 0.05rem; margin-bottom: 0.05rem;">
+    </div>
+    <div>
+        @if (Model.CampaignBundle.ShakingLottery.Mode == Sheng.WeixinConstruction.Infrastructure.EnumCampaign_ShakingLotteryMode.Period)
+        {
+            <div>
+                设置当前周期：
+            </div>
+            <div style="margin-top:0.1rem;">
+                <input type="button" class="btn_blue" value="无" onclick="setPeriod('无','')" style="width: 100%;margin-bottom:0.1rem;height:0.3rem;font-size:0.14rem;" />
+                <br />
+                @foreach (var item in Model.PeriodList)
+                {
+                    <input type="button" class="btn_blue" value="@item.Name" onclick="setPeriod('@item.Name','@item.Id')" style="width: 100%;margin-bottom:0.1rem;height:0.3rem;font-size:0.14rem;" />
+                    <br/>
+                }
+            </div>
+        }
+        else
+        {
+            if (Model.CampaignBundle.ShakingLottery.Started == false)
+            {
+                <input name="btnStartShaking" type="button" id="btnStartShaking" value="打开参与通道" style="width: 100%;margin-bottom:0.1rem;height:0.3rem;font-size:0.14rem;" onclick="startShaking()" />
+            }
+            else
+            {
+                <input name="btnStartShaking" type="button" id="btnStartShaking" value="关闭参与通道" style="width: 100%;margin-bottom:0.1rem;height:0.3rem;font-size:0.14rem;" onclick="endShaking()" />
+
+            }
+        }
+
+
+    </div>
+
+    <div class="divDotLine" style="margin-top: 0.05rem; margin-bottom: 0.05rem;">
+    </div>
+
+    <input name="btnClearWinningList" type="button" id="btnClearWinningList" value="清除中奖结果" style="width: 100%;margin-bottom:0.1rem;height:0.3rem;font-size:0.14rem;" onclick="clearWinningList()" />
+
+</div>

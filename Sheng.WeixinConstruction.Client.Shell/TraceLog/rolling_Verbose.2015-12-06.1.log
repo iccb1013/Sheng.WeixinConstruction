@@ -1,0 +1,270 @@
+----------------------------------------
+Timestamp: 2015/11/29 22:10:15
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 22:10:15
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 22:11:20
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 22:11:20
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 22:11:31
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 22:11:32
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:02:32
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:02:32
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:06:37
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:06:38
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:07:48
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:07:48
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:08:26
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:08:27
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:14:29
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:14:29
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:18:31
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:18:32
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:33:48
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/29 23:33:48
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/2 0:18:35
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/2 0:18:35
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/2 0:24:26
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/2 0:24:27
+
+Title:
+
+Message: Memcached 连接成功。
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/2 0:24:38
+
+Title:调用微信网页授权接口
+
+Message: https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8c36b3c0000a0a49&redirect_uri=http%3a%2f%2flocalhost%3a50318%2fWeixinApi%2fOAuthCallback%3fdomainId%3dF6AAD430-CA1F-4AFD-B2B0-6E0D2FABB622&response_type=code&scope=snsapi_base&state=http%3a%2f%2flocalhost%3a50318%2fHome%2fPortal%2fF6AAD430-CA1F-4AFD-B2B0-6E0D2FABB622#wechat_redirect
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/3 0:42:36
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/3 0:42:37
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------

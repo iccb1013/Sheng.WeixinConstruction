@@ -1,0 +1,325 @@
+﻿@model Sheng.WeixinConstruction.Infrastructure.PayOrderEntity
+
+@{
+    ViewBag.SubTitle = "支付订单";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+    body {
+        /*margin-top: 1.5rem;*/
+         margin-top: 1.2rem;
+        margin-bottom: 0.55rem;
+    }
+
+    #divTopTitleBar {
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        /*top: 1rem;*/
+         top:0.7rem;
+        height: 0.4rem;
+        background-color: white;
+    }
+
+    .divPointIncrement {
+        color: #FF541B;
+        font-weight: bold;
+        font-size: 0.16rem;
+    }
+
+    .divPointDecrement {
+        color: #00B200;
+        font-weight: bold;
+        font-size: 0.16rem;
+    }
+</style>
+
+
+
+<script type="text/javascript">
+
+    var _getBrandWCPayRequestArgs;
+
+    var _returnUrl;
+
+    $(document).ready(function () {
+
+        _returnUrl = getQueryString("returnUrl");
+        if (_returnUrl != undefined && _returnUrl != null && _returnUrl != "") {
+            _returnUrl = decodeURI(_returnUrl);
+        }
+
+        var action = getQueryString("action");
+        switch (action) {
+            case "1":
+                payAction();
+                break;
+        }
+    });
+
+
+    //调用微信JS api 支付
+    function jsApiCall() {
+        // alert(_getBrandWCPayRequestArgs);
+        var argsObj = eval('(' + _getBrandWCPayRequestArgs + ')');
+
+        WeixinJSBridge.invoke(
+        'getBrandWCPayRequest',
+        argsObj,//josn串
+         function (res) {
+             //WeixinJSBridge.log(res.err_msg);
+             // alert("err_code:" + res.err_code + ", err_desc:" + res.err_desc + ", err_msg:" + res.err_msg);
+
+             if (res.err_msg == "get_brand_wcpay_request:ok") {
+                 layerAlertBtn("支付成功！<br/>注意由于银行系统处理需要时间，到账可能稍有延迟。", function () {
+                     layer.open({
+                         type: 2,
+                         shadeClose: false,
+                         content: '请稍候...'
+                     });
+
+                     if (_returnUrl == undefined || _returnUrl == null || _returnUrl == "") {
+                         window.location.href = "/Pay/CashAccountTrack/@ViewBag.Domain.Id";
+                     } else {
+                         window.location.href = _returnUrl;
+                     }
+                 });
+             }
+         }
+         );
+     }
+
+     function callpay() {
+         if (typeof WeixinJSBridge == "undefined") {
+             if (document.addEventListener) {
+                 document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+             }
+             else if (document.attachEvent) {
+                 document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                 document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+             }
+         }
+         else {
+             jsApiCall();
+         }
+     }
+
+     function pay() {
+         var confirmLayerIndex = layer.open({
+             content: '您确认立即支付该订单吗？',
+             btn: ['确认', '取消'],
+             shadeClose: false,
+             anim: false,
+             yes: function () {
+                 layer.close(confirmLayerIndex);
+
+                 payAction();
+             }
+         });
+     }
+
+     function payAction() {
+         var loadLayerIndex = layer.open({
+             type: 2,
+             shadeClose: false,
+             content: '请稍候...'
+         });
+
+         $.ajax({
+             url: "/Api/Pay/GetBrandWCPayRequestArgs/@ViewBag.Domain.Id?payOrderId=@Model.Id",
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    _getBrandWCPayRequestArgs = data.Data;
+
+                    callpay();
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function refresh() {
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/Pay/RefreshPayOrder/@ViewBag.Domain.Id?outTradeNo=@Model.OutTradeNo",
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+
+                    window.location.reload();
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function closePayOrder() {
+
+        var confirmLayerIndex = layer.open({
+            content: '您确认取消该订单吗？',
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function () {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                $.ajax({
+                    url: "/Api/Pay/ClosePayOrder/@ViewBag.Domain.Id?outTradeNo=@Model.OutTradeNo",
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data, status, jqXHR) {
+                        layer.close(loadLayerIndex);
+                        if (data.Success) {
+
+                            window.location.href = "/Pay/CashAccountTrack/@ViewBag.Domain.Id";
+
+                        } else {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest) {
+                        layer.close(loadLayerIndex);
+                        //alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+
+
+    }
+
+</script>
+
+@Helpers.HeaderArea(ViewBag, "cash")
+
+<div id="divTopTitleBar">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height: 100%">
+        <tr style="height: 0.27rem;">
+            <td width="33%" align="center">
+                <div onclick="goUrl('/Home/PointAccount/@ViewBag.Domain.Id')">积分账户</div>
+            </td>
+            <td width="33%" align="center">
+                <div onclick="goUrl('/Pay/CashAccountTrack/@ViewBag.Domain.Id')">现金账户</div>
+            </td>
+            <td width="33%" align="center">
+                <div onclick="goUrl('/Home/Coupon/@ViewBag.Domain.Id')">我的卡券</div>
+            </td>
+        </tr>
+        <tr style="height: 0.03rem;">
+            <td bgcolor="#E4E4E4"></td>
+            <td class="defaultBgColor"></td>
+            <td bgcolor="#E4E4E4"></td>
+        </tr>
+    </table>
+
+</div>
+
+<div class="divContent" style="margin-top: 0.2rem;">
+
+    <div style="font-size: 0.14rem;">
+        <div style="float: left">
+            @Model.Body
+        </div>
+        <div style="float: right; color: #DF5966">
+            @(Model.TotalFee / 100f) 元
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+    <div class="divDotLine" style="margin-top: 0.1rem;">
+    </div>
+
+    <div style="color: #666666">
+        <div style="margin-top: 0.1rem;">订单号：@Model.OutTradeNo</div>
+        <div style="margin-top: 0.1rem;">下单时间：@Model.TimeStart.ToString()</div>
+        @if (Model.TimeEnd != null)
+        {
+            <div style="margin-top: 0.1rem;">完成时间：@Model.TimeEnd.ToString()</div>
+        }
+        else
+        {
+            <div style="margin-top: 0.1rem;">过期时间：@Model.TimeExpire.ToString()</div>
+            <div style="margin-top: 0.1rem;">请在过期时间之前完成支付。</div>
+        }
+
+        <div style="margin-top: 0.1rem;">
+            状态：
+            @switch (Model.TradeState)
+            {
+                case Sheng.WeixinConstruction.Infrastructure.EnumPayTradeState.SUCCESS:
+                @:支付成功
+            break;
+                case Sheng.WeixinConstruction.Infrastructure.EnumPayTradeState.REFUND:
+                @:转入退款
+            break;
+                case Sheng.WeixinConstruction.Infrastructure.EnumPayTradeState.NOTPAY:
+                @:未支付
+            break;
+                case Sheng.WeixinConstruction.Infrastructure.EnumPayTradeState.CLOSED:
+                @:已关闭
+            break;
+                case Sheng.WeixinConstruction.Infrastructure.EnumPayTradeState.REVOKED:
+                @:已撤销（刷卡支付）
+            break;
+                case Sheng.WeixinConstruction.Infrastructure.EnumPayTradeState.USERPAYING:
+                @:用户支付中
+            break;
+                case Sheng.WeixinConstruction.Infrastructure.EnumPayTradeState.PAYERROR:
+                @:支付失败
+            break;
+                default:
+                @:未知
+            break;
+            }
+        </div>
+    </div>
+
+    <div class="divDotLine" style="margin-top: 0.1rem;">
+    </div>
+
+    <div style="margin-top: 0.2rem; margin-left: auto; margin-right: auto; width: 1.5rem;">
+        @if (Model.TradeState == Sheng.WeixinConstruction.Infrastructure.EnumPayTradeState.NOTPAY)
+        {
+            <div>
+                <input name="" type="button" class="button" value="支 付" style="width: 100%" onclick="pay()">
+            </div>
+            <div style="margin-top: 0.1rem;">
+                <input name="" type="button" class="button_gray" value="取消定单" style="width: 100%" onclick="closePayOrder()">
+            </div>
+        }
+        <div style="margin-top: 0.1rem;">
+            <input name="" type="button" class="button_gray" value="刷新定单状态" style="width: 100%" onclick="refresh()">
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "AutoReplyOnKeywordsKeywordEdit";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<script>
+
+    var _validator;
+    var _index;
+
+    $(document).ready(function ()
+    {
+        _index = getQueryString("index");
+        if (_index != undefined && _index != "")
+        {
+            var keyword = parent.getKeyword(_index);
+            $("#txtKeyword").val(keyword.Keyword);
+            $("#selectWholeMatch").find("option[value='" + keyword.WholeMatch + "']").attr("selected", true);
+
+            $("#btnRemove").show();
+        }
+
+
+        _validator = $("#form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txtKeyword": "required"
+            },
+            messages: {
+                "txtKeyword": "请输入关键字；"
+            }
+        });
+
+        $("[keyenter]").keypress(function (e)
+        {
+            if (e.keyCode == 13)
+            {
+                save();
+            }
+        });
+    });
+
+    function save()
+    {
+        if (_validator.form() == false)
+        {
+            return;
+        }
+
+        var keyword = new Object();
+        keyword.Keyword = $("#txtKeyword").val();
+        keyword.WholeMatch = $("#selectWholeMatch").val();
+
+        var layerIndex = parent.layer.getFrameIndex(window.name);
+
+        if (_index != undefined && _index != "")
+        {
+            parent.updateKeyword(_index, keyword, layerIndex);
+        }
+        else
+        {
+            parent.insertKeyword(keyword, layerIndex);
+        }
+
+    }
+
+    function removeData()
+    {
+        if (_index != undefined && _index != "")
+        {
+            var layerIndex = parent.layer.getFrameIndex(window.name);
+            parent.removeKeyword(_index, layerIndex);
+        }
+    }
+
+    function cancel()
+    {
+        var layerIndex = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.layer.close(layerIndex); //再执行关闭
+    }
+</script>
+
+<div style="margin-left:20px; margin-right:20px; margin-top:20px;">
+    <span id="spanTitle" class="font_black_24">关键字</span>
+</div>
+
+<div style=" background-color:#ccc; margin-left:20px; margin-right:20px; margin-top:10px; height:1px;">
+
+</div>
+
+<div style=" position:absolute; overflow:auto ;margin-top:25px;left:30px; right:30px; bottom:60px; top:50px; ">
+
+    <form id="form">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="110" height="36">关键字：</td>
+                <td><input id="txtKeyword" name="txtKeyword" type="text" class="input_16" style="width:96%; " maxlength="30" keyenter /></td>
+            </tr>
+            <tr>
+                <td width="110" height="36">匹配方式：</td>
+                <td>
+                    <select id="selectWholeMatch" name="selectWholeMatch" class="input_16" style="width:100px;" keyenter>
+                        <option value="true">全字匹配</option>
+                        <option value="false">模糊匹配</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+
+    </form>
+
+</div>
+
+<div style=" background-color:#ccc; position:absolute; bottom:55px; left:20px;right:20px; height:1px;">
+
+</div>
+
+<div style="position:absolute; bottom:15px; left:20px;right:20px;">
+
+
+    <div style="float:left;">
+        <input name="btnRemove" type="button" class="btn_red" id="btnRemove" value="删 除" style="display:none" onclick="removeData()"/>
+        </div>
+
+    <div style="float:right">
+        <input name="btnSave" type="button" class="btn_blue" id="btnSave" value="保 存" onclick="save()" />
+        <input name="btnCancel" type="button" class="btn_blue" id="btnCancel" value="取 消" onclick="cancel()" />
+    </div>
+    <div style="clear:both">
+    </div>
+</div>

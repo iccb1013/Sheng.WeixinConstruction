@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ServiceBus</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerServiceBusExtensions">
+            <summary>
+            Provides extensions to the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager"/> class for using the Windows Azure Service Bus retry strategy.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerServiceBusExtensions.DefaultStrategyTechnologyName">
+            <summary>
+            The technology name that can be used to get default Service Bus retry strategy name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerServiceBusExtensions.GetDefaultAzureServiceBusRetryStrategy(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry strategy for the Windows Azure Service Bus.
+            </summary>
+            <returns>The default Windows Azure Service Bus retry strategy (or the default strategy if no default for Windows Azure Service Bus could be found).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManagerServiceBusExtensions.GetDefaultAzureServiceBusRetryPolicy(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager)">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with Windows Azure Service Bus.
+            </summary>
+            <returns>The retry policy for Windows Azure Service Bus with the corresponding default strategy (or the default strategy if no retry strategy definition for Windows Azure Service Bus was found).</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ServiceBusTransientErrorDetectionStrategy">
+            <summary> 
+            Provides the transient error detection logic that can recognize transient faults when dealing with Windows Azure Service Bus. 
+            </summary> 
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ServiceBusTransientErrorDetectionStrategy.acsErrorCodeRegex">
+            <summary> 
+            Provides a compiled regular expression used for extracting the error code from the message. 
+            </summary> 
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ServiceBusTransientErrorDetectionStrategy.IsTransient(System.Exception)">
+            <summary> 
+            Determines whether the specified exception represents a transient failure that can be compensated by a retry. 
+            </summary> 
+            <param name="ex">The exception object to be verified.</param> 
+            <returns>true if the specified exception is considered transient; otherwise, false.</returns> 
+        </member>
+    </members>
+</doc>

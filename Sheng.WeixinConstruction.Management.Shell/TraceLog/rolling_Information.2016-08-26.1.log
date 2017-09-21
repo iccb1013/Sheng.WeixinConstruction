@@ -1,0 +1,713 @@
+----------------------------------------
+Timestamp: 2016/8/18 0:57:25
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 0:57:26
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:02:32
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:02:32
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:03:17
+
+Title:短信发送失败 ClientException
+
+Message: InvalidSendSms : Frequency limit reaches.
+   在 Aliyun.Acs.Core.DefaultAcsClient.ParseAcsResponse[T](AcsRequest`1 request, HttpResponse httpResponse)
+   在 Aliyun.Acs.Core.DefaultAcsClient.GetAcsResponse[T](AcsRequest`1 request)
+   在 Sheng.WeixinConstruction.Service.SMSService.Send(String signName, String templateCode, String recNum, String paramString) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Sheng.WeixinConstruction.Service\SMSService.cs:行号 57
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:17:38
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:17:38
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:18:35
+
+Title:列名 'MobilePhone' 无效。
+
+Message: INSERT INTO [User] ([Id],[Domain],[Account],[Password],[Name],[Email],[MobilePhone],[RegisterTime],[DomainOwner],[Removed]) VALUES(@Id,@Domain,@Account,@Password,@Name,@Email,@MobilePhone,@RegisterTime,@DomainOwner,@Removed)
+@Id:1bf8db84-28bb-4642-b895-a61290d9e520 , @Domain:fb81e541-2df3-45ca-9029-3251ad35bd8a , @Account:user28 , @Password:202CB962AC59075B964B07152D234B70 , @Name:user28 , @Email: , @MobilePhone:18120125118 , @RegisterTime:2016/8/18 1:18:31 , @DomainOwner:True , @Removed:False , 
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 Linkup.Data.DatabaseWrapper.ExcuteSqlExpression(SqlExpression sqlExpression) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Common\Linkup.Data\DatabaseWrapper.cs:行号 305
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:28:33
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:28:34
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:29:00
+
+Title:短信发送失败 ClientException
+
+Message: InvalidSendSms : Frequency limit reaches.
+   在 Aliyun.Acs.Core.DefaultAcsClient.ParseAcsResponse[T](AcsRequest`1 request, HttpResponse httpResponse)
+   在 Aliyun.Acs.Core.DefaultAcsClient.GetAcsResponse[T](AcsRequest`1 request)
+   在 Sheng.WeixinConstruction.Service.SMSService.Send(String signName, String templateCode, String recNum, String paramString) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Sheng.WeixinConstruction.Service\SMSService.cs:行号 57
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:33:52
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:33:52
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:34:16
+
+Title:短信发送失败 ClientException
+
+Message: InvalidSendSms : Frequency limit reaches.
+   在 Aliyun.Acs.Core.DefaultAcsClient.ParseAcsResponse[T](AcsRequest`1 request, HttpResponse httpResponse)
+   在 Aliyun.Acs.Core.DefaultAcsClient.GetAcsResponse[T](AcsRequest`1 request)
+   在 Sheng.WeixinConstruction.Service.SMSService.Send(String signName, String templateCode, String recNum, String paramString) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Sheng.WeixinConstruction.Service\SMSService.cs:行号 57
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:34:20
+
+Title:短信发送失败 ClientException
+
+Message: InvalidSendSms : Frequency limit reaches.
+   在 Aliyun.Acs.Core.DefaultAcsClient.ParseAcsResponse[T](AcsRequest`1 request, HttpResponse httpResponse)
+   在 Aliyun.Acs.Core.DefaultAcsClient.GetAcsResponse[T](AcsRequest`1 request)
+   在 Sheng.WeixinConstruction.Service.SMSService.Send(String signName, String templateCode, String recNum, String paramString) 位置 d:\WorkFloder\WeixinConstruction\trunk\SourceCode\Sheng.WeixinConstruction.Service\SMSService.cs:行号 57
+
+Severity: Warning
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:35:14
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/18 1:35:14
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 0:37:20
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 0:37:20
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 13:16:50
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 13:16:51
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 14:29:48
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 14:29:48
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 15:56:37
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 15:56:37
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 15:56:43
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 15:56:44
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 15:57:40
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 15:57:41
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 16:02:29
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 16:02:30
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 16:04:23
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 16:04:24
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 16:27:26
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 16:27:27
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 16:33:01
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 16:33:02
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 16:43:45
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/21 16:43:45
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 22:03:39
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 22:03:39
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 22:13:48
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 22:13:49
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 22:25:58
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 22:25:58
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 23:01:22
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 23:01:22
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 23:31:23
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 23:31:23
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 23:55:59
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/22 23:56:00
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/23 0:23:25
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/23 0:23:25
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/23 0:34:02
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/23 0:34:02
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/23 0:35:10
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/23 0:35:10
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/23 0:50:03
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/23 0:50:04
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/24 0:41:57
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/24 0:41:58
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/24 0:50:14
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/24 0:50:14
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/24 1:08:36
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/24 1:08:36
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/24 1:09:37
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/24 1:09:38
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/24 1:11:42
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/8/24 1:11:42
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------

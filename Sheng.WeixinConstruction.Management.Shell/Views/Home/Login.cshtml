@@ -1,0 +1,445 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>升讯威微信营销系统</title>
+
+    @Scripts.Render("~/Scripts/UserAgent.js")
+    <script type="text/javascript">
+        var _userAgent = new userAgentObj(navigator.userAgent);
+        if (_userAgent.device != __device_PC) {
+            window.location.href = "/M/Home/Login";
+        }
+    </script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/common")
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/validate/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/layer/layer.js")
+
+    @Scripts.Render("~/bundles/md5")
+
+    <style type="text/css">
+        body {
+            font-size: 15px;
+        }
+
+         input.watermark {
+            color: #999;
+        }
+
+        .input_login {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            font-size: 15px;
+            padding: 8px;
+            width: 100%;
+            border: 1px solid #D7D7D7;
+        }
+
+
+        .btn_login {
+            font-size: 16px;
+            color: #FFF;
+            background-color: #36B5F8;
+            /*padding-right: 20px;
+                padding-left: 20px;*/
+            border-top-style: none;
+            border-right-style: none;
+            border-bottom-style: none;
+            border-left-style: none;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            width: 100%;
+            cursor:pointer;
+        }
+
+            .btn_login:hover,
+            .btn_login:focus {
+                text-decoration: none;
+                background-color: #09A4F7;
+            }
+
+            .btn_login:active,
+            .btn_login.active {
+                background-image: none;
+                outline: 0;
+                -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+                box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            }
+
+            .btn_login:disabled {
+                text-decoration: none;
+                background-color: #CCCCCC;
+            }
+
+        .btn_register {
+            color: #F16777;
+            font-size: 16px;
+            background-color: white;
+            border: 1px solid #F16777;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            width: 100%;
+            cursor:pointer;
+        }
+
+            .btn_register:hover,
+            .btn_register:focus {
+                color: white;
+                text-decoration: none;
+                background-color: #F16777;
+            }
+
+            .btn_register:active,
+            .btn_register.active {
+                background-image: none;
+                outline: 0;
+                -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+                box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            }
+
+            .btn_register:disabled {
+                text-decoration: none;
+                background-color: #CCCCCC;
+            }
+
+        #divLogin {
+            position: absolute;
+            height: 40px;
+            top: 45%;
+            margin-top: -210px;
+            left: 150px;
+        }
+
+        #divNewsBackground {
+            background-color: #FFF;
+            height: 285px;
+            width: 320px;
+            position: absolute;
+            top: 45%;
+            margin-top: -150px;
+            left: 770px;
+            /*filter: alpha(opacity=70);
+                -moz-opacity: 0.7;
+                -khtml-opacity: 0.7;
+                opacity: 0.7;*/
+            z-index: 12;
+            padding: 20px;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+        }
+
+        #divLoginAreaBackground {
+            background-color: #FFF;
+            height: 285px;
+            width: 600px;
+            position: absolute;
+            top: 45%;
+            margin-top: -150px;
+            left: 150px;
+            /*filter: alpha(opacity=20);
+                -moz-opacity: 0.2;
+                -khtml-opacity: 0.2;
+                opacity: 0.2;*/
+            z-index: 12;
+        }
+
+        #divLoginArea {
+            /*color: white;*/
+            height: 285px;
+            width: 600px;
+            position: absolute;
+            top: 45%;
+            margin-top: -150px;
+            left: 150px;
+            z-index: 13;
+        }
+
+        #divLoginContent {
+            bottom: 0px;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            position: absolute;
+            /*background-image: url(Images/139-15030G00I0.jpg);*/
+            background-image: url(/Content/Images/login_bg2.jpg);
+            /*background-repeat: no-repeat;*/
+            background-position: left center;
+            background-color: #808080;
+        }
+
+        #divLoginAreaMask {
+            height: 285px;
+            width: 600px;
+            position: absolute;
+            top: 45%;
+            margin-top: -150px;
+            left: 150px;
+            z-index: 14;
+            background-color: #fff;
+            filter: alpha(opacity=20);
+            -moz-opacity: 0.2;
+            -khtml-opacity: 0.2;
+            opacity: 0.2;
+        }
+
+        #divLoginAreaMaskContent {
+            height: 285px;
+            width: 600px;
+            position: absolute;
+            top: 45%;
+            margin-top: -140px;
+            left: 150px;
+            right: 150px;
+            z-index: 15;
+        }
+
+        /*#divLoginAreaMaskContent {
+                background-color: #69F;
+                height: 24px;
+                line-height: 24px;
+                width: 330px;
+                position: absolute;
+                top: 476px;
+                left: 100px;
+                z-index: 15;
+                font-size: 14px;
+                color: #FFF;
+            }*/
+
+        #divLoginFooter {
+            color: #D7D7D7;
+            font-size: 13px;
+            position: absolute;
+            height: 100px;
+            left: 150px;
+            top: 45%;
+            margin-top: 140px;
+        }
+    </style>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            watermark();
+
+            var account = getCookie("account");
+            if (account != undefined && account != "") {
+                $("#txtAccount").val(account);
+                $("#chkRememberAccount").attr("checked", "checked");
+            }
+
+            $("[keyenter]").keypress(function (e) {
+                if (e.keyCode == 13) {
+                    login();
+                }
+            });
+        });
+
+        function watermark() {
+            var accountWatermark = '账户';
+
+            $('#txtAccount').val(accountWatermark).addClass('watermark');
+            $('#txtAccount').blur(function () {
+                if ($(this).val().length == 0) {
+                    $(this).val(accountWatermark).addClass('watermark');
+                }
+            });
+            $('#txtAccount').focus(function () {
+                if ($(this).val() == accountWatermark) {
+                    $(this).val('').removeClass('watermark');
+                }
+            });
+
+            var passwordWatermark = '密码';
+
+            $('#txtPassword').val(passwordWatermark).addClass('watermark');
+            $('#txtPassword').blur(function () {
+                if ($(this).val().length == 0) {
+                    $(this).val(passwordWatermark).addClass('watermark').attr("type", "text");
+                }
+            });
+            $('#txtPassword').focus(function () {
+                if ($(this).val() == passwordWatermark) {
+                    $(this).val('').removeClass('watermark').attr("type", "password");
+                }
+            });
+
+        }
+
+
+        function login() {
+            if ($("#form").validate({
+                rules: {
+                          "txtAccount": "required",
+                          "txtPassword": "required"
+            },
+                messages: {
+                          "txtAccount": "!",
+                          "txtPassword": "!"
+            }
+            }).form() == false)
+                return;
+
+            var args = new Object();
+            args.Account = $("#txtAccount").val();
+            args.Password = hex_md5($("#txtPassword").val()).toUpperCase();
+
+            showMask();
+
+            $.ajax({
+                url: "/Api/UserContext/Login",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(args),
+                success: function (data, status, jqXHR) {
+                    if (data.Success) {
+                        if ($("#chkRememberAccount").is(":checked")) {
+                            setCookie("account", args.Account);
+                        }
+                        else {
+                            removeCookie("account");
+                        }
+
+                        window.location.href = "/Portal/Dashboard";
+                    } else {
+                        hideMask();
+
+                        layerAlert(data.Message, function () { $("#txtPassword").focus(); });
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    hideMask();
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+        function showMask() {
+            $("#divLoginAreaMask").show();
+            $("#divLoginAreaMaskContent").show();
+        }
+
+        function hideMask() {
+            $("#divLoginAreaMask").hide();
+            $("#divLoginAreaMaskContent").hide();
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="divLoginContent">
+        <div id="divLoginAreaBackground">
+        </div>
+        <div id="divLoginArea">
+            <form id="form">
+                <table width="100%" height="285" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td valign="top">
+                            <div style="margin-left:30px;margin-top:30px; margin-right:30px;">
+                                <div style="color:#36B5F8;font-size:17px;">登录</div>
+                                <div style="margin-top:20px;">
+                                    <input name="txtAccount" type="text" class="input_login" id="txtAccount" keyenter=keyenter />
+                                </div>
+                                <div style="margin-top:10px;">
+                                    <input name="txtPassword" type="text" class="input_login" id="txtPassword" keyenter=keyenter />
+                                </div>
+                                <div style="margin-top:10px;">
+                                    <div style="float:left">
+                                        <input name="" id="chkRememberAccount" type="checkbox" value="" />
+                                        <label for="chkRememberAccount">记住帐户</label>
+                                    </div>
+                                    <div style="float:left; margin-left:30px;">
+                                        <a href="/Home/ResetPassword" style="color:black">找回密码</a>
+                                    </div>
+                                    <div style="clear:both"></div>
+                                </div>
+                                <div style="margin-top:20px;">
+                                    <input name="btnLogin" type="button" class="btn_login" id="btnLogin" value="登 录" onclick="login()" />
+                                </div>
+                            </div>
+                        </td>
+                        <td valign="top" width="250" bgcolor="#F8F8F8">
+                            <div style="margin-left:30px;margin-top:30px; margin-right:30px;">
+                                <div>
+                                    <input name="btnRegister" type="button" class="btn_register" id="btnRegister" value="免费注册" onclick="goUrl('@Url.Action("Register")')" />
+                                </div>
+                                <div style="margin-top:15px;">
+                                    <span>
+                                        <a href="http://docs.shengxunwei.com/Home/Browser/wxcm" target="_blank" style="color:#F16777">操作手册 ></a>
+                                    </span>
+                                    <span style="margin-left:20px;">
+                                        <a href="http://wx.shengxunwei.com" target="_blank" style="color:#F16777">官方网站 ></a>
+                                    </span>
+                                </div>
+                                <div style="margin-top:15px;font-size:12px;">
+                                    QQ群：591928344
+                                </div>
+
+                                <div style="margin-top:10px;">
+                                    <img src="/Content/Images/QQGroup2.jpg" style="width:100px;" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="divLoginAreaMask" style="display:none">
+
+        </div>
+        <div id="divLoginAreaMaskContent" style="display:none">
+            <div style="bottom:0px; left:0px;right:0px; position:absolute; background-color:#efefef; color:black; padding-left:15px; padding-top:3px;padding-bottom:3px;font-size:14px;">
+                <span>正在登录，请稍候..</span>
+            </div>
+        </div>
+
+        <div id="divNewsBackground">
+            <div style="font-weight:bold">
+                最新动态：
+            </div>
+            <div style="font-size:14px;">
+                <ul>
+                    <li><a href="http://wx.shengxunwei.com/Home/Question/7136f0cc-7149-4d0d-a977-915c042b771b" target="_blank" style="color:black">订阅号与服务号有什么区别？</a></li>
+                   
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="divLogin">
+        <img src="/Content/Images/login_logo2.png" alt="升讯威微信营销系统" />
+    </div>
+
+    <div id="divLoginFooter">
+        <!--<div style="background-color:#69E5BB; height:2px;">
+        </div>-->
+        <table height="100%" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td align="left">
+                    © Copyright 2016 All Rights Reserved 滁州市升讯威软件技术有限公司<br /> 电话：0550-3926191 / 18114009195 QQ：279060597<br />
+                    <a href="http://wx.shengxunwei.com" target="_blank" style="color:#D7D7D7;text-decoration:underline">http://wx.shengxunwei.com</a> 皖ICP备14020687号
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>登录</title>
+
+    @Scripts.Render("~/Scripts/UserAgent.js")
+    <script type="text/javascript">
+        var _userAgent = new userAgentObj(navigator.userAgent);
+        if (_userAgent.device != __device_PC) {
+            window.location.href = "/M/Home/Login";
+        }
+    </script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/common")
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/validate/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/layer/layer.js")
+
+    @Scripts.Render("~/bundles/md5")
+
+    <style type="text/css">
+        #divIntroductionAreaBackground {
+            background-color: #FFF;
+            height: 400px;
+            position: absolute;
+            top: 50%;
+            margin-top: -200px;
+            left: 100px;
+            right: 530px;
+            filter: alpha(opacity=50);
+            -moz-opacity: 0.5;
+            -khtml-opacity: 0.5;
+            opacity: 0.5;
+            z-index: 10;
+        }
+
+        #divIntroductionArea {
+            height: 400px;
+            position: absolute;
+            top: 50%;
+            margin-top: -200px;
+            left: 100px;
+            right: 530px;
+            z-index: 11;
+        }
+
+        #divLoginAreaBackground {
+            background-color: #FFF;
+            height: 310px;
+            width: 330px;
+            position: absolute;
+            top: 50%;
+            margin-top: -155px;
+            left: 150px;
+            filter: alpha(opacity=20);
+            -moz-opacity: 0.2;
+            -khtml-opacity: 0.2;
+            opacity: 0.2;
+            z-index: 12;
+        }
+
+        #divLoginArea {
+            color: white;
+            height: 310px;
+            width: 330px;
+            position: absolute;
+            top: 50%;
+            margin-top: -155px;
+            left: 150px;
+            z-index: 13;
+        }
+
+        #divLoginContent {
+            min-width: 1000px;
+            margin-top: 1px;
+            bottom: 0px;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            position: absolute;
+            background-image: url(/Content/Images/139-15030G00I0.jpg);
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
+
+        #divLoginAreaMask {
+            height: 310px;
+            width: 330px;
+            position: absolute;
+            top: 50%;
+            margin-top: -155px;
+            left: 150px;
+            z-index: 14;
+            background-color: #fff;
+            filter: alpha(opacity=10);
+            -moz-opacity: 0.1;
+            -khtml-opacity: 0.1;
+            opacity: 0.1;
+        }
+
+        #divLoginAreaMaskContent {
+            height: 310px;
+            width: 330px;
+            position: absolute;
+            top: 50%;
+            margin-top: -155px;
+            right: 150px;
+            z-index: 15;
+        }
+
+        /*#divLoginAreaMaskContent {
+                background-color: #69F;
+                height: 24px;
+                line-height: 24px;
+                width: 330px;
+                position: absolute;
+                top: 476px;
+                left: 100px;
+                z-index: 15;
+                font-size: 14px;
+                color: #FFF;
+            }*/
+    </style>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var account = getCookie("account");
+            if (account != undefined && account != "") {
+                $("#txtAccount").val(account);
+                $("#chkRememberAccount").attr("checked", "checked");
+            }
+
+            $("[keyenter]").keypress(function (e) {
+                if (e.keyCode == 13) {
+                    login();
+                }
+            });
+        });
+
+        function login() {
+            if ($("#form").validate({
+                rules: {
+                          "txtAccount": "required",
+                          "txtPassword": "required"
+            },
+                messages: {
+                          "txtAccount": "!",
+                          "txtPassword": "!"
+            }
+            }).form() == false)
+                return;
+
+            var args = new Object();
+            args.Account = $("#txtAccount").val();
+            args.Password = hex_md5($("#txtPassword").val()).toUpperCase();
+
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/UserContext/Login",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(args),
+                success: function (data, status, jqXHR) {
+                    if (data.Success) {
+                        if ($("#chkRememberAccount").is(":checked")) {
+                            setCookie("account", args.Account);
+                        }
+                        else {
+                            removeCookie("account");
+                        }
+
+                        window.location.href = "/Portal/Dashboard";
+                    } else {
+                        layer.close(loadLayerIndex);
+
+                        layerAlert(data.Message, function () { $("#txtPassword").focus(); });
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="divLoginContent">
+        <div id="divLoginAreaBackground">
+        </div>
+        <div id="divLoginArea">
+            <form id="form">
+                <table width="260" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="40">账户：</td>
+                    </tr>
+                    <tr>
+                        <td height="40"><input name="txtAccount" type="text" class="input_18" id="txtAccount" keyenter=keyenter /></td>
+                    </tr>
+                    <tr>
+                        <td height="40">密码：</td>
+                    </tr>
+                    <tr>
+                        <td height="40"><input name="txtPassword" type="password" class="input_18" id="txtPassword" keyenter=keyenter /></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><input name="btnLogin" type="button" class="btn_green" id="btnLogin" value="登 录" onclick="login()" /><input name="btnRegister" type="button" class="btn_green" id="btnRegister" value="注 册" style="margin-left:25px;" onclick="goUrl('@Url.Action("Register")')" /></td>
+                    </tr>
+                    <tr>
+                        <td height="20"></td>
+                    </tr>
+                    <tr>
+                        <td><input name="" id="chkRememberPassword" type="checkbox" class="input_checkbox" value="" /> <label for="chkRememberPassword">记住账户</label><span style="margin-left:30px;"><a href="/Home/ResetPassword" class="a_white_16">找回密码</a></span></td>
+                    </tr>
+                    <tr>
+                        <td height="15"></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+        <div id="divLoginAreaMask" style="display:none">
+
+        </div>
+        <div id="divLoginAreaMaskContent" style="display:none">
+            <div style="bottom:0px; left:0px;right:0px; position:absolute; background-color:#69F; color:white; padding-left:5px; padding-top:3px;padding-bottom:3px;">
+                <span>请稍候..</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="position:absolute; top:50px;  left:100px; right:0px;">
+        <img src="/Content/Images/login_logo.png" />
+    </div>
+
+    <div style="position:absolute; bottom:0px; height:100px; left:30px; right:0px;">
+        <!--<div style="background-color:#69E5BB; height:2px;">
+        </div>-->
+        <table height="100%" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td align="left" style="font-size:15px;color:white">
+                    © Copyright 2016 All Rights Reserved 滁州市升讯威软件技术有限公司 电话：0550-3926191 / 18114009195 QQ：279060597<br />
+                    <a href="http://wx.shengxunwei.com" target="_blank" style="color:white;text-decoration:underline">http://wx.shengxunwei.com</a> 皖ICP备14020687号
+                </td>
+            </tr>
+        </table>
+
+    </div>   
+
+</body>
+</html>

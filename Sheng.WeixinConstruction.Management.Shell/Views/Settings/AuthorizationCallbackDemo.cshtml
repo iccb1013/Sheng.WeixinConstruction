@@ -1,0 +1,119 @@
+﻿@model Sheng.WeixinConstruction.Management.Shell.Models.AuthorizationCallbackDemoViewModel
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/common")
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/layer/layer.js")
+
+    <script type="text/javascript">
+
+    </script>
+
+</head>
+<body>
+    <div id="divTopBar">
+        <div id="divLogo">
+            <span class="font_white_22">升讯威 微信营销系统</span>
+        </div>
+        <div id="divMainMenu">
+            <table id="tableTopBar" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Portal"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("管理", "Member", "Member", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Campaign"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("活动", "Index", "Campaign", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Settings"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("设置", "Base", "Settings", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <div id="divTopRight">
+            <table id="tableTopBar" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="td_MainMenu font_darkBlue_18">UserName</td>
+                    <td class="td_MainMenu">@Html.ActionLink("退出", "Logout", "Home", null, new { @class = "a_white_18" })</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="divContainer">
+        <div id="divLeftMenu">
+            <div id="divLeftTitle">
+            </div>
+            <div>
+                @Html.Partial("_LeftMenu")
+            </div>
+        </div>
+        <div id="divContentWrapper">
+            <div id="divContent">
+                <div id="divDockingInfo">
+                    <div style=" margin-top:20px; margin-left:10px; margin-right:10px; line-height:180%;" class="font_black_14">
+                        注意：这是演示画面，可测试授权流程，但并无实际功能。<br />
+                        注意：原微信后台中设置的菜单及自动回复都已失效，请在本系统中重新设置。若要修改您的公众号信息，请登陆微信后台修改后，点击"刷新"按钮。<br>
+
+                    </div>
+                    <div style=" margin-top:15px;">
+                        <div style="float:right">
+                            <input name="btnSave" type="button" class="btn_blue" id="btnStep2Next" value="刷 新" />
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+
+                    <div style="margin-top:20px;" class="font_black_14">
+                        <table width="100%" border cellpadding="5" cellspacing=0 bordercolor="#E0E0E0" rules=rows>
+                            <tr bordercolor="#E0E0E0">
+                                <td width="5" valign="middle" bgcolor="#EEEEEE">&nbsp;</td>
+                                <td width="120" height="26" valign="middle" bgcolor="#EEEEEE">公开信息</td>
+                                <td valign="middle" bgcolor="#EEEEEE">&nbsp;</td>
+                            </tr>
+                            <tr bordercolor="#E0E0E0">
+                                <td valign="middle">&nbsp;</td>
+                                <td height="26" valign="middle">AppId</td>
+                                <td valign="middle">@Model.Info.AppId</td>
+                            </tr>
+                            <tr bordercolor="#E0E0E0">
+                                <td valign="middle">&nbsp;</td>
+                                <td height="26" valign="middle">AccessToken</td>
+                                <td valign="middle">@Model.Info.AccessToken</td>
+                            </tr>
+                            <tr bordercolor="#E0E0E0">
+                                <td valign="middle">&nbsp;</td>
+                                <td height="26" valign="middle">ExpiresIn</td>
+                                <td valign="middle">@Model.Info.ExpiresIn</td>
+                            </tr>
+                            <tr bordercolor="#E0E0E0">
+                                <td valign="middle">&nbsp;</td>
+                                <td height="26" valign="middle">RefreshToken</td>
+                                <td valign="middle">@Model.Info.RefreshToken</td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div id="divContentMask" style="display:none">
+        </div>
+    </div>
+</body>
+
+</html>
+

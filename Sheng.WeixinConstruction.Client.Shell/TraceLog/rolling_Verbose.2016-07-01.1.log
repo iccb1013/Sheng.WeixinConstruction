@@ -1,0 +1,980 @@
+----------------------------------------
+Timestamp: 2016/6/24 23:41:22
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 23:41:23
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 23:41:39
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 23:41:39
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 23:42:24
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/24 23:42:24
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 11:16:30
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 11:16:31
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 11:16:39
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 11:16:40
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 11:16:44
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 11:16:44
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 13:29:59
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 13:30:00
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 13:30:06
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 13:30:06
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 15:24:14
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 15:24:17
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 15:24:59
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 15:24:59
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 15:54:51
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 15:54:52
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 15:54:54
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/26 15:54:54
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 21:19:00
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 21:19:01
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 21:19:33
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 21:19:33
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 22:16:54
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 22:16:54
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 22:20:28
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 22:20:29
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 22:20:40
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 22:20:40
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 23:55:58
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 23:56:02
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 23:56:14
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/29 23:56:14
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 0:17:55
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 0:17:55
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 0:18:01
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 0:18:01
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 0:20:48
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 0:20:49
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 0:20:56
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 0:20:56
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 21:32:06
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 21:32:06
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 21:32:13
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 21:32:13
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 23:32:11
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 23:32:12
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 23:32:23
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 23:32:23
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 23:34:54
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 23:34:55
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 23:35:15
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 23:35:15
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 23:36:45
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/6/30 23:36:45
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:10:24
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:10:24
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:11:15
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:11:15
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:11:24
+
+Title:向文件服务器发起 GetQRCodeImage 请求
+
+Message: {"Domain":"2a58d820-de07-4c8f-80b9-b5cb5a1028b4","Content":"http://wx8c36b3c0000a0a49.wxc.zkebao.com/Home/QRCode/2a58d820-de07-4c8f-80b9-b5cb5a1028b4?type=member&memberId=ed638a09-f7aa-4d24-850e-a889a95bd454"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:11:46
+
+Title:文件服务器 GetQRCodeImage 返回
+
+Message: {"Success":true,"Message":null,"FileName":"FileStore/2a58d820-de07-4c8f-80b9-b5cb5a1028b4/f027844f-f37f-4b23-bef3-dd3681788821.jpg"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:12:58
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:12:58
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:13:06
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:13:06
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:13:14
+
+Title:向文件服务器发起 GetQRCodeImage 请求
+
+Message: {"Domain":"2a58d820-de07-4c8f-80b9-b5cb5a1028b4","Content":"http://wx8c36b3c0000a0a49.wxc.zkebao.com/Home/QRCode/2a58d820-de07-4c8f-80b9-b5cb5a1028b4?type=member&memberId=ed638a09-f7aa-4d24-850e-a889a95bd454"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:13:14
+
+Title:文件服务器 GetQRCodeImage 返回
+
+Message: {"Success":true,"Message":null,"FileName":"FileStore/2a58d820-de07-4c8f-80b9-b5cb5a1028b4/3ce342e5-d456-44b1-a885-4bab48c12257.jpg"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:13:27
+
+Title:向文件服务器发起 GetQRCodeImage 请求
+
+Message: {"Domain":"2a58d820-de07-4c8f-80b9-b5cb5a1028b4","Content":"http://wx8c36b3c0000a0a49.wxc.zkebao.com/Home/QRCode/2a58d820-de07-4c8f-80b9-b5cb5a1028b4?type=member&memberId=ed638a09-f7aa-4d24-850e-a889a95bd454"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:13:27
+
+Title:文件服务器 GetQRCodeImage 返回
+
+Message: {"Success":true,"Message":null,"FileName":"FileStore/2a58d820-de07-4c8f-80b9-b5cb5a1028b4/66ad169c-ebb9-4f42-83ac-40148311a7b2.jpg"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:13:47
+
+Title:向文件服务器发起 GetQRCodeImage 请求
+
+Message: {"Domain":"2a58d820-de07-4c8f-80b9-b5cb5a1028b4","Content":"http://wx8c36b3c0000a0a49.wxc.zkebao.com/Home/QRCode/2a58d820-de07-4c8f-80b9-b5cb5a1028b4?type=member&memberId=ed638a09-f7aa-4d24-850e-a889a95bd454"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:13:47
+
+Title:文件服务器 GetQRCodeImage 返回
+
+Message: {"Success":true,"Message":null,"FileName":"FileStore/2a58d820-de07-4c8f-80b9-b5cb5a1028b4/0fb0077a-2d36-48ba-9c00-1ddd74fc281e.jpg"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:19:29
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:19:30
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:19:39
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:19:39
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:19:43
+
+Title:向文件服务器发起 GetQRCodeImage 请求
+
+Message: {"Domain":"2a58d820-de07-4c8f-80b9-b5cb5a1028b4","Content":"http://wx8c36b3c0000a0a49.wxc.zkebao.com/Home/QRCode/2a58d820-de07-4c8f-80b9-b5cb5a1028b4?type=member&memberId=ed638a09-f7aa-4d24-850e-a889a95bd454"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:19:43
+
+Title:文件服务器 GetQRCodeImage 返回
+
+Message: {"Success":true,"Message":null,"FileName":"FileStore/2a58d820-de07-4c8f-80b9-b5cb5a1028b4/8c14a860-435f-4f90-b510-a9a6e4b1013e.jpg"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:19:57
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 0:19:57
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 22:59:32
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:00:02
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:02:36
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:02:37
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:02:47
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:02:47
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:17:54
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:18:06
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:18:09
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:18:09
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:30:51
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:30:52
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:31:00
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/7/1 23:31:00
+
+Title:SessionPool.Set
+
+Message: OpenId：oXCfEwEteoWmCygMuCKqhvqshVnQ
+
+Severity: Verbose
+
+----------------------------------------

@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+   
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/common")
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/validate/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/layer/layer.js")
+    @Scripts.Render("~/Scripts/laytpl.js")
+    @Scripts.Render("~/Scripts/laypage/laypage.js")
+    @Scripts.Render("~/Scripts/math.js")
+
+    <script type="text/javascript">
+
+        @if(ViewBag.DomainContext.Online)
+        {
+            @:var _online = true;
+        }
+        else
+        {
+            @:var _online = false;
+        }
+
+        function docking()
+        {
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/Settings/GetPreAuthCode",
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR)
+                {
+                    if (data.Success)
+                    {
+                        var url = String.format("https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid={0}&pre_auth_code={1}&redirect_uri={2}",
+                            data.Data.AppId, data.Data.PreAuthCode, "http://wxcm.shengxunwei.com/Settings/AuthorizationCallback");
+                        window.location.href = url;
+
+                    } else
+                    {
+                        layer.close(loadLayerIndex);
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest)
+                {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+
+    </script>
+
+</head>
+<body>
+    <div id="divTopBar">
+        <div id="divLogo">
+            <span class="font_white_22">升讯威 微信营销系统</span>
+        </div>
+        <div id="divMainMenu">
+            <table id="tableTopBar" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Portal"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("微官网", "Dashboard", "Portal", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Member"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("微会员", "Member", "Member", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Campaign"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("活动中心", "PictureVote_Ongoing", "Campaign", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Pay"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("微信支付", "OneDollarBuyingCommodity", "Pay", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Settings"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("设置", "Docking", "Settings", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "System"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("系统", "UserList", "System", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <div id="divTopRight">
+            <table id="tableTopBar" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="td_MainMenu font_darkBlue_18">@ViewBag.User.Name</td>
+                    <td class="td_MainMenu">@Html.ActionLink("退出", "Logout", "Home", null, new { @class = "a_white_18" })</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="divContainer">
+        <div id="divLeftMenu">
+            <div id="divLeftTitle">
+            </div>
+            <div>
+                @Html.Partial("_LeftMenu")
+            </div>
+        </div>
+        <div id="divContentWrapper">
+            @if (ViewBag.DomainContext.Authorizer != null && ViewBag.DomainContext.Authorizer.AuthorizationType != Sheng.WeixinConstruction.Infrastructure.EnumAuthorizationType.AuthorizedService)
+            {
+                <div style="margin-top:10px; margin-right:20px; padding-left:20px;padding-top:5px; padding-bottom:5px; border: 1px dotted red; ">
+                    注意：您的公众号类型为 @ViewBag.DomainContext.Authorizer.ServiceTypeString （@ViewBag.DomainContext.Authorizer.VerifyTypeString）<br />
+                    大部分微信接口权限您不具备，建议升级至 微信认证服务号，否则诸多功能您将无法使用，如果您的认证状态已经变更，请到“设置”菜单下的“微信对接”中刷新。<br />
+                    <a target="_blank" href="http://wx.shengxunwei.com/Home/Question/7136f0cc-7149-4d0d-a977-915c042b771b">订阅号和服务号有什么区别？</a>
+                </div>
+            }
+
+            <div id="divContent">
+                @RenderBody()
+            </div>
+            <div id="divFooter">
+                @*<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="20">&nbsp;</td>
+                            <td height="40" align="left" valign="middle">© Copyright 2016 All Rights Reserved 滁州市升讯威软件技术有限公司 </td>
+                            <td width="20">
+                            </td>
+                        </tr>
+                    </table>*@
+                <div style="line-height:40px;">
+                    <div style="float:left;margin-left:20px;">© Copyright 2016 All Rights Reserved 升讯威软件技术有限公司</div>
+                    <div style="float:right;margin-right:20px;">
+                        <span><a href="http://docs.shengxunwei.com/Home/Browser/wxcm/28895f86-f67b-4ef7-bf14-5a8f9212166f" target="_blank">更新记录 （2016-10-28）</a></span>
+                        <span style="margin-left:15px;">技术支持与咨询：0550-3926191 / 18114009195 QQ：279060597</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (ViewContext.RouteData.Route.GetRouteData(this.Context).Values["action"].ToString() != "Docking" && ViewBag.DomainContext.Online == false)
+        {
+            <div id="divUndockingMask" style=" z-index:999998">
+
+            </div>
+            <div id="divUndockingMaskTop" style=" z-index:999999">
+                <div id="divUndockingMaskTopContainer">
+                    <div class="font_black_24" style="margin-top:20px;">
+                        与您的公众号对接
+                    </div>
+                    <div class="font_black_14" style="margin-top:20px; line-height:24px">
+                        本系统是经过腾讯公司认证的，正规可靠的第三方运营平台。<br />
+                        完成对接后您即可体验功能强大可靠的微信营销系统，开始全新的微信营销之旅。
+                    </div>
+                    <div style="margin-top:40px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="center"><img src="/Content/Images/docking_ico1.gif" width="70" height="70"></td>
+                                <td align="center"><img src="/Content/Images/docking_ico2.gif" width="70" height="70"></td>
+                                <td align="center"><img src="/Content/Images/docking_ico3.gif" width="70" height="70"></td>
+                            </tr>
+                            <tr>
+                                <td height="40" align="center">微信官方许可</td>
+                                <td align="center">公众号免繁琐设置</td>
+                                <td align="center">安全可靠</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div align="center" style="margin-top:30px;">
+                        <img src="/Content/Images/docking_btn.jpg" width="282" height="50" style="cursor:pointer" onclick="docking();">
+                    </div>
+                </div>
+            </div>
+
+        }
+        <div id="divContentMask" style="display:none">
+        </div>
+    </div>
+</body>
+
+</html>

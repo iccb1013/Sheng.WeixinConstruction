@@ -1,0 +1,31 @@
+﻿<div class="leftMenuItem @if(ViewBag.LeftMenu == "Dashboard"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("运营数据", "Dashboard", "Portal", null, new { @class = ViewBag.LeftMenu == "Dashboard" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "PortalStyle"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("微主页", "PortalStyle", "Portal", null, new { @class = ViewBag.LeftMenu == "PortalStyle" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "Menu"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("公众号菜单", "Menu", "Portal", null, new { @class = ViewBag.LeftMenu == "Menu" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "ShortcutMenu"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("快捷菜单", "ShortcutMenu", "Portal", null, new { @class = ViewBag.LeftMenu == "ShortcutMenu" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "Information"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("分类信息", "Information", "Portal", null, new { @class = ViewBag.LeftMenu == "Information" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "Page"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("自定义页面", "Page", "Portal", null, new { @class = ViewBag.LeftMenu == "Page" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "CustomForm"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("自定义表单", "CustomForm", "Portal", null, new { @class = ViewBag.LeftMenu == "CustomForm" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "MovieTimes"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("电影排片", "MovieTimes", "Portal", null, new { @class = ViewBag.LeftMenu == "MovieTimes" ? "a_white_16" : "a_black_16" })
+</div>

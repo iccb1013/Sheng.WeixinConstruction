@@ -1,0 +1,516 @@
+﻿@{
+    ViewBag.Title = "OneDollarBuyingCommodityEdit";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<script type="text/javascript">
+
+    var _mode = "create";//modify
+    var _validator;
+    var _divStockEditHtml;
+    var _stockAdjustmentType = "increment"; // decrement
+    var _stockChanged = false;
+
+    $(document).ready(function () {
+        _divStockEditHtml = $("#divStockEdit").html();
+        $("#divStockEdit").html("");
+
+        $("[keyenter]").keypress(function (e) {
+            if (e.keyCode == 13) {
+                save();
+            }
+        });
+
+        $("#txtImageUrl").blur(function () {
+            loadImage();
+        });
+
+        $('#selectInfiniteStock').change(selectInfiniteStockChange);
+
+        _validator = $("#form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txtName": "required",
+                "txtPrice": {
+                    required: true,
+                    number: true,
+                    digits: true,
+                    range: [1, 10000]
+                },
+                "txtStock": {
+                    required: true,
+                    number: true,
+                    digits: true,
+                    range: [0, 100000]
+                }
+            },
+            messages: {
+                "txtName": "请输入商品名称；",
+                "txtPrice": {
+                    required: "请输入兑换所需价格；",
+                    number: "所需价格请输入有效整数字；",
+                    digits: "所需价格请输入有效整数字；",
+                    range: "所需价格请介于 1 到 10000 之间；"
+                },
+                "txtStock": {
+                    required: "请输入库存数量；",
+                    number: "库存数量请输入有效整数字；",
+                    digits: "库存数量请输入有效整数字；",
+                    range: "库存数量请介于 0 到 100000 之间；"
+                }
+            }
+        });
+
+        loadCommodity();
+    });
+
+    function selectInfiniteStockChange() {
+        var infiniteStock = $("#selectInfiniteStock").children('option:selected').val();
+
+        if (infiniteStock == "true") {
+            $("#txtStock").attr("disabled", "disabled");
+
+            if ($("#txtStock").val() == "") {
+                $("#txtStock").val("0");
+            }
+
+            $("#trStock").hide();
+
+        } else {
+            if (_mode == "create") {
+                $("#txtStock").removeAttr("disabled");
+            }
+
+            //if ($("#txtStock").val() == "0") {
+            //    $("#txtStock").val("");
+            //}
+
+            $("#trStock").show();
+        }
+    }
+
+    function loadCommodity() {
+        var id = getQueryString("id");
+        if (id == undefined || id == "") {
+            selectInfiniteStockChange();
+            return;
+        }
+
+        _mode = "modify";
+        $("#spanTitle").html("修改商品");
+        $("#btnRemove").show();
+        $("#txtStock").attr("disabled", true);
+        $("#btnIncrement").show();
+        $("#btnDecrement").show();
+
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        $.ajax({
+            url: "/Api/OneDollarBuying/GetCommodity?id=" + id,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var commodity = data.Data;
+                    $("#txtId").val(commodity.Id);
+                    $("#txtName").val(commodity.Name);
+                    $("#txtPrice").val(commodity.Price);
+                    $("#selectInfiniteStock").find("option[value='" + commodity.InfiniteStock + "']").attr("selected", true);
+                    $("#txtStock").val(commodity.Stock);
+                    $("#selectForSale").find("option[value='" + commodity.ForSale + "']").attr("selected", true);
+                    $("#txtImageUrl").val(commodity.ImageUrl);
+                    if (commodity.Introduction != null) {
+                        $("#txtIntroduction").val(commodity.Introduction.replace(new RegExp("<br/>", "gm"), "\n"));
+                    }
+
+                    selectInfiniteStockChange();
+
+                    loadImage();
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function save() {
+        if (_validator.form() == false) {
+            return;
+        }
+
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        var commodity = new Object();
+
+        commodity.Name = $("#txtName").val();
+        commodity.Price = $("#txtPrice").val();
+        commodity.InfiniteStock = $("#selectInfiniteStock").val();
+        commodity.Stock = $("#txtStock").val();
+        commodity.ForSale = $("#selectForSale").val();
+        commodity.ImageUrl = $("#txtImageUrl").val();
+        commodity.Introduction = $("#txtIntroduction").val().replace(new RegExp("\n", "gm"), "<br/>");
+
+        var url = "/Api/OneDollarBuying/CreateCommodity";
+
+        if (_mode == "modify") {
+            commodity.Id = $("#txtId").val();
+            url = "/Api/OneDollarBuying/UpdateCommodity";
+        }
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(commodity),
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var index = parent.layer.getFrameIndex(window.name);
+                    // parent.layer.close(index);
+
+                    if (_mode == "create") {
+                        parent.loadDataAndCloseLayer(index);
+                    }
+                    else {
+                        parent.loadDataOnPageAndCloseLayer(index);
+                    }
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function removeData() {
+        var id = $("#txtId").val();
+        if (id == undefined || id == "") {
+            return;
+        }
+
+        var msg = "是否确认删除？"
+
+        var confirmLayerIndex = layer.confirm(msg, {
+            btn: ['确认', '取消'], //按钮
+            shade: [0.4, '#393D49'],
+            title: false,
+            closeBtn: false,
+            shift: _layerShift
+        }, function () {
+            layer.close(confirmLayerIndex);
+
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/OneDollarBuying/RemoveCommodity?id=" + id,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    if (data.Success) {
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.loadDataOnPageAndCloseLayer(index);
+
+                    } else {
+                        layer.closeAll();
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.closeAll();
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        });
+    }
+
+    function showIncrement() {
+        layer.open({
+            type: 1,
+            area: ['220px', '170px'], //宽高
+            closeBtn: false,
+            title: "",
+            shift: _layerShift,
+            content: _divStockEditHtml,
+            success: function (layero, index) {
+                _stockAdjustmentType = "increment";
+
+                $(layero).focus();
+            }
+        });
+    }
+
+    function showDecrement() {
+        layer.open({
+            type: 1,
+            area: ['220px', '170px'], //宽高
+            closeBtn: false,
+            title: "",
+            shift: _layerShift,
+            content: _divStockEditHtml,
+            success: function (layero, index) {
+                $(layero).focus();
+
+                _stockAdjustmentType = "decrement";
+
+                $("#divStockEditTitle").html("消减库存");
+
+            }
+        });
+    }
+
+    function stockAdjustment() {
+        var txtChangeStockValidationMessage = "请输入要增加的库存数量；";
+
+        if (_stockAdjustmentType == "decrement") {
+            txtChangeStockValidationMessage = "请输入要消减的库存数量；";
+        }
+
+        if ($("#formStockEdit").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txtChangeStock": {
+            required: true,
+            number: true
+        }
+        },
+            messages: {
+                "txtChangeStock": {
+            required: txtChangeStockValidationMessage,
+            number: "请输入有效整数字；"
+        }
+        }
+        }).form() == false) {
+            return;
+        }
+
+        var quantity = $("#txtChangeStock").val();
+
+        closeAllLayer();
+
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        var args = new Object();
+        args.Id = $("#txtId").val();
+        args.Quantity = quantity;
+
+        var url = "/Api/OneDollarBuying/StockIncrement";
+
+        if (_stockAdjustmentType == "decrement") {
+            url = "/Api/OneDollarBuying/StockDecrement";
+        }
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    _stockChanged = true;
+                    $("#txtStock").val(data.Data.Stock);
+                    layerAlert("该商品的库存数量已调整到：" + data.Data.Stock);
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function cancel() {
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+
+        if (_stockChanged) {
+            parent.loadDataOnPageAndCloseLayer(index);
+        }
+        else {
+            parent.layer.close(index); //再执行关闭
+        }
+    }
+
+    function loadImage() {
+        $("#image").attr("src", $("#txtImageUrl").val());
+    }
+
+    function uploadFile() {
+        __showFileUpload(getUploadResult);
+    }
+
+    function getUploadResult(fileServiceAddress, result) {
+        var url = fileServiceAddress + result.Data.StoreFilePath;
+        $("#txtImageUrl").val(url);
+        loadImage();
+    }
+
+    function removeImage() {
+        $("#txtImageUrl").val("");
+        loadImage();
+    }
+
+    function closeAllLayer() {
+        layer.closeAll();
+    }
+
+</script>
+
+<script id="divStockEdit" type="text/html">
+    <div style="margin-left:10px; margin-right:10px;margin-top:20px; margin-bottom:10px;">
+        <div style="width:100%;">
+            <div>
+                <span id="divStockEditTitle" class="font_blue_20">增加库存</span>
+            </div>
+            <div style="width:100%; margin-left:0px; margin-top:20px;">
+                <form id="formStockEdit">
+                    <input type="hidden" value="CF26EC30-FB70-41B4-BD38-DBA38248723A" id="domain" name="domain" />
+                    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td width="130" height="36">
+                                <input id="txtChangeStock" name="txtChangeStock" type="text" class="input_16" style="width:96%; " keyenter />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div style=" width:100%; margin-top:20px; margin-left:0px;">
+                <div style="float:right">
+                    <input name="btnSave" type="button" class="btn_blue" id="btnSave" value="确 定" onclick="stockAdjustment()" />
+                    <input name="btnCancel" type="button" class="btn_blue" id="btnCancel" value="取 消" onclick="closeAllLayer()" />
+                </div>
+                <div style="clear:both">
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div style="margin-left:20px; margin-right:20px; margin-top:20px;">
+    <span id="spanTitle" class="font_black_24">添加商品</span>
+</div>
+
+<div style=" background-color:#ccc; margin-left:20px; margin-right:20px; margin-top:10px; height:1px;">
+
+</div>
+
+<div style=" position:absolute; overflow:auto ;margin-top:25px;left:30px; right:30px; bottom:60px; top:50px; ">
+
+    <form id="form">
+        <input type="hidden" id="txtId" />
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="110" height="36">名称：</td>
+                <td><input id="txtName" name="txtName" type="text" class="input_16" style="width:96%; " maxlength="50" keyenter /></td>
+            </tr>
+            <tr>
+                <td height="36">价格：</td>
+                <td><input id="txtPrice" name="txtPrice" type="text" class="input_16" style="width:96%; " keyenter /></td>
+            </tr>
+            <tr>
+                <td height="36">无限库存：</td>
+                <td>
+                    <select id="selectInfiniteStock" name="selectInfiniteStock" class="input_16" style="width:100px;" keyenter>
+                        <option value="true">是</option>
+                        <option value="false" selected>否</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="trStock" style="display:none">
+                <td height="36">库存：</td>
+                <td>
+                    <input id="txtStock" name="txtStock" type="text" class="input_16" style="width:100px; " keyenter />
+                    <input name="btnIncrement" type="button" class="btn_orange_small" id="btnIncrement" value="增加" onclick="showIncrement()" style="display:none" />
+                    <input name="btnDecrement" type="button" class="btn_orange_small" id="btnDecrement" value="消减" onclick="showDecrement()" style="display:none" />
+                </td>
+            </tr>
+            <tr>
+                <td height="36">上架：</td>
+                <td>
+                    <select id="selectForSale" name="selectForSale" class="input_16" style="width:100px;" keyenter>
+                        <option value="true">是</option>
+                        <option value="false">否</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td  valign="top">
+                    <div style="margin-top:5px;">
+                        图片：
+                    </div>
+                </td>
+                <td>
+                    <div class="divBorder_gray" style="margin-bottom:5px;width:96%;">
+                        <div style="padding:5px;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="120"><img id="image" src="" alt="" style="max-height:100px;" /></td>
+                                    <td align="right">
+                                        <input id="txtImageUrl" name="txtImageUrl" type="hidden" class="input_16" style="width:96%; " maxlength="500" />
+                                        <a href="javascript:void(0)" onclick="uploadFile()">上传新图片</a><br />
+                                        <a href="javascript:void(0)" onclick="removeImage()">删除图片</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            @*<tr>
+                    <td height="36">&nbsp;</td>
+                    <td><input id="txtImageUrl" name="txtImageUrl" type="text" class="input_16" style="width:96%; " maxlength="500" keyenter /></td>
+                </tr>*@
+            <tr>
+                <td height="50" valign="top">商品介绍：</td>
+                <td valign="top"><textarea name="txtIntroduction" rows="4" class="input_16" id="txtIntroduction" style="width:96%; " maxlength="500"></textarea></td>
+            </tr>
+        </table>
+
+
+    </form>
+
+</div>
+
+<div style=" background-color:#ccc; position:absolute; bottom:55px; left:20px;right:20px; height:1px;">
+
+</div>
+
+<div style="position:absolute; bottom:15px; left:20px;right:20px;">
+
+
+    <div style="float:left;">
+        <input name="btnRemove" type="button" class="btn_red" id="btnRemove" value="删 除" style="display:none" onclick="removeData()" />
+    </div>
+
+    <div style="float:right">
+        <input name="btnSave" type="button" class="btn_blue" id="btnSave" value="保 存" onclick="save()" />
+        <input name="btnCancel" type="button" class="btn_blue" id="btnCancel" value="取 消" onclick="cancel()" />
+    </div>
+    <div style="clear:both">
+    </div>
+</div>
+
+@Helpers.FileUpload()

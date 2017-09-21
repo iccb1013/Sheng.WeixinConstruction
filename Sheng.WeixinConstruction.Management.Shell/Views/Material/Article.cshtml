@@ -1,0 +1,289 @@
+﻿@{
+    ViewBag.MainMenu = "Settings";
+    ViewBag.LeftMenu = "Material";
+
+    ViewBag.Title = "图文消息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .divImageMaterialContainer {
+        width: 230px;
+        float: left;
+        margin-right: 20px;
+        margin-top: 20px;
+        background-color: #FFF;
+        font-size: 13px;
+    }
+
+    .tableImageMaterialContainer {
+        width: 100%;
+        border-collapse: collapse;
+        border: solid #E7E7EB;
+        border-width: 1px 0 0 1px;
+    }
+
+        .tableImageMaterialContainer td {
+            border: 1px solid #E7E7EB;
+        }
+
+    .tableNoBorder {
+        border: 0px;
+    }
+
+        .tableNoBorder td {
+            border: 0px;
+        }
+
+    .divFirstArticleTitle {
+        position: absolute;
+        line-height: 24px;
+        padding-left: 7px;
+        vertical-align: middle;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        /*height: 24px;*/
+        background-color: #000000;
+        color: white;
+        filter: alpha(opacity=70);
+        -moz-opacity: 0.7;
+        -khtml-opacity: 0.7;
+        opacity: 0.7;
+    }
+</style>
+
+
+<script language="javascript">
+
+    //当前页
+    var _currentPage = 1;
+
+    $(document).ready(function ()
+    {
+        if (_online == false)
+            return;
+
+        loadData();
+    });
+
+    function loadData(targetPage)
+    {
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+
+        $.ajax({
+            url: "/Api/Material/GetArticleMaterialList",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR)
+            {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    var resultObj = data.Data;
+
+                    _currentPage = resultObj.Page;
+
+                    //  alert(JSON.stringify(resultObj.ArticleMaterialList));
+                    var gettpl = document.getElementById('articleListTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html)
+                    {
+                        document.getElementById('divArticleList').innerHTML = html;
+                        //fitTable();
+                    });
+
+                    laypage({
+                        skin: 'yahei',
+                        cont: document.getElementById('divPagingContainer'),
+                        pages: resultObj.TotalPage, //总页数
+                        curr: resultObj.Page, //当前页
+                        groups: 7, //连续显示分页数
+                        jump: function (obj, first)
+                        {
+                            if (!first)
+                            { //点击跳页触发函数自身，并传递当前页：obj.curr
+                                loadData(obj.curr);
+                            }
+                        }
+                    });
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function modify(id)
+    {
+        window.location.href = "/Material/ArticleEdit?id=" + id;
+    }
+
+    function removeData(id, mediaId)
+    {
+        var msg = "是否确认删除该素材？";
+
+        if (mediaId != undefined && mediaId != null && mediaId != "null" && mediaId != "")
+        {
+            msg = "是否确认删除该素材？<br/>注意：该素材已发布到微信后台，如果已将该素材发送给会员，删除该素材会使已发送给会员的连接失效。";
+        }
+
+        var confirmLayerIndex = layer.confirm(msg, {
+            btn: ['确认', '取消'], //按钮
+            shade: [0.4, '#393D49'],
+            title: false,
+            closeBtn: false,
+            shift: _layerShift
+        }, function ()
+        {
+            layer.close(confirmLayerIndex);
+
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/Material/RemoveArticleMaterial?id=" + id + "&mediaId=" + mediaId,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR)
+                {
+                    layer.close(loadLayerIndex);
+                    if (data.Success)
+                    {
+                        loadData(_currentPage);
+
+                    } else
+                    {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest)
+                {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        });
+
+    }
+
+</script>
+
+
+<script id="articleListTemplate" type="text/html">
+    {{# for(var i = 0, len = d.length; i < len; i++){ }}
+
+    <div class="divImageMaterialContainer">
+        <div>
+            {{ d[i].name }}
+        </div>
+        {{# if(d[i].weixinStatus != 2){ }}
+        <div style="color:gray">
+            未发布
+        </div>
+        {{# } }}
+
+        <div style="margin-top:10px;">
+            <table class="tableImageMaterialContainer">
+
+                <tr>
+                    <td valign="top">
+                        <div>
+                            <div style="position:relative; height:100px;">
+                                <div style="position:absolute; left:0px; right:0px; height:100px; overflow:hidden">
+                                    <img src="{{ d[i].articles[0].thumbUrl }}" style=" width:100%;">
+                                </div>
+                                <div class="divFirstArticleTitle">
+                                    {{# if(d[i].articles[0].url != null && d[i].articles[0].url!= ""){ }}
+                                    <a style="color:white" target="_blank" href="{{ d[i].articles[0].url }}">{{ d[i].articles[0].title }}</a>
+                                    {{# }else{ }}
+                                    <a style="color:white" href="javascript:void(0)" onclick="modify('{{ d[i].id }}')">{{ d[i].articles[0].title }}</a>
+                                    {{# } }}
+                                </div>
+                            </div>
+                            {{# for(var j = 1, len2 = d[i].articles.length; j < len2; j++){ }}
+                            <div class="divDotLine" style="margin-top:10px;">
+                            </div>
+                            <div style="margin-top:10px; margin-left:5px; margin-right:5px;">
+                                <table class="tableNoBorder" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td><a style="color:black" target="_blank" href="{{ d[i].articles[j].url }}">{{ d[i].articles[j].title }}</a></td>
+                                        <td width="75" align="right"><img src="{{ d[i].articles[j].thumbUrl }}" width="70" height="70"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            {{# } }}
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td height="30" valign="middle" bgcolor="#F4F5F9">
+                        <div>
+                            <div style="float:left; margin-left:10px;"><img src="/Content/Images/ico_edit.jpg" width="20" height="20" style="cursor:pointer" onclick="modify('{{ d[i].id }}')"></div>
+                            <div style="float:right; margin-right:10px;"><img src="/Content/Images/ico_remove.jpg" width="20" height="20" style="cursor:pointer" onclick="removeData('{{ d[i].id }}','{{ d[i].mediaId }}')"></div>
+                            <div style="clear:both"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    {{# } }}
+
+    <div style="clear: both"></div>
+
+</script>
+
+
+
+<div id="divContentTips">
+    图文素材可用来推送消息给会员，或通过URL单独进行访问，图文素材在发布后将自动同步到微信后台。
+</div>
+
+<div style=" margin-top:20px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td class="td_ContentTab_active">图文消息</td>
+            <td class="td_ContentTab"><a href="/Material/Image" class="a_black_16">图片库</a></td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="3" bgcolor="#EEEEEE" height="2"></td>
+        </tr>
+    </table>
+</div>
+
+<div style="margin-left:20px; margin-right:20px;">
+    <div style=" margin-top:10px;">
+        <input name="btnCreate" type="button" class="btn_blue" id="btnCreate" value="新 建" onclick="goUrl('@Url.Action("ArticleEdit")')" />
+    </div>
+
+    <div id="divArticleList">
+
+
+    </div>
+
+</div>
+
+<div id="divPagingContainer" style=" margin-top:20px; text-align:right; ">
+
+</div>
+
+

@@ -1,0 +1,387 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style>
+    body {
+        /*margin-top: 1.5rem;*/
+         margin-top: 1.2rem;
+        margin-bottom: 0.55rem;
+    }
+
+    #divTopTitleBar {
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        /*top: 1rem;*/
+         top:0.7rem;
+        height: 0.4rem;
+        background-color: white;
+    }
+
+    .imgItem {
+        max-height: 0.75rem;
+        max-width: 0.9rem;
+        vertical-align: middle;
+    }
+
+    .divItemDetailTitle {
+        height: 0.35rem;
+        line-height: 0.35rem;
+        text-align: center;
+        font-size: 0.16rem;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+
+
+    .divBorder {
+        border: 1px solid #CCC;
+        height: 0.3rem;
+        font-size: 0.15rem;
+        line-height: 0.3rem;
+    }
+
+    #divFooter {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.4rem;
+        font-size: 0.14rem;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+</style>
+
+<script>
+
+    var _cashAccount = @(ViewBag.Member.CashAccount / 100f);
+
+    //要参与的商品SaleId
+    var _saleId = "";
+
+    //当前页
+    var _currentPage = 1;
+    var _totalPage = 1;
+
+    $(document).ready(function () {
+        loadData();
+    });
+
+    function loadData(targetPage) {
+        if (targetPage > _totalPage)
+            return;
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.PageSize = 10;
+
+        $.ajax({
+            url: "/Api/OneDollarBuying/GetForSaleCommodityList/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    //alert(JSON.stringify(resultObj));
+                    var gettpl = document.getElementById('commodityListTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html) {
+                        document.getElementById('divCommodityContainer').innerHTML += html;
+                    });
+
+                    _currentPage = resultObj.Page;
+                    _totalPage = resultObj.TotalPage;
+                    if (_currentPage >= _totalPage) {
+                        $("#divPagingContainer").html("没有更多了");
+                    }
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function showOrder(saleId,saleCommodityName) {
+        _saleId = saleId;
+
+        var gettpl = document.getElementById('orderTemplate').innerHTML;
+
+        var pageii = layer.open({
+            type: 1,
+            content: gettpl,
+            style: 'position:fixed; left:0.1rem; top:0.1rem;right:0.1rem; border:none;',
+            success: function (elem) {
+                $("#orderTemplate_CommodityName").html(saleCommodityName);
+                $("#txtOrderQuantity").focus();
+                setInputLocation(document.getElementById("txtOrderQuantity"), 1)
+            }
+        });
+    }
+
+    function setOrderQuantity(quantity) {
+        $("#txtOrderQuantity").val(quantity).focus();
+        setInputLocation(document.getElementById("txtOrderQuantity"), 10)
+    }
+
+    function order() {
+
+        if($("#formInputForm").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: hightlightValidationErrors,
+            rules: {
+             "txtOrderQuantity": {
+            required: true,
+            number: true,
+            digits: true,
+            range: [1, 10000]
+        }
+        },
+            messages: {
+                        "txtOrderQuantity": {
+            required: "请输入要参与的人次；",
+            number: "参与人次请输入有效整数字；",
+            digits: "参与人次请输入有效整数字；",
+            range: "参与人次请介于 1 到 10000 之间；"
+        }
+        }
+        }).form() == false)
+            return;
+
+        var quantity = $("#txtOrderQuantity").val();
+
+        layer.closeAll();
+
+        if(quantity>_cashAccount){
+            layerAlert("您的账户余额不足，请充值。");
+            return;
+        }
+
+        var confirmLayerIndex = layer.open({
+            content: '您确认参与 ' + quantity + ' 人次？',
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function ()
+            {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose:false,
+                    content: '请稍候...'
+                });
+
+                var args = new Object();
+                args.SaleId = _saleId;
+                args.Quantity = quantity;
+
+                $.ajax({
+                    url: "/Api/OneDollarBuying/OrderOneDollarBuyingCommodity/@ViewBag.Domain.Id",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(args),
+                    success: function (data, status, jqXHR)
+                    {
+                        layer.close(loadLayerIndex);
+                        if (data.Success)
+                        {
+                            var resultObj = data.Data;
+
+                            if(resultObj.Success){
+                                layerAlertBtn("参与成功！请留意揭晓结果~", function () {
+                                    layer.open({
+                                        type: 2,
+                                        shadeClose: false,
+                                        content: '请稍候...'
+                                    });
+                                    window.location.reload();
+                                });
+
+                            }else{
+                                switch (resultObj.Reason)
+                                {
+                                    case 1:
+                                        layerAlert("该商品本期已售罄，请继续参与新的一期。");
+                                        break;
+                                    case 2:
+                                        layerAlert("您的余额不足，请充值。");
+                                        break;
+                                    case 3:
+                                        layerAlert("无效商品。");
+                                        break;
+                                    default:
+                                        layerAlert("未知错误：" + resultObj.Reason);
+                                        break;
+                                }
+                            }
+                        } else
+                        {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest)
+                    {
+                        layer.close(loadLayerIndex);
+                        //alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+
+    }
+
+    function commodityDetail(commodityId,saleId) {
+        window.location.href = '/Campaign/OneDollarBuyingCommodityDetail/@ViewBag.Domain.Id?commodityId=' + commodityId + "&saleId=" + saleId;
+    }
+
+    function deposit() {
+        window.location.href = '/Pay/Deposit/@ViewBag.Domain.Id';
+    }
+
+</script>
+
+
+<script id="commodityListTemplate" type="text/html">
+
+    {{# for(var i = 0, len = d.length; i < len; i++){ }}
+
+    <div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width:1rem;" onclick="commodityDetail('{{ d[i].CommodityId }}','{{ d[i].Id }}')">
+                    <img src="{{ d[i].ImageUrl }}" class="imgItem">
+                </td>
+                <td>
+                    <div style="font-size:0.15rem;font-weight:bold" onclick="commodityDetail('{{ d[i].CommodityId }}','{{ d[i].Id }}')">{{ d[i].Name }}</div>
+                    <div style="margin-top:0.05rem; font-size:0.12rem;color:#555555;" onclick="commodityDetail('{{ d[i].CommodityId }}','{{ d[i].Id }}')">{{ d[i].Introduction }}</div>
+                    <div style="margin-top:0.1rem;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td style="font-size:0.12rem;color:#555555" onclick="commodityDetail('{{ d[i].CommodityId }}','{{ d[i].Id }}')">
+                                    <div>
+                                        总需：{{ d[i].TotalPart }}
+                                    </div>
+                                    <div style="margin-top:0.03rem;">
+                                        剩余：<span class="font_red_b">{{ d[i].TotalPart - d[i].SoldPart }}</span>
+                                    </div>
+                                </td>
+                                <td style="width:0.6rem;" align="right" valign="bottom">
+                                    <div class="divRectangle" style="" onclick="showOrder('{{ d[i].Id }}','{{ d[i].Name }}')">
+                                        参与
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.13rem; margin-bottom:0.13rem; ">
+    </div>
+
+    {{# } }}
+
+</script>
+
+<script type="text/html" id="orderTemplate">
+    <form id="formInputForm">
+        @*<div class="defaultBgColor divItemDetailTitle">
+            参与
+        </div>*@
+        <div style="font-size:0.18rem;padding:0.1rem;padding-bottom:0.2rem;">
+            <div style="font-size:0.15rem;font-weight:bold" id="orderTemplate_CommodityName"></div>
+            <div style="margin-top:0.15rem;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="width:1rem;">参与人次：</td>
+                        <td><input name="txtOrderQuantity" type="text" class="input_16" style="width:100%" id="txtOrderQuantity" maxlength="5" value="1" /></td>
+                    </tr>
+                </table>
+
+            </div>
+            <div style="margin-top:0.15rem;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:0.3rem;">
+                    <tr>
+                        <td width="20%" align="center"><div class="divBorder" onclick="setOrderQuantity(1)">1</div></td>
+                        <td width="20%" align="center"><div class="divBorder" onclick="setOrderQuantity(5)">5</div></td>
+                        <td width="20%" align="center"><div class="divBorder" onclick="setOrderQuantity(10)">10</div></td>
+                        <td width="20%" align="center"><div class="divBorder" onclick="setOrderQuantity(20)">20</div></td>
+                        <td width="20%" align="center"><div class="divBorder" onclick="setOrderQuantity(30)">30</div></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin-top:0.2rem;">
+                <div class="divRectangle" style="margin-left:0.4rem;margin-right:0.4rem;" onclick="order()">
+                    参与
+                </div>
+                <div class="divRectangle_Gray" style="margin-top:0.1rem;margin-left:0.4rem;margin-right:0.4rem;" onclick="layer.closeAll()">
+                    取消
+                </div>
+            </div>
+        </div>
+
+    </form>
+</script>
+
+@Helpers.OneDollarBuyingIntroduction()
+
+@Helpers.HeaderArea(ViewBag, "headimg")
+
+<div id="divTopTitleBar">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:100%">
+        <tr style="height:0.27rem;">
+            <td width="33%" align="center"><div onclick="goUrl('/Campaign/OneDollarBuying/@ViewBag.Domain.Id')">正在进行</div></td>
+            <td width="33%" align="center"><div onclick="goUrl('/Campaign/OneDollarBuyingLuckyList/@ViewBag.Domain.Id')">最新揭晓</div></td>
+            <td width="33%" align="center"><div onclick="goUrl('/Campaign/OneDollarBuyingParticipatedList/@ViewBag.Domain.Id')">我的参与</div></td>
+        </tr>
+        <tr style="height:0.03rem;">
+            <td class="defaultBgColor"></td>
+            <td bgcolor="#E4E4E4"></td>
+            <td bgcolor="#E4E4E4"></td>
+        </tr>
+    </table>
+</div>
+
+<div class="divContent">
+
+    <div id="divCommodityContainer" style="padding-left: 0.1rem; padding-right: 0.1rem;margin-top:0.2rem;">
+
+
+    </div>
+
+    <div id="divPagingContainer" class="divPagingContainer" style="margin-top: 0.2rem; text-align: center" onclick="loadData(_currentPage + 1)">
+        查看更多
+    </div>
+
+</div>
+
+<div id="divFooter">
+    <table align="center" style="height:100%">
+        <tr>
+            <td valign="middle" align="center">
+                <input type="button" class="button" value="玩法说明" style="width:1.5rem;" onclick="introduction()">
+            </td>
+        </tr>
+    </table>
+</div>

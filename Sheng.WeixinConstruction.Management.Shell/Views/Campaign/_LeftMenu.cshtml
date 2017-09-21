@@ -1,0 +1,18 @@
+﻿<div class="leftMenuItem @if(ViewBag.LeftMenu == "PictureVote"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("投票", "PictureVote_Ongoing", "Campaign", null, new { @class = ViewBag.LeftMenu == "PictureVote" ? "a_white_16" : "a_black_16" })
+</div>
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "MemberQRCode"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("粉丝海报", "MemberQRCode_Ongoing", "Campaign", null, new { @class = ViewBag.LeftMenu == "MemberQRCode" ? "a_white_16" : "a_black_16" })
+</div>
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "Lottery"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("定期抽奖", "Lottery_Ongoing", "Campaign", null, new { @class = ViewBag.LeftMenu == "Lottery" ? "a_white_16" : "a_black_16" })
+</div>
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "LuckyTicket"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("聚人气抽奖", "LuckyTicket_Ongoing", "Campaign", null, new { @class = ViewBag.LeftMenu == "LuckyTicket" ? "a_white_16" : "a_black_16" })
+</div>
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "ShakingLottery"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("摇一摇抽奖", "ShakingLottery_Ongoing", "Campaign", null, new { @class = ViewBag.LeftMenu == "ShakingLottery" ? "a_white_16" : "a_black_16" })
+</div>
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "Donation"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("在线捐款", "Donation_Ongoing", "Campaign", null, new { @class = ViewBag.LeftMenu == "Donation" ? "a_white_16" : "a_black_16" })
+</div>

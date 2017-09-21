@@ -1,0 +1,250 @@
+----------------------------------------
+Timestamp: 2017/6/1 23:14:20
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:42:31
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:42:32
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:42:57
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:43:13
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:43:24
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:03
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:07
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:12
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:18
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:25
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:28
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:32
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:35
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:39
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:42
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:46
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:49
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:53
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:44:56
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:45:00
+
+Title:ControlledCachingService.Set 请求失败
+
+Message: 无法连接到远程服务器
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:50:44
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/1 23:50:45
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/2 0:03:14
+
+Title:Redis 连接失败
+
+Message: It was not possible to connect to the redis server(s); to create a disconnected multiplexer, disable AbortOnConnectFail. SocketFailure on PING
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2017/6/2 0:03:15
+
+Title:Application_Start
+
+Message: 
+
+Severity: Information
+
+----------------------------------------

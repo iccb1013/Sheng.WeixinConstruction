@@ -1,0 +1,121 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Areas.Staff.Models.PortalViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Authorizer.NickName</title>
+
+    <link href="/Content/Style.css" rel="stylesheet" type="text/css">
+
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/layer.m/layer.m.js"></script>
+    @Scripts.Render("~/bundles/common")
+
+    <style>
+        body {
+            margin: 0rem;
+            margin-top: 0rem;
+        }
+
+        #divTopBar {
+            background-image: url(/Content/Images/topbar_bg.jpg);
+            background-repeat: repeat-x;
+            width: 100%;
+            height: 0.55rem;
+            /*box-shadow: 0px 3px 10px #EFEFEF;*/
+            background-color: #FFF;
+            z-index: 9000;
+            background-size: 100% 100%;
+        }
+
+        #divLogo {
+            margin-left: 0.3rem;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            font-size: 0.2rem;
+            color: #FFF;
+            font-family: "黑体";
+        }
+
+        .menuItem {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            font-size: 0.2rem;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+            padding-top: 0.15rem;
+            padding-bottom: 0.15rem;
+            background-color: #66ABF0;
+            color: white;
+            float: left;
+            margin-right: 0.15rem;
+            margin-top:0.15rem;
+
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <div id="divTopBar">
+        <div id="divLogo">
+            <span class="font_white_22">升讯威 微信营销系统</span>
+        </div>
+    </div>
+
+    <div class="divContent" style="margin-top:0.1rem;">
+
+        <div class="font_blue_20_b">
+            今日运营数据
+        </div>
+
+        <div style="margin-top:0.2rem; font-size:0.14rem;">
+            <div style="float:left;margin-right:0.2rem;">新增人数：@Model.OperationData.NewAttentionCount</div>
+            <div style="float:left">总用户数：@Model.OperationData.TotalAttentionCount</div>
+            <div style="clear:both"></div>
+        </div>
+
+        <div class="divDotLine" style="margin-top:0.2rem; margin-bottom:0.2rem;">
+        </div>
+
+        <div>
+            <div class="menuItem" onclick="goUrl('/Staff/Home/MemberInfo/@ViewBag.Domain.Id')">
+                会员<br />管理
+            </div>
+            <div class="menuItem" onclick="goUrl('/Staff/Campaign/CampaignList/@ViewBag.Domain.Id')">
+                活动<br />管理
+            </div>
+            <div class="menuItem" onclick="goUrl('/Staff/PointCommodity/PointCommodityOrder/@ViewBag.Domain.Id')">
+                积分<br />商城
+            </div>
+            <div class="menuItem" onclick="goUrl('/Staff/Home/CouponRecordDetail/@ViewBag.Domain.Id')">
+                卡券<br />&nbsp;
+            </div>
+            <div class="menuItem" onclick="goUrl('/Staff/Home/OneDollarBuyingDeal/@ViewBag.Domain.Id')">
+                1元<br />抢购
+            </div>
+            <div style="clear:both"></div>
+        </div>
+
+        <div style="margin-top:0.3rem;font-size:0.13rem;">
+            <div>电脑版后台：wxcm.shengxunwei.com</div>
+            <div style="margin-top:0.1rem;">
+                电话：0550-3926191 / 18114009195<br />
+                QQ：279060597
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

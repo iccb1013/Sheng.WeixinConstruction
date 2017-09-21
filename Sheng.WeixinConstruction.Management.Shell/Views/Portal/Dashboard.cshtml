@@ -1,0 +1,283 @@
+﻿@model Sheng.WeixinConstruction.Management.Shell.Models.DashboardViewModel
+
+@{
+    ViewBag.MainMenu = "Portal";
+    ViewBag.LeftMenu = "Dashboard";
+
+    ViewBag.Title = "运营数据";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .divDataPanel {
+        float: left;
+        border: 1px solid #62A9F0;
+        background: #F6F6F6;
+        width: 100px;
+        margin-right: 20px;
+        margin-top: 10px;
+    }
+
+    .divDataTitle {
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: #FFFFFF;
+        background-image: url(/Content/Images/dashboard_tileTitle_bg.jpg);
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .divDataNumber {
+        font-size: 20px;
+        text-align: center;
+        line-height: 40px;
+        height: 40px;
+        background-image: url(/Content/Images/dashboard_tileNumber_bg.jpg);
+    }
+</style>
+
+<script>
+    function getVip() {
+        //alert(0);
+        layer.open({
+            type: 2,
+            area: ['600px', '100%'], //宽高
+            closeBtn: false,
+            title: "",
+            shift: _layerShift,
+            content: 'GetVip'
+        });
+    }
+
+    function getPay() {
+        //alert(0);
+        layer.open({
+            type: 2,
+            area: ['600px', '100%'], //宽高
+            closeBtn: false,
+            title: "",
+            shift: _layerShift,
+            content: 'GetPay'
+        });
+    }
+
+</script>
+
+<div style="margin-top:20px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td valign="top">
+
+                @if (ViewBag.DomainContext.Authorizer != null)
+                {
+                    <div style="font-size:22px;">
+                        @ViewBag.DomainContext.Authorizer.NickName
+                    </div>
+                }
+                <div style="margin-top:30px;">
+                    <div>
+                        会员数据：
+                        <select class="input_16" style="width:100px;margin-left:10px;">
+                            <option>今日</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-top:10px;">
+                        <div class="divDataPanel">
+                            <div class="divDataTitle">新增关注</div>
+                            <div class="divDataNumber">@Model.MemberStatisticData.SubscribeCount</div>
+                        </div>
+
+                        <div class="divDataPanel">
+                            <div class="divDataTitle">取消关注</div>
+                            <div class="divDataNumber">@Model.MemberStatisticData.UnsubscribeCount</div>
+                        </div>
+
+                        <div class="divDataPanel">
+                            <div class="divDataTitle">净增关注</div>
+                            <div class="divDataNumber">@Model.MemberStatisticData.NewAttentionCount</div>
+                        </div>
+
+                        <div class="divDataPanel">
+                            <div class="divDataTitle">会员总数</div>
+                            <div class="divDataNumber">@Model.MemberStatisticData.TotalAttentionCount</div>
+                        </div>
+
+                        <div class="divDataPanel">
+                            <div class="divDataTitle">今日签到</div>
+                            <div class="divDataNumber">@Model.MemberStatisticData.TodaySigninCount</div>
+                        </div>
+
+                        <div style="clear:both"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top:30px;">
+                    <div>
+                        积分商城：
+                    </div>
+
+                    <div style="margin-top:10px;">
+                        <div class="divDataPanel">
+                            <div class="divDataTitle">订单总数</div>
+                            <div class="divDataNumber">@Model.PointCommodityOrderStatisticData.TotalOrder</div>
+                        </div>
+
+                        <div class="divDataPanel">
+                            <div class="divDataTitle">待支付</div>
+                            <div class="divDataNumber">@Model.PointCommodityOrderStatisticData.NoPayment</div>
+                        </div>
+
+                        <div class="divDataPanel">
+                            <div class="divDataTitle">已支付</div>
+                            <div class="divDataNumber">@Model.PointCommodityOrderStatisticData.Paid</div>
+                        </div>
+
+                        <div class="divDataPanel">
+                            <div class="divDataTitle">已发货</div>
+                            <div class="divDataNumber">@Model.PointCommodityOrderStatisticData.Deal</div>
+                        </div>
+
+                        <div class="divDataPanel">
+                            <div class="divDataTitle">已取消</div>
+                            <div class="divDataNumber">@Model.PointCommodityOrderStatisticData.Canceled</div>
+                        </div>
+
+                        <div style="clear:both"></div>
+                    </div>
+                </div>
+
+                <div class="divDotLine" style="margin-top:30px;"></div>
+
+                <div style="margin-top:30px;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            @*<td width="150" valign="top">
+                                <div>
+                                    微信群：
+                                </div>
+                                <div style="margin-top:10px;">
+                                    <img src="/Content/Images/WeixinGroup2.jpg" width="120" height="120" />
+                                </div>
+                            </td>*@
+                            <td width="150" valign="top">
+                                <div>
+                                    QQ群：
+                                </div>
+                                <div style="margin-top:10px;">
+                                    <img src="/Content/Images/QQGroup2.jpg" width="120" height="120" />
+                                </div>
+                                <div style="margin-top:10px;">
+                                   群号：591928344
+                                </div>
+                               
+                            </td>
+                            <td width="30"></td>
+                            <td valign="top">
+                                <div style="line-height:24px;">
+                                    交流分享微信建设与营销心得；<br />
+                                    软件使用问题反馈与咨询；<br />
+                                    新功能上线推送；<br />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </td>
+
+
+
+            @if (ViewBag.DomainContext.Authorizer != null)
+            {
+                <td width="50"></td>
+                <td width="300" valign="top">
+
+                    @if (ViewBag.Domain.Type == Sheng.WeixinConstruction.Infrastructure.EnumDomainType.Free)
+                    {
+                        <div>
+                            您的账户类型：免费
+                        </div>
+                        <div style="margin-top:5px;">
+                            <a href="javascript:void(0)" style="color:#FF5A26;text-decoration:underline" onclick="getVip()">升级至VIP 9折优惠 2700元/年（折后）</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            您的账户类型：VIP
+                        </div>
+
+                        if (ViewBag.Domain.LimitedDate != null)
+                        {
+                            <div style="margin-top:5px;">
+                                有效期至：@ViewBag.Domain.LimitedDate.ToString("yyyy-MM-dd")
+                            </div>
+                        }
+                    }
+
+                    @if (ViewBag.DomainContext.Pay == false)
+                    {
+                        <div style="margin-top:15px;">
+                            微信支付：未对接
+                        </div>
+                        <div style="margin-top:5px;">
+                            <a href="javascript:void(0)" style="color:#FF5A26;text-decoration:underline" onclick="getPay()">对接微信支付 1000元/年</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="margin-top:15px;">
+                            微信支付：已对接
+                        </div>
+
+                        if (ViewBag.Domain.PayLimitedDate != null)
+                        {
+                            <div style="margin-top:5px;">
+                                有效期至：@ViewBag.Domain.PayLimitedDate.ToString("yyyy-MM-dd")
+                            </div>
+                        }
+                    }
+
+
+
+                    <div class="divDotLine" style="margin-top:15px;">
+                    </div>
+                    <div style="margin-top:5px;text-decoration:underline">
+                        VIP 特权：
+                    </div>
+                    <div style="margin-top:10px;">
+                        服务
+                    </div>
+                    <div style="margin-top:5px;line-height:24px;color:#444444">
+                        视频或电话的技术培训及咨询答疑<br />
+                        7 x 24 小时技术支持及咨询服务<br />
+                        新功能上线后的玩法推送及应用指导
+                    </div>
+                    <div style="margin-top:5px;">
+                        产品
+                    </div>
+                    <div style="margin-top:5px;line-height:24px;color:#444444">
+                        所有页面不显示升讯威版权信息<br />
+                        查看会员的 OpenId<br />
+                        自定义微主页<br/>
+                        投票活动可强制必须关注才可投票<br />
+                    </div>
+                    <div style="margin-top:5px;">
+                        <a href="javascript:void(0)" onclick="getVip()">查看更多</a>
+                    </div>
+                    <div style="margin-top:15px;text-decoration:underline">
+                        对接微信支付：
+                    </div>
+                    <div style="margin-top:5px;line-height:24px;color:#444444">
+                        开启会员在线充值<br />
+                        在积分商城中销售产品或服务<br />
+                        开展发红包活动
+                    </div>
+                </td>
+            }
+        </tr>
+    </table>
+</div>

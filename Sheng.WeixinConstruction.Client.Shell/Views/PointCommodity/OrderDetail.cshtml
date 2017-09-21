@@ -1,0 +1,360 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.PointCommodityOrderDetailViewModel
+
+@{
+    ViewBag.SubTitle = "订单详情";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+    body {
+        margin-top: 0.6rem;
+         margin-bottom: 0.2rem;
+    }
+
+    #divTopTitle {
+        height: 0.5rem;
+        color: #FFF;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        top: 0rem;
+    }
+
+    #divTopTitleBar {
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        top: 0.5rem;
+        height: 0.4rem;
+        background-color: white;
+    }
+
+    .divCommodityItem {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        padding: 0.1rem 0.05rem;
+        min-height: 0.8rem;
+        width: 100%;
+        color: #535353;
+        margin-top: 0.1rem;
+    }
+
+    .imgPointCommodity {
+        max-height: 0.8rem;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+</style>
+
+<script>
+
+    var _orderPrice = @(Model.Order.Price/100f);
+    var _orderId = getQueryString("id");
+
+    $(document).ready(function () {
+        //$("#txtCashAccountFee").bind("input propertychange", function () {
+        //});
+
+        $("#txtCashAccountFee").change(function () {
+            calculate();
+        });
+    });
+
+    function showPayView() {
+        var gettpl = document.getElementById('cashPayViewTemplate').innerHTML;
+
+        var pageii = layer.open({
+            type: 1,
+            content: gettpl,
+            style: 'position:fixed; left:0.1rem; top:0.1rem;right:0.1rem; border:none;',
+            success: function (elem) {
+                calculate();
+            }
+        });
+    }
+
+    function pay(){
+
+        if ($("#formPay").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txtCashAccountFee": {
+            required: true,
+            number: true,
+            range: [0, 1000000],
+            cash: true,
+        }
+        },
+            messages: {
+                "txtCashAccountFee": {
+            required: "请输入使用账户余额支付金额",
+            number: "账户余额支付金额请输入有效数字；",
+            range: "账户余额支付金额请介于 0.01 到 1000000 之间；"
+        }
+        }
+        }).form() == false) {
+            return;
+        }
+
+        calculate();
+
+        var args = new Object();
+        args.OrderId = _orderId;
+        args.CashAccountFee = accMul(parseFloat($("#txtCashAccountFee").val()),100);
+        args.WeixinPayFee = accMul(parseFloat($("#spanWeixinPayFee").html()),100);
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/PointCommodity/OrderPay/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                if (data.Success) {
+                    var reason = data.Data.Reason;
+                    var msg = "";
+                    switch (reason)
+                    {
+                        case 0:
+                            msg = "支付成功！";
+                            break;
+                        case 1:
+                            msg = "您的积分不足。";
+                            break;
+                        case 2:
+                            msg = "账户余额不足。";
+                            break;
+                        case 3:
+                            //需要微信支付，微信支付下单成功（返回微支付订单号需转入微信支付画面）
+                            break;
+                        case 4:
+                            msg = "该订单状态不是待支付。";
+                            break;
+                        case 5:
+                            msg = "订单已过期，请重新下单。";
+                            break;
+                        case 6:
+                            msg = "订单不存在。";
+                            break;
+                        case 7:
+                            msg = "微信支付下单失败。<br/>" + data.Data.Message;
+                            break;
+                        case 8:
+                            //已经有待支付的微信支付订单了且微信支付金额同这次一样（返回微支付订单号需转入微信支付画面）
+                            break;
+                        default:
+                            msg = "未知错误";
+                            break;
+                    }
+                    if (reason == 0)
+                    {
+                        layerAlertBtn(msg, function ()
+                        {
+                            window.location.reload();
+                        });
+                    }
+                    else if (reason == 3 || reason == 8)
+                    {
+                        var currentUrl = encodeURI(window.location.href);
+                        window.location.href = '/Pay/PayOrderDetail/@ViewBag.Domain.Id?id=' + data.Data.Data.PayOrderId + "&action=1&returnUrl=" + currentUrl;
+                    }
+                    else
+                    {
+                        layer.close(loadLayerIndex);
+                        layerAlert(msg);
+                    }
+
+                } else {
+                    layer.close(loadLayerIndex);
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+
+    }
+
+    function calculate() {
+        var cashAccountFee = parseFloat($("#txtCashAccountFee").val());
+        if (isNaN(cashAccountFee)) {
+            cashAccountFee = 0;
+        }
+        if (cashAccountFee >= _orderPrice) {
+            cashAccountFee = _orderPrice;
+        }
+
+        //var weixinPayFee = _orderPrice - cashAccountFee;
+        var weixinPayFee = accSub(_orderPrice, cashAccountFee);
+
+        $("#txtCashAccountFee").val(cashAccountFee);
+        $("#spanWeixinPayFee").html(weixinPayFee);
+
+    }
+
+</script>
+
+
+
+<script type="text/html" id="cashPayViewTemplate">
+    <div style="padding: 0.2rem;">
+        <div class="defaultColor" style="font-weight: bold">
+            订单金额：@(Model.Order.Price / 100f) 元
+        </div>
+        <div style="margin-top: 0.1rem; color: #777777">
+            <span id="spanMessage">当前账户余额：@(ViewBag.Member.CashAccount / 100f) 元</span>
+        </div>
+        <div class="divDotLine" style="margin-top: 0.1rem;">
+        </div>
+        <form id="formPay">
+            <div style="margin-top: 0.1rem;">
+                <span id="spanMessage">使用账户余额：</span>
+                <input id="txtCashAccountFee" name="txtCashAccountFee" class="input_16" style="width:0.5rem;" maxlength="10"
+                       value="@if (ViewBag.Member.CashAccount / 100f >= Model.Order.Price/100f)
+                              { @Html.Raw(Model.Order.Price/100f);
+                              }
+                              else
+                              { @Html.Raw(ViewBag.Member.CashAccount / 100f);
+                              }" />
+                <span>元</span>
+            </div>
+        </form>
+        <div style="margin-top: 0.1rem;">
+            还需微信支付： <span id="spanWeixinPayFee"></span> 元
+        </div>
+        <div style="text-align: center; margin-top: 0.2rem;">
+            <input type="button" class="button" style="margin-top: 0.1rem; width: 2rem;" onclick="pay()" value="支 付" />
+            <input type="button" class="button_gray" style="margin-top: 0.1rem; width: 2rem;" onclick="layer.closeAll()" value="关 闭" />
+        </div>
+    </div>
+</script>
+
+<div id="divTopTitle" class="gradient">
+    <div style="padding-top: 0.16rem; font-size: 0.15rem;">
+        订单详情
+    </div>
+    <div style="position: absolute; bottom: 0rem; left: 0.2rem; right: 0.2rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width: 0.7rem;" align="left">
+                    <img src="/Content/Images/arrow_up.png" style="width: 0.18rem; display: block; margin-left: 0.15rem;">
+                </td>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="33%" align="left"></td>
+                            <td width="33%" align="left"></td>
+                            <td width="33%" align="left"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="divContent" style="margin-top: 0.1rem;">
+
+    <div style="font-size: 0.18rem;">
+        订单号：@Model.Order.OrderNumber
+    </div>
+    <div style="margin-top: 0.1rem;">
+        状态：@Model.Order.StatusString
+    </div>
+
+    <div class="divDotLine" style="margin-top: 0.1rem;">
+    </div>
+
+    <div style="margin-top: 0.1rem;">
+        合计：
+    </div>
+    <div style="margin-top: 0.1rem;">
+        <span>现金：@(Model.Order.Price / 100f) 元</span><span style="margin-left: 0.4rem;">积分：@Model.Order.Point</span>
+    </div>
+
+    @if (Model.Order.Status == Sheng.WeixinConstruction.Infrastructure.PointCommodityOrderStatus.NoPayment && Model.Order.ExpireTime > DateTime.Now)
+    {
+        <div style="margin-top: 0.15rem; text-align: center">
+            <input name="" type="button" class="button" value="支 付" style="width: 1.5rem" onclick="showPayView()">
+        </div>
+    }
+
+    @if (Model.Order.ExpireTime <= DateTime.Now)
+    {
+        <div class="defaultColor" style="margin-top: 0.15rem; text-align: center">
+            该订单已过期，请重新下单。
+        </div>
+    }
+
+    <div class="divDotLine" style="margin-top:0.15rem;">
+    </div>
+
+    <div style="margin-top: 0.1rem;">
+        下单时间：@Model.Order.OrderTime
+    </div>
+    <div style="margin-top:0.1rem;">
+        请在 @Model.Order.ExpireTime 前完成支付，否则订单将被取消。
+    </div>
+
+    <div class="divDotLine" style="margin-top: 0.15rem;">
+    </div>
+
+    <div style="margin-top: 0.1rem;">
+        上门自取
+    </div>
+    <div style="margin-top: 0.1rem;">
+        @ViewBag.DomainContext.PointCommodityGetWay
+    </div>
+
+
+    <div>
+
+        @foreach (var item in Model.ItemList)
+        {
+            <div class="divDotLine" style="margin-top: 0.15rem;">
+            </div>
+
+            <div class="divCommodityItem" style="">
+                <div style="float: left; width: 35%; text-align: center">
+                    <img src="@item.ImageUrl" class="imgPointCommodity">
+                </div>
+                <div style="float: right; width: 60%;">
+                    <div class="defaultColor" style="font-size: 0.14rem;">@item.Name</div>
+                    <div style="margin-top: 0.05rem;">数量：@item.Quantity</div>
+                    <div style="margin-top: 0.05rem;">@(item.Price * item.Quantity / 100f) 元 + @(item.Point * item.Quantity) 积分</div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        }
+
+
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.15rem;">
+    </div>
+
+    <div style="margin-top:0.15rem;color:#777777">
+        <div>处理记录：</div>
+
+        @foreach (var item in Model.LogList)
+        {
+            <div style="margin-top:0.05rem;">@item.Time：@item.Message</div>
+        }
+
+    </div>
+
+
+</div>

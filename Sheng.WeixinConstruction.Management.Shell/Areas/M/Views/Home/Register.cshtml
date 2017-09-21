@@ -1,0 +1,253 @@
+﻿
+@{
+    ViewBag.Title = "注册";
+    Layout = "~/Areas/M/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/md5")
+
+<script>
+
+        var _validator;
+        var _getGetMobilePhoneValidateCodeCountdown = 60;
+
+        jQuery.validator.addMethod("mobilePhone", function (value, element) {
+            var mobilePhone = /^1[3|4|5|7|8]\d{9}$/;
+            return this.optional(element) || (mobilePhone.test(value));
+        }, $.validator.format("请输入有效的手机号码；"));
+
+        $(document).ready(function () {
+            _validator = $("#form").validate({
+                onfocusout: false,
+                onkeyup: false,
+                showErrors: showValidationErrors,
+                rules: {
+                    "txtAccount": {
+                        required: true,
+                        minlength: 5
+                    },
+                    "txtPassword": "required",
+                    "txtPassword2": {
+                        required: true,
+                        minlength: 3,
+                        equalTo: "#txtPassword"
+                    },
+                    "txtMobilePhone": {
+                        required: true,
+                        mobilePhone: true,
+                    },
+                    "txtMobilePhoneValidateCode": "required",
+                },
+                messages: {
+                    "txtAccount": {
+                        required: "请输入账户；",
+                        minlength: "账户长度至少 5 位以上；"
+                    },
+                    "txtPassword": "请输入密码；",
+                    "txtPassword2": {
+                        required: "请再次输入密码；",
+                        minlength: "密码长度至少 3 位以上；",
+                        equalTo: "两次密码输入不一致；"
+                    },
+                    "txtMobilePhone": {
+                        required: "请输入手机号码；"
+                    },
+                    "txtMobilePhoneValidateCode": "请输入手机验证码；"
+                }
+            });
+
+            $("#valiCode").bind("click", function () {
+                this.src = "/Api/UserContext/GetValidateCode?time=" + (new Date()).getTime();
+            });
+
+            $("[keyenter]").keypress(function (e) {
+                if (e.keyCode == 13) {
+                    register();
+                }
+            });
+
+            heartbeat();
+        });
+
+        function register() {
+            if (_validator.form() == false) {
+                return;
+            }
+
+            var args = new Object();
+            args.Account = $("#txtAccount").val();
+            args.Password = hex_md5($("#txtPassword").val()).toUpperCase();
+            args.Name = $("#txtAccount").val();
+            args.Email = $("#txtEmail").val();
+            args.MobilePhone = $("#txtMobilePhone").val();
+            args.MobilePhoneValidateCode = $("#txtMobilePhoneValidateCode").val();
+
+            var loadLayerIndex = layer.open({
+                type: 2,
+                shadeClose: false,
+                content: '请稍候...'
+            });
+
+            $.ajax({
+                url: "/Api/User/Register",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify(args),
+                success: function (data, status, jqXHR) {
+                    if (data.Success) {
+                        //如果成功，不隐藏mask，否则跳转期间页面还可操作
+
+                        window.location.href = "/M/Home/Register2";
+                    } else {
+                        layer.closeAll();
+
+                        layerAlert(data.Message, function () { $("#txtMobilePhoneValidateCode").focus(); });
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.closeAll();
+
+                    //responseText
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+        function getGetMobilePhoneValidateCode(btn) {
+            var phoneNumber = $("#txtMobilePhone").val();
+            if (phoneNumber == "") {
+                layerAlert("请输入手机号码。");
+                return;
+            }
+
+            if (!(/^1[3|4|5|7|8]\d{9}$/.test(phoneNumber))) {
+                layerAlert("请输入有效的手机号码。");
+                return;
+            }
+
+            var loadLayerIndex = layer.open({
+                type: 2,
+                shadeClose: false,
+                content: '请稍候...'
+            });
+
+            $.ajax({
+                url: "/Api/SMS/SendMobilePhoneValidateCode?phoneNumber=" + phoneNumber,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    if (data.Success) {
+                        getGetMobilePhoneValidateCodeButtonCountdown(btn);
+
+                        layer.close(loadLayerIndex);
+                        layerAlert("验证码已发送到您的手机，5分钟之内有效。");
+
+                    } else {
+                        layer.close(loadLayerIndex);
+
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest) {
+                    layer.close(loadLayerIndex);
+
+                    //responseText
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+
+        function getGetMobilePhoneValidateCodeButtonCountdown(btn) {
+            if (_getGetMobilePhoneValidateCodeCountdown == 0) {
+                btn.removeAttribute("disabled");
+                btn.value = "获取验证码";
+                _getGetMobilePhoneValidateCodeCountdown = 60;
+                return;
+            } else {
+                btn.setAttribute("disabled", true);
+                btn.value = "重新发送(" + _getGetMobilePhoneValidateCodeCountdown + ")";
+                _getGetMobilePhoneValidateCodeCountdown--;
+            }
+            setTimeout(function () {
+                getGetMobilePhoneValidateCodeButtonCountdown(btn)
+            }, 1000)
+        }
+
+
+</script>
+
+<div class="divContent" style="margin-top:0.6rem;">
+
+    <div style="margin-left:0.15rem;margin-right:0.15rem;">
+        <div style="float:left;color:#4699EC">
+            注册
+        </div>
+        <div style="float:right">
+            <a href="http://wx.shengxunwei.com/M" style="color:#FF794C;font-size:0.14rem;text-decoration:none">访问官网 ></a>
+        </div>
+        <div style="clear:both">
+        </div>
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+    </div>
+
+    <form id="form">
+        <div style="margin-top:0.2rem; margin-left:0.15rem;margin-right:0.15rem;">
+            <div>
+                账户：
+            </div>
+            <div style="margin-top:0.1rem;">
+                <input id="txtAccount" name="txtAccount" type="text" class="input_16" />
+            </div>
+            <div class="font_gray_13" style="margin-top:0.05rem;">
+                您的登录账户名。
+            </div>
+            <div style="margin-top:0.1rem;">
+                密码：
+            </div>
+            <div style="margin-top:0.1rem;">
+                <input id="txtPassword" name="txtPassword" type="password" class="input_16" />
+            </div>
+            <div style="margin-top:0.1rem;">
+                再次输入密码：
+            </div>
+            <div style="margin-top:0.1rem;">
+                <input id="txtPassword2" name="txtPassword2" type="password" class="input_16" />
+            </div>
+            <div style="margin-top:0.1rem;">
+                手机号码：
+            </div>
+            <div style="margin-top:0.1rem;">
+                <input id="txtMobilePhone" name="txtMobilePhone" type="text" class="input_16" />
+            </div>
+            <div style="margin-top:0.1rem;text-align:right">
+                <input name="btnGetMobilePhoneValidateCode" type="button" class="btn_white" id="btnGetMobilePhoneValidateCode" value="获取验证码" onclick="getGetMobilePhoneValidateCode(this)" />
+            </div>
+            <div style="margin-top:0.1rem;">
+                手机验证码：
+            </div>
+            <div style="margin-top:0.1rem;">
+                <input id="txtMobilePhoneValidateCode" name="txtMobilePhoneValidateCode" type="text" class="input_16" />
+            </div>
+            <div style="margin-top:0.1rem;">
+                电子邮件：
+            </div>
+            <div style="margin-top:0.1rem;">
+                <input id="txtEmail" name="txtEmail" type="text" class="input_16" />
+            </div>
+            <div class="font_gray_13" style="margin-top:0.05rem;">
+                请输入真实有效的电子邮件地址，否则您将无法使用找回密码功能。
+            </div>
+        </div>
+    </form>
+
+    <div style="margin-top:0.3rem;margin-left:0.15rem;margin-right:0.15rem;">
+        <div style="width:48%;margin-left:auto;margin-right:auto">
+            <input id="btnRegister" name="btnRegister" type="button" class="btn_blue" style="width:100%;" value="注 册" onclick="register()" />
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+
+</div>

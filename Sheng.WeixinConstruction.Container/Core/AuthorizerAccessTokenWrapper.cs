@@ -1,0 +1,61 @@
+﻿using Linkup.DataRelationalMapping;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sheng.WeixinConstruction.Container
+{
+    public class AuthorizerAccessTokenWrapper
+    {
+        public string AppId
+        {
+            get;
+            set;
+        }
+
+        public string AccessToken
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 刷新令牌
+        /// </summary>
+        public string RefreshToken
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 到期时间
+        /// </summary>
+        public DateTime AccessTokenExpiryTime
+        {
+            get;
+            set;
+        }
+
+        [NotMapped]
+        /// <summary>
+        /// 快要到期了
+        /// </summary>
+        public bool WillbeTimeout
+        {
+            get
+            {
+                if ((AccessTokenExpiryTime - DateTime.Now).TotalSeconds <= 600)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+    }
+}

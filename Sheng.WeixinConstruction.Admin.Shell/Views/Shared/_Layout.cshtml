@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/common")
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/validate/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/layer/layer.js")
+    @Scripts.Render("~/Scripts/laytpl.js")
+    @Scripts.Render("~/Scripts/laypage/laypage.js")
+
+    <script type="text/javascript">
+
+    </script>
+
+</head>
+<body>
+    <div id="divTopBar">
+        <div id="divLogo">
+            <span class="font_white_22">升讯威 微信营销系统</span>
+        </div>
+        <div id="divMainMenu">
+            <table id="tableTopBar" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="td_MainMenu @if(ViewBag.MainMenu == "Home"){@Html.Raw("td_MainMenu_active")}">
+                        @Html.ActionLink("配置", "PortalTemplate", "Home", null, new { @class = "a_white_18" })
+                    </td>
+                    <td class="td_MainMenu">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <div id="divTopRight">
+            @*<table id="tableTopBar" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="td_MainMenu font_darkBlue_18">@ViewBag.User.Name</td>
+                    <td class="td_MainMenu">@Html.ActionLink("退出", "Logout", "Home", null, new { @class = "a_white_18" })</td>
+                </tr>
+            </table>*@
+        </div>
+    </div>
+    <div id="divContainer">
+        <div id="divLeftMenu">
+            <div id="divLeftTitle">
+            </div>
+            <div>
+                @Html.Partial("_LeftMenu")
+            </div>
+        </div>
+        <div id="divContentWrapper">
+            <div id="divContent">
+                @RenderBody()
+            </div>
+            <div id="divFooter">
+                <div style="line-height:40px;">
+                    <div style="float:left;margin-left:20px;">© Copyright 2016 All Rights Reserved 升讯威软件技术有限公司</div>
+                    <div style="float:right;margin-right:20px;">技术支持与咨询：0550-3926191 / 18114009195 QQ：279060597 </div>
+                </div>
+            </div>
+        </div>
+        <div id="divContentMask" style="display:none">
+        </div>
+    </div>
+</body>
+
+</html>

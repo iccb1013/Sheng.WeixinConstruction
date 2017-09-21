@@ -1,0 +1,217 @@
+﻿@model Sheng.WeixinConstruction.Management.Shell.Models.LuckyTicketLogListViewModel
+
+@{
+    ViewBag.MainMenu = "Campaign";
+    ViewBag.LeftMenu = "LuckyTicket";
+
+    ViewBag.Title = "聚人气抽奖";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script language="javascript">
+
+    //当前页
+    var _currentPage = 1;
+
+    $(document).ready(function () {
+        if (_online == false)
+            return;
+
+        loadData();
+
+        $("[keyenter]").keypress(function (e) {
+            if (e.keyCode == 13) {
+                loadData();
+            }
+        });
+    });
+
+    function loadData(targetPage) {
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.CampaignId = getQueryString("id");
+        args.NickName = $("#txtSearch_NickName").val();
+        args.MobileNumber = $("#txtSearch_MobileNumber").val();
+
+        $.ajax({
+            url: "/Api/Campaign/GetLuckyTicketLogList",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    _currentPage = resultObj.Page;
+
+                    //alert(JSON.stringify(resultObj));
+                    var gettpl = document.getElementById('tableTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html) {
+                        document.getElementById('divTableBodyContainer').innerHTML = html;
+                        fitTable();
+                    });
+
+                    laypage({
+                        skin: 'yahei',
+                        cont: document.getElementById('divPagingContainer'),
+                        pages: resultObj.TotalPage, //总页数
+                        curr: resultObj.Page, //当前页
+                        groups: 7, //连续显示分页数
+                        jump: function (obj, first) {
+                            if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+                                loadData(obj.curr);
+                            }
+                        }
+                    });
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function scrollHeader() {
+        // alert(divTableBodyContainer.scrollLeft);
+        var ml = 0 - divTableBodyContainer.scrollLeft;
+        document.getElementById("tableHeader").style.cssText = "margin-left:" + ml + "px;";
+    }
+
+    function fitTable() {
+        $("#tableBody").width($("#tableHeader").width());
+
+        $("#tableHeader tr:first").each(function (n, value) {
+            $(this).find("td").each(function (n, value) {
+                $("#tableBody tr:first td:eq(" + n + ")").width(value.width)
+            });
+        });
+    }
+
+    function changePage(url) {
+        window.location.href = url + "?id=" + getQueryString("id");
+    }
+
+</script>
+
+
+<script id="tableTemplate" type="text/html">
+
+    <table id="tableBody" border="0" cellspacing="0" cellpadding="0">
+
+        {{# for(var i = 0, len = d.length; i < len; i++){ }}
+        <tr>
+            <td height="35">{{ d[i].NickName }}</td>
+            <td>{{ d[i].TicketNumber }}</td>
+            <td>
+                {{# if(d[i].MobilePhone != null ){}}
+                {{ d[i].MobilePhone }}
+                {{# } }}
+            </td>
+            <td>
+                {{# if(d[i].Email != null ){}}
+                {{ d[i].Email }}
+                {{# } }}
+            </td>
+            <td>{{ d[i].CreateTime }}</td>
+        </tr>
+        {{# } }}
+
+    </table>
+
+</script>
+
+
+<div style=" margin-top:25px; margin-left:10px;" class="font_black_24">
+    @Model.CampaignBundle.Campaign.Name
+</div>
+
+<div style=" margin-top:30px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td class="td_ContentTab" style="width:150px;">
+                <a href="javascript:void(0)" class="a_black_16" onclick="changePage('/Campaign/LuckyTicketDetail')">摘要</a>
+            </td>
+            <td class="td_ContentTab_active" style="width:150px;">抽奖号码</td>
+            <td align="right">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" bgcolor="#EEEEEE" height="2"></td>
+        </tr>
+    </table>
+</div>
+
+<div style="margin-top:10px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>
+                <div style="padding:0px;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="8">
+                        <tr>
+                            <td width="60">昵称：</td>
+                            <td width="150"> <input name="txtSearch_NickName" type="text" class="input_16" id="txtSearch_NickName" style="width:140px;" keyenter /></td>
+                            <td width="80">手机号码：</td>
+                            <td width="150"><input name="txtSearch_MobileNumber" type="text" class="input_16" id="txtSearch_MobileNumber" style="width:140px;" keyenter /></td>
+                            <td>
+                                <span style=" margin-top:20px;">
+                                    <input name="btnSearch" type="button" class="btn_blue" id="btnSearch" value="查询" onclick="loadData()" />
+                                </span>
+                            </td>
+                            <td width="100" align="right">
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+<div style=" margin-top:10px">
+    <div style="overflow:hidden; padding-left:20px;" class="tableHeader">
+        <table id="tableHeader" border="0" cellspacing="0" cellpadding="0" width="1040" height="47">
+            <tr>
+                <td width="220">微信昵称</td>
+                <td width="200">抽奖号码</td>
+                <td width="170">手机</td>
+                <td width="250">Email</td>
+                <td width="200">生成时间</td>
+            </tr>
+        </table>
+    </div>
+
+    <div style=" margin-top:10px">
+        <!--div必须要设置height，否则滚动条出不来-->
+        <div id="divTableBodyContainer" style="overflow:auto; height:100%;; padding-left:20px;" onscroll="scrollHeader()">
+            <!--table必须要有一个确切的宽度，否则无法超出div-->
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<div style="height:1px; margin-top:5px; background-color:#cccccc">
+
+</div>
+
+<div id="divPagingContainer" style=" margin-top:20px; margin-bottom:20px;text-align:right; ">
+
+</div>
+

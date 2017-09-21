@@ -1,0 +1,38 @@
+----------------------------------------
+Timestamp: 2017/5/21 11:15:24
+
+Title:Enterprise Library Exception Handling
+
+Message: HandlingInstanceID: c9d08e67-1587-4347-887c-fcc599d49363
+An exception of type 'System.Web.HttpException' occurred and was caught.
+------------------------------------------------------------------------
+05/21/2017 11:15:24
+Type : System.Web.HttpException, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+Message : 未找到路径“/”的控制器或该控制器未实现 IController。
+Source : System.Web.Mvc
+Help link : 
+WebEventCode : 0
+ErrorCode : -2147467259
+Data : System.Collections.ListDictionaryInternal
+TargetSite : System.Web.Mvc.IController GetControllerInstance(System.Web.Routing.RequestContext, System.Type)
+HResult : -2147467259
+Stack Trace :    在 System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   在 System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   在 System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   在 System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+Additional Info:
+
+MachineName : DESKTOP-31QDVIR
+TimeStamp : 2017/5/21 3:15:24
+FullName : Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35
+AppDomainName : /LM/W3SVC/2/ROOT-4-131398101199721785
+ThreadIdentity : 
+WindowsIdentity : IIS APPPOOL\Sheng.WeixinConstruction.Container
+
+
+Severity: Error
+
+----------------------------------------

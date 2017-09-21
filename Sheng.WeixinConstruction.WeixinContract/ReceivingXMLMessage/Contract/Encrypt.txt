@@ -1,0 +1,80 @@
+----------------------------------------
+Timestamp: 2015/11/1 23:45:59
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/1 23:46:00
+
+Message: Handler URL:
+http://wxctest.zkebao.com/WeixinApi/Handler/F6AAD430-CA1F-4AFD-B2B0-6E0D2FABB622?signature=5d4d2ce776692d76aaae48293c0944e9125b7bb1&timestamp=1446392757&nonce=1663928961&encrypt_type=aes&msg_signature=ca9c11b8b91e2f4337d151e15776f977158bfa65
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/1 23:46:00
+
+Message: Handler:
+<xml>
+    <ToUserName><![CDATA[gh_2eaaab12bf43]]></ToUserName>
+    <FromUserName><![CDATA[oXCfEwEteoWmCygMuCKqhvqshVnQ]]></FromUserName>
+    <CreateTime>1446392757</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[0]]></Content>
+    <MsgId>6212209588886573483</MsgId>
+    <Encrypt><![CDATA[Xe TsEaxa8QgwhjThmuNDuH1GACWvDBSWRr1Rz0TC4ErJ71DXf0LhqygePHVVPlUH/3dAzavPEnS9DzxAMulKQhNvUkn/azYooNmFWTH5x2Q1hcD0VJpJJurJys DQdIQu1uZSqh1rmGHk3GWLSMk6QIO9aeqSFfQzSDfedak4rvXUm6CJubVUCKJi2LrvSD6wbb27SWpfIVD70GaeXPUd1Lp4 sZez 1Z4RHRNNLorTpCN6siU9JPhDFJrsLMigTI8Ng 7Tf0c9SYqtGL7P3yY5myApWGVt0EXp7VRKlR2sF3dUUqbf5AIVS3yiqvJ na2sazBl/gYaQ2EQ71XHZeL35lSOhN2lQsc//Hhlex1qZNQbf9lJCojAEmk7tH59ZKxexBAa3eQwng0qnHYAIoLNiOnv0C3J2XACcsu2SO8=]]></Encrypt>
+</xml>
+
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/1 23:46:00
+
+Message: Return:
+﻿<xml><ToUserName>oXCfEwEteoWmCygMuCKqhvqshVnQ</ToUserName><FromUserName>gh_2eaaab12bf43</FromUserName><CreateTime>1446392760</CreateTime><MsgType>text</MsgType><Content>欢迎使用，可以回复 0 进入人工模式。</Content><MsgId>0</MsgId></xml>
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/2 0:03:48
+
+Message: Handler URL:
+http://wxctest.zkebao.com/WeixinApi/Handler/F6AAD430-CA1F-4AFD-B2B0-6E0D2FABB622?signature=84001ea92e2f369642e861d557b9f4c6781db1ca&timestamp=1446393828&nonce=1291578710&encrypt_type=aes&msg_signature=3ed4a96dbc50d491664ec3f425eb7fc1f088ac9b
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/2 0:03:48
+
+Message: Handler:
+<xml>
+    <ToUserName><![CDATA[gh_2eaaab12bf43]]></ToUserName>
+    <FromUserName><![CDATA[oXCfEwEteoWmCygMuCKqhvqshVnQ]]></FromUserName>
+    <CreateTime>1446393828</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[测试]]></Content>
+    <MsgId>6212214188796547707</MsgId>
+    <Encrypt><![CDATA[/2Ko12ajnjCe0l43srHKlrwf76JhXGhkE3tPMkaw1vYMIUauWh4ww993ea3jJhu68V04kzwYMJfjtZLsd etJsOZlLJI0PO6T5w07RUDSakQBthcYjKkkBBLTFBQ/ETFI73wZbAE/oJKbPN31QBC4n 8x4OTLjcekmfGXHyDPWqVzBbZCn0pVv8137/04TQjybBEZryqvBnT9vgVMYeWZkQ8ccsqJeUZfAmCCa3kWthUYlyCR4ko/LhjUFlIkPGv5tpQyV2xHBqLwB JBJO4ozTR3A z1w/AzuLYUqlx2gU8vtenQ/2eCKs3pwRuYdtHxObvwu1jPJs1PtQBvqmLfc62HtTKZnV2HqC8DIEIu88Uy0Y4aoP2kpj8uxfryIJ/XQ/vGFLEONqpTynszAtJKWz8BCbJvGyoKAnvf6/O/AM=]]></Encrypt>
+</xml>
+
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/11/2 0:03:48
+
+Message: Return:
+﻿<xml><ToUserName>oXCfEwEteoWmCygMuCKqhvqshVnQ</ToUserName><FromUserName>gh_2eaaab12bf43</FromUserName><CreateTime>1446393828</CreateTime><MsgType>text</MsgType><Content>欢迎使用，可以回复 0 进入人工模式。</Content><MsgId>0</MsgId></xml>
+
+Severity: Information
+
+----------------------------------------

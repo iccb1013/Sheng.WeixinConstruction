@@ -1,0 +1,3 @@
+﻿<div class="leftMenuItem @if(ViewBag.LeftMenu == "PortalTemplate"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("微主页模版", "PortalTemplate", "Home", null, new { @class = ViewBag.LeftMenu == "PortalTemplate" ? "a_white_16" : "a_black_16" })
+</div>

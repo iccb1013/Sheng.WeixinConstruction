@@ -1,0 +1,216 @@
+﻿@{
+    ViewBag.SubTitle = "活动列表";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+
+    ViewBag.BodyClass = "defaultBgColorLight";
+}
+
+<style type="text/css">
+    body {
+       margin-bottom: 0.55rem;
+    }
+
+  
+
+    .divCampaignItem {
+        border: 1px solid white;
+        background-color: white;
+        margin-top: 0.2rem;
+    }
+
+    .campaignName {
+        font-size: 0.13rem;
+        font-weight: bold;
+    }
+
+    .campaignDescription {
+        font-size: 0.12rem;
+        color: #666;
+    }
+
+      #divFooter {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            height: 0.4rem;
+            font-size: 0.14rem;
+            text-align: center;
+            background-color: #F5F5F5;
+        }
+
+</style>
+
+<script type="text/javascript">
+
+    var _status = 1;
+
+    //当前页
+    var _currentPage = 1;
+    var _totalPage = 1;
+
+    $(document).ready(function ()
+    {
+        loadData();
+    });
+
+    function loadDataByStatus(status) {
+
+        $("#tableSwitch input[statusswitch]").each(function (index, element) {
+
+            if ($(element).attr("status") == status) {
+                $(element).attr("class", "button");
+            } else {
+                $(element).attr("class", "button_gray");
+            }
+        });
+
+        _status = status;
+        loadData();
+    }
+
+    function loadData(targetPage)
+    {
+        if (targetPage > _totalPage)
+            return;
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.PageSize = 10;
+        args.Status = _status;
+
+        $.ajax({
+            url: "/Api/Campaign/GetCampaignList/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR)
+            {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    var resultObj = data.Data;
+
+                    _currentPage = resultObj.Page;
+                    _totalPage = resultObj.TotalPage;
+                    if (_currentPage >= _totalPage) {
+                        $("#divPagingContainer").html("没有更多了");
+                    }
+
+                    if (_currentPage == 1) {
+                        document.getElementById('divCampaignContainer').innerHTML = "";
+                    }
+
+                    //alert(JSON.stringify(resultObj));
+                    var gettpl = document.getElementById('campaignListTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html)
+                    {
+                        document.getElementById('divCampaignContainer').innerHTML += html;
+                    });
+
+                  
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+               // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+
+    function goCampaign(type, campaignId)
+    {
+        var url = "";
+        switch (type)
+        {
+            case "1":
+                url = "PictureVote";
+                break;
+            case "2":
+                url = "MemberQRCode";
+                break;
+            case "3":
+                url = "Lottery";
+                break;
+            case "4":
+                url = "LuckyTicket";
+                break;
+            case "5":
+                url = "ShakingLottery";
+                break;
+            case "6":
+                url = "Donation";
+                break;
+        }
+
+        if (url != "")
+        {
+            window.location.href = "/Campaign/" + url + "/@ViewBag.Domain.Id?campaignId=" + campaignId;
+        }
+        else
+        {
+            layerAlert("不支持的活动类型");
+        }
+    }
+
+</script>
+
+<script id="campaignListTemplate" type="text/html">
+
+    {{# for(var i = 0, len = d.length; i < len; i++){ }}
+
+    <div class="divCampaignItem" onclick="goCampaign('{{ d[i].Type }}', '{{ d[i].Id }}')">
+        <div>
+            <img src="{{ d[i].ImageUrl }}" style=" width:100%">
+        </div>
+        <div style="margin-top:0.1rem; margin-left:0.1rem; margin-right:0.1rem; margin-bottom:0.1rem">
+            <div style="margin-top:0.06rem" class="campaignName">
+                {{ d[i].Name }}
+            </div>
+            <div style="margin-top:0.06rem" class="campaignDescription">
+                {{ d[i].Introduction }}
+            </div>
+
+        </div>
+    </div>
+
+    {{# } }}
+
+</script>
+
+<div class="divContent">
+    <div id="divCampaignContainer" >
+
+    </div>
+
+    <div id="divPagingContainer" class="divPagingContainer" style="margin-top:0.2rem; text-align:center" onclick="loadData(_currentPage + 1)">
+        查看更多
+    </div>
+</div>
+
+<div id="divFooter">
+    <table id="tableSwitch" align="center" border="0" style="height:100%;width:100%">
+        <tr>
+            <td valign="middle" align="center" width="50%">
+                <input name="" type="button" class="button" value="正在进行" style="width:90%" status="1" statusswitch onclick="loadDataByStatus(1)">
+            </td>
+            <td valign="middle" align="center" width="50%">
+                <input name="" type="button" class="button_gray" value="已结束" style="width:90%" status="2" statusswitch onclick="loadDataByStatus(2)">
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,489 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.ShakingLotteryViewModel
+
+@{
+    ViewBag.SubTitle = "活动";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+
+<style type="text/css">
+    body {
+        margin-bottom: 0.55rem;
+    }
+
+    .campaignName {
+        font-size: 0.14rem;
+        font-weight: bold;
+    }
+
+    .campaignDescription {
+        font-size: 0.13rem;
+        color: #666;
+    }
+
+    #divMemberInfo {
+        font-size: 0.14rem;
+        line-height: 0.14rem;
+        text-align: center;
+        margin-top: 0.05rem;
+    }
+
+
+    #divFooter {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.4rem;
+        font-size: 0.14rem;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+</style>
+
+<script>
+
+    // 首先，定义一个摇动的阀值
+    var SHAKE_THRESHOLD = 3000;
+    // 定义一个变量保存上次更新的时间
+    var last_update = 0;
+    // 紧接着定义x、y、z记录三个轴的数据以及上一次出发的时间
+    var x;
+    var y;
+    var z;
+    var last_x;
+    var last_y;
+    var last_z;
+
+    var _shaked = false;
+    var _shaking = false;
+
+
+    var _campaignId = getQueryString("campaignId");
+    var _periodId = "";
+
+    var _url = '@Request.Url.Scheme://@Request.Url.Host/Campaign/ShakingLottery/@Model.CampaignBundle.Campaign.Domain?campaignId=@Model.CampaignBundle.Campaign.Id';
+
+    $(document).ready(function () {
+        var jsApiConfigStr = "@Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.JsApiConfig)";
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("&quot;", "gm"), "\"");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\r\n", "gm"), "");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\n", "gm"), "");
+        var jsApiConfig = eval('(' + jsApiConfigStr + ')');
+
+        wx.config(jsApiConfig);
+
+        @if (Model.CampaignBundle.ShakingLottery.Mode == Sheng.WeixinConstruction.Infrastructure.EnumCampaign_ShakingLotteryMode.Period)
+        {
+            if (Model.CurrentPeriod != null)
+            {
+                <text>
+        _periodId = '@Model.CurrentPeriod.Id';
+        </text>
+        }
+
+              @*if (Model.PlayedTimes < Model.CampaignBundle.ShakingLottery.ChanceTimes)
+                {
+                         <text>
+        initShaking();
+        </text>
+                }
+            }*@
+        }
+        @*else
+        {
+            if (Model.CampaignBundle.ShakingLottery.Started && Model.PlayedTimes < Model.CampaignBundle.ShakingLottery.ChanceTimes)
+            {
+                 <text>
+        initShaking();
+        </text>
+            }
+        }*@
+
+        //不论当前还有没有机会，都初始化摇一摇
+        //以便周期切换时或活动开始时可以直接参与，不用重新打开页面
+        initShaking();
+
+    });
+
+    wx.ready(function () {
+        wx.onMenuShareTimeline({
+            title: '@Model.CampaignBundle.Campaign.ShareTimelineTitle', // 分享标题
+            link: '@Request.Url.Scheme://@Request.Url.Host/Campaign/ShakingLottery/@Model.CampaignBundle.Campaign.Domain?campaignId=@Model.CampaignBundle.Campaign.Id', // 分享链接
+            imgUrl: '@Model.CampaignBundle.Campaign.ShareImageUrl', // 分享图标
+            success: function () {
+                shareSuccess("ShareTimeline");
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '@Model.CampaignBundle.Campaign.ShareAppMessageTitle', // 分享标题
+            desc: '@Model.CampaignBundle.Campaign.ShareAppMessageDescription', // 分享描述
+            link: '@Request.Url.Scheme://@Request.Url.Host/Campaign/ShakingLottery/@Model.CampaignBundle.Campaign.Domain?campaignId=@Model.CampaignBundle.Campaign.Id', // 分享链接
+            imgUrl: '@Model.CampaignBundle.Campaign.ShareImageUrl', // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                shareSuccess("ShareAppMessage");
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+
+    wx.error(function (res) {
+        alert("error:" + res);
+    });
+
+    function shareSuccess(type) {
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/Campaign/" + type + "/@ViewBag.Domain.Id?campaignId=" + _campaignId,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    if (resultObj.Point == 0)
+                        return;
+
+                    var msg = "";
+                    if (resultObj.Point > 0) {
+                        msg += "获得积分：" + resultObj.Point;
+                    }
+                    if (msg != "") {
+                        layerAlertBtn(msg);
+                    }
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function initShaking() {
+        if (window.DeviceMotionEvent) {
+            // 移动浏览器支持运动传感事件
+            window.addEventListener('devicemotion', deviceMotionHandler, false);
+            $("#divNotice").html("摇我点我都可以！");
+        } else {
+            // 移动浏览器不支持运动传感事件
+            $("#divNotice").html("您的手机似乎不支持摇一摇，请点击抽奖！");
+        }
+    }
+
+    function deviceMotionHandler(eventData) {
+
+        if (_shaked)
+            return;
+
+        // 获取含重力的加速度
+        var acceleration = eventData.accelerationIncludingGravity;
+
+        // 获取当前时间
+        var curTime = new Date().getTime();
+        var diffTime = curTime - last_update;
+        // 固定时间段
+        if (diffTime > 100) {
+            last_update = curTime;
+
+            x = acceleration.x;
+            y = acceleration.y;
+            z = acceleration.z;
+
+            var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+
+            if (speed > SHAKE_THRESHOLD) {
+
+                if (_shaked)
+                    return;
+
+                _shaked = true;
+
+                window.removeEventListener('devicemotion', deviceMotionHandler, false);
+
+                var delay = parseInt(Math.random() * (1000 - 1 + 1) + 1, 10);
+                //   alert(delay);
+
+                setTimeout("shake()", delay)
+            }
+
+            last_x = x;
+            last_y = y;
+            last_z = z;
+        }
+    }
+
+    function shake() {
+
+        if (_shaking)
+            return;
+
+        _shaking = true;
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/Campaign/ShakeShakingLotteryGift/@ViewBag.Domain.Id?campaignId=" + _campaignId + "&periodId=" + _periodId,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    layerAlertBtn("恭喜！您摇得：<br/>" + resultObj.Name, function () {
+                        compulsorilyReload(_url);
+                    });
+
+                } else {
+                    //防止多次进入摇动，在提示后自动刷新一下
+                    //用完机会，没有中奖也走这里进入提示
+                    layerAlertBtn(data.Message, function () {
+                        compulsorilyReload(_url);
+                    });
+
+                }
+            },
+            error: function (xmlHttpRequest) {
+
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function showCampaignDescription() {
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/Campaign/GetCampaignDescription/@ViewBag.Domain.Id?id=" + _campaignId,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    var gettpl = document.getElementById('campaignDescription').innerHTML;
+
+                    laytpl(gettpl).render(resultObj, function (html) {
+                        var pageii = layer.open({
+                            type: 1,
+                            content: html,
+                            shadeClose: false,
+                            style: 'position:fixed; left:0.1rem; top:0.1rem;right:0.1rem; bottom:0.1rem; border:none;'
+                        });
+                    });
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+
+    }
+
+
+
+</script>
+
+<script type="text/html" id="campaignDescription">
+    <div style="position: fixed; top: 0.1rem; left: 0.1rem; right: 0.1rem; bottom: 0.45rem; overflow: auto;">
+        {{ d }}
+    </div>
+    <div style="position: fixed; bottom: 0.1rem; left: 0.1rem; right: 0.1rem;">
+        <div class="divRectangle_Gray" style="margin-top: 0.1rem; " onclick="layer.closeAll()">
+            关 闭
+        </div>
+    </div>
+</script>
+
+<div id="divImageContainer">
+    <img src="@Model.CampaignBundle.Campaign.ImageUrl" name="img" id="img" style="width: 100%;">
+</div>
+
+<div class="divContent">
+    <div style="margin-top: 0.06rem" class="campaignName">
+        @Model.CampaignBundle.Campaign.Name
+    </div>
+    <div style="margin-top: 0.06rem" class="campaignDescription">
+        @Html.Raw(Model.CampaignBundle.Campaign.Introduction)
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.05rem; margin-top:0.1rem; margin-bottom:0.05rem;">
+    </div>
+
+    <div style="text-align: center; margin-top: 0.1rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="33%" align="center">
+                    参与人次<br />
+                    <span class="defaultColor" style="font-weight:bold">@Model.DataReport.MemberCount</span>
+                </td>
+                <td width="33%" align="center">
+                    中奖人次<br />
+                    <span class="defaultColor" style="font-weight:bold">@Model.DataReport.LuckyMemberCount</span>
+                </td>
+                <td width="33%" align="center">
+                    围观次数<br />
+                    <span class="defaultColor" style="font-weight:bold">@Model.DataReport.PageVisitCount</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.05rem; margin-top:0.1rem; margin-bottom:0.05rem;">
+    </div>
+    <div style="font-size:0.13rem;" onclick="goUrl('/Home/PersonalInfo/@ViewBag.Domain.Id')">
+        <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+                <td><img src="/Content/Images/personalIcon.png" style="width:0.5rem;"></td>
+                <td>点这里完善个人信息<br />以便中奖后工作人员与您联系</td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="divDotLine" style="margin-top:0.05rem; margin-bottom:0.1rem;">
+    </div>
+
+    @if (Model.CampaignBundle.ShakingLottery.Mode == Sheng.WeixinConstruction.Infrastructure.EnumCampaign_ShakingLotteryMode.Period)
+    {
+        if (Model.CurrentPeriod == null)
+        {
+            <div style="color:#FF0000;text-align:center;margin-top:0.1rem;">
+                摇奖即将开始<br />请留意主持人的通知哦~
+            </div>
+
+            <div style="text-align:center;margin-top:0.1rem;">
+                <input type="button" value="点击刷新" class="button" onclick="compulsorilyReload(_url)" />
+            </div>
+        }
+        else
+        {
+            <div style="color:#FF0000;text-align:center;">
+                @Model.CurrentPeriod.Name
+            </div>
+
+            if (Model.PlayedTimes < Model.CampaignBundle.ShakingLottery.ChanceTimes)
+            {
+                <div style="text-align:center;margin-top:0.1rem;">
+                    <img src="/Content/Images/shaking.jpg" style="max-width:65%;margin-top:0.1rem;" onclick="shake()" />
+                </div>
+
+                <div id="divNotice" class="defaultColor" style="text-align:center;margin-top:0.1rem; " onclick="shake()">
+                    摇我点我都可以~
+                </div>
+
+                <div class="defaultColor" style="text-align:center;margin-top:0.1rem; ">
+                    您还有 @(Model.CampaignBundle.ShakingLottery.ChanceTimes - Model.PlayedTimes) 次机会哦~
+                </div>
+            }
+            else
+            {
+                <div style="color:#FF0000;text-align:center;margin-top:0.1rem;">
+                    您已用完全部摇奖机会~
+                </div>
+            }
+        }
+    }
+    else
+    {
+        if (Model.CampaignBundle.ShakingLottery.Started)
+        {
+            if (Model.PlayedTimes < Model.CampaignBundle.ShakingLottery.ChanceTimes)
+            {
+                <div style="text-align:center">
+                    <img src="/Content/Images/shaking.jpg" style="max-width:65%;margin-top:0.1rem;" onclick="shake()" />
+                </div>
+
+                <div id="divNotice" class="defaultColor" style="text-align:center;margin-top:0.1rem; " onclick="shake()">
+                    摇我点我都可以~
+                </div>
+
+                <div class="defaultColor" style="text-align:center;margin-top:0.1rem; ">
+                    您还有 @(Model.CampaignBundle.ShakingLottery.ChanceTimes - Model.PlayedTimes) 次机会哦~
+                </div>
+            }
+            else
+            {
+                <div style="color:#FF0000;">
+                    您已用完全部摇奖机会~
+                </div>
+            }
+        }
+        else
+        {
+            <div style="color:#FF0000;text-align:center;margin-top:0.1rem;">
+                摇奖即将开始<br />请留意主持人的通知哦~
+            </div>
+
+            <div style="text-align:center;margin-top:0.1rem;">
+                <input type="button" value="点击刷新" class="button" onclick="compulsorilyReload(_url)" />
+            </div>
+        }
+    }
+
+    <div style="text-align:center;margin-top:0.15rem;">
+        @if (Model.GiftList != null && Model.GiftList.Count > 0)
+        {
+            <div style="font-weight:bold;color:#FF0000;">
+                恭喜中奖，您已中得以下奖品：
+            </div>
+
+            foreach (var item in Model.GiftList)
+            {
+                <div style="color:#FF0000;margin-top:0.05rem; font-size:0.15rem;">
+                    @item.Name
+                </div>
+                <div>
+                    <img src="@item.ImageUrl" style="max-width:65%" />
+                </div>
+            }
+        }
+    </div>
+
+</div>
+
+<div id="divFooter">
+    <table align="center" border="0" style="height:100%;width:100%">
+        <tr>
+            <td valign="middle" align="center" width="50%">
+                <input name="" type="button" class="button" value="活动说明" style="width:90%" onclick="showCampaignDescription()">
+            </td>
+            <!--<td valign="middle" align="center" width="50%">
+                <input name="" type="button" class="button" value="中奖记录" style="width:90%">
+            </td>-->
+        </tr>
+    </table>
+</div>

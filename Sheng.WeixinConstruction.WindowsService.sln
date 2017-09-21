@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheng.WeixinConstruction.WindowsService", "Sheng.WeixinConstruction.WindowsService\Sheng.WeixinConstruction.WindowsService.csproj", "{88A8A87A-5B41-4377-BCC7-814628667CF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheng.WeixinConstruction.Infrastructure", "Sheng.WeixinConstruction.Infrastructure\Sheng.WeixinConstruction.Infrastructure.csproj", "{E571E2E2-191F-4B60-8BC2-F848FEFEA6B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheng.WeixinConstruction.Core", "Sheng.WeixinConstruction.Core\Sheng.WeixinConstruction.Core.csproj", "{3E09FA4F-E711-42DF-9E35-A954BC626361}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B9B1BEF6-1C85-4C2A-988D-46AC5F636E26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linkup.Common", "Common\Linkup.Common\Linkup.Common.csproj", "{2753ED31-D787-41F3-893C-58DF187DA1D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linkup.Data", "Common\Linkup.Data\Linkup.Data.csproj", "{BDF82C46-173E-4DB0-B2BF-923571528A9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linkup.DataRelationalMapping", "Common\Linkup.DataRelationalMapping\Linkup.DataRelationalMapping.csproj", "{7BB22DE3-7422-4CE4-BD77-B51565343DD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheng.WeixinConstruction.Service", "Sheng.WeixinConstruction.Service\Sheng.WeixinConstruction.Service.csproj", "{B693996B-EF3C-4ED8-A237-36E445F3F745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheng.WeixinConstruction.WindowsSpirit", "Sheng.WeixinConstruction.WindowsSpirit\Sheng.WeixinConstruction.WindowsSpirit.csproj", "{BA4E1BC7-773E-41C4-B4D3-D91BE319F3AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheng.WeixinConstruction.WeixinContract", "Sheng.WeixinConstruction.WeixinContract\Sheng.WeixinConstruction.WeixinContract.csproj", "{19972C3F-7A6F-46C0-A501-5A89001148E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88A8A87A-5B41-4377-BCC7-814628667CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A8A87A-5B41-4377-BCC7-814628667CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A8A87A-5B41-4377-BCC7-814628667CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A8A87A-5B41-4377-BCC7-814628667CF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E571E2E2-191F-4B60-8BC2-F848FEFEA6B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E571E2E2-191F-4B60-8BC2-F848FEFEA6B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E571E2E2-191F-4B60-8BC2-F848FEFEA6B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E571E2E2-191F-4B60-8BC2-F848FEFEA6B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E09FA4F-E711-42DF-9E35-A954BC626361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E09FA4F-E711-42DF-9E35-A954BC626361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E09FA4F-E711-42DF-9E35-A954BC626361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E09FA4F-E711-42DF-9E35-A954BC626361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2753ED31-D787-41F3-893C-58DF187DA1D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2753ED31-D787-41F3-893C-58DF187DA1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2753ED31-D787-41F3-893C-58DF187DA1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2753ED31-D787-41F3-893C-58DF187DA1D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDF82C46-173E-4DB0-B2BF-923571528A9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDF82C46-173E-4DB0-B2BF-923571528A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDF82C46-173E-4DB0-B2BF-923571528A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDF82C46-173E-4DB0-B2BF-923571528A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BB22DE3-7422-4CE4-BD77-B51565343DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BB22DE3-7422-4CE4-BD77-B51565343DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BB22DE3-7422-4CE4-BD77-B51565343DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BB22DE3-7422-4CE4-BD77-B51565343DD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B693996B-EF3C-4ED8-A237-36E445F3F745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B693996B-EF3C-4ED8-A237-36E445F3F745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B693996B-EF3C-4ED8-A237-36E445F3F745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B693996B-EF3C-4ED8-A237-36E445F3F745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA4E1BC7-773E-41C4-B4D3-D91BE319F3AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA4E1BC7-773E-41C4-B4D3-D91BE319F3AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA4E1BC7-773E-41C4-B4D3-D91BE319F3AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA4E1BC7-773E-41C4-B4D3-D91BE319F3AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19972C3F-7A6F-46C0-A501-5A89001148E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19972C3F-7A6F-46C0-A501-5A89001148E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19972C3F-7A6F-46C0-A501-5A89001148E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19972C3F-7A6F-46C0-A501-5A89001148E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2753ED31-D787-41F3-893C-58DF187DA1D8} = {B9B1BEF6-1C85-4C2A-988D-46AC5F636E26}
+		{BDF82C46-173E-4DB0-B2BF-923571528A9E} = {B9B1BEF6-1C85-4C2A-988D-46AC5F636E26}
+		{7BB22DE3-7422-4CE4-BD77-B51565343DD2} = {B9B1BEF6-1C85-4C2A-988D-46AC5F636E26}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,60 @@
+----------------------------------------
+Timestamp: 2016/4/3 1:22:57
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/3 1:22:58
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/3 11:31:14
+
+Title:Redis 连接中断
+
+Message: SocketFailure on 127.0.0.1:6379/Interactive, origin: Read, input-buffer: 0, outstanding: 0, last-read: 8s ago, last-write: 8s ago, unanswered-write: 309838s ago, keep-alive: 60s, pending: 0, state: ConnectedEstablished, in: 0, ar: 1, last-heartbeat: 0s ago, last-mbeat: 0s ago, global: 0s ago, mgr: ProcessReadQueue, err: never
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/3 11:31:14
+
+Title:Redis 连接中断
+
+Message: SocketFailure on 127.0.0.1:6379/Subscription, origin: Read, input-buffer: 0, outstanding: 0, last-read: 8s ago, last-write: 8s ago, unanswered-write: 309838s ago, keep-alive: 60s, pending: 0, state: ConnectedEstablished, in: 0, ar: 1, last-heartbeat: 0s ago, last-mbeat: 0s ago, global: 0s ago, mgr: ProcessReadQueue, err: never
+
+Severity: Error
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/9 16:05:33
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/4/9 16:05:34
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------

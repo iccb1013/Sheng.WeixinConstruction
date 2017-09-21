@@ -1,0 +1,291 @@
+----------------------------------------
+Timestamp: 2015/12/30 0:55:21
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/30 0:55:21
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/30 0:56:15
+
+Title:收到消息推送（密文）
+
+Message: %3Cxml%3E%3CToUserName%3E%3C!%5BCDATA%5Bgh_2eaaab12bf43%5D%5D%3E%3C%2FToUserName%3E%0A%3CFromUserName%3E%3C!%5BCDATA%5BoXCfEwK9XY7rrhRKwWQl5wE4CfKk%5D%5D%3E%3C%2FFromUserName%3E%0A%3CCreateTime%3E1451407785%3C%2FCreateTime%3E%0A%3CMsgType%3E%3C!%5BCDATA%5Bevent%5D%5D%3E%3C%2FMsgType%3E%0A%3CEvent%3E%3C!%5BCDATA%5BMASSSENDJOBFINISH%5D%5D%3E%3C%2FEvent%3E%0A%3CMsgID%3E2548743702%3C%2FMsgID%3E%0A%3CStatus%3E%3C!%5BCDATA%5Bsend%20success%5D%5D%3E%3C%2FStatus%3E%0A%3CTotalCount%3E1%3C%2FTotalCount%3E%0A%3CFilterCount%3E0%3C%2FFilterCount%3E%0A%3CSentCount%3E0%3C%2FSentCount%3E%0A%3CErrorCount%3E0%3C%2FErrorCount%3E%0A%3C%2Fxml%3E
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/30 0:56:15
+
+Title:收到消息推送（明文）
+
+Message: 
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2015/12/30 0:57:01
+
+Title:收到消息推送（密文）
+
+Message: <xml><ToUserName><![CDATA[gh_2eaaab12bf43]]></ToUserName>
+<FromUserName><![CDATA[oXCfEwK9XY7rrhRKwWQl5wE4CfKk]]></FromUserName>
+<CreateTime>1451407785</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[MASSSENDJOBFINISH]]></Event>
+<MsgID>2548743702</MsgID>
+<Status><![CDATA[send success]]></Status>
+<TotalCount>1</TotalCount>
+<FilterCount>0</FilterCount>
+<SentCount>0</SentCount>
+<ErrorCount>0</ErrorCount>
+</xml>
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:17:52
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:17:56
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:21:53
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:21:54
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:29:43
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:29:44
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:44:32
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:44:32
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:44:47
+
+Title:Redpack 发送：
+
+Message: {"MchBillno":"10000201644030096877467","MchId":"1277619601","WxAppId":"gh_2eaaab12bf43","SendName":"升讯威","ReOpenid":"oXCfEwOkqIrihLgpgn1pYwjargXc","TotalAmount":100,"TotalNum":1,"Wishing":"新的快乐！","ClientIp":"121.40.198.87","ActName":"test","Remark":"测试用"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:45:01
+
+Title:Redpack 返回：
+
+Message: {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"<xml>\n<return_code><![CDATA[FAIL]]></return_code>\n<return_msg><![CDATA[请求参数中的wxappid有误,请检查后再重试]]></return_msg>\n<result_code><![CDATA[FAIL]]></result_code>\n<err_code><![CDATA[SYSTEMERROR]]></err_code>\n<err_code_des><![CDATA[请求参数中的wxappid有误,请检查后再重试]]></err_code_des>\n<mch_billno><![CDATA[10000201644030096877467]]></mch_billno>\n<mch_id>1277619601</mch_id>\n<wxappid><![CDATA[gh_2eaaab12bf43]]></wxappid>\n<re_openid><![CDATA[oXCfEwOkqIrihLgpgn1pYwjargXc]]></re_openid>\n<total_amount>100</total_amount>\n</xml>"},"ApiResult":{"ReturnCode":"FAIL","ReturnMsg":"请求参数中的wxappid有误,请检查后再重试","Sign":null,"ResultCode":"FAIL","ErrCode":"SYSTEMERROR","ErrCodeDes":"请求参数中的wxappid有误,请检查后再重试","MchBillno":"10000201644030096877467","MchId":"1277619601","WxAppId":"gh_2eaaab12bf43","ReOpenId":"oXCfEwOkqIrihLgpgn1pYwjargXc","TotalAmount":100,"SendTime":0,"SendListid":null},"Success":true,"Message":""}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:45:51
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:45:52
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:46:01
+
+Title:Redpack 发送：
+
+Message: {"MchBillno":"10000201646030096877467","MchId":"1277619601","WxAppId":"wx8c36b3c0000a0a49","SendName":"升讯威","ReOpenid":"oXCfEwOkqIrihLgpgn1pYwjargXc","TotalAmount":100,"TotalNum":1,"Wishing":"新的快乐！","ClientIp":"121.40.198.87","ActName":"test","Remark":"测试用"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:51:37
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:51:38
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:51:54
+
+Title:Redpack 发送：
+
+Message: {"MchBillno":"10000201651030096877467","MchId":"1277619601","WxAppId":"wx8c36b3c0000a0a49","SendName":"升讯威","ReOpenid":"oXCfEwOkqIrihLgpgn1pYwjargXc","TotalAmount":100,"TotalNum":1,"Wishing":"新的快乐！","ClientIp":"121.40.198.87","ActName":"test","Remark":"测试用"}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/3 23:52:02
+
+Title:Redpack 返回：
+
+Message: {"HttpRequestResult":{"Success":true,"Exception":null,"Content":"<xml>\n<return_code><![CDATA[FAIL]]></return_code>\n<return_msg><![CDATA[该用户今日领取红包个数超过限制,如有需要请登录微信支付商户平台更改API安全配置.]]></return_msg>\n<result_code><![CDATA[FAIL]]></result_code>\n<err_code><![CDATA[SENDNUM_LIMIT]]></err_code>\n<err_code_des><![CDATA[该用户今日领取红包个数超过限制,如有需要请登录微信支付商户平台更改API安全配置.]]></err_code_des>\n<mch_billno><![CDATA[10000201651030096877467]]></mch_billno>\n<mch_id>1277619601</mch_id>\n<wxappid><![CDATA[wx8c36b3c0000a0a49]]></wxappid>\n<re_openid><![CDATA[oXCfEwOkqIrihLgpgn1pYwjargXc]]></re_openid>\n<total_amount>100</total_amount>\n</xml>"},"ApiResult":{"ReturnCode":"FAIL","ReturnMsg":"该用户今日领取红包个数超过限制,如有需要请登录微信支付商户平台更改API安全配置.","Sign":null,"ResultCode":"FAIL","ErrCode":"SENDNUM_LIMIT","ErrCodeDes":"该用户今日领取红包个数超过限制,如有需要请登录微信支付商户平台更改API安全配置.","MchBillno":"10000201651030096877467","MchId":"1277619601","WxAppId":"wx8c36b3c0000a0a49","ReOpenId":"oXCfEwOkqIrihLgpgn1pYwjargXc","TotalAmount":100,"SendTime":null,"SendListid":null},"Success":true,"Message":""}
+
+Severity: Verbose
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/4 1:05:30
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/4 1:05:31
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/4 1:06:34
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/4 1:06:35
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/4 1:06:45
+
+Title:
+
+Message: Application_Start
+
+Severity: Information
+
+----------------------------------------
+----------------------------------------
+Timestamp: 2016/1/4 1:06:46
+
+Title:
+
+Message: Redis 连接成功
+
+Severity: Information
+
+----------------------------------------

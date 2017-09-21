@@ -1,0 +1,302 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Areas.Staff.Models.LuckyTicketDrawViewModel
+
+@{
+    ViewBag.SubTitle = "活动";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .divLuckyTicketItem {
+        background-image: url(/Content/Images/bg_star.jpg);
+        background-repeat: repeat;
+        padding-top: 0.05rem;
+        padding-bottom: 0.05rem;
+        margin-bottom: 0.05rem;
+        /*background-color:red;*/
+    }
+
+    .divLuckyTicketItemLuckyTicket {
+        font-size: 0.2rem;
+        color: #FF7F00;
+        margin-left: 0.05rem;
+    }
+
+    .divLuckyTicketItemWinTime {
+        font-size: 0.12rem;
+        line-height: 0.2rem;
+        color: #000000;
+        margin-right: 0.05rem;
+    }
+
+    .divLuckyTicketDetail {
+        margin-left: 0.1rem;
+        margin-right: 0.1rem;
+        margin-top: 0.1rem;
+        font-size: 0.14rem;
+    }
+</style>
+
+<script type="text/javascript">
+
+    var _currentPage = 1;
+    var _totalPage = 1;
+    var _campaignId = getQueryString("campaignId");
+
+    var _validator;
+
+    $(document).ready(function () {
+
+        _validator = $("#form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txtCount": {
+                    required: true,
+                    number: true,
+                    digits: true,
+                    range: [0, 100]
+                },
+                "txtWinRemark": "required"
+            },
+            messages: {
+                "txtCount": {
+                    required: "请输入要抽取的中奖号码数量；",
+                    number: "中奖号码数量请输入有效整数字；",
+                    digits: "中奖号码数量请输入有效整数字；",
+                    range: "中奖号码数量请介于 1 到 100 之间；"
+                },
+                "txtWinRemark": "请输入中奖说明；"
+            }
+        });
+
+        loadData();
+    });
+
+    function loadData(targetPage) {
+        if (targetPage > _totalPage)
+            return;
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.PageSize = 10;
+        args.CampaignId = _campaignId;
+
+        $.ajax({
+            url: "/Api/Campaign/GetLuckyTicketWinLogList/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    _currentPage = resultObj.Page;
+                    _totalPage = resultObj.TotalPage;
+                    if (_currentPage >= _totalPage) {
+                        $("#divPagingContainer").html("没有更多了");
+                    }
+
+                    if (_currentPage == 1) {
+                        document.getElementById('logContainer').innerHTML = "";
+                    }
+
+                    var gettpl = document.getElementById('logItemListTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html) {
+                        document.getElementById('logContainer').innerHTML += html;
+                    });
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function draw() {
+        if (_validator.form() == false) {
+            return;
+        }
+
+        var count = $("#txtCount").val();
+        var msg = "是否确认抽取中奖号码 <b>" + count + "</b> 个？抽出后不可撤销。";
+
+        var confirmLayerIndex = layer.open({
+            content: msg,
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function ()
+            {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                var args = new Object();
+                args.CampaignId = _campaignId;
+                args.Count = count;
+                args.WinRemark = $("#txtWinRemark").val();
+
+                $.ajax({
+                    url: "/Api/Campaign/LuckyTicketDraw/@ViewBag.Domain.Id",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(args),
+                    success: function (data, status, jqXHR)
+                    {
+                        layer.close(loadLayerIndex);
+                        if (data.Success)
+                        {
+                            layerAlertBtn("抽取完毕，关注者进入活动页面后，如果有被抽中号码将自动显示。", function () {
+                                layer.open({
+                                    type: 2,
+                                    shadeClose: false,
+                                    content: '请稍候...'
+                                });
+                                window.location.reload();
+                            });
+
+                        } else
+                        {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest)
+                    {
+                        layer.close(loadLayerIndex);
+                        alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+</script>
+
+
+<script id="logItemListTemplate" type="text/html">
+    {{# for(var i = 0, len = d.length; i < len; i=i+1){ }}
+
+    <div style="margin-top:0.1rem;">
+        <div class="divLuckyTicketItem">
+            <div class="divLuckyTicketItemLuckyTicket">
+                {{ d[i].TicketNumber }}
+            </div>
+        </div>
+        <div class="divLuckyTicketDetail">
+            <div style="margin-top:0.05rem;">
+                中奖时间：{{ d[i].WinTime }}
+            </div>
+            <div style="margin-top:0.05rem;">
+                中奖说明：
+                {{# if(d[i].WinRemark != undefined && d[i].WinRemark != null){ }}
+                {{ d[i].WinRemark }}
+                {{# } }}
+            </div>
+            <div style="margin-top:0.05rem;">
+                昵称：
+                {{# if(d[i].NickName != undefined && d[i].NickName != null){ }}
+                {{ d[i].NickName }}
+                {{# } }}
+            </div>
+            <div style="margin-top:0.05rem;">
+                姓名：
+                {{# if(d[i].Name != undefined && d[i].Name != null){ }}
+                {{ d[i].Name }}
+                {{# } }}
+            </div>
+            <div style="margin-top:0.05rem;">
+                手机：
+                {{# if(d[i].MobilePhone != undefined && d[i].MobilePhone != null){ }}
+                {{ d[i].MobilePhone }}
+                {{# } }}
+            </div>
+            <div style="margin-top:0.05rem;">
+                Email：
+                {{# if(d[i].Email != undefined && d[i].Email != null){ }}
+                {{ d[i].Email }}
+                {{# } }}
+            </div>
+        </div>
+    </div>
+
+    {{# } }}
+
+</script>
+
+<div class="divContent" style="margin-top:0.1rem;">
+
+    <div class="font_16_b" style="margin-top:0.5rem">
+        @Model.Campaign.Name
+    </div>
+
+    <div style="margin-top:0.15rem">
+        <div style="float:left;margin-right:0.2rem;padding:0.1rem; " onclick="goUrl('/Staff/Campaign/LuckyTicket/@ViewBag.Domain.Id?campaignId=' + _campaignId)">
+            摘要
+        </div>
+        <div style="float:left;margin-right:0.2rem;padding:0.1rem;background-color:#EEEEEE " >
+            抽奖
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+    <div class="divDotLine" style="margin-top: 0.05rem; margin-bottom: 0.1rem;">
+    </div>
+
+    <div>
+        <form id="form">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="width:1rem;">抽取数量：</td>
+                    <td><input id="txtCount" name="txtCount" class="input_16" maxlength="3" /></td>
+                    <td style="width:0.9rem;" align="right"><input id="btnDraw" name="btnDraw" type="button" class="btn_green" style="width:0.8rem;" value="抽奖" onclick="draw()" /></td>
+                </tr>
+                <tr style="height:0.05rem">
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td style="width:1rem;">中奖说明：</td>
+                    <td colspan="2"><input id="txtWinRemark" name="txtWinRemark" class="input_16" maxlength="25" /></td>
+                </tr>
+                <tr>
+                    <td style="width:1rem;"></td>
+                    <td colspan="2"><span style="font-size:0.13rem;margin-top:0.02rem;">如：“一等奖”或“电影票一张”等简要说明。</span></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div class="divDotLine" style="margin-top: 0.1rem; margin-bottom: 0.05rem;">
+    </div>
+
+    <div style="margin-top:0.2rem">
+        当前中奖号码及中奖时间：
+    </div>
+
+    <div id="logContainer" style="margin-top:0.1rem">
+
+    </div>
+
+    <div id="divPagingContainer" class="divPagingContainer" style="margin-top:0.1rem; text-align:center" onclick="loadData(_currentPage+1)">
+        查看更多
+    </div>
+
+</div>

@@ -1,0 +1,66 @@
+﻿@model Sheng.WeixinConstruction.Container.Models.ThirdPartyAuthMonitorViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Monitor</title>
+</head>
+<body>
+    <div>
+        AccessToken：<br />
+        @Model.AccessToken<br />
+        AccessToken：<br />
+        @Model.AccessTokenExpiryTime
+    </div>
+    <hr />
+    <div>AuthorizerAccessTokenList</div>
+    <div>
+        <table>
+            <tr>
+                <td>AppId</td>
+                <td>AccessToken</td>
+                <td>RefreshToken</td>
+                <td>AccessTokenExpiryTime</td>
+                <td>WillbeTimeout</td>
+            </tr>
+            @foreach (var item in Model.AuthorizerAccessTokenList)
+            {
+                <tr>
+                    <td>@item.AppId</td>
+                    <td>@item.AccessToken</td>
+                    <td>@item.RefreshToken</td>
+                    <td>@item.AccessTokenExpiryTime</td>
+                    <td>@item.WillbeTimeout</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <hr />
+    <div>AuthorizerJsApiTicketList</div>
+    <div>
+        <table>
+            <tr>
+                <td>AppId</td>
+                <td>JsApiTicket</td>
+                <td>JsApiTicketExpiryTime</td>
+                <td>WillbeTimeout</td>
+            </tr>
+            @foreach (var item in Model.AuthorizerJsApiTicketList)
+            {
+                <tr>
+                    <td>@item.AppId</td>
+                    <td>@item.JsApiTicket</td>
+                    <td>@item.JsApiTicketExpiryTime</td>
+                    <td>@item.WillbeTimeout</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

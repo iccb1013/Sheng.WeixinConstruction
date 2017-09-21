@@ -1,0 +1,69 @@
+@charset "utf-8";
+
+body {
+	background-color: #D2DADC;	
+}
+
+
+#divContainer {
+	height: 640px;
+	width: 1000px;
+	top:50%;
+	left:50%;
+	margin-top:-320px;
+	margin-left:-500px;
+	margin-right:auto;
+	/*background-image: url(../Images/loginBg.jpg);*/
+	background-repeat: no-repeat;
+	position:absolute;
+}
+
+#divLoginAreaBackground {
+	background-color: #FFF;
+	height: 310px;
+	width: 330px;
+	position:absolute;
+	top: 170px;
+	left: 100px;
+	filter:alpha(opacity=50);  
+      -moz-opacity:0.5;  
+      -khtml-opacity: 0.5;  
+      opacity: 0.5;  
+	  z-index:10;
+}
+
+
+#divLoginArea {
+	height: 310px;
+	width: 330px;
+	position:absolute;
+	top: 170px;
+	left: 100px;
+	z-index:11;
+}
+
+#divLoginAreaMask {
+	height: 310px;
+	width: 330px;
+	position:absolute;
+	top: 170px;
+	left: 100px;
+	z-index:12;
+	background-color: #fff;
+	filter:alpha(opacity=10);  
+      -moz-opacity:0.1;  
+      -khtml-opacity: 0.1;  
+      opacity: 0.1;  
+}
+#divLoginAreaMaskContent {
+	background-color: #69F;
+	height: 24px;
+	line-height:24px;
+	width: 330px;
+	position:absolute;
+	top: 476px;
+	left: 100px;
+	z-index:13;
+	font-size: 14px;
+	color: #FFF;
+}

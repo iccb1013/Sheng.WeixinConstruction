@@ -1,0 +1,40 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.ErrorViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta charset="utf-8" />
+    <title>错误</title>
+    <link href="/Content/Style.css" rel="stylesheet" type="text/css">
+    @Scripts.Render("~/bundles/common")
+
+    <style type="text/css">
+        body {
+            margin-top: 0rem;
+            padding: 0.2rem;
+        }
+    </style>
+
+</head>
+<body>
+    <div style="font-weight:bold">
+        错误：
+    </div>
+    <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+    </div>
+    <div style="font-size:0.14rem;line-height:0.2rem;">
+        @Model.Message
+    </div>
+    <div style="margin-top:0.3rem;">
+        <a href="http://wx.shengxunwei.com/m" style="color:#FF794C;text-decoration:none">访问官网 ></a>
+    </div>
+</body>
+</html>

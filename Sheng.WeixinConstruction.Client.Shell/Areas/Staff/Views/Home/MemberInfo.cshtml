@@ -1,0 +1,727 @@
+﻿@{
+    ViewBag.SubTitle = "会员管理";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #tableMemberInfo {
+        font-size: 0.14rem;
+    }
+
+        #tableMemberInfo tr {
+            height: 0.24rem;
+        }
+</style>
+
+<script>
+
+    var _cardNumber = getQueryString("cardNumber");
+    var _member;
+    var _memberCard;
+    var _divPointEditHtml;
+    var _divCashEditHtml;
+    var _setMemberCardHtml;
+    var _adjustmentType = "increment"; // decrement
+
+    // 验证值小数位数不能超过两位
+    jQuery.validator.addMethod("cash", function (value, element) {
+        var decimal = /^-?\d+(\.\d{1,2})?$/;
+        return this.optional(element) || (decimal.test(value));
+    }, $.validator.format("金额的小数位数不能超过两位；"));
+
+    $(document).ready(function () {
+
+        var jsApiConfigStr = "@Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.JsApiConfig)";
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("&quot;", "gm"), "\"");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\r\n", "gm"), "");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\n", "gm"), "");
+        var jsApiConfig = eval('(' + jsApiConfigStr + ')');
+
+        wx.config(jsApiConfig);
+
+        _divPointEditHtml = $("#divPointEdit").html();
+        $("#divPointEdit").html("");
+
+        _divCashEditHtml = $("#divCashEdit").html();
+        $("#divCashEdit").html("");
+
+        _setMemberCardHtml = $("#divSetMemberCard").html();
+        $("#divSetMemberCard").html("");
+
+        if (_cardNumber != undefined && _cardNumber != null && _cardNumber != "") {
+            $("#txtSearch_CardNumber").val(_cardNumber);
+            search();
+        }
+    });
+
+    wx.error(function (res) {
+        alert("error:" + res);
+    });
+
+    function search() {
+       
+        closeAllLayer();
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var cardNumber = $("#txtSearch_CardNumber").val();
+
+        $.ajax({
+            url: "/Api/Member/GetMemberByCardNumber/@ViewBag.Domain.Id?cardNumber=" + cardNumber,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+
+                    _member = data.Data.Member;
+                    _memberCard = data.Data.MemberCard;
+
+                    $("#imageHead").attr("src", _member.Headimgurl_96);
+
+                    $("#spanNickName").html(_member.NickName);
+                    $("#spanCardNumber").html(_member.CardNumber);
+                    $("#spanCardNumber").html($("#spanCardNumber").html().replace(/\s/g, '').replace(/(\d{4})(?=\d)/g, "$1 "));
+                    $("#spanName").html(_member.Name);
+                    $("#spanSex").html(_member.SexString);
+                    $("#spanPoint").html(_member.Point);
+                    $("#spanCashAccount").html(_member.CashAccount / 100.0);
+                    $("#spanCity").html(_member.Country + " " + _member.Province + " " + _member.City);
+                    $("#spanMobilePhone").html(_member.MobilePhone);
+                    $("#spanEmail").html(_member.Email);
+                    $("#spanSubscribeTime").html(_member.SubscribeTime);
+
+                    if (_memberCard != undefined && _memberCard != null) {
+                        $("#spanCardLevel").html(_memberCard.Name);
+                    } else {
+                        $("#spanCardLevel").html("");
+                    }
+
+                    $("#divMemberInfo").show();
+                    $("#divMessage").hide();
+
+                    $("#btnPointIncrement").show();
+                    $("#btnPointDecrement").show();
+                    $("#btnCashDeposit").show();
+                    $("#btnCashCharge").show();
+                    $("#btnSetMemberCard").show();
+
+
+                } else {
+
+                    _member = null;
+
+                    $("#divMemberInfo").hide();
+                    $("#divMessage").show();
+
+                    $("#btnPointIncrement").hide();
+                    $("#btnPointDecrement").hide();
+                    $("#btnCashDeposit").hide();
+                    $("#btnCashCharge").hide();
+                    $("#btnSetMemberCard").hide();
+
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function showPointIncrement() {
+        layer.open({
+            type: 1,
+            content: _divPointEditHtml,
+            shadeClose: false,
+            style: 'position:fixed; left:0.1rem; right:0.1rem; top:0.1rem; border:none;',
+            success: function (elem) {
+                _adjustmentType = "increment";
+                $("#spanInputFormTitle").html("增加积分");
+
+                $("#txtChangePoint").focus();
+            }
+        });
+    }
+
+    function showPointDecrement() {
+        layer.open({
+            type: 1,
+            content: _divPointEditHtml,
+            shadeClose: false,
+            style: 'position:fixed; left:0.1rem; right:0.1rem; top:0.1rem; border:none;',
+            success: function (elem) {
+                _adjustmentType = "decrement";
+                $("#spanInputFormTitle").html("消㓕积分");
+
+                $("#txtChangePoint").focus();
+            }
+        });
+    }
+
+    function pointAdjustment() {
+        var txtChangePointValidationMessage = "额度请输入要增加的积分额度；";
+
+        if (_adjustmentType == "decrement") {
+            txtChangePointValidationMessage = "额度请输入要消减的积分额度；";
+        }
+
+        if ($("#formPointEdit").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txtChangePoint": {
+            required: true,
+            number: true,
+            digits: true,
+            range: [1, 10000]
+        }
+        },
+            messages: {
+                "txtChangePoint": {
+            required: txtChangePointValidationMessage,
+            number: "额度请输入有效整数字；",
+            digits: "额度请输入有效整数字；",
+            range: "额度请介于 1 到 10000 之间；"
+        }
+        }
+        }).form() == false) {
+            return;
+        }
+
+        var quantity = $("#txtChangePoint").val();
+        if (_adjustmentType == "decrement") {
+            quantity = 0 - quantity;
+        }
+        var remark = $("#txtChangePointRemark").val();
+
+        closeAllLayer();
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.MemberId = _member.Id;
+        args.Quantity = quantity;
+        args.Remark = remark;
+
+        var url = "/Api/Member/PointIncrement/@ViewBag.Domain.Id";
+
+        if (_adjustmentType == "decrement") {
+            url = "/Api/Member/PointDecrement/@ViewBag.Domain.Id";
+        }
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+
+                    $("#spanPoint").html(data.Data.LeftPoint);
+                    layerAlert("该会员的积分已调整到：" + data.Data.LeftPoint);
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function showCashIncrement() {
+        layer.open({
+            type: 1,
+            content: _divCashEditHtml,
+            shadeClose: false,
+            style: 'position:fixed; left:0.1rem; right:0.1rem; top:0.1rem; border:none;',
+            success: function (elem) {
+                _adjustmentType = "increment";
+                $("#spanInputFormTitle").html("现金充值");
+
+                $("#txtChangeCash").focus();
+            }
+        });
+    }
+
+    function showCashDecrement() {
+        layer.open({
+            type: 1,
+            content: _divCashEditHtml,
+            shadeClose: false,
+            style: 'position:fixed; left:0.1rem; right:0.1rem; top:0.1rem; border:none;',
+            success: function (elem) {
+                _adjustmentType = "decrement";
+                $("#spanInputFormTitle").html("现金消费");
+
+                $("#txtChangeCash").focus();
+            }
+        });
+    }
+
+    function cashAdjustment() {
+        var txtChangePointValidationMessage = "请输入充值金额；";
+
+        if (_adjustmentType == "decrement") {
+            txtChangePointValidationMessage = "请输入消费金额；";
+        }
+
+        if ($("#formCashEdit").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txtChangeCash": {
+            required: true,
+            number: true,
+            range: [0.01, 1000000],
+            cash: true,
+        }
+        },
+            messages: {
+                "txtChangeCash": {
+            required: txtChangePointValidationMessage,
+            number: "金额请输入有效数字；",
+            range: "金额请介于 0.01 到 1000000 之间；"
+        }
+        }
+        }).form() == false) {
+            return;
+        }
+
+        var quantity = $("#txtChangeCash").val();
+        if (_adjustmentType == "decrement") {
+            quantity = 0 - quantity;
+        }
+        var remark = $("#txtChangeCashRemark").val();
+
+        closeAllLayer();
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.MemberId = _member.Id;
+        args.Fee = quantity;
+        args.Remark = remark;
+
+        var url = "/Api/Pay/CashDeposit/@ViewBag.Domain.Id";
+
+        if (_adjustmentType == "decrement") {
+            url = "/Api/Pay/Charge/@ViewBag.Domain.Id";
+        }
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    switch (data.Data.Reason) {
+                        case 0:
+                            $("#spanCashAccount").html(data.Data.LeftCashAccount/100.0);
+                            layerAlert("成功，该会员当前现金余额：" + data.Data.LeftCashAccount/100.0);
+                            break;
+                        case 1:
+                            layerAlert("失败，余额不足。");
+                            break;
+                        case 2:
+                            layerAlert("失败，指定的会员不存在。");
+                            break;
+                        case 3:
+                        case 4:
+                            layerAlert("失败，无权限。");
+                            break;
+                        default:
+                            layerAlert("未知结果：" + data.Data.Reason);
+                            break;
+                    }
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function showSetMemberCard() {
+        layer.open({
+            type: 1,
+            content: _setMemberCardHtml,
+            shadeClose: false,
+            style: 'position:fixed; left:0.1rem; right:0.1rem; top:0.1rem; border:none;',
+            success: function (elem) {
+
+                if (_memberCard != undefined && _memberCard != null) {
+                    $("#selectDefaultMemberCardLevel").find("option[value='" + _memberCard.Id + "']").attr("selected", true);
+                }
+
+                $("#selectDefaultMemberCardLevel").focus();
+            }
+        });
+    }
+
+    function setMemberCard() {
+        if ($("#formSetMemberCard").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+               "selectDefaultMemberCardLevel": "required"
+        },
+            messages: {
+               "selectDefaultMemberCardLevel": "请选择会员卡，您可在“设置”菜单下的“会员卡级别”中配置您的会员卡。"
+        }
+        }).form() == false) {
+            return;
+        }
+
+        var memberCardId = $("#selectDefaultMemberCardLevel").val();
+
+        closeAllLayer();
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+
+        var args = new Object();
+        args.MemberId = _member.Id;
+        args.MemberCardId = memberCardId;
+
+        var url = "/Api/Member/SetMemberLevel/@ViewBag.Domain.Id";
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    layerAlertBtn("设置成功！", search);
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function scan() {
+        wx.scanQRCode({
+            needResult: 0,
+            scanType: ["qrCode"]
+        });
+    }
+
+    function closeAllLayer() {
+        layer.closeAll();
+    }
+
+  
+
+</script>
+
+<script type="text/html" id="divPointEdit">
+    <div style="margin-left: 0.1rem; margin-right: 0.1rem; margin-top: 0.2rem; margin-bottom: 0.1rem;">
+        <div style="width: 100%;">
+            <div>
+                <span style="margin-left: 0.1rem;" id="spanInputFormTitle"></span>
+            </div>
+            <div style="width: 100%; margin-left: 0rem; margin-top: 0.1rem;">
+                <form id="formPointEdit">
+                    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="width:0.6rem; height:0.36rem;">
+                                额度：
+                            </td>
+                            <td>
+                                <input name="txtChangePoint" type="text" class="input_16" style="width: 100%;" id="txtChangePoint" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height:0.36rem;">
+                                备注：
+                            </td>
+                            <td>
+                                <input name="txtChangePointRemark" type="text" class="input_16" style="width: 100%;" id="txtChangePointRemark" maxlength="50" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td valign="top">
+                                <div class="font_gray_13">
+                                    粉丝可见。
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div style="width: 100%; margin-top: 0.1rem; margin-left: 0rem;">
+                <div style="float: right">
+                    <input type="button" class="btn_blue" value="确 定" onclick="pointAdjustment()" />
+                    <input type="button" class="btn_blue" value="取 消" onclick="closeAllLayer()" />
+                </div>
+                <div style="clear: both">
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="divCashEdit">
+    <div style="margin-left: 0.1rem; margin-right: 0.1rem; margin-top: 0.2rem; margin-bottom: 0.1rem;">
+        <div style="width: 100%;">
+            <div>
+                <span style="margin-left: 0.1rem;" id="spanInputFormTitle"></span>
+            </div>
+            <div style="width: 100%; margin-left: 0rem; margin-top: 0.1rem;">
+                <form id="formCashEdit">
+                    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td style="width:0.6rem; height:0.36rem;">
+                                金额：
+                            </td>
+                            <td>
+                                <input name="txtChangeCash" type="text" class="input_16" style="width: 100%;" id="txtChangeCash" maxlength="10" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="height:0.36rem;">
+                                备注：
+                            </td>
+                            <td>
+                                <input name="txtChangeCashRemark" type="text" class="input_16" style="width: 100%;" id="txtChangeCashRemark" maxlength="50" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td valign="top">
+                                <div class="font_gray_13">
+                                    粉丝可见。
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div style="width: 100%; margin-top: 0.1rem; margin-left: 0rem;">
+                <div style="float: right">
+                    <input type="button" class="btn_blue" value="确 定" onclick="cashAdjustment()" />
+                    <input type="button" class="btn_blue" value="取 消" onclick="closeAllLayer()" />
+                </div>
+                <div style="clear: both">
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="divSetMemberCard">
+    <div style="margin-left: 0.1rem; margin-right: 0.1rem; margin-top: 0.2rem; margin-bottom: 0.1rem;">
+        <div style="width: 100%;">
+            <div>
+                <span style="margin-left: 0.1rem;" id="spanInputFormTitle">设置会员卡</span>
+            </div>
+            <div style="width: 100%; margin-left: 0rem; margin-top: 0.1rem;">
+                <form id="formSetMemberCard">
+                    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td height="36">
+                                @if (Model.MemberCardLevelList.Count > 0)
+                                {
+                                    <select id="selectDefaultMemberCardLevel" name="selectDefaultMemberCardLevel" class="input_16" keyenter=keyenter>
+                                        @foreach (var item in Model.MemberCardLevelList)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                }
+                                else
+                                {
+                                    <span>没有可用的会员卡，您可在PC管理端的“设置”菜单下的“会员卡级别”中配置您的会员卡。</span>
+                                }
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div style="width: 100%; margin-top: 0.1rem; margin-left: 0rem;">
+                <div style="float: right">
+                    @if (Model.MemberCardLevelList.Count > 0)
+                    {
+                        <input type="button" class="btn_blue" id="btnSave" value="确 定" onclick="setMemberCard()" />
+                    }
+                    <input type="button" class="btn_blue" value="取 消" onclick="closeAllLayer()" />
+                </div>
+                <div style="clear: both">
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div class="divContent" style="margin-top:0.1rem;">
+    <div style="margin-top:0.5rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>会员卡号：</td>
+                <td align="right">
+                    <input name="btnSearch" type="button" class="btn_blue" id="btnSearch" value="查询" onclick="search()" />
+                    <input name="btnScan" type="button" class="btn_blue" id="btnScan" value="扫一扫" onclick="scan()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-top:0.1rem;">
+        <input id="txtSearch_CardNumber" name="txtSearch_CardNumber" type="text" class="input_16" />
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+    </div>
+
+    <div id="divMemberInfo" style="display:none">
+        <div>
+            <img id="imageHead" style="width:1rem;height:1rem;" />
+        </div>
+        <div style="margin-top:0.1rem;">
+            <table id="tableMemberInfo" width="96%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="width:1rem;">微信昵称：</td>
+                    <td>
+                        <span id="spanNickName"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>会员卡号：</td>
+                    <td>
+                        <span id="spanCardNumber"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>会员卡级别：</td>
+                    <td>
+                        <span id="spanCardLevel"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>姓名：</td>
+                    <td>
+                        <span id="spanName"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>性别：</td>
+                    <td>
+                        <span id="spanSex"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>积分：</td>
+                    <td>
+                        <span id="spanPoint"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>现金余额：</td>
+                    <td>
+                        <span id="spanCashAccount"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>城市：</td>
+                    <td>
+                        <span id="spanCity"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>手机号码：</td>
+                    <td>
+                        <span id="spanMobilePhone"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>电子邮箱：</td>
+                    <td>
+                        <span id="spanEmail"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>关注时间：</td>
+                    <td>
+                        <span id="spanSubscribeTime"></span>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    <div id="divMessage">
+        请输入要查询的完整会员卡号，或使用扫一扫功能扫描会员的二维码（会员可在“会员中心”点击“二维码”显示）。
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+    </div>
+
+    <div>
+        <div style="float:left;width:48%">
+            <input id="btnPointIncrement" name="btnPointIncrement" type="button" class="btn_blue" style="width:100%;display:none" value="增加积分" onclick="showPointIncrement();" />
+        </div>
+        <div style="float:right;width:48%">
+            <input id="btnPointDecrement" name="btnPointDecrement" type="button" class="btn_blue" style="width:100%;display:none" value="消㓕积分" onclick="showPointDecrement()" />
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div style="margin-top:0.1rem;">
+        <div style="float:left;width:48%">
+            <input id="btnCashDeposit" name="btnCashDeposit" type="button" class="btn_blue" style="width:100%;display:none" value="现金充值" onclick="showCashIncrement();" />
+        </div>
+        <div style="float:right;width:48%">
+            <input id="btnCashCharge" name="btnCashCharge" type="button" class="btn_blue" style="width:100%;display:none" value="现金消费" onclick="showCashDecrement();" />
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div style="margin-top:0.1rem;">
+        <div style="float:left;width:48%">
+            <input id="btnSetMemberCard" name="btnSetMemberCard" type="button" class="btn_blue" style="width:100%;display:none" value="设置会员卡" onclick="showSetMemberCard();" />
+        </div>
+        @*<div style="float:right;width:48%">
+            <input id="btnCashCharge" name="btnCashCharge" type="button" class="btn_blue" style="width:100%;display:none" value="现金消费" onclick="showCashDecrement();" />
+        </div>*@
+        <div style="clear:both"></div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,394 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style>
+    body {
+        /*margin-top: 1.5rem;*/
+         margin-top: 1.2rem;
+        margin-bottom: 0.55rem;
+    }
+
+    #divTopTitleBar {
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        /*top: 1rem;*/
+         top:0.7rem;
+        height: 0.4rem;
+        background-color: white;
+    }
+
+ 
+    .imgItem {
+        max-height: 0.75rem;
+        max-width: 0.9rem;
+        vertical-align: middle;
+    }
+
+
+
+    .divItemDetailTitle {
+        height: 0.35rem;
+        line-height: 0.35rem;
+        text-align: center;
+        font-size: 0.16rem;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+
+
+    .divBorder {
+        border: 1px solid #CCC;
+        height: 0.3rem;
+        font-size: 0.15rem;
+        line-height: 0.3rem;
+    }
+
+    #divFooter {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 0.4rem;
+        font-size: 0.14rem;
+        text-align: center;
+        background-color: #F5F5F5;
+    }
+</style>
+
+<script>
+
+    var _lucky = false;
+
+    //当前页
+    var _currentPage = 1;
+    var _totalPage = 1;
+
+    $(document).ready(function () {
+        loadData();
+    });
+
+    function loadData(targetPage) {
+        if (targetPage > _totalPage)
+            return;
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.PageSize = 10;
+        args.Lucky = _lucky;
+
+        $.ajax({
+            url: "/Api/OneDollarBuying/GetParticipatedList/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    _currentPage = resultObj.Page;
+                    _totalPage = resultObj.TotalPage;
+                    if (_currentPage >= _totalPage) {
+                        $("#divPagingContainer").html("没有更多了");
+                    }
+
+                    if (_currentPage == 1) {
+                        document.getElementById('divCommodityContainer').innerHTML = "";
+                    }
+
+                    var gettpl = document.getElementById('commodityListTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html) {
+                        document.getElementById('divCommodityContainer').innerHTML += html;
+                    });
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function commodityDetail(commodityId, saleId) {
+        window.location.href = '/Campaign/OneDollarBuyingCommodityDetail/@ViewBag.Domain.Id?commodityId=' + commodityId + "&saleId=" + saleId;
+    }
+
+    function goAvailableSale(commodityId) {
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/OneDollarBuying/GetAvailableSaleId/@ViewBag.Domain.Id?commodityId=" + commodityId,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    window.location.href = "/Campaign/OneDollarBuyingCommodityDetail/@ViewBag.Domain.Id?commodityId=" + commodityId + "&saleId=" + resultObj;
+                } else {
+                    layer.close(loadLayerIndex);
+
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function showDealInfo(saleId) {
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/OneDollarBuying/GetDealInfo/@ViewBag.Domain.Id?saleId=" + saleId,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    var gettpl = document.getElementById('itemDetailTemplate').innerHTML;
+
+                    laytpl(gettpl).render(resultObj, function (html) {
+                        var pageii = layer.open({
+                            type: 1,
+                            content: html,
+                            shadeClose: false,
+                            style: 'position:fixed; left:0.1rem; top:0.1rem;right:0.1rem; border:none;'
+                        });
+                    });
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function loadAll() {
+        $("#btnLoadAll").attr("class", "button");
+        $("#btnLoadLucky").attr("class", "button_gray");
+
+        _lucky = false;
+        loadData();
+    }
+
+    function loadLucky() {
+
+        $("#btnLoadAll").attr("class", "button_gray");
+        $("#btnLoadLucky").attr("class", "button");
+
+        _lucky = true;
+        loadData();
+    }
+
+    function deposit() {
+        window.location.href = '/Pay/Deposit/@ViewBag.Domain.Id';
+    }
+
+</script>
+
+<script id="commodityListTemplate" type="text/html">
+
+    {{# for(var i = 0, len = d.length; i < len; i++){ }}
+
+    <div style="font-size:0.12rem; color:#555555;">
+        <div onclick="commodityDetail('{{ d[i].CommodityId }}','{{ d[i].Id }}')">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="width:1rem;">
+                        <img src="{{ d[i].ImageUrl }}" class="imgItem">
+                    </td>
+                    <td>
+                        <div style="font-size:0.14rem;font-weight:bold;color:black">{{ d[i].Name }}</div>
+                        <div style="margin-top:0.05rem;">
+                            <div style="margin-top:0.05rem;">期号：{{ d[i].PeriodNumber }}</div>
+                            <div style="margin-top:0.05rem;">您参与了：<span style="color:red">{{ d[i].MyPartNumberCount }}</span>人次</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        {{# if(d[i].LuckyMember != null){ }}
+        <div style="margin-top:0.15rem;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        获得者：
+                        {{# if(d[i].LuckyMember == '@ViewBag.Member.Id'){ }}
+                        <span style="color:Red">您</span>
+                        {{# }else{}}
+                        <span style="color:#2659FF">{{ d[i].LuckyMemberNickName }}</span> （<span style="color:red">{{ d[i].LuckyMemberPartNumberCount }}</span>人次）
+                        {{# }}}
+                    </td>
+                    <td align="right">
+                        <div>
+                            <div class="divRectangle" style="width:0.9rem;float:right;margin-left:0.05rem;" onclick="goAvailableSale('{{ d[i].CommodityId }}')">
+                                再次参与
+                            </div>
+
+                            {{# if(d[i].LuckyMember == '@ViewBag.Member.Id'){ }}
+                            {{# if(d[i].Deal == '0'){ }}
+                            <div class="divRectangle" style="width:0.7rem;float:right" onclick="showDealInfo('{{ d[i].Id }}')">
+                                待领取
+                            </div>
+                            {{# }else{}}
+                            <div class="divRectangle_Gray" style="width:0.7rem;float:right" onclick="showDealInfo('{{ d[i].Id }}')">
+                                已领取
+                            </div>
+                            {{# }}}
+                            {{# }}}
+
+                            <div style="clear:both"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {{# }else{}}
+        {{# if(d[i].SoldPart >= d[i].TotalPart ){ }}
+        <div style="margin-top:0.15rem;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        马上揭晓
+                    </td>
+                    <td align="right">
+                        <div class="divLogButton" style="width:0.7rem;" onclick="goAvailableSale('{{ d[i].CommodityId }}')">
+                            再次参与
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {{# }else{}}
+        <div style="margin-top:0.15rem;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        尚未结束
+                    </td>
+                    <td align="right">
+                        <div class="divRectangle" style="width:0.9rem;" onclick="commodityDetail('{{ d[i].CommodityId }}','{{ d[i].Id }}')">
+                            参与
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {{# }}}
+        {{# }}}
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.13rem; margin-bottom:0.13rem; ">
+    </div>
+
+    {{# } }}
+
+</script>
+
+<script type="text/html" id="itemDetailTemplate">
+    <div class="divItemDetailTitle defaultBgColor">
+        恭喜您
+    </div>
+    <div style="font-size:0.18rem;padding:0.1rem;padding-bottom:0.2rem;">
+        <div style="font-size:0.15rem;font-weight:bold">{{ d.CommodityName }}</div>
+        <div style="font-size:0.14rem;margin-top:0.1rem;">期号：{{ d.PeriodNumber }}</div>
+        <div style="font-size:0.14rem;margin-top:0.05rem;">幸运号码：{{ d.LuckyPartNumber }}</div>
+        <div style="font-size:0.14rem;margin-top:0.05rem;">揭晓时间：{{ d.DrawTime }}</div>
+        {{# if(d.Deal == 1){ }}
+        <div style="font-size:0.14rem;margin-top:0.05rem;">领取时间：{{ d.DealTime }}</div>
+        {{# }}}
+        <div style="margin-top:0.2rem;">
+            {{# if(d.Deal == 0){ }}
+            <div style="margin-left:0.4rem;margin-right:0.4rem;height:0.2rem;line-height:0.2rem;text-align:center;color:red">
+                待领取
+            </div>
+            {{# }else{}}
+            <div style="margin-left:0.4rem;margin-right:0.4rem;height:0.2rem;line-height:0.2rem;text-align:center;color:#555555">
+                已领取
+            </div>
+            {{# }}}
+            <div class="divRectangle_Gray" style="margin-top:0.1rem;margin-left:0.4rem;margin-right:0.4rem;" onclick="layer.closeAll()">
+                关闭
+            </div>
+        </div>
+    </div>
+</script>
+
+@Helpers.OneDollarBuyingIntroduction()
+
+@Helpers.HeaderArea(ViewBag, "headimg")
+
+<div id="divTopTitleBar">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height:100%">
+        <tr style="height:0.27rem;">
+            <td width="33%" align="center"><div onclick="goUrl('/Campaign/OneDollarBuying/@ViewBag.Domain.Id')">正在进行</div></td>
+            <td width="33%" align="center"><div onclick="goUrl('/Campaign/OneDollarBuyingLuckyList/@ViewBag.Domain.Id')">最新揭晓</div></td>
+            <td width="33%" align="center"><div onclick="goUrl('/Campaign/OneDollarBuyingParticipatedList/@ViewBag.Domain.Id')">我的参与</div></td>
+        </tr>
+        <tr style="height:0.03rem;">
+            <td bgcolor="#E4E4E4"></td>
+            <td bgcolor="#E4E4E4"></td>
+            <td class="defaultBgColor"></td>
+        </tr>
+    </table>
+</div>
+
+<div class="divContent">
+
+  
+
+    <div id="divCommodityContainer" style="padding-left: 0.1rem; padding-right: 0.1rem;margin-top:0.2rem;">
+
+
+    </div>
+
+    <div id="divPagingContainer" class="divPagingContainer" style="margin-top: 0.2rem; text-align: center" onclick="loadData(_currentPage + 1)">
+        查看更多
+    </div>
+ 
+</div>
+
+<div id="divFooter">
+    <table align="center" border="0" style="height:100%;width:100%">
+        <tr>
+            <td valign="middle" align="center" width="50%">
+                <input id="btnLoadAll" name="btnLoadAll" type="button" class="button" value="全部参与" style="width:90%" onclick="loadAll()">
+            </td>
+            <td valign="middle" align="center" width="50%">
+                <input id="btnLoadLucky" name="btnLoadLucky" type="button" class="button_gray" value="幸运记录" style="width:90%" onclick="loadLucky()">
+            </td>
+        </tr>
+    </table>
+</div>
+

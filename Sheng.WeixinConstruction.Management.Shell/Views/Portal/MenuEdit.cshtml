@@ -1,0 +1,983 @@
+﻿@{
+    ViewBag.Title = "MenuEdit";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<script>
+
+    var _domainId = '@ViewBag.Domain.Id';
+    var _appId = '@ViewBag.DomainContext.AppId';
+
+    //在同一个form中创建多个jValidate验证器不灵
+    var _validator_wxc_function;
+    var _validator_view;
+    var _validator_wxc_campaign;
+    var _validator_wxc_information;
+    var _validator_wxc_customForm;
+    var _validator_mediaId;
+    var _validator_click;
+
+    var _mode //createButton //modifyButton //createSubButton //modifySubButton
+
+    var _buttonIndex;
+    var _button;
+
+    var _parentButtonIndex;
+
+    $(document).ready(function () {
+
+        //alert(window.location.href);
+        _mode = getQueryString("mode");
+
+        createValidator();
+
+        switchTypeTable();
+
+        $("#selectType").change(function () {
+            switchTypeTable();
+        });
+
+        $("#select_wxc_function").change(function () {
+            setFunctionUrl();
+        });
+
+        $("#select_wxc_campaign_type").change(function () {
+            //  alert("select_wxc_campaign_type change");
+            loadCampaignList();
+        });
+
+        $("#select_wxc_campaign").change(function () {
+            setCampaignUrl();
+        });
+
+        $("#select_wxc_information").change(function () {
+            setInformationUrl();
+        });
+
+        $("#select_wxc_customForm").change(function () {
+            setCustomFormUrl();
+        });
+
+        $("[keyenter]").keypress(function (e) {
+            if (e.keyCode == 13) {
+                save();
+            }
+        });
+
+        switch (_mode) {
+            case "createButton":
+                break;
+            case "modifyButton":
+                loadButton();
+                break;
+            case "createSubButton":
+                _parentButtonIndex = getQueryString("parentButton");
+                break;
+            case "modifySubButton":
+                _parentButtonIndex = getQueryString("parentButton");
+                loadButton();
+                break;
+            default:
+                alert("_mode:" + _mode);
+                break;
+        }
+
+        //if (_button != undefined && _button != null && _button.type == "wxc_campaign") {
+        //    //在loadButton中读取CampaignList
+        //} else {
+        //    loadCampaignList();
+        //}
+
+        //if (_button != undefined && _button != null && _button.type == "wxc_information") {
+        //    //在loadButton中读取
+        //} else {
+        //    loadInformationList();
+        //}
+
+        //if (_button != undefined && _button != null && _button.type == "wxc_customForm") {
+        //    //在loadButton中读取
+        //} else {
+        //    loadCustomFormList();
+        //}
+
+    });
+
+    function setFunctionUrl() {
+        var selectedFunction = $("#select_wxc_function").find("option:selected").attr("urlpath");
+        $("#divUrl").html("http://" + _appId + ".wxc.shengxunwei.com/" + selectedFunction + "/" + _domainId);
+    }
+
+    function setCampaignUrl() {
+        var selectedCampaignType = $("#select_wxc_campaign_type").find("option:selected").attr("urlpath");
+        var selectedCampaignId = $("#select_wxc_campaign").val();
+        $("#divUrl").html("http://" + _appId + ".wxc.shengxunwei.com/Campaign/" + selectedCampaignType + "/" + _domainId + "?campaignId=" + selectedCampaignId);
+    }
+
+    function setInformationUrl() {
+        var selectedInformationId = $("#select_wxc_information").val();
+        $("#divUrl").html("http://" + _appId + ".wxc.shengxunwei.com/Home/Information/" + _domainId + "?informationId=" + selectedInformationId);
+    }
+
+    function setCustomFormUrl() {
+        var selectedFormId = $("#select_wxc_customForm").val();
+        $("#divUrl").html("http://" + _appId + ".wxc.shengxunwei.com/Home/CustomForm/" + _domainId + "?formId=" + selectedFormId);
+
+    }
+
+    function switchTypeTable() {
+        //alert($("#selectType").val());
+        var type = $("#selectType").val();
+
+        $("#divTableCollection div[buttonTypeDiv='buttonTypeDiv']").hide();
+
+        $("#divTableCollection div[buttonTypeDiv='buttonTypeDiv']").each(function (n, value) {
+            if ($(value).attr("id") == "div_" + type) {
+                $(value).show();
+
+                if ($(value).attr("directurl") == "true") {
+                    $("#divDirectUrlArea").show();
+                } else {
+                    $("#divDirectUrlArea").hide();
+                }
+            }
+        });
+
+        switch (type) {
+            case "wxc_function":
+                setFunctionUrl();
+                break;
+            case "click":
+                loadClickList();
+                break;
+            case "wxc_campaign":
+                loadCampaignList();
+                break;
+            case "wxc_information":
+                loadInformationList();
+                break;
+            case "wxc_customForm":
+                loadCustomFormList();
+                break;
+        }
+
+    }
+
+    function createValidator() {
+        _validator_wxc_function = $("#form_wxc_function").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txt_wxc_function_name": "required"
+            },
+            messages: {
+                "txt_wxc_function_name": "请输入名称；"
+            }
+        });
+
+        _validator_view = $("#form_view").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txt_view_name": "required",
+                "txt_view_url": {
+                    required: true,
+                    url: true
+                }
+            },
+            messages: {
+                "txt_view_name": "请输入名称；",
+                "txt_view_url": {
+                    required: "请输入要访问的网址；",
+                    url: "请输入格式正确的网址"
+                }
+            }
+        });
+
+        _validator_click = $("#form_click").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txt_click_name": "required",
+                "select_click_type": "required",
+                "select_click": "required"
+            },
+            messages: {
+                "txt_view_name": "请输入名称；",
+                "select_click_type": "请选择要触发的事件；",
+                "select_click": "请选择要触发的事件；"
+            }
+        });
+
+        _validator_wxc_campaign = $("#form_wxc_campaign").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txt_wxc_campaign_name": "required",
+                "select_wxc_campaign_type": "required",
+                "select_wxc_campaign": "required"
+            },
+            messages: {
+                "txt_wxc_campaign_name": "请输入名称；",
+                "select_wxc_campaign_type": "请选择活动；",
+                "select_wxc_campaign": "请选择活动；"
+            }
+        });
+
+        _validator_wxc_information = $("#form_wxc_information").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txt_wxc_information_name": "required",
+                "select_wxc_information": "required"
+            },
+            messages: {
+                "txt_wxc_information_name": "请输入名称；",
+                "select_wxc_information": "请选择分类信息；"
+            }
+        });
+
+        _validator_wxc_customForm = $("#form_wxc_customForm").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txt_wxc_customForm_name": "required",
+                "select_wxc_customForm": "required"
+            },
+            messages: {
+                "txt_wxc_customForm_name": "请输入名称；",
+                "select_wxc_customForm": "请选择表单；"
+            }
+        });
+
+        _validator_mediaId = $("#form_mediaId").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txt_mediaId_name": "required",
+            },
+            messages: {
+                "txt_mediaId_name": "请输入名称；",
+            }
+        });
+    }
+
+    function loadButton() {
+        _buttonIndex = getQueryString("button");
+        if (_buttonIndex == undefined || _buttonIndex == "") {
+            return;
+        }
+
+        $("#spanTitle").html("修改菜单");
+        $("#btnRemove").show();
+
+
+        if (_mode == "modifyButton") {
+            _button = parent.getButton(_buttonIndex);
+        } else if (_mode == "modifySubButton") {
+            _button = parent.getSubButton(_parentButtonIndex, _buttonIndex);
+        }
+
+        $("#selectType").val(_button.type);
+        switchTypeTable();
+
+        switch (_button.type) {
+            case "wxc_function":
+                load_wxc_function();
+                break;
+            case "view":
+                load_view();
+                break;
+            case "click":
+                load_click();
+                break;
+            case "wxc_campaign":
+                load_wxc_campaign();
+                break;
+            case "wxc_information":
+                load_wxc_information();
+                break;
+            case "wxc_customForm":
+                load_wxc_customForm();
+                break;
+            case "mediaId":
+                load_mediaId();
+                break;
+            default:
+                alert("type:" + type);
+                break;
+        }
+    }
+
+    function load_wxc_function() {
+        $("#txt_wxc_function_name").val(_button.name);
+        $("#select_wxc_function").val(_button.function);
+        setFunctionUrl();
+    }
+
+    function load_view() {
+        $("#txt_view_name").val(_button.name);
+        $("#txt_view_url").val(_button.url);
+    }
+
+    function load_click() {
+        $("#txt_click_name").val(_button.name);
+        $("#select_click_type").val(_button.clickType);
+        loadClickList();
+    }
+
+    function load_wxc_campaign() {
+        $("#txt_wxc_campaign_name").val(_button.name);
+        $("#select_wxc_campaign_type").val(_button.campaignType);
+        loadCampaignList();
+    }
+
+    function load_wxc_information() {
+        $("#txt_wxc_information_name").val(_button.name);
+        loadInformationList();
+    }
+
+    function load_wxc_customForm() {
+        $("#txt_wxc_customForm_name").val(_button.name);
+        loadCustomFormList();
+    }
+
+    function load_mediaId() {
+        $("#txt_mediaId_name").val(_button.name);
+        __setMaterial(_button.materialType, null, _button.materialId);
+    }
+
+    function save() {
+        var validateResult = false;
+
+        var type = $("#selectType").val();
+        // alert("type:" + type);
+        switch (type) {
+            case "wxc_function":
+                validateResult = save_wxc_function();
+                break;
+            case "view":
+                validateResult = save_view();
+                break;
+            case "click":
+                validateResult = save_click();
+                break;
+            case "wxc_campaign":
+                validateResult = save_wxc_campaign();
+                break;
+            case "wxc_information":
+                validateResult = save_wxc_information();
+                break;
+            case "wxc_customForm":
+                validateResult = save_wxc_customForm();
+                break;
+            case "mediaId":
+                validateResult = save_mediaId();
+                break;
+            default:
+                alert("type:" + type);
+                break;
+        }
+
+        if (validateResult == false)
+            return;
+
+        var layerIndex = parent.layer.getFrameIndex(window.name);
+
+        switch (_mode) {
+            case "createButton":
+                parent.addButtonAndCloseLayer(layerIndex, _button);
+                break;
+            case "modifyButton":
+                parent.closeLayer(layerIndex);
+                break;
+            case "createSubButton":
+                parent.addSubButtonAndCloseLayer(layerIndex, _parentButtonIndex, _button);
+                break;
+            case "modifySubButton":
+                parent.closeLayer(layerIndex);
+                break;
+            default:
+                alert("_mode:" + _mode);
+                break;
+        }
+    }
+
+    function save_wxc_function() {
+        if (_validator_wxc_function.form() == false) {
+            return false;
+        }
+
+        if (_button == undefined) {
+            _button = new Object();
+        }
+
+        _button.type = "wxc_function";
+        _button.name = $("#txt_wxc_function_name").val();
+        _button.function = $("#select_wxc_function").val();
+
+        return true;
+    }
+
+    function save_view() {
+        if (_validator_view.form() == false) {
+            return false;
+        }
+
+        if (_button == undefined) {
+            _button = new Object();
+        }
+
+        _button.type = "view";
+        _button.name = $("#txt_view_name").val();
+        _button.url = $("#txt_view_url").val();
+
+        return true;
+    }
+
+    function save_click() {
+        if (_validator_click.form() == false) {
+            return false;
+        }
+
+        if (_button == undefined) {
+            _button = new Object();
+        }
+
+        _button.type = "click";
+        _button.name = $("#txt_click_name").val();
+        _button.clickType = $("#select_click_type").val();
+        _button.key = $("#select_click").val();
+
+        return true;
+    }
+
+    function save_wxc_campaign() {
+
+        if (_validator_wxc_campaign.form() == false) {
+            return false;
+        }
+
+        if (_button == undefined) {
+            _button = new Object();
+        }
+
+        _button.type = "wxc_campaign";
+        _button.name = $("#txt_wxc_campaign_name").val();
+        _button.campaignType = $("#select_wxc_campaign_type").val();
+        _button.campaign = $("#select_wxc_campaign").val();
+
+        return true;
+    }
+
+    function save_wxc_information() {
+
+        if (_validator_wxc_information.form() == false) {
+            return false;
+        }
+
+        if (_button == undefined) {
+            _button = new Object();
+        }
+
+        _button.type = "wxc_information";
+        _button.name = $("#txt_wxc_information_name").val();
+        _button.information = $("#select_wxc_information").val();
+
+        return true;
+    }
+
+    function save_wxc_customForm() {
+
+        if (_validator_wxc_customForm.form() == false) {
+            return false;
+        }
+
+        if (_button == undefined) {
+            _button = new Object();
+        }
+
+        _button.type = "wxc_customForm";
+        _button.name = $("#txt_wxc_customForm_name").val();
+        _button.customForm = $("#select_wxc_customForm").val();
+
+        return true;
+    }
+
+    function save_mediaId() {
+        if (_validator_mediaId.form() == false) {
+            return false;
+        }
+
+        if (__validateMaterialSelect() == false)
+            return false;
+
+        if (_button == undefined) {
+            _button = new Object();
+        }
+
+        _button.type = "mediaId";
+        _button.name = $("#txt_mediaId_name").val();
+        _button.materialType = __materialType;
+        _button.materialId = __materialSelect_materialId;
+        _button.mediaId = __materialSelect_mediaId;
+
+        return true;
+    }
+
+    function loadCampaignList() {
+
+        $("#select_wxc_campaign").empty();
+        $("#select_wxc_campaign").attr("disabled", "disabled");
+
+        //var loadLayerIndex = layer.open({
+        //    type: 2,
+        //    shadeClose: false,
+        //    content: '请稍候...'
+        //});
+
+        var args = new Object();
+        args.Page = 1;
+        args.PageSize = 1000;
+        args.Type = $("#select_wxc_campaign_type").val();
+
+        $.ajax({
+            url: "/Api/Campaign/GetCampaignList",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                // layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    $.each(resultObj.ItemList, function (idx, obj) {
+                        $("#select_wxc_campaign").append("<option value='" + obj.Id + "'>" + obj.Name + "</option>");
+                    });
+
+                    $("#select_wxc_campaign").removeAttr("disabled");
+
+                    if (_button != undefined && _button != null && _button.campaign != undefined && _button.campaign != null
+                        && _button.campaignType == args.Type) {
+                        //  alert(_button.campaign);
+                        $("#select_wxc_campaign").val(_button.campaign);
+                    } else {
+                        $('#select_wxc_campaign option:eq(0)').attr('selected', 'selected');
+                    }
+
+                    setCampaignUrl();
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function loadClickList() {
+
+        $("#select_click").empty();
+        $("#select_click").attr("disabled", "disabled");
+
+        switch ($("#select_click_type").val()) {
+            case "MemberQRCode":
+                loadClickList_MemberQRCode();
+                break;
+            default:
+                break;
+        }
+
+
+    }
+
+    function loadClickList_MemberQRCode() {
+        //var loadLayerIndex = layer.open({
+        //    type: 2,
+        //    shadeClose: false,
+        //    content: '请稍候...'
+        //});
+
+        var args = new Object();
+        args.Page = 1;
+        args.PageSize = 1000;
+        args.Type = "MemberQRCode";
+
+        $.ajax({
+            url: "/Api/Campaign/GetCampaignList",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                // layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    $.each(resultObj.ItemList, function (idx, obj) {
+                        $("#select_click").append("<option value='" + obj.Id + "'>" + obj.Name + "</option>");
+                    });
+
+                    $("#select_click").removeAttr("disabled");
+
+                    if (_button != undefined && _button != null && _button.key != undefined && _button.key != null
+                        && _button.type == "MemberQRCode") {
+                        //  alert(_button.campaign);
+                        $("#select_click").val(_button.key);
+                    } else {
+                        $('#select_click option:eq(0)').attr('selected', 'selected');
+                    }
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function loadInformationList() {
+
+        $("#select_wxc_information").empty();
+        $("#select_wxc_information").attr("disabled", "disabled");
+
+        //var loadLayerIndex = layer.open({
+        //    type: 2,
+        //    shadeClose: false,
+        //    content: '请稍候...'
+        //});
+
+        var args = new Object();
+        args.Page = 1;
+        args.PageSize = 1000;
+
+        $.ajax({
+            url: "/Api/Information/GetInformationList",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                // layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    $.each(resultObj.ItemList, function (idx, obj) {
+                        $("#select_wxc_information").append("<option value='" + obj.Id + "'>" + obj.Name + "</option>");
+                    });
+
+                    $("#select_wxc_information").removeAttr("disabled");
+
+                    if (_button != undefined && _button != null && _button.information != undefined && _button.information != null) {
+                        $("#select_wxc_information").val(_button.information);
+                    }
+
+                    setInformationUrl();
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function loadCustomFormList() {
+
+        $("#select_wxc_customForm").empty();
+        $("#select_wxc_customForm").attr("disabled", "disabled");
+
+        //var loadLayerIndex = layer.open({
+        //    type: 2,
+        //    shadeClose: false,
+        //    content: '请稍候...'
+        //});
+
+        var args = new Object();
+        args.Page = 1;
+        args.PageSize = 1000;
+
+        $.ajax({
+            url: "/Api/CustomForm/GetCustomFormList",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                // layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    $.each(resultObj.ItemList, function (idx, obj) {
+                        $("#select_wxc_customForm").append("<option value='" + obj.Id + "'>" + obj.Name + "</option>");
+                    });
+
+                    $("#select_wxc_customForm").removeAttr("disabled");
+
+                    if (_button != undefined && _button != null && _button.customForm != undefined && _button.customForm != null) {
+                        $("#select_wxc_customForm").val(_button.customForm);
+                    }
+
+                    setCustomFormUrl();
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function removeData() {
+        var layerIndex = parent.layer.getFrameIndex(window.name);
+
+        if (_mode == "modifyButton") {
+            parent.removeButtonAndCloseLayer(layerIndex, _buttonIndex);
+        } else if (_mode == "modifySubButton") {
+            parent.removeSubButtonAndCloseLayer(layerIndex, _parentButtonIndex, _buttonIndex);
+        }
+    }
+
+    function cancel() {
+        var layerIndex = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.layer.close(layerIndex); //再执行关闭
+    }
+</script>
+
+
+<div style="margin-left: 20px; margin-right: 20px; margin-top: 20px;">
+    <span id="spanTitle" class="font_black_24">添加菜单</span>
+</div>
+
+<div style="background-color: #ccc; margin-left: 20px; margin-right: 20px; margin-top: 10px; height: 1px;">
+</div>
+
+<div style="position: absolute; overflow: auto; margin-top: 25px; left: 30px; right: 30px; bottom: 160px; top: 50px;">
+
+    <form id="form">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="110" height="36">类型：</td>
+                <td>
+                    <select id="selectType" name="selectType" class="input_16" style="width: 96%;" keyenter="keyenter">
+                        <option value="wxc_function">打开功能</option>
+                        <option value="wxc_campaign">打开活动</option>
+                        <option value="click">触发事件</option>
+                        <option value="wxc_information">分类信息</option>
+                        <option value="wxc_customForm">自定义表单</option>
+                        <option value="view">访问网址</option>
+                        <option value="mediaId">下发消息</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div id="divTableCollection">
+        <div id="div_wxc_function" buttontypediv="buttonTypeDiv" directurl="true">
+            <form id="form_wxc_function">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="110" height="36">名称：</td>
+                        <td>
+                            <input id="txt_wxc_function_name" name="txt_wxc_function_name" type="text" class="input_16" style="width: 96%;" keyenter="keyenter" maxlength="40" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="110" height="36">功能：</td>
+                        <td>
+                            <select id="select_wxc_function" name="select_wxc_function" class="input_16" style="width: 96%;" keyenter="keyenter">
+                                <option value="portal" urlpath="Home/Portal">微主页</option>
+                                <option value="memberCenter" urlpath="Home/MemberCenter">会员中心</option>
+                                <option value="pointCommodity" urlpath="PointCommodity/PointCommodity">积分商城</option>
+                                <option value="pointCommodityOrderList" urlpath="PointCommodity/OrderList">积分订单</option>
+                                <option value="pointAccount" urlpath="Home/PointAccount">积分账户</option>
+                                <option value="cashAccount" urlpath="Pay/CashAccountTrack">现金账户</option>
+                                <option value="oneDollarBuying" urlpath="Campaign/OneDollarBuying">1元夺宝</option>
+                                <option value="personalInfo" urlpath="Home/PersonalInfo">个人信息</option>
+                                <option value="movieTimes" urlpath="Home/MovieTimes">电影排片</option>
+                                <option value="staff" urlpath="Staff/Home/Portal">后台入口</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="div_view" buttontypediv="buttonTypeDiv" directurl="false">
+            <form id="form_view">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="110" height="36">名称：</td>
+                        <td>
+                            <input id="txt_view_name" name="txt_view_name" type="text" class="input_16" style="width: 96%;" keyenter="keyenter" maxlength="40" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="110" height="36">网址：</td>
+                        <td>
+                            <input id="txt_view_url" name="txt_view_url" type="text" class="input_16" style="width: 96%;" keyenter="keyenter" maxlength="256" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="div_wxc_campaign" buttontypediv="buttonTypeDiv" directurl="true">
+            <form id="form_wxc_campaign">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="110" height="36">名称：</td>
+                        <td>
+                            <input id="txt_wxc_campaign_name" name="txt_wxc_campaign_name" type="text" class="input_16" style="width: 96%;" keyenter="keyenter" maxlength="40" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="110" height="36">活动：</td>
+                        <td>
+                            <select id="select_wxc_campaign_type" name="select_wxc_campaign_type" class="input_16" style="width: 96%;" keyenter="keyenter">
+                                <option value="1" urlpath="PictureVote">投票</option>
+                                <option value="2" urlpath="MemberQRCode">粉丝海报</option>
+                                <option value="3" urlpath="Lottery">定期抽奖</option>
+                                <option value="4" urlpath="LuckyTicket">聚人气抽奖</option>
+                                <option value="5" urlpath="ShakingLottery">摇一摇抽奖</option>
+                                <option value="6" urlpath="Donation">在线捐款</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="110" height="36"></td>
+                        <td>
+                            <select id="select_wxc_campaign" name="select_wxc_campaign" class="input_16" style="width: 96%;" keyenter="keyenter"></select>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div id="div_click" buttontypediv="buttonTypeDiv" directurl="false">
+            <form id="form_click">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="110" height="36">名称：</td>
+                        <td>
+                            <input id="txt_click_name" name="txt_click_name" type="text" class="input_16" style="width: 96%;" keyenter="keyenter" maxlength="40" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="110" height="36">事件：</td>
+                        <td>
+                            <select id="select_click_type" name="select_click_type" class="input_16" style="width: 96%;" keyenter="keyenter">
+                                <option value="MemberQRCode">下发粉丝海报图片</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="110" height="36"></td>
+                        <td>
+                            <select id="select_click" name="select_click" class="input_16" style="width: 96%;" keyenter="keyenter"></select>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div id="div_wxc_information" buttontypediv="buttonTypeDiv" directurl="true">
+            <form id="form_wxc_information">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="110" height="36">名称：</td>
+                        <td>
+                            <input id="txt_wxc_information_name" name="txt_wxc_information_name" type="text" class="input_16" style="width: 96%;" keyenter="keyenter" maxlength="40" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="110" height="36">分类信息：</td>
+                        <td>
+                            <select id="select_wxc_information" name="select_wxc_information" class="input_16" style="width: 96%;" keyenter="keyenter"></select>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="div_wxc_customForm" buttontypediv="buttonTypeDiv" directurl="true">
+            <form id="form_wxc_customForm">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="110" height="36">名称：</td>
+                        <td>
+                            <input id="txt_wxc_customForm_name" name="txt_wxc_customForm_name" type="text" class="input_16" style="width: 96%;" keyenter="keyenter" maxlength="40" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="110" height="36">表单：</td>
+                        <td>
+                            <select id="select_wxc_customForm" name="select_wxc_customForm" class="input_16" style="width: 96%;" keyenter="keyenter"></select>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="div_mediaId" buttontypediv="buttonTypeDiv" directurl="false">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="110" height="36">名称：</td>
+                    <td>
+                        <form id="form_mediaId">
+                            <input id="txt_mediaId_name" name="txt_mediaId_name" type="text" class="input_16" style="width: 96%;" keyenter="keyenter" maxlength="40" />
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        @Helpers.MaterialSelect(false, true, true)
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="divDirectUrlArea" class="divBorder_lightgray" style="position: absolute; bottom: 75px; left: 20px; right: 20px; font-size: 13px; padding: 10px;">
+    您也可以可通过微信官方后台将此 URL 添加到菜单：
+    <div id="divUrl" style="word-wrap: break-word">
+    </div>
+</div>
+
+<div style="background-color: #ccc; position: absolute; bottom: 55px; left: 20px; right: 20px; height: 1px;">
+</div>
+
+<div style="position: absolute; bottom: 15px; left: 20px; right: 20px;">
+
+
+    <div style="float: left;">
+        <input name="btnRemove" type="button" class="btn_red" id="btnRemove" value="删 除" onclick="removeData()" style="display: none" />
+    </div>
+
+    <div style="float: right">
+        <input name="btnSave" type="button" class="btn_blue" id="btnSave" value="保 存" onclick="save()" />
+        <input name="btnCancel" type="button" class="btn_blue" id="btnCancel" value="取 消" onclick="cancel()" />
+    </div>
+    <div style="clear: both">
+    </div>
+</div>

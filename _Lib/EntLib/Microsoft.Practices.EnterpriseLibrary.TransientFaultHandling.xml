@@ -1,0 +1,742 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.AsyncExecution`1">
+            <summary>
+            Handles the execution and retries of the user-initiated task.
+            </summary>
+            <typeparam name="TResult">The result type of the user-initiated task.</typeparam>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.AsyncExecution">
+            <summary>
+            Provides a wrapper for a non-generic <see cref="T:System.Threading.Tasks.Task"/> and calls into the pipeline
+            to retry only the generic version of the <see cref="T:System.Threading.Tasks.Task"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.AsyncExecution.StartAsGenericTask(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Wraps the non-generic <see cref="T:System.Threading.Tasks.Task"/> into a generic <see cref="T:System.Threading.Tasks.Task"/>.
+            </summary>
+            <param name="taskAction">The task to wrap.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> that wraps the non-generic <see cref="T:System.Threading.Tasks.Task"/>.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Guard">
+            <summary>
+            Implements the common guard methods.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Guard.ArgumentNotNullOrEmptyString(System.String,System.String)">
+            <summary>
+            Checks a string argument to ensure that it isn't null or empty.
+            </summary>
+            <param name="argumentValue">The argument value to check.</param>
+            <param name="argumentName">The name of the argument.</param>
+            <returns>The return value should be ignored. It is intended to be used only when validating arguments during instance creation (for example, when calling the base constructor).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Guard.ArgumentNotNull(System.Object,System.String)">
+            <summary>
+            Checks an argument to ensure that it isn't null.
+            </summary>
+            <param name="argumentValue">The argument value to check.</param>
+            <param name="argumentName">The name of the argument.</param>
+            <returns>The return value should be ignored. It is intended to be used only when validating arguments during instance creation (for example, when calling the base constructor).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Guard.ArgumentNotNegativeValue(System.Int32,System.String)">
+            <summary>
+            Checks an argument to ensure that its 32-bit signed value isn't negative.
+            </summary>
+            <param name="argumentValue">The <see cref="T:System.Int32"/> value of the argument.</param>
+            <param name="argumentName">The name of the argument for diagnostic purposes.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Guard.ArgumentNotNegativeValue(System.Int64,System.String)">
+            <summary>
+            Checks an argument to ensure that its 64-bit signed value isn't negative.
+            </summary>
+            <param name="argumentValue">The <see cref="T:System.Int64"/> value of the argument.</param>
+            <param name="argumentName">The name of the argument for diagnostic purposes.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Guard.ArgumentNotGreaterThan(System.Double,System.Double,System.String)">
+            <summary>
+            Checks an argument to ensure that its value doesn't exceed the specified ceiling baseline.
+            </summary>
+            <param name="argumentValue">The <see cref="T:System.Double"/> value of the argument.</param>
+            <param name="ceilingValue">The <see cref="T:System.Double"/> ceiling value of the argument.</param>
+            <param name="argumentName">The name of the argument for diagnostic purposes.</param>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy">
+            <summary>
+            Defines an interface that must be implemented by custom components responsible for detecting specific transient conditions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy.IsTransient(System.Exception)">
+            <summary>
+            Determines whether the specified exception represents a transient failure that can be compensated by a retry.
+            </summary>
+            <param name="ex">The exception object to be verified.</param>
+            <returns>true if the specified exception is considered as transient; otherwise, false.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.ArgumentCannotBeGreaterThanBaseline">
+            <summary>
+              Looks up a localized string similar to The specified argument {0} cannot be greater than its ceiling value of {1}..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.ArgumentCannotBeNegative">
+            <summary>
+              Looks up a localized string similar to The specified argument {0} cannot be initialized with a negative value..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.DefaultRetryStrategyMappingNotFound">
+            <summary>
+              Looks up a localized string similar to Default retry strategy for technology {0}, named &apos;{1}&apos;, is not defined..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.DefaultRetryStrategyNotFound">
+            <summary>
+              Looks up a localized string similar to Default retry strategy for technology {0} was not not defined, and there is no overall default strategy..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.ExceptionRetryManagerAlreadySet">
+            <summary>
+              Looks up a localized string similar to The RetryManager is already set..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.ExceptionRetryManagerNotSet">
+            <summary>
+              Looks up a localized string similar to The default RetryManager has not been set. Set it by invoking the RetryManager.SetDefault static method, or if you are using declarative configuration, you can invoke the RetryPolicyFactory.CreateDefault() method to automatically create the retry manager from the configuration file..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.RetryLimitExceeded">
+            <summary>
+              Looks up a localized string similar to The action has exceeded its defined retry limit..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.RetryStrategyNotFound">
+            <summary>
+              Looks up a localized string similar to The retry strategy with name &apos;{0}&apos; cannot be found..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.StringCannotBeEmpty">
+            <summary>
+              Looks up a localized string similar to The specified string argument {0} must not be empty..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.TaskCannotBeNull">
+            <summary>
+              Looks up a localized string similar to The specified argument &apos;{0}&apos; cannot return a null task when invoked..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.TaskMustBeScheduled">
+            <summary>
+              Looks up a localized string similar to The specified argument &apos;{0}&apos; must return a scheduled task (also known as &quot;hot&quot; task) when invoked..
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryingEventArgs">
+            <summary>
+            Contains information that is required for the <see cref="E:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.Retrying"/> event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryingEventArgs.#ctor(System.Int32,System.TimeSpan,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryingEventArgs"/> class.
+            </summary>
+            <param name="currentRetryCount">The current retry attempt count.</param>
+            <param name="delay">The delay that indicates how long the current thread will be suspended before the next iteration is invoked.</param>
+            <param name="lastException">The exception that caused the retry conditions to occur.</param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryingEventArgs.CurrentRetryCount">
+            <summary>
+            Gets the current retry count.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryingEventArgs.Delay">
+            <summary>
+            Gets the delay that indicates how long the current thread will be suspended before the next iteration is invoked.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryingEventArgs.LastException">
+            <summary>
+            Gets the exception that caused the retry conditions to occur.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryLimitExceededException">
+            <summary>
+            The special type of exception that provides managed exit from a retry loop. The user code can use this
+            exception to notify the retry policy that no further retry attempts are required.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryLimitExceededException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryLimitExceededException"/> class with a default error message.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryLimitExceededException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryLimitExceededException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryLimitExceededException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryLimitExceededException"/> class with a reference to the inner exception
+            that is the cause of this exception.
+            </summary>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryLimitExceededException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryLimitExceededException"/> class with a specified error message and inner exception.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager">
+            <summary>
+            Provides the entry point to the retry functionality.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.SetDefault(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager,System.Boolean)">
+            <summary>
+            Sets the specified retry manager as the default retry manager.
+            </summary>
+            <param name="retryManager">The retry manager.</param>
+            <param name="throwIfSet">true to throw an exception if the manager is already set; otherwise, false. Defaults to <see langword="true"/>.</param>
+            <exception cref="T:System.InvalidOperationException">The singleton is already set and <paramref name="throwIfSet"/> is true.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.#ctor(System.Collections.Generic.IEnumerable{Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager"/> class.
+            </summary>
+            <param name="retryStrategies">The complete set of retry strategies.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.#ctor(System.Collections.Generic.IEnumerable{Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager"/> class with the specified retry strategies and default retry strategy name.
+            </summary>
+            <param name="retryStrategies">The complete set of retry strategies.</param>
+            <param name="defaultRetryStrategyName">The default retry strategy.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.#ctor(System.Collections.Generic.IEnumerable{Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy},System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager"/> class with the specified retry strategies and defaults.
+            </summary>
+            <param name="retryStrategies">The complete set of retry strategies.</param>
+            <param name="defaultRetryStrategyName">The default retry strategy.</param>
+            <param name="defaultRetryStrategyNamesMap">The names of the default strategies for different technologies.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.GetRetryPolicy``1">
+            <summary>
+            Returns a retry policy with the specified error detection strategy and the default retry strategy defined in the configuration. 
+            </summary>
+            <typeparam name="T">The type that implements the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy"/> interface that is responsible for detecting transient conditions.</typeparam>
+            <returns>A new retry policy with the specified error detection strategy and the default retry strategy defined in the configuration.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.GetRetryPolicy``1(System.String)">
+            <summary>
+            Returns a retry policy with the specified error detection strategy and retry strategy.
+            </summary>
+            <typeparam name="T">The type that implements the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy"/> interface that is responsible for detecting transient conditions.</typeparam>
+            <param name="retryStrategyName">The retry strategy name, as defined in the configuration.</param>
+            <returns>A new retry policy with the specified error detection strategy and the default retry strategy defined in the configuration.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.GetRetryStrategy">
+            <summary>
+            Returns the default retry strategy defined in the configuration.
+            </summary>
+            <returns>The retry strategy that matches the default strategy.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.GetRetryStrategy(System.String)">
+            <summary>
+            Returns the retry strategy that matches the specified name.
+            </summary>
+            <param name="retryStrategyName">The retry strategy name.</param>
+            <returns>The retry strategy that matches the specified name.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.GetDefaultRetryStrategy(System.String)">
+            <summary>
+            Returns the retry strategy for the specified technology.
+            </summary>
+            <param name="technology">The techonolgy to get the default retry strategy for.</param>
+            <returns>The retry strategy for the specified technology.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.Instance">
+            <summary>
+            Gets the default <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager"/> for the application.
+            </summary>
+            <remarks>You can update the default retry manager by calling the <see cref="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.SetDefault(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager,System.Boolean)"/> method.</remarks>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager.DefaultRetryStrategyName">
+            <summary>
+            Gets or sets the default retry strategy name.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy">
+            <summary>
+            Provides the base implementation of the retry mechanism for unreliable actions and transient conditions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.#ctor(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy,Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy"/> class with the specified number of retry attempts and parameters defining the progressive delay between retries.
+            </summary>
+            <param name="errorDetectionStrategy">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy"/> that is responsible for detecting transient conditions.</param>
+            <param name="retryStrategy">The strategy to use for this retry policy.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.#ctor(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy"/> class with the specified number of retry attempts and default fixed time interval between retries.
+            </summary>
+            <param name="errorDetectionStrategy">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy"/> that is responsible for detecting transient conditions.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.#ctor(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy,System.Int32,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy"/> class with the specified number of retry attempts and fixed time interval between retries.
+            </summary>
+            <param name="errorDetectionStrategy">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy"/> that is responsible for detecting transient conditions.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="retryInterval">The interval between retries.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.#ctor(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy,System.Int32,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy"/> class with the specified number of retry attempts and backoff parameters for calculating the exponential delay between retries.
+            </summary>
+            <param name="errorDetectionStrategy">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy"/> that is responsible for detecting transient conditions.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="minBackoff">The minimum backoff time.</param>
+            <param name="maxBackoff">The maximum backoff time.</param>
+            <param name="deltaBackoff">The time value that will be used to calculate a random delta in the exponential delay between retries.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.#ctor(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy,System.Int32,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy"/> class with the specified number of retry attempts and parameters defining the progressive delay between retries.
+            </summary>
+            <param name="errorDetectionStrategy">The <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy"/> that is responsible for detecting transient conditions.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="initialInterval">The initial interval that will apply for the first retry.</param>
+            <param name="increment">The incremental time value that will be used to calculate the progressive delay between retries.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.ExecuteAction(System.Action)">
+            <summary>
+            Repetitively executes the specified action while it satisfies the current retry policy.
+            </summary>
+            <param name="action">A delegate that represents the executable action that doesn't return any results.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.ExecuteAction``1(System.Func{``0})">
+            <summary>
+            Repetitively executes the specified action while it satisfies the current retry policy.
+            </summary>
+            <typeparam name="TResult">The type of result expected from the executable action.</typeparam>
+            <param name="func">A delegate that represents the executable action that returns the result of type <typeparamref name="TResult"/>.</param>
+            <returns>The result from the action.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.ExecuteAsync(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Repetitively executes the specified asynchronous task while it satisfies the current retry policy.
+            </summary>
+            <param name="taskAction">A function that returns a started task (also known as "hot" task).</param>
+            <returns>
+            A task that will run to completion if the original task completes successfully (either the
+            first time or after retrying transient failures). If the task fails with a non-transient error or
+            the retry limit is reached, the returned task will transition to a faulted state and the exception must be observed.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.ExecuteAsync(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Repetitively executes the specified asynchronous task while it satisfies the current retry policy.
+            </summary>
+            <param name="taskAction">A function that returns a started task (also known as "hot" task).</param>
+            <param name="cancellationToken">The token used to cancel the retry operation. This token does not cancel the execution of the asynchronous task.</param>
+            <returns>
+            Returns a task that will run to completion if the original task completes successfully (either the
+            first time or after retrying transient failures). If the task fails with a non-transient error or
+            the retry limit is reached, the returned task will transition to a faulted state and the exception must be observed.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.ExecuteAsync``1(System.Func{System.Threading.Tasks.Task{``0}})">
+            <summary>
+            Repeatedly executes the specified asynchronous task while it satisfies the current retry policy.
+            </summary>
+            <param name="taskFunc">A function that returns a started task (also known as "hot" task).</param>
+            <returns>
+            Returns a task that will run to completion if the original task completes successfully (either the
+            first time or after retrying transient failures). If the task fails with a non-transient error or
+            the retry limit is reached, the returned task will transition to a faulted state and the exception must be observed.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.ExecuteAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)">
+            <summary>
+            Repeatedly executes the specified asynchronous task while it satisfies the current retry policy.
+            </summary>
+            <param name="taskFunc">A function that returns a started task (also known as "hot" task).</param>
+            <param name="cancellationToken">The token used to cancel the retry operation. This token does not cancel the execution of the asynchronous task.</param>
+            <returns>
+            Returns a task that will run to completion if the original task completes successfully (either the
+            first time or after retrying transient failures). If the task fails with a non-transient error or
+            the retry limit is reached, the returned task will transition to a faulted state and the exception must be observed.
+            </returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.OnRetrying(System.Int32,System.Exception,System.TimeSpan)">
+            <summary>
+            Notifies the subscribers whenever a retry condition is encountered.
+            </summary>
+            <param name="retryCount">The current retry attempt count.</param>
+            <param name="lastError">The exception that caused the retry conditions to occur.</param>
+            <param name="delay">The delay that indicates how long the current thread will be suspended before the next iteration is invoked.</param>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.NoRetry">
+            <summary>
+            Returns a default policy that performs no retries, but invokes the action only once.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.DefaultFixed">
+            <summary>
+            Returns a default policy that implements a fixed retry interval configured with the default <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval"/> retry strategy.
+            The default retry policy treats all caught exceptions as transient errors.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.DefaultProgressive">
+            <summary>
+            Returns a default policy that implements a progressive retry interval configured with the default <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Incremental"/> retry strategy.
+            The default retry policy treats all caught exceptions as transient errors.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.DefaultExponential">
+            <summary>
+            Returns a default policy that implements a random exponential retry interval configured with the default <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval"/> retry strategy.
+            The default retry policy treats all caught exceptions as transient errors.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.Retrying">
+            <summary>
+            An instance of a callback delegate that will be invoked whenever a retry condition is encountered.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.RetryStrategy">
+            <summary>
+            Gets the retry strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.ErrorDetectionStrategy">
+            <summary>
+            Gets the instance of the error detection strategy.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.TransientErrorIgnoreStrategy">
+            <summary>
+            Implements a strategy that ignores any transient errors.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.TransientErrorIgnoreStrategy.IsTransient(System.Exception)">
+            <summary>
+            Always returns false.
+            </summary>
+            <param name="ex">The exception.</param>
+            <returns>Always false.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.TransientErrorCatchAllStrategy">
+            <summary>
+            Implements a strategy that treats all exceptions as transient errors.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy.TransientErrorCatchAllStrategy.IsTransient(System.Exception)">
+            <summary>
+            Always returns true.
+            </summary>
+            <param name="ex">The exception.</param>
+            <returns>Always true.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy`1">
+            <summary>
+            Provides a generic version of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy"/> class.
+            </summary>
+            <typeparam name="T">The type that implements the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy"/> interface that is responsible for detecting transient conditions.</typeparam>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy`1.#ctor(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy`1"/> class with the specified number of retry attempts and parameters defining the progressive delay between retries.
+            </summary>
+            <param name="retryStrategy">The strategy to use for this retry policy.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy`1.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy`1"/> class with the specified number of retry attempts and the default fixed time interval between retries.
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy`1.#ctor(System.Int32,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy`1"/> class with the specified number of retry attempts and a fixed time interval between retries.
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="retryInterval">The interval between retries.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy`1.#ctor(System.Int32,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy`1"/> class with the specified number of retry attempts and backoff parameters for calculating the exponential delay between retries.
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="minBackoff">The minimum backoff time.</param>
+            <param name="maxBackoff">The maximum backoff time.</param>
+            <param name="deltaBackoff">The time value that will be used to calculate a random delta in the exponential delay between retries.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy`1.#ctor(System.Int32,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy`1"/> class with the specified number of retry attempts and parameters defining the progressive delay between retries.
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="initialInterval">The initial interval that will apply for the first retry.</param>
+            <param name="increment">The incremental time value that will be used to calculate the progressive delay between retries.</param>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ExponentialBackoff">
+            <summary>
+            A retry strategy with backoff parameters for calculating the exponential delay between retries.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy">
+            <summary>
+            Represents a retry strategy that determines the number of retry attempts and the interval between retries.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultClientRetryCount">
+            <summary>
+            Represents the default number of retry attempts.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultClientBackoff">
+            <summary>
+            Represents the default amount of time used when calculating a random delta in the exponential delay between retries.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultMaxBackoff">
+            <summary>
+            Represents the default maximum amount of time used when calculating the exponential delay between retries.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultMinBackoff">
+            <summary>
+            Represents the default minimum amount of time used when calculating the exponential delay between retries.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultRetryInterval">
+            <summary>
+            Represents the default interval between retries.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultRetryIncrement">
+            <summary>
+            Represents the default time increment between retry attempts in the progressive delay policy.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultFirstFastRetry">
+            <summary>
+            Represents the default flag indicating whether the first retry attempt will be made immediately,
+            whereas subsequent retries will remain subject to the retry interval.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/> class. 
+            </summary>
+            <param name="name">The name of the retry strategy.</param>
+            <param name="firstFastRetry">true to immediately retry in the first attempt; otherwise, false. The subsequent retries will remain subject to the configured retry interval.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.GetShouldRetry">
+            <summary>
+            Returns the corresponding ShouldRetry delegate.
+            </summary>
+            <returns>The ShouldRetry delegate.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.NoRetry">
+            <summary>
+            Returns a default policy that performs no retries, but invokes the action only once.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultFixed">
+            <summary>
+            Returns a default policy that implements a fixed retry interval configured with the <see cref="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultClientRetryCount"/> and <see cref="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultRetryInterval"/> parameters.
+            The default retry policy treats all caught exceptions as transient errors.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultProgressive">
+            <summary>
+            Returns a default policy that implements a progressive retry interval configured with the <see cref="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultClientRetryCount"/>, <see cref="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultRetryInterval"/>, and <see cref="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultRetryIncrement"/> parameters.
+            The default retry policy treats all caught exceptions as transient errors.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultExponential">
+            <summary>
+            Returns a default policy that implements a random exponential retry interval configured with the <see cref="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultClientRetryCount"/>, <see cref="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultMinBackoff"/>, <see cref="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultMaxBackoff"/>, and <see cref="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.DefaultClientBackoff"/> parameters.
+            The default retry policy treats all caught exceptions as transient errors.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.FastFirstRetry">
+            <summary>
+            Gets or sets a value indicating whether the first retry attempt will be made immediately,
+            whereas subsequent retries will remain subject to the retry interval.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy.Name">
+            <summary>
+            Gets the name of the retry strategy.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ExponentialBackoff.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ExponentialBackoff"/> class. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ExponentialBackoff.#ctor(System.Int32,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ExponentialBackoff"/> class with the specified retry settings.
+            </summary>
+            <param name="retryCount">The maximum number of retry attempts.</param>
+            <param name="minBackoff">The minimum backoff time</param>
+            <param name="maxBackoff">The maximum backoff time.</param>
+            <param name="deltaBackoff">The value that will be used to calculate a random delta in the exponential delay between retries.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ExponentialBackoff.#ctor(System.String,System.Int32,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ExponentialBackoff"/> class with the specified name and retry settings.
+            </summary>
+            <param name="name">The name of the retry strategy.</param>
+            <param name="retryCount">The maximum number of retry attempts.</param>
+            <param name="minBackoff">The minimum backoff time</param>
+            <param name="maxBackoff">The maximum backoff time.</param>
+            <param name="deltaBackoff">The value that will be used to calculate a random delta in the exponential delay between retries.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ExponentialBackoff.#ctor(System.String,System.Int32,System.TimeSpan,System.TimeSpan,System.TimeSpan,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ExponentialBackoff"/> class with the specified name, retry settings, and fast retry option.
+            </summary>
+            <param name="name">The name of the retry strategy.</param>
+            <param name="retryCount">The maximum number of retry attempts.</param>
+            <param name="minBackoff">The minimum backoff time</param>
+            <param name="maxBackoff">The maximum backoff time.</param>
+            <param name="deltaBackoff">The value that will be used to calculate a random delta in the exponential delay between retries.</param>
+            <param name="firstFastRetry">true to immediately retry in the first attempt; otherwise, false. The subsequent retries will remain subject to the configured retry interval.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ExponentialBackoff.GetShouldRetry">
+            <summary>
+            Returns the corresponding ShouldRetry delegate.
+            </summary>
+            <returns>The ShouldRetry delegate.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval">
+            <summary>
+            Represents a retry strategy with a specified number of retry attempts and a default, fixed time interval between retries.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval"/> class. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval"/> class with the specified number of retry attempts. 
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval.#ctor(System.Int32,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval"/> class with the specified number of retry attempts and time interval. 
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="retryInterval">The time interval between retries.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval.#ctor(System.String,System.Int32,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval"/> class with the specified number of retry attempts, time interval, and retry strategy. 
+            </summary>
+            <param name="name">The retry strategy name.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="retryInterval">The time interval between retries.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval.#ctor(System.String,System.Int32,System.TimeSpan,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval"/> class with the specified number of retry attempts, time interval, retry strategy, and fast start option. 
+            </summary>
+            <param name="name">The retry strategy name.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="retryInterval">The time interval between retries.</param>
+            <param name="firstFastRetry">true to immediately retry in the first attempt; otherwise, false. The subsequent retries will remain subject to the configured retry interval.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.FixedInterval.GetShouldRetry">
+            <summary>
+            Returns the corresponding ShouldRetry delegate.
+            </summary>
+            <returns>The ShouldRetry delegate.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Incremental">
+            <summary>
+            A retry strategy with a specified number of retry attempts and an incremental time interval between retries.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Incremental.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Incremental"/> class. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Incremental.#ctor(System.Int32,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Incremental"/> class with the specified retry settings.
+            </summary>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="initialInterval">The initial interval that will apply for the first retry.</param>
+            <param name="increment">The incremental time value that will be used to calculate the progressive delay between retries.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Incremental.#ctor(System.String,System.Int32,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Incremental"/> class with the specified name and retry settings.
+            </summary>
+            <param name="name">The retry strategy name.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="initialInterval">The initial interval that will apply for the first retry.</param>
+            <param name="increment">The incremental time value that will be used to calculate the progressive delay between retries.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Incremental.#ctor(System.String,System.Int32,System.TimeSpan,System.TimeSpan,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Incremental"/> class with the specified number of retry attempts, time interval, retry strategy, and fast start option. 
+            </summary>
+            <param name="name">The retry strategy name.</param>
+            <param name="retryCount">The number of retry attempts.</param>
+            <param name="initialInterval">The initial interval that will apply for the first retry.</param>
+            <param name="increment">The incremental time value that will be used to calculate the progressive delay between retries.</param>
+            <param name="firstFastRetry">true to immediately retry in the first attempt; otherwise, false. The subsequent retries will remain subject to the configured retry interval.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Incremental.GetShouldRetry">
+            <summary>
+            Returns the corresponding ShouldRetry delegate.
+            </summary>
+            <returns>The ShouldRetry delegate.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ShouldRetry">
+            <summary>
+            Defines a callback delegate that will be invoked whenever a retry condition is encountered.
+            </summary>
+            <param name="retryCount">The current retry attempt count.</param>
+            <param name="lastException">The exception that caused the retry conditions to occur.</param>
+            <param name="delay">The delay that indicates how long the current thread will be suspended before the next iteration is invoked.</param>
+            <returns><see langword="true"/> if a retry is allowed; otherwise, <see langword="false"/>.</returns>
+        </member>
+    </members>
+</doc>

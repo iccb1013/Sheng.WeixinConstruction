@@ -1,0 +1,3 @@
+﻿<div class="leftMenuItem @if(ViewBag.LeftMenu == "OneDollarBuyingCommodity"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("1元夺宝", "OneDollarBuyingCommodity", "Pay", null, new { @class = ViewBag.LeftMenu == "OneDollarBuyingCommodity" ? "a_white_16" : "a_black_16" })
+</div>

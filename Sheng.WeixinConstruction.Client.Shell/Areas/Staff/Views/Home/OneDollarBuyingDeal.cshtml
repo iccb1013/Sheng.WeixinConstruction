@@ -1,0 +1,248 @@
+﻿@{
+    ViewBag.SubTitle = "1元夺宝";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #tableOrderDetail {
+        font-size: 0.14rem;
+    }
+
+        #tableOrderDetail tr {
+            height: 0.24rem;
+        }
+</style>
+
+<script>
+
+    var _dealInfo = null;
+
+    function search() {
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var periodNumber = $("#txtSearch_PeriodNumber").val();
+
+        $.ajax({
+            url: "/Api/OneDollarBuying/GetDealInfoByPeriodNumber/@ViewBag.Domain.Id?periodNumber=" + periodNumber,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    _dealInfo = data.Data;
+
+                    $("#spanCommodityName").html(_dealInfo.CommodityName);
+                    $("#spanPeriodNumber").html(_dealInfo.PeriodNumber);
+                    $("#spanForSaleTime").html(_dealInfo.ForSaleTime);
+                    $("#spanLuckyPartNumber").html(_dealInfo.LuckyPartNumber);
+                    $("#spanDrawTime").html(_dealInfo.DrawTime);
+
+                    if (_dealInfo.LuckyMember != null) {
+                        $("#spanLuckyMemberNickName").html(_dealInfo.LuckyMember.NickName);
+                        $("#spanMobilePhone").html(_dealInfo.LuckyMember.MobilePhone);
+                        $("#spanEmail").html(_dealInfo.LuckyMember.Email);
+                        if (_dealInfo.Deal) {
+                            $("#spanDeal").html("是");
+                        } else {
+                            $("#spanDeal").html("否");
+                        }
+                        $("#spanDealTime").html(_dealInfo.DealTime);
+                    }
+
+
+                    $("#divOrderDetail").show();
+                    $("#divMessage").hide();
+
+                    if (_dealInfo.LuckyMember != null && _dealInfo.Deal == 0) {
+                        $("#btnDeal").show();
+                    }
+                    else {
+                        $("#btnDeal").hide();
+                    }
+
+
+                } else {
+
+                    _dealInfo = null;
+
+                    $("#divOrderDetail").hide();
+                    $("#divMessage").show();
+
+                    $("#btnDeal").hide();
+
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function deal() {
+
+        if (_dealInfo == null || _dealInfo == undefined)
+            return;
+
+        var msg = "是否确认领取？"
+
+        var confirmLayerIndex = layer.open({
+            content: msg,
+            btn: ['确认', '取消'],
+            shadeClose: false,
+            anim: false,
+            yes: function () {
+                layer.close(confirmLayerIndex);
+
+                var loadLayerIndex = layer.open({
+                    type: 2,
+                    shadeClose: false,
+                    content: '请稍候...'
+                });
+
+                $.ajax({
+                    url: "/Api/OneDollarBuying/Deal/@ViewBag.Domain.Id?saleId=" + _dealInfo.SaleId,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data, status, jqXHR) {
+                        layer.close(loadLayerIndex);
+                        if (data.Success) {
+                            switch (data.Data.Result) {
+                                case 0:
+                                    layerAlertBtn("领取成功！", function () {
+                                        layer.closeAll();
+                                        search();
+                                    });
+                                    break;
+                                case 1:
+                                    layerAlert("该商品已领取过，不可再次领取。");
+                                    break;
+                                case 2:
+                                    layerAlert("商品信息无效。");
+                                    break;
+                                default:
+                                    layerAlert("未知：" + data.Data.Result);
+                                    break;
+                            }
+
+                        } else {
+                            layerAlert(data.Message);
+                        }
+                    },
+                    error: function (xmlHttpRequest) {
+                        layer.close(loadLayerIndex);
+                        alert("Error: " + xmlHttpRequest.status);
+                    }
+                });
+            }
+        });
+    }
+
+</script>
+
+<div class="divContent" style="margin-top:0.1rem;">
+    <div style="margin-top:0.5rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>期号：</td>
+                <td align="right"><input name="btnSearch" type="button" class="btn_blue" id="btnSearch" value="查询" onclick="search()" /></td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="margin-top:0.1rem;">
+        <input id="txtSearch_PeriodNumber" name="txtSearch_PeriodNumber" type="text" class="input_16" />
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+    </div>
+
+    <div id="divOrderDetail" style="display:none">
+        <table id="tableOrderDetail" width="96%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>商品：</td>
+                <td>
+                    <span id="spanCommodityName"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>期号：</td>
+                <td>
+                    <span id="spanPeriodNumber"></span>
+                </td>
+            </tr>
+            <tr>
+                <td width="110">上架时间：</td>
+                <td>
+                    <span id="spanForSaleTime"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>幸运号码：</td>
+                <td>
+                    <span id="spanLuckyPartNumber"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>揭晓时间：</td>
+                <td>
+                    <span id="spanDrawTime"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>获得者：</td>
+                <td>
+                    <span id="spanLuckyMemberNickName"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>手机：</td>
+                <td>
+                    <span id="spanMobilePhone"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>邮箱：</td>
+                <td>
+                    <span id="spanEmail"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>是否领取：</td>
+                <td>
+                    <span id="spanDeal"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>领取时间：</td>
+                <td>
+                    <span id="spanDealTime"></span>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div id="divMessage">
+        请输入要查询的完整期号。
+    </div>
+
+    <div class="divDotLine" style="margin-top:0.1rem; margin-bottom:0.1rem;">
+    </div>
+
+    <div>
+        <div style="float:right;">
+            <input id="btnDeal" name="btnDeal" type="button" class="btn_green" style="width:1rem;display:none" value="领 取" onclick="deal();" />
+        </div>
+    </div>
+
+</div>
+

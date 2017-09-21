@@ -1,0 +1,19 @@
+﻿@*<div class="leftMenuItem @if(ViewBag.LeftMenu == "DomainType"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("账户信息", "DomainType", "System", null, new { @class = ViewBag.LeftMenu == "DomainType" ? "a_white_16" : "a_black_16" })
+</div>*@
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "UserList"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("用户管理", "UserList", "System", null, new { @class = ViewBag.LeftMenu == "UserList" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "CurrentUserInfo"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("个人信息", "CurrentUserInfo", "System", null, new { @class = ViewBag.LeftMenu == "CurrentUserInfo" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "Password"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("修改密码", "Password", "System", null, new { @class = ViewBag.LeftMenu == "Password" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "OperatedLog"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("操作日志", "OperatedLog", "System", null, new { @class = ViewBag.LeftMenu == "OperatedLog" ? "a_white_16" : "a_black_16" })
+</div>

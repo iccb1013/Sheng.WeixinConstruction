@@ -1,0 +1,240 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.PictureVoteUploadViewModel
+
+@{
+    ViewBag.SubTitle = "活动";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<script type="text/javascript">
+
+    var _validator;
+
+    var _localIds;
+
+    $(document).ready(function ()
+    {
+
+        var jsApiConfigStr = "@Newtonsoft.Json.JsonConvert.SerializeObject(Model.JsApiConfig)";
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("&quot;", "gm"), "\"");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\r\n", "gm"), "");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\n", "gm"), "");
+        // alert(jsApiConfigStr);
+        var jsApiConfig = eval('(' + jsApiConfigStr + ')');
+
+        wx.config(jsApiConfig);
+
+        _validator = $("#form").validate({
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txtTitle": "required"
+            },
+            messages: {
+                "txtTitle": "请输入名称；"
+            }
+        });
+
+    });
+
+    //wx.ready(function ()
+    //{
+
+    //});
+
+    wx.error(function (res)
+    {
+        alert("error:" + res);
+    });
+
+    function choose()
+    {
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res)
+            {
+                _localIds = res.localIds;
+                $("#divChoose").hide();
+                $("#divPhoto").show();
+                $("#imgPhoto").attr("src", _localIds);
+            },
+            fail: function (res)
+            {
+                alert(res.errMsg);
+            }
+        });
+    }
+
+    function upload()
+    {
+        if (_localIds == undefined || _localIds == null || _localIds == "")
+        {
+            layerAlert("请选择您要上传的照片。");
+            return;
+        }
+
+        if (_validator.form() == false)
+        {
+            return;
+        }
+
+        wx.uploadImage({
+            localId: _localIds.toString(),
+            isShowProgressTips: 1,
+            success: function (res)
+            {
+                var serverId = res.serverId;
+                save(serverId);
+            },
+            fail: function (res)
+            {
+                alert(res.errMsg);
+            }
+        });
+    }
+
+    function save(serverId)
+    {
+        //保存数据
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.ImageServerId = serverId;
+        args.Title = $("#txtTitle").val();
+        args.Description = $("#txtDescription").val();
+        args.CampaignId = getQueryString("campaignId");
+
+        $.ajax({
+            url: "/Api/Campaign/CreatePictureVoteItem/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR)
+            {
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    switch (data.Data)
+                    {
+                        case 0:
+                            layerAlertBtn("提交成功，请等待管理审核。", function ()
+                            {
+                                window.location.href = '/Campaign/PictureVote/@ViewBag.Domain.Id?campaignId=@Model.Campaign.Id';
+                            });
+                            break;
+                        case 1:
+                            layerAlert("提交失败。");
+                            break;
+                        case 2:
+                            layerAlert("您的发布次数达到限制。");
+                            break;
+                        case 3:
+                            layerAlert("参与通道已经关闭。");
+                            break;
+                        default:
+                            layerAlert("未知错误");
+                            break;
+                    }
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+
+</script>
+
+
+<style type="text/css">
+
+     body {
+            margin-bottom: 0.15rem;
+        }
+
+    .campaignName {
+            font-size: 0.14rem;
+            font-weight: bold;
+        }
+
+        .campaignDescription {
+            font-size: 0.13rem;
+            color: #666;
+        }
+
+    
+</style>
+
+
+<div id="divImageContainer">
+    <img src="@Model.Campaign.ImageUrl" name="img" id="img" style="width: 100%;">
+</div>
+<div class="divContent" style="margin-top: 0.1rem;">
+    <div style="margin-top: 0.06rem" class="campaignName">
+        @Model.Campaign.Name
+    </div>
+    <div style="margin-top: 0.06rem" class="campaignDescription">
+        @Html.Raw(Model.Campaign.Introduction);
+    </div>
+
+    <div class="divBorder" style="margin-top: 0.15rem;">
+        <div id="divChoose" onclick="choose()">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center">选择照片</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <div id="divPhoto" style="display: none">
+            <img id="imgPhoto" src="" style="width: 100%;" onclick="choose()" />
+        </div>
+    </div>
+
+    <div style="margin-top: 0.15rem">
+        <form id="form">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="height: 0.35rem;">名称：</td>
+                    <td>
+                        <input id="txtTitle" name="txtTitle" type="text" class="input_16" maxlength="7"></td>
+                </tr>
+
+                <tr>
+                    <td style="height: 0.35rem;">说明：</td>
+                    <td>
+                        <textarea name="txtDescription" rows="4" class="input_16" id="txtDescription" maxlength="500"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div style="margin-top:0.1rem;text-align:left;font-size:0.12rem;line-height:0.16rem;">
+        您可以通过分享给身边的小伙伴请他们为你投票；但是请勿通过非正常，不公平渠道刷票，系统能够对此进行识别，并取消您的投票成绩。
+    </div>
+
+    <div style="margin-top: 0.1rem; text-align: center">
+        <input name="" type="button" class="button" value="提 交" style="width:2rem;" onclick="upload()">
+    </div>
+
+
+</div>
+
+

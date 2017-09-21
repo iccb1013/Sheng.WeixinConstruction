@@ -1,0 +1,514 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.CategoryValidation">
+            <summary>
+              Looks up a localized string similar to Validation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.DescriptionEnabled">
+            <summary>
+              Looks up a localized string similar to The enablement status for the control..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.DescriptionErrorProvider">
+            <summary>
+              Looks up a localized string similar to The error provider to which error messages should be logged..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.DescriptionPerformValidation">
+            <summary>
+              Looks up a localized string similar to Indicates whether automatic validation should be performed for this component when the Validating event is fired..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.DescriptionRuleset">
+            <summary>
+              Looks up a localized string similar to The ruleset for validation rules (empty to use the default ruleset)..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.DescriptionSourcePropertyName">
+            <summary>
+              Looks up a localized string similar to The name of the property on the source type for which validation information should be retrieved to validate the value for this componen..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.DescriptionSourceType">
+            <summary>
+              Looks up a localized string similar to The type for which validation information should be retrieved..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.DescriptionSpecificationSource">
+            <summary>
+              Looks up a localized string similar to The source for validation specifications..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.DescriptionValidatedProperty">
+            <summary>
+              Looks up a localized string similar to The name of the property on this component from where the value to be validated should be extracted..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.DescriptionValidationResultFormat">
+            <summary>
+              Looks up a localized string similar to The format to show validation results. Use {0} for the message, {1} for the key, and {2} for the tag..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.ExceptionControlNotExtended">
+            <summary>
+              Looks up a localized string similar to The supplied control has not been extended..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.ExceptionInvalidSourceTypeName">
+            <summary>
+              Looks up a localized string similar to The source type does not represent a valid type for validation provider..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.ExceptionNoSourceProperty">
+            <summary>
+              Looks up a localized string similar to No source property has been defined for validated control..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.ExceptionNoSourceTypeName">
+            <summary>
+              Looks up a localized string similar to No source type has been defined for the validation provider..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.ExceptionValidatedControlPropertyNotFound">
+            <summary>
+              Looks up a localized string similar to The property &quot;{0}&quot; specified to retrieve the value from control &quot;{1}&quot; does not exist or is not accessible..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.ExceptionValueAccessPropertyNotFound">
+            <summary>
+              Looks up a localized string similar to The property &quot;{0}&quot; has not been mapped to any control..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.Properties.Resources.ExceptionValueAccessRequiresValidatedControlItem">
+            <summary>
+              Looks up a localized string similar to This value access only works on ValidatedControlItems..
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.PropertyMappedControlValueAccessBuilder">
+            <summary>
+            Represents a build for <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.PropertyMappedControlValueAccess"/> objects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.PropertyMappedControlValueAccessBuilder.DoGetFieldValueAccess(System.Reflection.FieldInfo)">
+            <summary>
+            Performs the actual creation of a <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValueAccess"/> suitable for accessing the value in <paramref name="fieldInfo"/>.
+            </summary>
+            <param name="fieldInfo">The <see cref="T:System.Reflection.FieldInfo"/></param> representing the field for which a
+            <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValueAccess"/> is required.
+            <returns>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValueAccess"/> that allows for accessing the value in <paramref name="fieldInfo"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.PropertyMappedControlValueAccessBuilder.DoGetMethodValueAccess(System.Reflection.MethodInfo)">
+            <summary>
+            Performs the actual creation of a <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValueAccess"/> suitable for accessing the value in <paramref name="methodInfo"/>.
+            </summary>
+            <param name="methodInfo">The <see cref="T:System.Reflection.MethodInfo"/></param> representing the method for which a
+            <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValueAccess"/> is required.
+            <returns>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValueAccess"/> that allows for accessing the value in <paramref name="methodInfo"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.PropertyMappedControlValueAccessBuilder.DoGetPropertyValueAccess(System.Reflection.PropertyInfo)">
+            <summary>
+            Performs the actual creation of a <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValueAccess"/> suitable for accessing the value in <paramref name="propertyInfo"/>.
+            </summary>
+            <param name="propertyInfo">The <see cref="T:System.Reflection.PropertyInfo"/></param> representing the property for which a
+            <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValueAccess"/> is required.
+            <returns>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValueAccess"/> that allows for accessing the value in <paramref name="propertyInfo"/>.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.PropertyMappedControlValueAccess">
+            <summary>
+            Returns the value from a control.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.PropertyMappedControlValueAccess.#ctor(System.String)">
+            <summary>
+            Initialize a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.PropertyMappedControlValueAccess"/> class with a property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.PropertyMappedControlValueAccess.GetValue(System.Object,System.Object@,System.String@)">
+            <summary>
+            Retrieves a value from <paramref name="source"/>.
+            </summary>
+            <param name="source">The source for the value.</param>
+            <param name="value">The value retrieved from the <paramref name="source"/>.</param>
+            <param name="valueAccessFailureMessage">A message describing the failure to access the value, if any.</param>
+            <returns><see langword="true"/> when the retrieval was successful; <see langword="false"/> otherwise.</returns>
+            <remarks>Subclasses provide concrete value accessing behaviors.</remarks>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.PropertyMappedControlValueAccess.Key">
+            <summary>
+            Gets a hint of the location of the value relative to the object where it was retrieved from.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.RequiredIdentifierConverter">
+            <summary>
+            Provides a type converter to convert string objects to and from other representations and validates them.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.RequiredIdentifierConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)">
+            <summary>
+            Returns whether the given value object is valid for this type and for the specified context.
+            </summary>
+            
+            <returns>
+            true if the specified value is valid for this object; otherwise, false.
+            </returns>
+            
+            <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"></see> that provides a format context. </param>
+            <param name="value">The <see cref="T:System.Object"></see> to test for validity. </param>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem">
+            <summary>
+            Represents the behavior necessary to provide integration with the Validation Application Block and a control item.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.#ctor(Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider,System.Windows.Forms.Control)">
+            <summary>
+            Initialize a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem"/> class with a <see cref="F:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.validationProvider"/> and a <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.Control"/>.
+            </summary>
+            <param name="validationProvider">The validation provider.</param>
+            <param name="control">The control to validate.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.Dispose">
+            <summary>
+             Allows the item to dispose of any unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.GetValue(System.Object@,System.String@)">
+            <summary>
+            Get the value and the failure message from validation.
+            </summary>
+            <param name="value">The value from validation.</param>
+            <param name="failureMessage">The failure message.</param>
+            <returns>true if the value passed validation; otherwise, false.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.Control">
+            <summary>
+            Gets the control to validate.
+            </summary>
+            <value>
+            The control to validate.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.IsValid">
+            <summary>
+             Gets if the control is valid.
+            </summary>
+             <value>
+             true if the control is valid; otherwise, false.
+             </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.PerformValidation">
+            <summary>
+            Gets if the validation is performed.
+            </summary>
+            <value>
+            true if the validation is performed; otherwise, false.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.SourcePropertyName">
+            <summary>
+             Gets the source property name.
+            </summary>
+             <value>
+             The source property name.
+             </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.ValidatedPropertyName">
+            <summary>
+             Gets the validated property name.
+            </summary>
+             <value>
+             The validated property name.
+             </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.ValidationProvider">
+            <summary>
+            Gets the <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.ValidationProvider"/> for the control.
+            </summary>
+            <value>
+            The <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.ValidationProvider"/> for the control.
+            </value>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.Validator">
+            <summary>
+            Gets the <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.Validator"/> for the control.
+            </summary>
+            <value>
+            The <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem.Validator"/> for the control.
+            </value>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationPerformedEventArgs">
+            <summary>
+            Contains the data for the <see cref="E:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.ValidationPerformed"/> event.
+            </summary>
+            <seealso cref="E:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.ValidationPerformed"/>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationPerformedEventArgs.ValidatedControl">
+            <summary>
+            Gets the control that was validated.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationPerformedEventArgs.ValidationResults">
+            <summary>
+            Gets the results of the validation for the control.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider">
+            <summary>
+            Provides a mechanism to specify automatic or user requested validation for controls.
+            </summary>
+            <remarks>
+            This component is an extender provider that adds properties to controls that allow 
+            the designer of the application to specify how to validate the controls' values using
+            the Validation Application Block.
+            <para/>
+            Validation can be automatic through the <see cref="E:System.Windows.Forms.Control.Validating"/> event, or initiated 
+            via code by invoking the <see cref="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.PerformValidation(System.Windows.Forms.Control)"/> method; in 
+            both cases the control needs to have been properly configured through the validation provider.
+            <para/>
+            An instance of <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.ErrorProvider"/> can be specified for the component; in this case
+            the validation errors resulting from validating a control are set on the error provider as
+            a properly formatted error message for the control.
+            <para/>
+            A validation provider can be enabled or disabled through the <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.Enabled"/>
+            property. When it is disabled no validation will occur and the validaton provider will be considered
+            valid, and any error messages posted to the <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.ErrorProvider"/> will be cleared. 
+            If re-enabled, it will continue to be valid and no error messages will be posted until validation
+            is triggered again.
+            </remarks>
+            <seealso cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.IsValid"/>
+            <seealso cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.Enabled"/>
+            <seealso cref="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.PerformValidation(System.Windows.Forms.Control)"/>
+            <seealso cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Validator"/>
+            <seealso cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValidationResults"/>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.Dispose(System.Boolean)">
+            <summary>
+            Releases managed resources.
+            </summary>
+            <param name="disposing"><see langword="true"/> to release both managed and unmanaged resources; 
+            <see langword="false"/> to release only unmanaged resources. </param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.FormatErrorMessage(Microsoft.Practices.EnterpriseLibrary.Validation.ValidationResults)">
+            <summary>
+            Format the error message from a set of <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValidationResults"/>.
+            </summary>
+            <param name="validationResults">The results to build the message.</param>
+            <returns>The formatted message.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.GetExistingValidatedControlItem(System.Windows.Forms.Control)">
+            <summary>
+            Gets the existing <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem"/> from the provider.
+            </summary>
+            <param name="control">The control to use to get the item.</param>
+            <returns>A <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem"/> object.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.GetExistingValidatedControlItem(System.String)">
+            <summary>
+            Gets the existing <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem"/> from the provider.
+            </summary>
+            <param name="sourcePropertyName">The source property name to use to get the item.</param>
+            <returns>A <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem"/> object.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.GetPerformValidation(System.Windows.Forms.Control)">
+            <summary>
+            Gets the indication of whether automatic validation should be performed for 
+            <paramref name="control"/> when it fires the <see cref="E:System.Windows.Forms.Control.Validating"/> event.
+            </summary>
+            <param name="control">The configured <see cref="T:System.Windows.Forms.Control"/>.</param>
+            <returns><see langword="true"/> when the control should be automatically validated; 
+            otherwise, <see langword="false"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="control"/> is null.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.GetSourcePropertyName(System.Windows.Forms.Control)">
+            <summary>
+            Gets the name of the property on the type specified by <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.SourceTypeName"/> for which
+            the validation specification should be retrieved to validate the value for <paramref name="control"/>.
+            </summary>
+            <param name="control">The configured <see cref="T:System.Windows.Forms.Control"/>.</param>
+            <returns>The property name.</returns>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="control"/> is null.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.GetSourceType">
+            <summary>
+            Gets the source type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.GetValidatedProperty(System.Windows.Forms.Control)">
+            <summary>
+            Gets the name of the property to use when extracting the value from <paramref name="control"/>.
+            </summary>
+            <param name="control">The configured <see cref="T:System.Windows.Forms.Control"/>.</param>
+            <returns>The name of the property.</returns>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="control"/> is null.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.PerformValidation(System.Windows.Forms.Control)">
+            <summary>
+            Invokes the validation process for a control.
+            </summary>
+            <remarks>
+            This method allows for programmatic invocation of the validation process. The control needs to be already
+            configured for validation with the validation provider through the extender properties.
+            </remarks>
+            <param name="control">The control to validate.</param>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="control"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="control"/> is not registered with the validation provider
+            by specifying the extended properties.</exception>
+            <exception cref="T:System.InvalidOperationException">when the <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.SourceTypeName"/> has not 
+            been specified or is invalid.</exception>
+            <exception cref="T:System.InvalidOperationException">when the source property name for the control to validate has not 
+            been specified or is invalid.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.PerformValidation(Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidatedControlItem)">
+            <summary>
+            Invokes the validation process for a control.
+            </summary>
+            <remarks>
+            This method allows for programmatic invocation of the validation process. The control needs to be already
+            configured for validation with the validation provider through the extender properties.
+            </remarks>
+            <param name="validatedControlItem">The validated control to validate.</param>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="validatedControlItem"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.InvalidOperationException">when the <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.SourceTypeName"/> has not 
+            been specified or is invalid.</exception>
+            <exception cref="T:System.InvalidOperationException">when the source property name for the control to validate has not 
+            been specified or is invalid.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.SetPerformValidation(System.Windows.Forms.Control,System.Boolean)">
+            <summary>
+            Sets the indication of whether automatic validation should be performed for 
+            <paramref name="control"/> when it fires the <see cref="E:System.Windows.Forms.Control.Validating"/> event.
+            </summary>
+            <param name="control">The <see cref="T:System.Windows.Forms.Control"/> to configure.</param>
+            <param name="performValidation"><see langword="true"/> if the control should be automatically validated; 
+            otherwise, <see langword="false"/>.</param>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="control"/> is null.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.SetSourcePropertyName(System.Windows.Forms.Control,System.String)">
+            <summary>
+            Sets the name of the property on the type specified by <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.SourceTypeName"/> for which
+            the validation specification should be retrieved to validate the value for <paramref name="control"/>.
+            </summary>
+            <param name="control">The <see cref="T:System.Windows.Forms.Control"/> to configure.</param>
+            <param name="sourcePropertyName">The property name.</param>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="control"/> is null.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.SetValidatedProperty(System.Windows.Forms.Control,System.String)">
+            <summary>
+            Sets the name of the property to use when extracting the value from <paramref name="control"/>.
+            </summary>
+            <param name="control">The <see cref="T:System.Windows.Forms.Control"/> to configure.</param>
+            <param name="validatedPropertyName">The name of the property.</param>
+            <exception cref="T:System.ArgumentNullException">when <paramref name="control"/> is null.</exception>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.Enabled">
+            <summary>
+            The indication of whether the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider"/> will perform validations.
+            </summary>
+            <remarks>
+            No validation will be performed if the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider"/> is not enabled, even
+            when requested through the <see cref="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.PerformValidation(System.Windows.Forms.Control)"/> method.
+            <para/>
+            All existing errors will be cleared if set to <see langword="false"/>, but will not be restated
+            if set back to <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.ErrorProvider">
+            <summary>
+            Gets or sets the <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.ErrorProvider"/> to which formatted validation errors should be posted
+            when validating a <see cref="T:System.Windows.Forms.Control"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.IsValid">
+            <summary>
+            Gets an indication of whether the values for the controls managed by the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider"/> have
+            been successfully validated.
+            </summary>
+            <value>
+            <see langword="true"/> when the values for all the managed controls have been successfully validated; 
+            <see langword="false"/> otherwise.
+            </value>
+            <remarks>
+            This property reflects the outcome of validations that were performed, so if there is a managed control with an invalid
+            value for which validation has not been performed the value for this property might be <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.RulesetName">
+            <summary>
+            Gets or sets the name of the ruleset to use when retrieving validation specifications.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.SourceTypeName">
+            <summary>
+            Gets or sets the name for the type to use as the source of specifications for the validations
+            performed by the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.SpecificationSource">
+            <summary>
+            Gets or sets the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValidationSpecificationSource"/> indicating where to get validation specifications from.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.ValidationResultFormat">
+            <summary>
+            Gets or sets the format to use when formatting validation results to post to an <see cref="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.ErrorProvider"/>.
+            </summary>
+            <remarks>
+            The value is a standard string formatting template. The supplied format items are:
+            <list type="table">
+            <item><term>{0}</term><description>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValidationResult"/> message.</description></item>
+            <item><term>{1}</term><description>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValidationResult"/> key.</description></item>
+            <item><term>{2}</term><description>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValidationResult"/> tag.</description></item>
+            </list>
+            </remarks>
+            <seealso cref="M:System.String.Format(System.String,System.Object)"/>
+        </member>
+        <member name="E:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.ValidationPerformed">
+            <summary>
+            Occurs when validation for a control has been performed.
+            </summary>
+            <remarks>
+            An instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationPerformedEventArgs"/> class holds the information
+            about the validated control and the outcome of the validation.
+            </remarks>
+            <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationPerformedEventArgs"/>
+        </member>
+        <member name="E:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.ValidationProvider.ValueConvert">
+            <summary>
+            Occurs when conversion for a control's value must be performed.
+            </summary>
+            <remarks>
+            An instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.ValueConvertEventArgs"/> class holds the information
+            about the value that needs conversion.
+            </remarks>
+            <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.ValueConvertEventArgs"/>
+        </member>
+    </members>
+</doc>

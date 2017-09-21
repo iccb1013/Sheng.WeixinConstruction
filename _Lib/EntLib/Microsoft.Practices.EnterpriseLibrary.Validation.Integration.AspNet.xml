@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.Properties.Resources.ErrorConversionFailedMessage">
+            <summary>
+              Looks up a localized string similar to Value conversion failed unexpectedly..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.Properties.Resources.ErrorNonMappedProperty">
+            <summary>
+              Looks up a localized string similar to The property name &quot;{0}&quot; is not mapped to validators in the naming context..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.Properties.Resources.ExceptionInvalidSourcePropertyName">
+            <summary>
+              Looks up a localized string similar to The property name &quot;{0}&quot; is not valid..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.Properties.Resources.ExceptionInvalidSourceTypeName">
+            <summary>
+              Looks up a localized string similar to The source type could not be found for name &quot;{0}&quot;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.Properties.Resources.ExceptionNullSourceTypeName">
+            <summary>
+              Looks up a localized string similar to The source type name cannot be null..
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyMappedValidatorValueAccess">
+            <summary>
+            Represents access to a property value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyMappedValidatorValueAccess.#ctor(System.String)">
+            <summary>
+            Initialize a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyMappedValidatorValueAccess"/> class with the property name.
+            </summary>
+            <param name="propertyName">The property name.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyMappedValidatorValueAccess.GetValue(System.Object,System.Object@,System.String@)">
+            <summary>
+            Retrieves a value from <paramref name="source"/>.
+            </summary>
+            <param name="source">The source for the value.</param>
+            <param name="value">The value retrieved from the <paramref name="source"/>.</param>
+            <param name="valueAccessFailureMessage">A message describing the failure to access the value, if any.</param>
+            <returns><see langword="true"/> when the retrieval was successful; <see langword="false"/> otherwise.</returns>
+            <remarks>Subclasses provide concrete value accessing behaviors.</remarks>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyMappedValidatorValueAccess.Key">
+            <summary>
+            Gets a hint of the location of the value relative to the object where it was retrieved from.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyProxyValidator">
+            <summary>
+            Performs validation on a control's value using the validation specified on the property of <see cref="T:System.Type"/>.
+            </summary>
+            <remarks>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyProxyValidator.EvaluateIsValid">
+            <summary>
+            Determines whether the content in the input control is valid.
+            </summary>
+            <returns><see langword="true"/> if the control is valid; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyProxyValidator.SourceTypeName">
+            <summary>
+            Gets or sets the name of the type to use a source for validation specifications.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyProxyValidator.PropertyName">
+            <summary>
+            Gets or sets the name of the property to use as soource for validation specifications.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyProxyValidator.RulesetName">
+            <summary>
+            Gets or sets the name of the ruleset to use when retrieving validation specifications.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyProxyValidator.SpecificationSource">
+            <summary>
+            Gets or sets the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValidationSpecificationSource"/> indicating where to get validation specifications from.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyProxyValidator.DisplayMode">
+            <summary>
+            Gets or sets the <see cref="T:System.Web.UI.WebControls.ValidationSummaryDisplayMode"/> indicating how to format multiple validation results.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.PropertyProxyValidator.ValueConvert">
+            <summary>
+            Occurs when value conversion is required by the control to perform validation.
+            </summary>
+            <remarks>
+            The ValueConvert event is raised when value conversion is required by the control to perform validation. 
+            This event is used to provide a custom value conversion routine for an input control, 
+            such as a <see cref="T:System.Web.UI.WebControls.TextBox"/> control.
+            </remarks>
+            <seealso cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.ValueConvertEventArgs"/>
+        </member>
+    </members>
+</doc>

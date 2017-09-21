@@ -1,0 +1,608 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SerializableConfigurationSection" type="SerializableConfigurationSection_SchemaType" />
+  <xs:element name="enterpriseLibrary.ConfigurationSource" type="ConfigurationSourceSection_SchemaType" />
+  <xs:element name="EnvironmentalOverridesSection" type="EnvironmentalOverridesSection_SchemaType" />
+  <xs:element name="dataConfiguration" type="DatabaseSettings_SchemaType" />
+  <xs:element name="oracleConnectionSettings" type="OracleConnectionSettings_SchemaType" />
+  <xs:element name="exceptionHandling" type="ExceptionHandlingSettings_SchemaType" />
+  <xs:element name="loggingConfiguration" type="LoggingSettings_SchemaType" />
+  <xs:element name="policyInjection" type="PolicyInjectionSettings_SchemaType" />
+  <xs:element name="RetryPolicyConfiguration" type="RetryPolicyConfigurationSettings_SchemaType" />
+  <xs:element name="validation" type="ValidationSettings_SchemaType" />
+  <xs:complexType name="ValidationSettings_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="type" type="ValidatedTypeReference_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ValidatedTypeReference_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ruleset" type="ValidationRulesetData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="defaultRuleset" type="xs:string" use="optional" />
+    <xs:attribute name="assemblyName" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="ValidationRulesetData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="validator" type="ValidatorData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+      <xs:element minOccurs="0" maxOccurs="1" name="fields" type="ValidatedFieldReferenceCollection_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="methods" type="ValidatedMethodReferenceCollection_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="properties" type="ValidatedPropertyReferenceCollection_SchemaType" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ValidatedPropertyReferenceCollection_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="property" type="ValidatedPropertyReference_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ValidatedPropertyReference_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="validator" type="ValidatorData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ValidatedMethodReferenceCollection_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="method" type="ValidatedMethodReference_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ValidatedMethodReference_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="validator" type="ValidatorData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ValidatedFieldReferenceCollection_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="field" type="ValidatedFieldReference_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ValidatedFieldReference_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="validator" type="ValidatorData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ValidatorData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:any namespace="##any" processContents="skip" />
+    </xs:choice>
+    <xs:attribute name="messageTemplate" type="xs:string" use="optional" />
+    <xs:attribute name="messageTemplateResourceName" type="xs:string" use="optional" />
+    <xs:attribute name="messageTemplateResourceType" type="xs:string" use="optional" />
+    <xs:attribute name="tag" type="xs:string" use="optional" />
+    <xs:attribute name="type" type="ValidatorData_SchemaType_KeyConstraint" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="RetryPolicyConfigurationSettings_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="RetryStrategyData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+    <xs:attribute name="defaultRetryStrategy" type="xs:string" use="required" />
+    <xs:attribute name="defaultSqlConnectionRetryStrategy" type="xs:string" use="optional" />
+    <xs:attribute name="defaultSqlCommandRetryStrategy" type="xs:string" use="optional" />
+    <xs:attribute name="defaultAzureServiceBusRetryStrategy" type="xs:string" use="optional" />
+    <xs:attribute name="defaultAzureCachingRetryStrategy" type="xs:string" use="optional" />
+    <xs:attribute name="defaultAzureStorageRetryStrategy" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="RetryStrategyData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:any namespace="##any" processContents="skip" />
+    </xs:choice>
+    <xs:attribute name="firstFastRetry" type="configuration_bool" use="optional" />
+    <xs:attribute name="type" type="RetryStrategyData_SchemaType_KeyConstraint" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="PolicyInjectionSettings_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="policies" type="NamedElementCollection-PolicyData_SchemaType" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="NamedElementCollection-PolicyData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="PolicyData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PolicyData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="matchingRules" type="NameTypeConfigurationElementCollection-MatchingRuleData-CustomMatchingRuleData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="handlers" type="NameTypeConfigurationElementCollection-CallHandlerData-CustomCallHandlerData_SchemaType" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="NameTypeConfigurationElementCollection-CallHandlerData-CustomCallHandlerData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="CallHandlerData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="CallHandlerData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:any namespace="##any" processContents="skip" />
+    </xs:choice>
+    <xs:attribute name="order" type="xs:int" use="optional" />
+    <xs:attribute name="type" type="CallHandlerData_SchemaType_KeyConstraint" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="NameTypeConfigurationElementCollection-MatchingRuleData-CustomMatchingRuleData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="MatchingRuleData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="MatchingRuleData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:any namespace="##any" processContents="skip" />
+    </xs:choice>
+    <xs:attribute name="type" type="MatchingRuleData_SchemaType_KeyConstraint" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="LoggingSettings_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="listeners" type="TraceListenerDataCollection_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="formatters" type="NameTypeConfigurationElementCollection-FormatterData-CustomFormatterData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="logFilters" type="NameTypeConfigurationElementCollection-LogFilterData-CustomLogFilterData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="categorySources" type="NamedElementCollection-TraceSourceData_SchemaType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="specialSources" type="SpecialTraceSourcesData_SchemaType" />
+    </xs:choice>
+    <xs:attribute name="tracingEnabled" type="configuration_bool" use="optional" />
+    <xs:attribute name="name" type="xs:string" use="optional" />
+    <xs:attribute name="defaultCategory" type="xs:string" use="required" />
+    <xs:attribute name="logWarningsWhenNoCategoriesMatch" type="configuration_bool" use="optional" />
+    <xs:attribute name="revertImpersonation" type="configuration_bool" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="SpecialTraceSourcesData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="allEvents" type="TraceSourceData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="notProcessed" type="TraceSourceData_SchemaType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="errors" type="TraceSourceData_SchemaType" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="NamedElementCollection-TraceSourceData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="TraceSourceData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="TraceSourceData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="listeners" type="NamedElementCollection-TraceListenerReferenceData_SchemaType" />
+    </xs:choice>
+    <xs:attribute name="switchValue" type="SourceLevels_SchemaType" use="required" />
+    <xs:attribute name="autoFlush" type="configuration_bool" use="optional" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="NamedElementCollection-TraceListenerReferenceData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="TraceListenerReferenceData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="TraceListenerReferenceData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="NameTypeConfigurationElementCollection-LogFilterData-CustomLogFilterData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="LogFilterData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="LogFilterData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:any namespace="##any" processContents="skip" />
+    </xs:choice>
+    <xs:attribute name="type" type="LogFilterData_SchemaType_KeyConstraint" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="NameTypeConfigurationElementCollection-FormatterData-CustomFormatterData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="FormatterData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="FormatterData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:any namespace="##any" processContents="skip" />
+    </xs:choice>
+    <xs:attribute name="type" type="FormatterData_SchemaType_KeyConstraint" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="TraceListenerDataCollection_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="TraceListenerData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="TraceListenerData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    <xs:attribute name="listenerDataType" type="xs:string" use="required" />
+    <xs:attribute name="traceOutputOptions" type="TraceOptions_SchemaType" use="optional" />
+    <xs:attribute name="filter" type="SourceLevels_SchemaType" use="optional" />
+    <xs:attribute name="asynchronous" type="configuration_bool" use="optional" />
+    <xs:attribute name="asynchronousDisposeTimeout" type="xs:string" use="optional" />
+    <xs:attribute name="asynchronousBufferSize" type="xs:int" use="optional" />
+    <xs:attribute name="asynchronousDegreeOfParallelism" type="xs:int" use="optional" />
+    <xs:attribute name="type" type="TraceListenerData_SchemaType_KeyConstraint" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:simpleType name="SourceLevels_SchemaType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="Off" />
+      <xs:enumeration value="Critical" />
+      <xs:enumeration value="Error" />
+      <xs:enumeration value="Warning" />
+      <xs:enumeration value="Information" />
+      <xs:enumeration value="Verbose" />
+      <xs:enumeration value="ActivityTracing" />
+      <xs:enumeration value="All" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TraceOptions_SchemaType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="LogicalOperationStack" />
+      <xs:enumeration value="DateTime" />
+      <xs:enumeration value="Timestamp" />
+      <xs:enumeration value="ProcessId" />
+      <xs:enumeration value="ThreadId" />
+      <xs:enumeration value="Callstack" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ExceptionHandlingSettings_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="exceptionPolicies" type="NamedElementCollection-ExceptionPolicyData_SchemaType" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="NamedElementCollection-ExceptionPolicyData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="ExceptionPolicyData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ExceptionPolicyData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="exceptionTypes" type="NamedElementCollection-ExceptionTypeData_SchemaType" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="NamedElementCollection-ExceptionTypeData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="ExceptionTypeData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ExceptionTypeData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="exceptionHandlers" type="NameTypeConfigurationElementCollection-ExceptionHandlerData-CustomHandlerData_SchemaType" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="type" type="xs:string" use="required" />
+    <xs:attribute name="postHandlingAction" type="PostHandlingAction_SchemaType" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="NameTypeConfigurationElementCollection-ExceptionHandlerData-CustomHandlerData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="ExceptionHandlerData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ExceptionHandlerData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:any namespace="##any" processContents="skip" />
+    </xs:choice>
+    <xs:attribute name="type" type="ExceptionHandlerData_SchemaType_KeyConstraint" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:simpleType name="PostHandlingAction_SchemaType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="NotifyRethrow" />
+      <xs:enumeration value="ThrowNewException" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OracleConnectionSettings_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="OracleConnectionData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="OracleConnectionData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="1" maxOccurs="1" name="packages" type="NamedElementCollection-OraclePackageData_SchemaType" />
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="NamedElementCollection-OraclePackageData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="OraclePackageData_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="OraclePackageData_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    <xs:attribute name="prefix" type="xs:string" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="DatabaseSettings_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="providerMappings" type="NamedElementCollection-DbProviderMapping_SchemaType" />
+    </xs:choice>
+    <xs:attribute name="defaultDatabase" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="NamedElementCollection-DbProviderMapping_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="DbProviderMapping_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="DbProviderMapping_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    <xs:attribute name="databaseType" type="xs:string" use="optional" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="EnvironmentalOverridesSection_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="designtimeLogicalPropertyGroups" type="EnvironmentalOverridesElementCollection_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="overriddenProtectionProviders" type="EnvironmentOverriddenProtectionProviderElementCollection_SchemaType" />
+    </xs:choice>
+    <xs:attribute name="environmentName" type="xs:string" use="optional" />
+    <xs:attribute name="environmentConfigurationFile" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="EnvironmentOverriddenProtectionProviderElementCollection_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="EnvironmentOverriddenProtectionProviderElement_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="EnvironmentOverriddenProtectionProviderElement_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    <xs:attribute name="overriddenValue" type="xs:string" use="required" />
+    <xs:attribute name="containingConfigurationSectionName" type="xs:string" use="required" />
+    <xs:attribute name="containingSectionXPath" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="EnvironmentalOverridesElementCollection_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="EnvironmentalOverridesElement_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="EnvironmentalOverridesElement_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="1" name="overriddenProperties" type="EnvironmentOverriddenPropertyElementCollection_SchemaType" />
+    </xs:choice>
+    <xs:attribute name="logicalParentElementPath" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="EnvironmentOverriddenPropertyElementCollection_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="EnvironmentOverriddenPropertyElement_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="EnvironmentOverriddenPropertyElement_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    <xs:attribute name="attribute" type="xs:string" use="required" />
+    <xs:attribute name="containingElementXPath" type="xs:string" use="required" />
+    <xs:attribute name="overridenValue" type="xs:string" use="required" />
+    <xs:attribute name="containingConfigurationSectionName" type="xs:string" use="required" />
+    <xs:attribute name="containingSectionXPath" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ConfigurationSourceSection_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="1" maxOccurs="1" name="sources" type="CustomConfigurationElementCollection-ConfigurationSourceElement-ConfigurationSourceElement_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="redirectSections" type="NamedElementCollection-RedirectedSectionElement_SchemaType" />
+    </xs:choice>
+    <xs:attribute name="selectedSource" type="xs:string" use="required" />
+    <xs:attribute name="parentSource" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="NamedElementCollection-RedirectedSectionElement_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="RedirectedSectionElement_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="RedirectedSectionElement_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    <xs:attribute name="sourceName" type="xs:string" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="CustomConfigurationElementCollection-ConfigurationSourceElement-ConfigurationSourceElement_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="ConfigurationSourceElement_SchemaType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ConfigurationSourceElement_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:any namespace="##any" processContents="skip" />
+    </xs:choice>
+    <xs:attribute name="type" type="ConfigurationSourceElement_SchemaType_KeyConstraint" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="SerializableConfigurationSection_SchemaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+  </xs:complexType>
+  <xs:complexType name="nameValueConfigurationElement">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="nameValueElementCollectionAdd" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="nameTypeElementCollection">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="add" type="nameTypeElementCollectionAdd" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="remove" type="genericCollectionRemove" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="clear" type="genericCollectionClear" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:simpleType name="configuration_bool">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="true" />
+      <xs:enumeration value="false" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ValidatorData_SchemaType_KeyConstraint">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.PropertyComparisonValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.AndCompositeValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.ContainsCharactersValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.EnumConversionValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RelativeDateTimeValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.TypeConversionValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.ObjectCollectionValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.ObjectValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RangeValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.DateTimeRangeValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.NotNullValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.OrCompositeValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.RegexValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.Validators.StringLengthValidator, Microsoft.Practices.EnterpriseLibrary.Validation" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RetryStrategyData_SchemaType_KeyConstraint">
+    <xs:restriction base="xs:string" />
+  </xs:simpleType>
+  <xs:simpleType name="CallHandlerData_SchemaType_KeyConstraint">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.PolicyInjection.ExceptionCallHandler, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.PolicyInjection.LogCallHandler, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.PolicyInjection.CallHandlers.PerformanceCounterCallHandler, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Validation.PolicyInjection.ValidationCallHandler, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MatchingRuleData_SchemaType_KeyConstraint">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.PolicyInjection.MatchingRules.AssemblyMatchingRule, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.PolicyInjection.MatchingRules.CustomAttributeMatchingRule, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.PolicyInjection.MatchingRules.MemberNameMatchingRule, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.PolicyInjection.MatchingRules.MethodSignatureMatchingRule, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.PolicyInjection.MatchingRules.NamespaceMatchingRule, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.PolicyInjection.MatchingRules.ParameterTypeMatchingRule, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.PolicyInjection.MatchingRules.PropertyMatchingRule, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.PolicyInjection.MatchingRules.ReturnTypeMatchingRule, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.PolicyInjection.MatchingRules.TagAttributeMatchingRule, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.PolicyInjection.MatchingRules.TypeMatchingRule, Microsoft.Practices.EnterpriseLibrary.PolicyInjection" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LogFilterData_SchemaType_KeyConstraint">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.Filters.CategoryFilter, Microsoft.Practices.EnterpriseLibrary.Logging" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.Filters.LogEnabledFilter, Microsoft.Practices.EnterpriseLibrary.Logging" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.Filters.PriorityFilter, Microsoft.Practices.EnterpriseLibrary.Logging" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FormatterData_SchemaType_KeyConstraint">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.BinaryLogFormatter, Microsoft.Practices.EnterpriseLibrary.Logging" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.JsonLogFormatter, Microsoft.Practices.EnterpriseLibrary.Logging" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.TextFormatter, Microsoft.Practices.EnterpriseLibrary.Logging" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TraceListenerData_SchemaType_KeyConstraint">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.Database.FormattedDatabaseTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging.Database" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollingFlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.EmailTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.MsmqTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.FlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.XmlTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.FormattedEventLogTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExceptionHandlerData_SchemaType_KeyConstraint">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.ReplaceHandler, Microsoft.Practices.EnterpriseLibrary.ExceptionHandling" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WrapHandler, Microsoft.Practices.EnterpriseLibrary.ExceptionHandling" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.LoggingExceptionHandler, Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.FaultContractExceptionHandler, Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ConfigurationSourceElement_SchemaType_KeyConstraint">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.FileConfigurationSource, Microsoft.Practices.EnterpriseLibrary.Common" />
+      <xs:enumeration value="Microsoft.Practices.EnterpriseLibrary.Common.Configuration.SystemConfigurationSource, Microsoft.Practices.EnterpriseLibrary.Common" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="nameValueElementCollectionAdd">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="genericCollectionRemove">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:anyAttribute processContents="skip" />
+  </xs:complexType>
+  <xs:complexType name="genericCollectionClear">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+  </xs:complexType>
+  <xs:complexType name="nameTypeElementCollectionAdd">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="type" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="namedElementCollectionAdd">
+    <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+</xs:schema>

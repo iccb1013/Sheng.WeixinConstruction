@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>红包</title>
+    <meta name="description" content="参与新年现金红包大派发~是现金，是现金，是现金，重要的事情说三遍~直接存入微信零钱包~" />
+    <link href="/Content/Style.css" rel="stylesheet" type="text/css">
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/layer.m/layer.m.js"></script>
+    @Scripts.Render("~/Scripts/laytpl.js")
+    @Scripts.Render("~/bundles/common")
+
+    <style type="text/css">
+        body {
+            background-repeat: repeat;
+            margin-top: 0rem;
+            background-color: #CD0041;
+        }
+    </style>
+
+    <script>
+        function redpack()
+        {
+            var loadLayerIndex = layer.open({
+                type: 2,
+                shadeClose: false,
+                content: '请稍候...'
+            });
+
+            $.ajax({
+                url: "/Api/Pay/Redpack/@ViewBag.Domain.Id",
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR)
+                {
+                    layer.close(loadLayerIndex);
+                    if (data.Success)
+                    {
+                        layerAlert("恭喜！您已成功领取一个新年红包！~");
+                    } else
+                    {
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest)
+                {
+                    layer.close(loadLayerIndex);
+                    //alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        }
+    </script>
+
+
+</head>
+<body>
+    <div>
+        <img src="/Content/Images/redpack.jpg" style="width:100%">
+    </div>
+
+    <div>
+        <img src="/Content/Images/redpack_title.jpg" style="width:100%">
+    </div>
+
+    <div style="margin-top:0.2rem; margin-left:auto; margin-right:auto;width:2.2rem">
+        <img src="/Content/Images/redpack_open.jpg" style="width:2.2rem" onclick="redpack()">
+    </div>
+
+    <div style="margin-top:0.2rem; margin-left:0.1rem; margin-right:0.1rem;color:#D1B613; font-size:0.14rem">
+        借助我们专业的微信公众号运营系统，吸粉涨粉、用户积分、礼品兑换、活动营销，发红包，统统不在话下~<br /><br />
+        <a href="http://wx.shengxunwei.com" style="color:#D1B613; font-size:0.14rem">http://wx.shengxunwei.com</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,242 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.MovieTimesViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+    body {
+        margin-top: 0.6rem;
+    }
+
+    #divTopTitle {
+        height: 0.5rem;
+        color: #FFF;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+        position: fixed;
+        left: 0rem;
+        right: 0rem;
+        top: 0rem;
+    }
+
+
+
+    .movieName {
+        font-size: 0.16rem;
+        font-weight: bold;
+    }
+
+    .showType {
+        background-color: #FF8000;
+        text-align: center;
+        font-size: 0.13rem;
+        font-weight: bold;
+        color: #FFFFFF;
+        padding-left: 0.10rem;
+        padding-right: 0.10rem;
+        padding-top: 0.03rem;
+        padding-bottom: 0.03rem;
+    }
+
+    .time {
+        float: left;
+        color: #FF3F00;
+        font-size: 0.15rem;
+        margin-right: 0.2rem;
+        margin-bottom: 0.05rem;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var jsApiConfigStr = "@Newtonsoft.Json.JsonConvert.SerializeObject(Model.JsApiConfig)";
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("&quot;", "gm"), "\"");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\r\n", "gm"), "");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\n", "gm"), "");
+        var jsApiConfig = eval('(' + jsApiConfigStr + ')');
+
+        wx.config(jsApiConfig);
+    });
+
+    wx.ready(function () {
+        wx.onMenuShareTimeline({
+            title: '@Model.Settings.ShareTimelineTitle', // 分享标题
+            link: '@Request.Url.ToString()', // 分享链接
+            imgUrl: '@Model.Settings.ShareImageUrl', // 分享图标
+            success: function () {
+
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '@Model.Settings.ShareAppMessageTitle', // 分享标题
+            desc: '@Model.Settings.ShareAppMessageDescription', // 分享描述
+            link: '@Request.Url.ToString()', // 分享链接
+            imgUrl: '@Model.Settings.ShareImageUrl', // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+
+    wx.error(function (res) {
+        alert("error:" + res);
+    });
+
+    function goDate(date) {
+        window.location.href = "/Home/MovieTimes/@ViewBag.Domain.Id?date=" + date;
+    }
+
+    function showTimes(id) {
+        var gettpl = document.getElementById('movieTimes_' + id).innerHTML;
+
+        var pageii = layer.open({
+            type: 1,
+            content: gettpl,
+            style: 'position:fixed; left:0.1rem; top:0.1rem;right:0.1rem; bottom:0.1rem; border:none;'
+        });
+    }
+
+</script>
+
+@foreach (var movieItem in Model.MovieList)
+{
+    <script type="text/html" id="movieTimes_@movieItem.Id">
+        <div style="position: fixed; top: 0.1rem; left: 0.1rem; right: 0.1rem; bottom: 0.45rem; overflow: auto;">
+            <div class="movieName">@movieItem.Name</div>
+            <div style="margin-top: 0.08rem;">@movieItem.Time - @movieItem.Type</div>
+            <div style="margin-top: 0.08rem;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size: 0.13rem">
+                    @foreach (var timeItem in movieItem.TimesList)
+                    {
+                        <tr style="height: 0.6rem;">
+                            <td style="width: 1rem;">
+                                <span style="font-size: 0.25rem">@timeItem.Time.ToShortTimeString()</span><br />
+                                <span style="font-size: 0.12rem; color: #808080">@timeItem.EndTime</span>
+                            </td>
+                            <td style="width: 0.8rem;">@timeItem.ShowType<br />@timeItem.Language</td>
+                            <td>@timeItem.ScreeningRoom</td>
+                        </tr>
+                        <tr style="height: 1px;" class="divDotLine">
+                            <td colspan="3"></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+        <div style="position: fixed; bottom: 0.1rem; left: 0.1rem; right: 0.1rem;">
+            <div class="divRectangle_Gray" style="margin-top: 0.1rem;" onclick="layer.closeAll()">
+                关 闭
+            </div>
+        </div>
+    </script>
+}
+
+<div id="divTopTitle" class="gradient">
+    <div style="padding-top:0.16rem;font-size:0.15rem;">
+        电影排片
+    </div>
+    <div style="position:absolute;bottom:0rem;left:0.2rem;right:0.2rem;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="width:0.7rem;" align="left">
+                    <img src="/Content/Images/arrow_up.png" style="width:0.18rem;display:block;margin-left:0.15rem;">
+                </td>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="33%" align="left"></td>
+                            <td width="33%" align="left"></td>
+                            <td width="33%" align="left"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="divContent">
+    <div style="">
+        <div class="@if (Request.QueryString["date"] == null || (Request.QueryString["date"] != null && DateTime.Parse(Request.QueryString["date"]).ToShortDateString() == DateTime.Now.ToShortDateString()))
+                    {
+                        @Html.Raw("divRectangle")
+                    }
+                    else
+                    {
+                        @Html.Raw("divRectangle_Gray")
+                    }"
+             onclick="goDate('@DateTime.Now.ToShortDateString()')" style="float:left;padding:0.07rem 0.1rem;">
+            今天 @DateTime.Now.ToString("M月d日")
+        </div>
+        <div class="@if (Request.QueryString["date"] != null && DateTime.Parse(Request.QueryString["date"]).ToShortDateString() == DateTime.Now.AddDays(1).ToShortDateString())
+                    {
+                        @Html.Raw("divRectangle")
+                    }
+                    else
+                    {
+                        @Html.Raw("divRectangle_Gray")
+                    }"
+             onclick="goDate('@DateTime.Now.AddDays(1).ToShortDateString()')" style="float:left;margin-left:0.1rem;padding:0.07rem 0.1rem;">
+            @DateTime.Now.AddDays(1).ToString("M月d日")
+        </div>
+        <div class="@if (Request.QueryString["date"] != null && DateTime.Parse(Request.QueryString["date"]).ToShortDateString() == DateTime.Now.AddDays(2).ToShortDateString())
+                    {
+                        @Html.Raw("divRectangle")
+                    }
+                    else
+                    {
+                        @Html.Raw("divRectangle_Gray")
+                    }"
+             onclick="goDate('@DateTime.Now.AddDays(2).ToShortDateString()')" style="float:left;margin-left:0.1rem;padding:0.07rem 0.1rem;">
+            @DateTime.Now.AddDays(2).ToString("M月d日")
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <div id="divTimes" style="font-size: 0.13rem">
+        @foreach (var movieItem in Model.MovieList)
+        {
+            <div style="margin-top: 0.15rem">
+                <div class="movieName" onclick="showTimes('@movieItem.Id')">@movieItem.Name</div>
+                <div style="margin-top:0.08rem;" onclick="showTimes('@movieItem.Id')">@movieItem.Time - @movieItem.Type</div>
+                <div style="margin-top: 0.08rem;">
+                    @foreach (var showTypeItem in movieItem.ShowTypeList)
+                    {
+                        <div class="showType" style="float: left; margin-right: 0.1rem;">@showTypeItem</div>
+                    }
+                    <div style="clear: both"></div>
+                </div>
+                <div style="margin-top: 0.08rem;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td style="width: 1rem;">
+                                <img src="@movieItem.Image" style="width:0.9rem" onclick="showTimes('@movieItem.Id')">
+                            </td>
+                            <td valign="top">
+                                <div onclick="showTimes('@movieItem.Id')">
+                                    @foreach (var timesItem in movieItem.TimesList)
+                                    {
+                                        <div class="time">@timesItem.Time.ToShortTimeString()</div>
+                                    }
+                                    <div style="clear: both"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="divDotLine" style="margin-top: 0.1rem; margin-bottom: 0.1rem;">
+            </div>
+        }
+    </div>
+</div>

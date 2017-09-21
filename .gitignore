@@ -1,0 +1,6 @@
+packages
+bin
+obj
+.vs
+.suo
+.log

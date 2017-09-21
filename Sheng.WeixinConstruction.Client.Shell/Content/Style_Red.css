@@ -1,0 +1,83 @@
+﻿@charset "utf-8";
+
+.gradient {
+    background: -moz-linear-gradient(top, #FD808F 0%, #DD5664 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FD808F), color-stop(100%,#DD5664));
+    background: -webkit-linear-gradient(top, #FD808F 0%,#DD5664 100%);
+    background: -o-linear-gradient(top, #FD808F 0%,#DD5664 100%);
+    background: -ms-linear-gradient(top, #FD808F 0%,#DD5664 100%);
+    background: linear-gradient(to bottom, #FD808F 0%,#DD5664 100%);
+}
+
+.defaultColor {
+    color: #DF5966;
+}
+
+
+.defaultBorderColor {
+    border: 1px solid #DF5966;
+}
+
+.defaultBgColor {
+    background-color: #DF5966;
+}
+
+/*卡券背景*/
+.defaultBgColorLight{
+     background-color:#E67D88
+}
+
+.divRectangle {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    color: #DF5966;
+    border: 1px solid #DF5966;
+    background-color: white;
+    padding: 0.04rem 0.06rem;
+    -moz-border-radius: 0.04rem; /* Gecko browsers */
+    -webkit-border-radius: 0.04rem; /* Webkit browsers */
+    border-radius: 0.04rem; /* W3C syntax */
+    text-align:center;
+}
+
+
+
+.divPagingContainer {
+    border: 1px solid #EEEEEE;
+    background-color: #F8F8F8;
+    padding-top: 0.07rem;
+    padding-bottom: 0.07rem;
+    text-align: center;
+    color:#DF5966;
+}
+
+.button {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    color: #DF5966;
+    border: 1px solid #DF5966;
+    background-color: white;
+    padding: 0.06rem 0.1rem;
+    -moz-border-radius: 0.04rem; /* Gecko browsers */
+    -webkit-border-radius: 0.04rem; /* Webkit browsers */
+    border-radius: 0.04rem; /* W3C syntax */
+    text-align:center;
+    font-size:0.13rem;
+}
+
+#divShortcutMenuCircle {
+    width: 0.4rem;
+    height: 0.4rem;
+    background: #DF5966;
+    -moz-border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    color: white;
+    line-height: 0.4rem;
+    font-size: 0.11rem;
+}

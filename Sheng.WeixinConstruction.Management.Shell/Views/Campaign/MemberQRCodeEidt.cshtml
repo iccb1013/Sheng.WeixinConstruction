@@ -1,0 +1,340 @@
+﻿
+@{
+    ViewBag.MainMenu = "Campaign";
+    ViewBag.LeftMenu = "MemberQRCode";
+
+    ViewBag.Title = "粉丝海报";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script language="javascript">
+
+    var _mode = "create";//modify
+    var _validator;
+
+    var _memberQRCode;
+
+    $(document).ready(function ()
+    {
+        setOnlyMember();
+
+        _validator = $("#formExtra").validate({
+            ignore: "", // 开启hidden验证， 1.9版本后默认关闭
+            onfocusout: false,
+            onkeyup: false,
+            showErrors: showValidationErrors,
+            rules: {
+                "txtLandingPoint": {
+                    required: true,
+                    number: true,
+                    digits: true,
+                    range: [0, 100]
+                },
+                "txtBackgroundImageId": {
+                    required: true
+                },
+                "txtLandingUrl": {
+                    required: true
+                }
+            },
+            messages: {
+                "txtLandingPoint": {
+                    required: "请输入扫码奖励积分；",
+                    number: "扫码奖励积分请输入有效整数字；",
+                    digits: "扫码奖励积分请输入有效整数字；",
+                    range: "扫码奖励积分请介于 0 到 100 之间；"
+                },
+                "txtBackgroundImageId": {
+                    required: "请上传背景图片；"
+                },
+                "txtLandingUrl": {
+                    required: "请输入二维码落地页；"
+                }
+            }
+        });
+
+        $("#txtBackgroundImageUrl").blur(function () {
+            loadBackgroundImage();
+        });
+
+        loadData();
+    });
+
+    function loadData()
+    {
+        var id = getQueryString("id");
+        if (id == undefined || id == "")
+        {
+            return;
+        }
+
+        _mode = "modify";
+        $("#btnRemove").show();
+
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        $.ajax({
+            url: "/Api/Campaign/GetMemberQRCodeBundle?id=" + id,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR)
+            {
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    var campaign = data.Data.Campaign;
+                    _memberQRCode = data.Data.MemberQRCode;
+
+                    setCampaign(campaign);
+                    $("#txtBackgroundImageUrl").val(_memberQRCode.BackgroundImageUrl);
+                    $("#txtBackgroundImageId").val(_memberQRCode.BackgroundImageId);
+                    $("#txtLandingUrl").val(_memberQRCode.LandingUrl);
+                    $("#txtLandingPoint").val(_memberQRCode.LandingPoint);
+                    loadBackgroundImage();
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function save()
+    {
+        if (_campaignBaseInfoValidator.form() == false || _validator.form() == false)
+        {
+            return;
+        }
+
+        var campaign = getCampaign();
+
+        if (_memberQRCode == undefined || _memberQRCode == null)
+        {
+            _memberQRCode = new Object();
+        }
+
+        _memberQRCode.BackgroundImageUrl = $("#txtBackgroundImageUrl").val();
+        _memberQRCode.BackgroundImageId = $("#txtBackgroundImageId").val();
+        _memberQRCode.LandingUrl = $("#txtLandingUrl").val();
+        _memberQRCode.LandingPoint = $("#txtLandingPoint").val();
+
+        var bundle = new Object();
+        bundle.Campaign = campaign;
+        bundle.MemberQRCode = _memberQRCode;
+
+        var url = "/Api/Campaign/CreateMemberQRCode";
+
+        if (_mode == "modify")
+        {
+            campaign.Id = $("#txtId").val();
+            url = "/Api/Campaign/UpdateMemberQRCode";
+        }
+
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(bundle),
+            success: function (data, status, jqXHR)
+            {
+                if (data.Success)
+                {
+                    window.location.href = "/Campaign/MemberQRCode_Preparatory";
+
+                } else
+                {
+                    layer.close(loadLayerIndex);
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function cancel()
+    {
+        window.location.href = "/Campaign/MemberQRCode_Preparatory";
+    }
+
+    function removeData()
+    {
+        var id = $("#txtId").val();
+        if (id == undefined || id == "")
+        {
+            return;
+        }
+
+        var msg = "是否确认删除该活动？"
+
+        var confirmLayerIndex = layer.confirm(msg, {
+            btn: ['确认', '取消'], //按钮
+            shade: [0.4, '#393D49'],
+            title: false,
+            closeBtn: false,
+            shift: _layerShift
+        }, function ()
+        {
+            layer.close(confirmLayerIndex);
+
+            var loadLayerIndex = layer.load(0, {
+                shade: [0.2, '#fff']
+            });
+
+            $.ajax({
+                url: "/Api/Campaign/RemoveMemberQRCode?id=" + id,
+                type: "POST",
+                dataType: "json",
+                success: function (data, status, jqXHR)
+                {
+                    if (data.Success)
+                    {
+                        window.location.href = "/Campaign/MemberQRCode_Preparatory";
+                    } else
+                    {
+                        layer.close(loadLayerIndex);
+                        layerAlert(data.Message);
+                    }
+                },
+                error: function (xmlHttpRequest)
+                {
+                    layer.close(loadLayerIndex);
+                    alert("Error: " + xmlHttpRequest.status);
+                }
+            });
+        });
+    }
+
+    function uploadBackgroundImage()
+    {
+        __showFileUpload(getUploadBackgroundImageResult);
+    }
+
+    function getUploadBackgroundImageResult(fileServiceAddress, result)
+    {
+        var url = fileServiceAddress + result.Data.StoreFilePath;
+        $("#txtBackgroundImageUrl").val(url);
+        $("#txtBackgroundImageId").val(result.Data.Id);
+        loadBackgroundImage();
+    }
+
+    function loadBackgroundImage()
+    {
+        $("#backgroundImage").attr("src", $("#txtBackgroundImageUrl").val());
+    }
+
+    function removeBackgroundImage()
+    {
+        $("#txtBackgroundImageUrl").val("");
+        $("#txtBackgroundImageId").val("");
+        loadBackgroundImage();
+    }
+
+</script>
+
+
+<div style=" margin-top:25px; margin-left:10px;" class="font_black_24">
+    发起活动
+</div>
+
+<div class="divDotLine" style="margin-top:15px;"></div>
+
+<div style="margin-top:25px;">
+    @Helpers.CampaignBaseEdit()
+</div>
+
+<div style="margin-top:0px;">
+    <form id="formExtra">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr >
+                <td width="200" height="110" valign="top">
+                    <div style="margin-top: 5px;">
+                        背景图片：
+                    </div>
+                </td>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="250">
+                                <img id="backgroundImage" src="" alt="" width="240" height="240" />
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)" onclick="uploadBackgroundImage()">上传新图片</a><br />
+                                <a href="javascript:void(0)" onclick="removeBackgroundImage()">删除图片</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td height="36">&nbsp;</td>
+                <td>
+                    <input id="txtBackgroundImageUrl" name="txtBackgroundImageUrl" type="text" class="input_16" style="width: 96%;"  disabled />
+                    <input id="txtBackgroundImageId" name="txtBackgroundImageId" type="hidden"  />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td valign="top">
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        会员的头像将生成在左下角，二维码将生成在右下角。<span style="color:red">注意：必须使用 DPI 为 96 的图片。</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td height="36">二维码落地页：</td>
+                <td>
+                    <input id="txtLandingUrl" name="txtLandingUrl" type="text" class="input_16" style="width: 96%;" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td valign="top">
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        用户扫描或识别二维码后，跳转的页面地址。
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="140" height="36">扫码奖励积分：</td>
+                <td><input id="txtLandingPoint" name="txtLandingPoint" type="text" class="input_16" style="width:130px; " value="1" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td valign="top">
+                    <div class="font_gray_13" style="width: 96%; margin-bottom: 10px;">
+                        其它用户扫描二维码后，生成二维码的会员可以得到的积分奖励。
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div style="margin-top:25px;">
+    <div style="float:right;">
+        <input name="btnRemove" type="button" class="btn_red" id="btnRemove" value="删 除" style="display:none" onclick="removeData()" />
+    </div>
+    <div style="float:left">
+        <input name="btnSave" type="button" class="btn_blue" id="btnSave" value="保 存" onclick="save()" />
+        <input name="btnCancel" type="button" class="btn_blue" id="btnCancel" value="取 消" onclick="cancel()" />
+    </div>
+    <div style="clear:both"></div>
+</div>
+@Helpers.FileUpload()

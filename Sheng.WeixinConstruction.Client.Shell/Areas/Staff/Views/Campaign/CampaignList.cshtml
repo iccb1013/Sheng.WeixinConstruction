@@ -1,0 +1,172 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Areas.Staff.Models.CampaignListViewModel
+
+@{
+    ViewBag.SubTitle = "进行中活动";
+    Layout = "~/Areas/Staff/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .campaignName {
+        font-size: 0.16rem;
+        font-weight: bold;
+    }
+
+    .campaignIntroduction {
+        font-size: 0.16rem;
+        color: #666;
+    }
+
+    .campaignMore {
+        font-size: 0.16rem;
+        font-weight: bold;
+        color: #F00;
+    }
+</style>
+
+
+<script type="text/javascript">
+
+    //当前页
+    var _currentPage = 1;
+    var _totalPage = 1;
+
+    $(document).ready(function ()
+    {
+        loadData();
+    });
+
+    function loadData(targetPage)
+    {
+        if (targetPage > _totalPage)
+            return;
+
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.PageSize = 10;
+        //args.Type = 1;
+
+        $.ajax({
+            url: "/Api/Campaign/GetCampaignList/@ViewBag.Domain.Id",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR)
+            {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success)
+                {
+                    var resultObj = data.Data;
+
+                    //alert(JSON.stringify(resultObj));
+                    var gettpl = document.getElementById('campaignListTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html)
+                    {
+                        document.getElementById('divCampaignContainer').innerHTML += html;
+                    });
+
+                    _currentPage = resultObj.Page;
+                    _totalPage = resultObj.TotalPage;
+                    if (_currentPage >= _totalPage)
+                    {
+                        $("#divPagingContainer").html("没有更多了");
+                    }
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+               // alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+
+    function goCampaign(type, campaignId)
+    {
+        var url = "";
+        switch (type)
+        {
+            case "1":
+                url = "PictureVote";
+                break;
+            case "2":
+                url = "MemberQRCode";
+                break;
+            case "3":
+                url = "Lottery";
+                break;
+            case "4":
+                url = "LuckyTicket";
+                break;
+            case "5":
+                url = "ShakingLottery";
+                break;
+        }
+
+        if (url != "")
+        {
+            window.location.href = "/Staff/Campaign/" + url + "/@ViewBag.Domain.Id?campaignId=" + campaignId;
+        }
+        else
+        {
+            layerAlert("不支持的活动类型");
+        }
+    }
+
+</script>
+
+<script id="campaignListTemplate" type="text/html">
+
+    {{# for(var i = 0, len = d.length; i < len; i++){ }}
+
+    <div class="divBorder" style="margin-top:0.2rem;" onclick="goCampaign('{{ d[i].Type }}', '{{ d[i].Id }}')">
+        <div style="margin-top:0.1rem; margin-left:0.1rem; margin-right:0.1rem; margin-bottom:0.1rem">
+            <div style="margin-top:0.06rem" >
+                {{# if(d[i].Type == 1){ }}
+                最美投票
+                {{# }else if(d[i].Type == 2){ }}
+                粉丝海报
+                {{# }else if(d[i].Type == 3){ }}
+                抽奖
+                {{# }else if(d[i].Type == 4){ }}
+                号码抽奖
+                {{# }else if(d[i].Type == 5){ }}
+                摇一摇抽奖
+                {{# }else{ }}
+                未知
+                {{# } }}
+            </div>
+            <div style="margin-top:0.06rem" class="campaignName">
+                {{ d[i].Name }}
+            </div>
+        </div>
+    </div>
+
+    {{# } }}
+
+</script>
+
+
+
+<div class="divContent">
+    <div id="divCampaignContainer" style="margin-top:0.5rem;">
+
+
+    </div>
+
+    <div id="divPagingContainer" class="divPagingContainer" style="margin-top:0.2rem; text-align:center" onclick="loadData(_currentPage + 1)">
+        查看更多
+    </div>
+</div>

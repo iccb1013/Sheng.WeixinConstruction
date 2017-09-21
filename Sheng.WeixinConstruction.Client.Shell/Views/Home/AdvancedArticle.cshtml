@@ -1,0 +1,159 @@
+﻿@model Sheng.WeixinConstruction.Client.Shell.Models.AdvancedArticleViewModel
+
+@{
+    ViewBag.Title = "AdvancedArticle";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style>
+    body {
+        margin-top: 0rem;
+        padding: 0.15rem;
+    }
+
+    a {
+        color: #607FA6;
+        text-decoration: none;
+    }
+</style>
+
+<script>
+
+    var _pageId = getQueryString("id");
+
+    $(document).ready(function () {
+
+        var jsApiConfigStr = "@Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.JsApiConfig)";
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("&quot;", "gm"), "\"");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\r\n", "gm"), "");
+        jsApiConfigStr = jsApiConfigStr.replace(new RegExp("\n", "gm"), "");
+        var jsApiConfig = eval('(' + jsApiConfigStr + ')');
+
+        wx.config(jsApiConfig);
+    });
+
+    wx.ready(function () {
+        wx.onMenuShareTimeline({
+            title: '@Model.Article.ShareTimelineTitle', // 分享标题
+            link: '@Request.Url.ToString()', // 分享链接
+            imgUrl: '@Model.Article.ShareImageUrl', // 分享图标
+            success: function () {
+                shareSuccess("ShareTimeline");
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        wx.onMenuShareAppMessage({
+            title: '@Model.Article.ShareAppMessageTitle', // 分享标题
+            desc: '@Model.Article.ShareAppMessageDescription', // 分享描述
+            link: '@Request.Url.ToString()', // 分享链接
+            imgUrl: '@Model.Article.ShareImageUrl', // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                shareSuccess("ShareAppMessage");
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+
+    wx.error(function (res) {
+        alert("error:" + res);
+    });
+
+    function shareSuccess(type) {
+        var loadLayerIndex = layer.open({
+            type: 2,
+            shadeClose: false,
+            content: '请稍候...'
+        });
+
+        $.ajax({
+            url: "/Api/AdvancedArticle/" + type + "/@ViewBag.Domain.Id?pageId=" + _pageId,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    if (resultObj.Point == 0)
+                        return;
+
+                    var msg = "";
+                    if (resultObj.Point > 0) {
+                        msg += "获得积分：" + resultObj.Point;
+                    }
+                    if (msg != "") {
+                        layerAlertBtn(msg);
+                    }
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                //alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function showQRCode() {
+        var gettpl = document.getElementById('qrCodeTemplate').innerHTML;
+
+        var pageii = layer.open({
+            type: 1,
+            content: gettpl,
+            style: 'border:none;'
+        });
+    }
+
+</script>
+
+<script type="text/html" id="qrCodeTemplate">
+
+    <div style="background-color:white;margin-top:0.2rem;margin-bottom:0.25rem;padding-left:0.15rem;padding-right:0.15rem;">
+        <div style="margin-top:0.1rem;text-align:center">
+            @ViewBag.Authorizer.NickName
+        </div>
+        <div style="margin-top:0.1rem;text-align:center">
+            <img src="@ViewBag.Authorizer.QRCodeUrl" style="width:2rem;max-width:100%">
+        </div>
+
+        <div style="margin-top:0.1rem;text-align:center">
+            长按并识别二维码关注我们
+        </div>
+    </div>
+
+</script>
+
+<div style="font-size:0.2rem;">
+    @Model.Article.Title
+</div>
+<div style="margin-top:0.1rem;font-size:0.14rem;">
+    <span style="color:#808080">@Model.Article.CreateTime.ToString("yyyy-MM-dd")</span>
+    <span style="margin-left:0.1rem;"><a href="#" onclick="showQRCode()">@ViewBag.Authorizer.NickName</a></span>
+</div>
+<div style="margin-top:0.1rem;font-size:0.14rem;">
+    @Html.Raw(Model.Article.Content)
+</div>
+<div style="margin-top:0.1rem;font-size:0.14rem;color:#808080">
+    <span>阅读：@Model.Article.PageVisitCount</span>
+    @*<span style="margin-left:0.15rem;">赞：23</span>*@
+</div>
+
+@if (Model.Advertising != null)
+{
+    <div style="margin-top:0.1rem;text-align:center">
+        <a href="/Home/AdvertisingLanding/@ViewBag.Domain.Id?id=@Model.Advertising.Id&url=@Server.UrlEncode(Model.Advertising.LandingUrl)">
+            <img src="@Model.Advertising.ImageUrl" style="max-width:100%">
+        </a>
+    </div>
+}

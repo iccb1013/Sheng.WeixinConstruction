@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HandlerTest</title>
+
+    @Scripts.Render("~/bundles/common")
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/validate/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/layer.m/layer.m.js")
+
+    <script type="text/javascript">
+
+	$(document).ready(function ()
+    {
+
+    });
+
+	function postTest()
+	{
+	    var url = $("#txtUrl").val();// + $("#txtDomainId").val();
+	    var postData = $("#txtContent").val();
+	   // alert(postData);
+	    $.ajax({
+	        url: url,
+	        type: "POST",
+	        dataType: "text",
+	        data: encodeURIComponent(postData),
+	        success: function (data, status, jqXHR)
+	        {
+	            $("#txtResult").val(data);
+	            
+	        },
+	        error: function (xmlHttpRequest)
+	        {
+	            //alert("Error: " + xmlHttpRequest.status);
+	        }
+	    });
+	}
+
+    </script>
+</head>
+<body>
+    <div>
+        <label>DomainId：</label>
+        <input name="txtDomainId" type="text" id="txtDomainId" style="width:300px;" value="F6AAD430-CA1F-4AFD-B2B0-6E0D2FABB622" />
+    </div>
+    <div>
+        <label>URL：</label>
+        <input name="txtUrl" type="text" id="txtUrl" style="width:600px;" value="http://localhost:50318/WeixinApi/Handler/F6AAD430-CA1F-4AFD-B2B0-6E0D2FABB622?signature=84001ea92e2f369642e861d557b9f4c6781db1ca&timestamp=1446393828&nonce=1291578710&encrypt_type=aes&msg_signature=3ed4a96dbc50d491664ec3f425eb7fc1f088ac9b" />
+    </div>
+    <div>
+        <textarea name="txtContent" rows="15" id="txtContent" style="width:100%"></textarea>
+    </div>
+    <div>
+        <input name="btnPost" type="button" id="btnPost" value="POST" onclick="postTest()" />
+    </div>
+    <div>
+        Return:
+    </div>
+    <div>
+        <textarea name="txtResult" rows="15" id="txtResult" style="width:100%"></textarea>
+    </div>
+</body>
+</html>

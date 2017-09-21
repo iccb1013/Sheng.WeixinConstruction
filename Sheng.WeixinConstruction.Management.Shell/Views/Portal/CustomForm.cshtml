@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.MainMenu = "Portal";
+    ViewBag.LeftMenu = "CustomForm";
+
+    ViewBag.Title = "自定义表单";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script language="javascript">
+
+    //当前页
+    var _currentPage = 1;
+
+    $(document).ready(function () {
+        if (_online == false)
+            return;
+
+        loadData();
+
+        $("[keyenter]").keypress(function (e) {
+            if (e.keyCode == 13) {
+                loadData();
+            }
+        });
+    });
+
+    function loadData(targetPage) {
+        var loadLayerIndex = layer.load(0, {
+            shade: [0.2, '#fff']
+        });
+
+        var args = new Object();
+        args.Page = targetPage || 1;
+        args.Name = $("#txtSearch_Name").val();
+
+        $.ajax({
+            url: "/Api/CustomForm/GetCustomFormList",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(args),
+            success: function (data, status, jqXHR) {
+                // alert(data);
+
+                layer.close(loadLayerIndex);
+                if (data.Success) {
+                    var resultObj = data.Data;
+
+                    _currentPage = resultObj.Page;
+
+                    //alert(JSON.stringify(resultObj));
+                    var gettpl = document.getElementById('tableTemplate').innerHTML;
+                    laytpl(gettpl).render(resultObj.ItemList, function (html) {
+                        document.getElementById('divTableBodyContainer').innerHTML = html;
+                        fitTable();
+                    });
+
+                    laypage({
+                        skin: 'yahei',
+                        cont: document.getElementById('divPagingContainer'),
+                        pages: resultObj.TotalPage, //总页数
+                        curr: resultObj.Page, //当前页
+                        groups: 7, //连续显示分页数
+                        jump: function (obj, first) {
+                            if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+                                loadData(obj.curr);
+                            }
+                        }
+                    });
+
+                } else {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest) {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function loadDataAndCloseLayer(layerIndex) {
+        layer.close(layerIndex);
+        loadData();
+    }
+
+    function loadDataOnPageAndCloseLayer(layerIndex) {
+        layer.close(layerIndex);
+        loadData(_currentPage);
+    }
+
+    function scrollHeader() {
+        // alert(divTableBodyContainer.scrollLeft);
+        var ml = 0 - divTableBodyContainer.scrollLeft;
+        document.getElementById("tableHeader").style.cssText = "margin-left:" + ml + "px;";
+    }
+
+    function fitTable() {
+        $("#tableBody").width($("#tableHeader").width());
+
+        $("#tableHeader tr:first").each(function (n, value) {
+            $(this).find("td").each(function (n, value) {
+                $("#tableBody tr:first td:eq(" + n + ")").width(value.width)
+            });
+        });
+    }
+
+    function create() {
+        window.location.href = "/Portal/CustomFormEdit";
+    }
+
+    function showContent(id) {
+        window.location.href = "/Portal/CustomFormContent?formId=" + id;
+    }
+
+
+</script>
+
+<script id="tableTemplate" type="text/html">
+
+    <table id="tableBody" border="0" cellspacing="0" cellpadding="0">
+        {{# for(var i = 0, len = d.length; i < len; i++){ }}
+
+        <tr>
+            <td height="35"><a href="javascript:void(0)" onclick="showContent('{{ d[i].Id }}')">{{ d[i].Name }}</a></td>
+            <td>{{# if(d[i].Available == true){ }}是{{# }else{ }}否{{# } }}</td>
+            <td>{{ d[i].FillinCount }}</td>
+            <td>{{ d[i].CreateUserName }}</td>
+            <td>{{ d[i].CreateTime }}</td>
+        </tr>
+
+        {{# } }}
+
+    </table>
+
+</script>
+
+<div id="divContentTips">
+    您可配置自己的各类表单以便关注者提交联系信息，您可在后台查询管理这些信息，适用于各类在线预约活动。
+</div>
+
+<div style="margin-top:10px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td bgcolor="#F6F6F6">
+                <div style="padding:10px;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="60">名称：</td>
+                            <td width="220"> <input name="txtSearch_Name" type="text" class="input_16" style="width:200px;" id="txtSearch_Name" keyenter /></td>
+                            <td>
+                                <span style=" margin-top:20px;">
+                                    <input name="btnSearch" type="button" class="btn_blue" id="btnSearch" value="查询" onclick="loadData()" keyenter />
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+        <tr style="height:5px;background-image:url(Images/searchArea_bottom.jpg);background-repeat: repeat-x;">
+            <td></td>
+        </tr>
+    </table>
+
+</div>
+
+
+<div style=" margin-top:20px;">
+    <input name="btnCreate" type="button" class="btn_blue" id="btnCreate" value="添 加" onclick="create()" />
+
+</div>
+
+<div style=" margin-top:20px">
+    <div style="overflow:hidden; padding-left:20px;" class="tableHeader">
+        <table id="tableHeader" border="0" cellspacing="0" cellpadding="0" width="810" height="47">
+            <tr>
+                <td width="260">名称</td>
+                <td width="100">开放填写</td>
+                <td width="100">填写人数</td>
+                <td width="150">创建者</td>
+                <td width="200">创建时间</td>
+            </tr>
+        </table>
+    </div>
+
+    <div style=" margin-top:10px">
+        <!--div必须要设置height，否则滚动条出不来-->
+        <div id="divTableBodyContainer" style="overflow:auto; height:100%;; padding-left:20px;" onscroll="scrollHeader()">
+            <!--table必须要有一个确切的宽度，否则无法超出div-->
+
+            
+        </div>
+
+    </div>
+
+</div>
+<div style="height:1px; margin-top:5px; background-color:#cccccc">
+
+</div>
+
+<div id="divPagingContainer" style=" margin-top:20px; margin-bottom:20px;text-align:right; ">
+
+</div>
+
+

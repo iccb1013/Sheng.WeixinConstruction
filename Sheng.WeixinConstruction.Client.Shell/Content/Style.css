@@ -1,0 +1,184 @@
+﻿@charset "utf-8";
+
+/*input[type="button"], input[type="submit"], input[type="reset"] {*/
+input {
+    -webkit-appearance: none;
+}
+
+textarea {
+    -webkit-appearance: none;
+}
+
+body {
+    margin: 0px;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    font-size: 0.13rem;
+}
+
+
+img {
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+}
+
+.font_gray_13 {
+    font-size: 0.13rem;
+    color: #666666;
+}
+
+.font_gray_15 {
+    font-size: 0.15rem;
+    color: #666666;
+}
+
+.input_16 {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    font-size: 0.16rem;
+    padding: 0.04rem;
+    width: 100%;
+    border: 1px solid #BBBBBB;
+}
+
+#divTopTitle_Staff {
+    height: 0.35rem;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    color: #FFF;
+    position: fixed;
+    background-image: url(Images/staff_top_bg.jpg);
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+}
+
+#tableTopTitle_Staff {
+    font-size: 0.18rem;
+    background-image: url(Images/staff_topTitle_bg.jpg);
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+}
+
+.divDotLine {
+    background-image: url(Images/dotLine.png);
+    background-repeat: repeat-x;
+    height: 1px;
+}
+
+.divDotLine_v {
+    background-image: url(Images/dotLine_v.png);
+    background-repeat: repeat-y;
+    width: 1px;
+}
+
+.divBorder {
+    border: 1px solid #CCC;
+}
+
+.divContent {
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+}
+
+.divRedDot {
+    font-size: 0.10rem;
+    padding: 0.03rem 0.07rem;
+    background-color: red;
+    color: white;
+    -moz-border-radius: 1rem; /* Gecko browsers */
+    -webkit-border-radius: 1rem; /* Webkit browsers */
+    border-radius: 1rem; /* W3C syntax */
+}
+
+.divRectangle_Gray {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    color: #777777;
+    border: 1px solid #777777;
+    background-color: white;
+    padding: 0.04rem 0.06rem;
+    -moz-border-radius: 0.04rem; /* Gecko browsers */
+    -webkit-border-radius: 0.04rem; /* Webkit browsers */
+    border-radius: 0.04rem; /* W3C syntax */
+    text-align: center;
+}
+
+.button_white {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    color: black;
+    border: 1px solid #BBBBBB;
+    background-color: white;
+    padding: 0.06rem 0.1rem;
+    -moz-border-radius: 0.04rem; /* Gecko browsers */
+    -webkit-border-radius: 0.04rem; /* Webkit browsers */
+    border-radius: 0.04rem; /* W3C syntax */
+    text-align: center;
+}
+
+.button_gray {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    color: #777777;
+    border: 1px solid #777777;
+    background-color: white;
+    padding: 0.06rem 0.1rem;
+    -moz-border-radius: 0.04rem; /* Gecko browsers */
+    -webkit-border-radius: 0.04rem; /* Webkit browsers */
+    border-radius: 0.04rem; /* W3C syntax */
+    text-align: center;
+}
+
+.divBorder_dotted {
+    border: 1px dotted #666666;
+}
+
+.button:disabled {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    color: #CCCCCC;
+    border: 1px solid #CCCCCC;
+    background-color: white;
+    padding: 0.06rem 0.1rem;
+    -moz-border-radius: 0.04rem; /* Gecko browsers */
+    -webkit-border-radius: 0.04rem; /* Webkit browsers */
+    border-radius: 0.04rem; /* W3C syntax */
+    text-align: center;
+}
+
+#divShortcutMenuContainer {
+    position: fixed;
+    bottom: 0.6rem;
+    right: 0.1rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    text-align: right;
+    z-index: 99999;
+}
+
+.divShortcutMenuItem {
+    font-size: 0.16rem;
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
+    text-align: center;
+}
+
+.divAd{
+    margin-top:0.1rem;
+    text-align:center;
+    font-size:0.12rem;
+    color:#666666;
+}

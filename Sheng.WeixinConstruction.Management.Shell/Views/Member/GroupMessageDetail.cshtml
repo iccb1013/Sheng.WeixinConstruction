@@ -1,0 +1,248 @@
+﻿@model Sheng.WeixinConstruction.Management.Shell.Models.GroupMessageDetailViewModel
+
+@{
+    ViewBag.Title = "GroupMessageDetail";
+    Layout = "~/Views/Shared/_LayoutBlank.cshtml";
+}
+
+<style type="text/css">
+   
+    .divArticleMaterialContainer {
+        width: 230px;
+        background-color: #FFF;
+        font-size: 13px;
+    }
+
+    .tableArticleMaterialContainer {
+        width: 100%;
+        border-collapse: collapse;
+        border: solid #E7E7EB;
+        border-width: 1px 0 0 1px;
+    }
+
+        .tableArticleMaterialContainer td {
+            border: 1px solid #E7E7EB;
+        }
+
+    .tableNoBorder {
+        border: 0px;
+    }
+
+        .tableNoBorder td {
+            border: 0px;
+        }
+
+    .divFirstArticleTitle {
+        position: absolute;
+        line-height: 24px;
+        padding-left: 7px;
+        vertical-align: middle;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        height: 24px;
+        background-color: #000000;
+        color: white;
+        filter: alpha(opacity=70);
+        -moz-opacity: 0.7;
+        -khtml-opacity: 0.7;
+        opacity: 0.7;
+    }
+
+    .divArticleFirstItem {
+        border: 2px solid #FFF;
+        position: relative;
+        height: 100px;
+    }
+
+
+    .divArticleItem {
+        margin-top: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        border: 2px solid #FFF;
+    }
+
+
+    .divArticleItemActive {
+        border: 2px solid skyblue;
+    }
+</style>
+
+
+<script>
+
+    $(document).ready(function ()
+    {
+        var type = @((int)Model.GroupMessage.Type);
+        switch(type){
+            case 0:
+                $("#divGroupMessageContent").html('@(Model.GroupMessage.Content)');
+                break;
+            case 1:
+                $("#divGroupMessageContent").html("<img src='@(Model.GroupMessage.Url)' style='width:100%'>");
+                break;
+            case 2:
+                loadArticleContentIndex('@(Model.GroupMessage.ArticleId)');
+                break;
+            default:
+                alert("未知消息类型：" + type);
+                break;
+        }
+    });
+
+    function loadArticleContentIndex(id)
+    {
+        $.ajax({
+            url: "/Api/Material/GetArticleMaterial?id=" + id,
+            type: "POST",
+            dataType: "json",
+            success: function (data, status, jqXHR)
+            {
+                if (data.Success)
+                {
+                    //图文素材被删除后返回null
+                    if (data.Data != null)
+                    {
+                        var gettpl = document.getElementById('articleTemplate').innerHTML;
+                        laytpl(gettpl).render(data.Data.articles, function (html)
+                        {
+                            document.getElementById('divGroupMessageContent').innerHTML = html;
+                        });
+                    } else
+                    {
+                        document.getElementById('divGroupMessageContent').innerHTML = "指定的图文素材不存在，请确认是否已被删除。";
+                    }
+
+                } else
+                {
+                    layerAlert(data.Message);
+                }
+            },
+            error: function (xmlHttpRequest)
+            {
+                layer.close(loadLayerIndex);
+                alert("Error: " + xmlHttpRequest.status);
+            }
+        });
+    }
+
+    function cancel()
+    {
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.layer.close(index); //再执行关闭
+    }
+</script>
+
+<script id="articleTemplate" type="text/html">
+
+    <div class="divArticleMaterialContainer">
+        <table class="tableArticleMaterialContainer">
+            <tr>
+                <td valign="top">
+                    <div>
+                        <div>
+                            <div class="divArticleFirstItem">
+                                <div style=" position:absolute; left:0px; right:0px; height:100px; overflow:hidden">
+                                    <img src="{{ d[0].thumbUrl }}" style=" width:100%;">
+                                </div>
+                                <div class="divFirstArticleTitle">
+                                    <a style="color:white" target="_blank" href="{{ d[0].url }}">{{ d[0].title }}</a>
+                                </div>
+                            </div>
+
+                            {{# for(var i = 1, len = d.length; i < len; i++){ }}
+                            <div class="divDotLine" style="margin-top:10px;">
+                            </div>
+                            <div class="divArticleItem">
+                                <table class="tableNoBorder" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td>
+                                            <a style="color:black" target="_blank" href="{{ d[i].url }}">{{ d[i].title }}</a>
+                                        </td>
+                                        <td width="75" align="right"><img src="{{ d[i].thumbUrl }}" width="70" height="70"></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            {{# } }}
+                        </div>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+
+</script>
+
+
+<div style="margin-left:20px; margin-right:20px; margin-top:20px;">
+    <span id="spanTitle" class="font_black_24">群发详情</span>
+</div>
+
+<div style=" background-color:#ccc; margin-left:20px; margin-right:20px; margin-top:10px; height:1px;">
+
+</div>
+
+<div style=" position:absolute; overflow:auto ;margin-top:30px;left:30px; right:30px; bottom:60px; top:50px; ">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="200" valign="top">
+                <div>消息内容：</div>
+                <div style="margin-top:20px;" id="divGroupMessageContent">
+
+                </div>
+            </td>
+            <td width="40" valign="top">&nbsp;</td>
+            <td valign="top">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="130" height="36" valign="top">提交时间：</td>
+                        <td valign="top">@Model.GroupMessage.SubmitTime</td>
+                    </tr>
+                    <tr>
+                        <td height="36" valign="top">消息类型：</td>
+                        <td valign="top">@Model.GroupMessage.TypeString</td>
+                    </tr>
+                    <tr>
+                        <td height="36" valign="top">发送设置：</td>
+                        <td valign="top">@Model.GroupMessage.FilterOption</td>
+                    </tr>
+                    <tr>
+                        <td height="36" valign="top">发送状态：</td>
+                        <td valign="top">@Model.GroupMessage.StatusString</td>
+                    </tr>
+                    <tr>
+                        <td height="36" valign="top">目标会员：</td>
+                        <td valign="top">@Model.GroupMessage.FilterCount</td>
+                    </tr>
+                    <tr>
+                        <td height="36" valign="top">送达会员：</td>
+                        <td valign="top" model.groupmessage.sentcount</td>
+                    </tr>
+                    <tr>
+                        <td height="36" valign="top">未送达会员：</td>
+                        <td valign="top">@Model.GroupMessage.ErrorCount</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div style=" background-color:#ccc; position:absolute; bottom:55px; left:20px;right:20px; height:1px;">
+
+</div>
+
+<div style="position:absolute; bottom:15px; left:20px;right:20px;">
+
+    <div style="float:right">
+        <input id="btnClose" name="btnClose" type="button" class="btn_blue" value="关 闭" onclick="cancel()" />
+    </div>
+    <div style="clear:both">
+    </div>
+</div>
+

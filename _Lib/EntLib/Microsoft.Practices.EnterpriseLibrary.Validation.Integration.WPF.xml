@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ExceptionCannotModifyDynamicRule">
+            <summary>
+              Looks up a localized string similar to This ValidatorRule cannot be updated..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ExceptionComplexBindingPath">
+            <summary>
+              Looks up a localized string similar to The binding with the complex path &apos;{0}&apos; cannot be validated. Only single-property binding paths are supported..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ExceptionDependencyPropertyHasNoBinding">
+            <summary>
+              Looks up a localized string similar to The dependency property with name &apos;{0}&apos; for element &apos;{1}&apos; (Name=&apos;{2}&apos;, HashCode={3}) does not have a binding to validate..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ExceptionMissingDependencyProperty">
+            <summary>
+              Looks up a localized string similar to The element &apos;{1}&apos; (Name=&apos;{2}&apos;, HashCode={3}) does not have a dependency property with name &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ExceptionSourcePropertyNameNotSet">
+            <summary>
+              Looks up a localized string similar to The source property name for the ValidatorRule is not set..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ExceptionSourcePropertyNotFound">
+            <summary>
+              Looks up a localized string similar to The source type &apos;{0}&apos; does not have a property &apos;{1}&apos; for the ValidatorRule..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ExceptionSourceTypeNotSet">
+            <summary>
+              Looks up a localized string similar to The source type for the ValidatorRule is not set..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ExceptionUnexpectedBindingExpression">
+            <summary>
+              Looks up a localized string similar to Unknown binding expression of type &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ExceptionUnexpectedMissingType">
+            <summary>
+              Looks up a localized string similar to Cannot retrieve the type from the binding source..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ExceptionUnexpectedPropertyType">
+            <summary>
+              Looks up a localized string similar to Cannot retrieve the property from a binding..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Properties.Resources.ExceptionUnexpectedValueSource">
+            <summary>
+              Looks up a localized string similar to Attempted to extract a value from an unknown object..
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate">
+            <summary>
+            Provides methods and attached properties that support validation of bindings using the 
+            Validation Application Block.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.BindingForPropertyProperty">
+            <summary>
+            Identifies the BindingForProperty attached property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.UsingSourceProperty">
+            <summary>
+            Identifies the UsingSource attached property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.UsingRulesetNameProperty">
+            <summary>
+            Identifies the UsingRulesetName attached property.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.ValidatesOnTargetUpdatedProperty">
+            <summary>
+            Enable validation to fire when the source object's value changes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.SetBindingForProperty(System.Windows.FrameworkElement,System.String)">
+            <summary>
+            Sets the value of the BindingForProperty attached property to a specified element.
+            </summary>
+            <param name="element">The element to which the attached property is written.</param>
+            <param name="property">The name of the bound property to validate.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.GetBindingForProperty(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the value of the BindingForProperty attached property for a specified element.
+            </summary>
+            <param name="element">The element from which the property value is read.</param>
+            <returns>The BindingForProperty property value for the element.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.SetUsingSource(System.Windows.FrameworkElement,Microsoft.Practices.EnterpriseLibrary.Validation.ValidationSpecificationSource)">
+            <summary>
+            Sets the value of the UsingSource attached property to a specified element.
+            </summary>
+            <param name="element">The element to which the attached property is written.</param>
+            <param name="property">The source for validation information.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.GetUsingSource(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the value of the UsingSource attached property for a specified element.
+            </summary>
+            <param name="element">The element from which the property value is read.</param>
+            <returns>The UsingSource property value for the element.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.SetUsingRulesetName(System.Windows.FrameworkElement,System.String)">
+            <summary>
+            Sets the value of the UsingRulesetName attached property to a specified element.
+            </summary>
+            <param name="element">The element to which the attached property is written.</param>
+            <param name="rulesetName">The ruleset name.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.GetUsingRulesetName(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the value of the UsingRulesetName attached property for a specified element.
+            </summary>
+            <param name="element">The element from which the property value is read.</param>
+            <returns>The UsingRulesetName property value for the element.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.GetValidatesOnTargetUpdated(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the value of the ValidatesOnTargetUpdated attached property for a specified element.
+            </summary>
+            <param name="element">The elment from which the property value is read.</param>
+            <returns>The ValidatesOnTargetUpdated property value for the element</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.Validate.SetValidatesOnTargetUpdated(System.Windows.FrameworkElement,System.Boolean)">
+            <summary>
+            Sets the value of the ValidatesOnTargetUpdated attachs property for a specified element.
+            </summary>
+            <param name="element">The element to which the attached property is written.</param>
+            <param name="validateOnTargetUpdated">The new value.</param>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule">
+            <summary>
+            Validation rule that performs validation of a converted value using the validators associated to the source
+            property of a binding.
+            </summary>
+            <remarks>
+            A <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule"/> can be initialized with a <see cref="T:System.Windows.Data.BindingExpression"/> from which it can get
+            the source item and the source property to extract the appropriate validators.
+            <para/>
+            This rule is intended to be used on the <see cref="F:System.Windows.Controls.ValidationStep.ConvertedProposedValue"/> step, after the
+            raw value has been converted but before it is applied to the source of the binding.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule"/> class..
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule.#ctor(System.Windows.Data.BindingExpression)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule"/> class for a binding expression.
+            </summary>
+            <param name="bindingExpression">The expression to validate.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule.Validate(System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Validates <paramref name="value"/> using the validators associated with the source property.
+            </summary>
+            <param name="value">The value from the binding target to check.</param>
+            <param name="cultureInfo">The culture to use in this rule.</param>
+            <returns>A <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.ValidationResult"/> object.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule.SourceType">
+            <summary>
+            Gets or sets the type from which explicitly configured <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule"/> instances should get
+            their validators.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule.SourcePropertyName">
+            <summary>
+            Gets or sets the name of the property for which explicitly configured <see cref="T:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule"/> instances
+            should get their validators.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule.ValidationSpecificationSource">
+            <summary>
+            Gets or sets the source for validation information.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.ValidatorRule.RulesetName">
+            <summary>
+            Gets or sets the ruleset name to use when validating.
+            </summary>
+        </member>
+    </members>
+</doc>

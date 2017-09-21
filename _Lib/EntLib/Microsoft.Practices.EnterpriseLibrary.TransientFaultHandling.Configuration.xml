@@ -1,0 +1,707 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.AddRetryPolicyConfigurationSettings">
+            <summary>
+              Looks up a localized string similar to Add Transient Fault Handling Settings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.CustomRetryStrategyDataDescription">
+            <summary>
+              Looks up a localized string similar to A custom retry strategy implementing the RetryStrategy abstract class..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.CustomRetryStrategyDataDisplayName">
+            <summary>
+              Looks up a localized string similar to Custom Retry Strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultAzureCachingRetryStrategyDescription">
+            <summary>
+              Looks up a localized string similar to The name of a retry strategy dedicated to handling transient conditions in Windows Azure Caching services..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultAzureCachingRetryStrategyDisplayName">
+            <summary>
+              Looks up a localized string similar to Default Caching Retry Strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultAzureServiceBusRetryStrategyDescription">
+            <summary>
+              Looks up a localized string similar to The name of a retry policy dedicated to handling transient conditions in the Windows Azure Service Bus infrastructure..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultAzureServiceBusRetryStrategyDisplayName">
+            <summary>
+              Looks up a localized string similar to Default Service Bus Retry Strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultAzureStorageRetryStrategyDescription">
+            <summary>
+              Looks up a localized string similar to The name of a retry strategy dedicated to handling transient conditions in Windows Azure Storage services..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultAzureStorageRetryStrategyDisplayName">
+            <summary>
+              Looks up a localized string similar to Default Windows Azure Storage Retry Strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultRetryStrategyDescription">
+            <summary>
+              Looks up a localized string similar to The default general-purpose retry strategy..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultRetryStrategyDisplayName">
+            <summary>
+              Looks up a localized string similar to Default Retry Strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultSqlCommandRetryStrategyDescription">
+            <summary>
+              Looks up a localized string similar to The name of a retry strategy dedicated to handling transient conditions with SQL commands..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultSqlCommandRetryStrategyDisplayName">
+            <summary>
+              Looks up a localized string similar to Default SQL Command Retry Strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultSqlConnectionRetryStrategyDescription">
+            <summary>
+              Looks up a localized string similar to The name of a retry strategy dedicated to handling transient conditions with SQL connections..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DefaultSqlConnectionRetryStrategyDisplayName">
+            <summary>
+              Looks up a localized string similar to Default SQL Connection Retry Strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DeltaBackoffDescription">
+            <summary>
+              Looks up a localized string similar to The time that will be used for calculating a random delta in the exponential delay between retries..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.DeltaBackoffDisplayName">
+            <summary>
+              Looks up a localized string similar to Delta Back-off.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.ExponentialBackoffDataDescription">
+            <summary>
+              Looks up a localized string similar to A retry strategy with backoff parameters for calculating the exponential delay between retries..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.ExponentialBackoffDataDisplayName">
+            <summary>
+              Looks up a localized string similar to Exponential Backoff.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.FirstFastRetryDescription">
+             <summary>
+               Looks up a localized string similar to Indicating whether or not the very first retry attempt will be made immediately whereas the 
+            subsequent retries will remain subject to retry interval..
+             </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.FirstFastRetryDisplayName">
+            <summary>
+              Looks up a localized string similar to First Fast Retry.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.FixedIntervalDataDescription">
+            <summary>
+              Looks up a localized string similar to A retry strategy with a fixed interval between retry attempts..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.FixedIntervalDataDisplayName">
+            <summary>
+              Looks up a localized string similar to Fixed Interval.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.FixedIntervalDataRetryIntervalDescription">
+            <summary>
+              Looks up a localized string similar to The interval between retry attempts..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.FixedIntervalDataRetryIntervalDisplayName">
+            <summary>
+              Looks up a localized string similar to Interval.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.IncrementalDataDescription">
+            <summary>
+              Looks up a localized string similar to A retry strategy with progressive delay between retries..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.IncrementalDataDisplayName">
+            <summary>
+              Looks up a localized string similar to Incremental.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.IncrementalDataInitialIntervalDescription">
+            <summary>
+              Looks up a localized string similar to The initial interval that will apply for the first retry..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.IncrementalDataInitialIntervalDisplayName">
+            <summary>
+              Looks up a localized string similar to Initial Interval.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.MaxBackoffDescription">
+            <summary>
+              Looks up a localized string similar to The maximum backoff time..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.MaxBackoffDisplayName">
+            <summary>
+              Looks up a localized string similar to Maximum Back-off.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.MaxRetryCountDescription">
+            <summary>
+              Looks up a localized string similar to The maximum number of retry attempts..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.MaxRetryCountDisplayName">
+            <summary>
+              Looks up a localized string similar to Max Retry Count.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.MinBackoffDescription">
+            <summary>
+              Looks up a localized string similar to The minimum backoff time..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.MinBackoffDisplayName">
+            <summary>
+              Looks up a localized string similar to Minimum Back-off.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.RetryIncrementDescription">
+            <summary>
+              Looks up a localized string similar to The incremental time value for calculating progressive delay between retries..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.RetryIncrementDisplayName">
+            <summary>
+              Looks up a localized string similar to Increment.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.RetryPolicyConfigurationSettingsDescription">
+            <summary>
+              Looks up a localized string similar to Configuration settings for the Transient Fault Handling Application Block..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.RetryPolicyConfigurationSettingsDisplayName">
+            <summary>
+              Looks up a localized string similar to Transient Fault Handling Settings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.RetryStrategiesDescription">
+            <summary>
+              Looks up a localized string similar to The Retry Strategies..
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.DesignResources.RetryStrategiesDisplayName">
+            <summary>
+              Looks up a localized string similar to Retry Strategies.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData">
+            <summary>
+            <para>Represents the exponential backoff retry strategy.</para>
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyData">
+            <summary>
+            <para>Represents the common configuration data for all rule strategies.</para>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyData.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyData"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyData.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyData"/> class with a retry strategy type.
+            </summary>
+            <param name="type">The type of <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/>.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyData.#ctor(System.String,System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyData"/> class with a name and a retry strategy type.
+            </summary>
+            <param name="name">The name of the configured <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/>.</param>
+            <param name="type">The type of <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/>.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyData.BuildRetryStrategy">
+            <summary>
+            Builds the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/> from the configuration settings.
+            </summary>
+            <returns>The strategy for retrying when transient errors occur.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyData.FirstFastRetry">
+            <summary>
+            Gets or sets a value that indicates whether the first retry attempt will be made immediately,
+            whereas subsequent retries will remain subject to the retry interval.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData"/> class. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData"/> class. 
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData.BuildRetryStrategy">
+            <summary>
+            Builds the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/> from the configuration settings.
+            </summary>
+            <returns>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/> for retrying when transient errors occur.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData.SerializeToXmlElement(System.Xml.XmlWriter,System.String)">
+            <summary>
+            Writes the outer tags of this configuration element to the configuration file when implemented in a derived class.
+            </summary>
+            <param name="writer">The writer that writes to the configuration file.</param>
+            <param name="elementName">The name of the <see cref="T:System.Configuration.ConfigurationElement"/> to be written.</param>
+            <returns>true if writing was successful; otherwise, false.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData.MaxRetryCount">
+            <summary>
+            Gets or sets the maximum number of retry attempts.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData.MinBackoff">
+            <summary>
+            Gets or sets the minimum backoff time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData.MaxBackoff">
+            <summary>
+            Gets or sets the maximum backoff time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData.DeltaBackoff">
+            <summary>
+            Gets or sets the value that will be used to calculate a random delta in the exponential delay between retries.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.ExponentialBackoffData.TypeName">
+            <summary>
+            Override to hide and avoid saving the type property.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.FixedIntervalData">
+            <summary>
+            <para>Represents the fixed interval retry strategy.</para>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.FixedIntervalData.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.FixedIntervalData"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.FixedIntervalData.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.FixedIntervalData"/> class by using the specified name.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.FixedIntervalData.BuildRetryStrategy">
+            <summary>
+            Builds the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/> from the configuration settings.
+            </summary>
+            <returns>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/> for retrying when transient errors occur.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.FixedIntervalData.SerializeToXmlElement(System.Xml.XmlWriter,System.String)">
+            <summary>
+            Writes the outer tags of this configuration element to the configuration file when implemented in a derived class.
+            </summary>
+            <param name="writer">The writer that writes to the configuration file.</param>
+            <param name="elementName">The name of the <see cref="T:System.Configuration.ConfigurationElement"/> to be written.</param>
+            <returns>true if writing was successful; otherwise, false.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.FixedIntervalData.MaxRetryCount">
+            <summary>
+            Gets or sets the maximum number of retry attempts.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.FixedIntervalData.RetryInterval">
+            <summary>
+            Gets or sets the interval between retry attempts.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.FixedIntervalData.TypeName">
+            <summary>
+            Override to hide and avoid saving the type property.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData">
+            <summary>
+            Holds configuration information for custom retry strategies.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.#ctor">
+            <summary>
+            Initializes a new instance of the CustomRetryStrategyData class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.#ctor(System.String,System.Type)">
+            <summary>
+            Initializes a new instance of the CustomRetryStrategyData class by using the specified name and provider type.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="type">The provider type.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the CustomRetryStrategyData class by using the specified name and fully qualified provider type name.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="typeName">The fully qualified type name of the provider type.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IHelperAssistedCustomConfigurationData{Microsoft#Practices#EnterpriseLibrary#TransientFaultHandling#Configuration#CustomRetryStrategyData}#BaseGetPropertyValue(System.Configuration.ConfigurationProperty)">
+            <summary>Invokes the inherited behavior.</summary>
+            <param name="property">Gets the given property value.</param>
+            <returns>The requested property's value.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IHelperAssistedCustomConfigurationData{Microsoft#Practices#EnterpriseLibrary#TransientFaultHandling#Configuration#CustomRetryStrategyData}#BaseSetPropertyValue(System.Configuration.ConfigurationProperty,System.Object)">
+            <summary>Invokes the inherited behavior.</summary>
+            <param name="property">Sets the given property.</param>
+            <param name="value">New value for the property.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IHelperAssistedCustomConfigurationData{Microsoft#Practices#EnterpriseLibrary#TransientFaultHandling#Configuration#CustomRetryStrategyData}#BaseUnmerge(System.Configuration.ConfigurationElement,System.Configuration.ConfigurationElement,System.Configuration.ConfigurationSaveMode)">
+            <summary>Invokes the inherited behavior.</summary>
+            <param name="sourceElement">Source configuration element.</param>
+            <param name="parentElement">Parent configuration element.</param>
+            <param name="saveMode">The configuration save mode.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IHelperAssistedCustomConfigurationData{Microsoft#Practices#EnterpriseLibrary#TransientFaultHandling#Configuration#CustomRetryStrategyData}#BaseReset(System.Configuration.ConfigurationElement)">
+            <summary>Invokes the inherited behavior.</summary>
+            <param name="parentElement">Parent element.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IHelperAssistedCustomConfigurationData{Microsoft#Practices#EnterpriseLibrary#TransientFaultHandling#Configuration#CustomRetryStrategyData}#BaseIsModified">
+            <summary>Invokes the inherited behavior.</summary>
+            <returns>true if the element has been modified; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.SetAttributeValue(System.String,System.String)">
+            <summary>
+            Sets the attribute value for a key.
+            </summary>
+            <param name="key">The attribute name.</param>
+            <param name="value">The attribute value.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.BuildRetryStrategy">
+            <summary>
+            Builds the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/> from the configuration settings.
+            </summary>
+            <returns>The retry strategy to use when transient errors occur.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.Unmerge(System.Configuration.ConfigurationElement,System.Configuration.ConfigurationElement,System.Configuration.ConfigurationSaveMode)">
+            <summary>
+            Modifies the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData"/> object to remove all values that should not be saved. 
+            </summary>
+            <param name="sourceElement">A <see cref="T:System.Configuration.ConfigurationElement"/> object at the current level that contains a merged view of the properties.</param>
+            <param name="parentElement">A parent <see cref="T:System.Configuration.ConfigurationElement"/> object or <see langword="null"/> if this is the top level.</param>
+            <param name="saveMode">One of the enumeration values that specifies the save mode.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.Reset(System.Configuration.ConfigurationElement)">
+            <summary>
+            Resets the internal state of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData"/> object, 
+            including the locks and the properties collection.
+            </summary>
+            <param name="parentElement">The parent element.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.IsModified">
+            <summary>
+            Indicates whether this configuration element has been modified since it was last 
+            saved or loaded when implemented in a derived class.
+            </summary>
+            <returns><see langword="true"/> if the element has been modified; otherwise, <see langword="false"/>. </returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.OnDeserializeUnrecognizedAttribute(System.String,System.String)">
+            <summary>
+            Called when an unknown attribute is encountered while deserializing the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData"/> object.
+            </summary>
+            <param name="name">The name of the unrecognized attribute.</param>
+            <param name="value">The value of the unrecognized attribute.</param>
+            <returns><see langword="true"/> if the processing of the element should continue; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.Name">
+            <summary>
+            Gets or sets the name of the retry strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.TypeName">
+            <summary>
+            Overridden in order to apply <see cref="T:System.ComponentModel.BrowsableAttribute"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.Attributes">
+            <summary>
+            Gets custom configuration attributes.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.Microsoft#Practices#EnterpriseLibrary#Common#Configuration#IHelperAssistedCustomConfigurationData{Microsoft#Practices#EnterpriseLibrary#TransientFaultHandling#Configuration#CustomRetryStrategyData}#Helper">
+            <summary>
+            Gets the helper.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.CustomRetryStrategyData.Properties">
+            <summary>
+            Gets a <see cref="T:System.Configuration.ConfigurationPropertyCollection"/> of the properties that are defined for 
+            this configuration element when implemented in a derived class. 
+            </summary>
+            <value>
+            A <see cref="T:System.Configuration.ConfigurationPropertyCollection"/> of the properties that are defined for this
+            configuration element when implemented in a derived class. 
+            </value>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.IncrementalData">
+            <summary>
+            <para>Represents the incremental retry strategy.</para>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.IncrementalData.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.IncrementalData"/> class. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.IncrementalData.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.IncrementalData"/> class by using the specified name. 
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.IncrementalData.BuildRetryStrategy">
+            <summary>
+            Builds the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/> from the configuration settings.
+            </summary>
+            <returns>The <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryStrategy"/> for retrying when transient errors occur.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.IncrementalData.SerializeToXmlElement(System.Xml.XmlWriter,System.String)">
+            <summary>
+            Writes the outer tags of this configuration element to the configuration file when implemented in a derived class.
+            </summary>
+            <param name="writer">The writer that writes to the configuration file.</param>
+            <param name="elementName">The name of the <see cref="T:System.Configuration.ConfigurationElement"/> to be written.</param>
+            <returns>true if writing was successful; otherwise, false.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.IncrementalData.MaxRetryCount">
+            <summary>
+            Gets or sets the maximum number of retry attempts.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.IncrementalData.RetryIncrement">
+            <summary>
+            Gets or sets the incremental time value for calculating progressive delay between retry attempts.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.IncrementalData.InitialInterval">
+            <summary>
+            Gets or sets the initial interval.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.IncrementalData.TypeName">
+            <summary>
+            Override to hide and avoid saving the type property.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyCollection">
+            <summary>
+            Represents a collection RetryStrategyData instances.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyCollection.OnDeserializeUnrecognizedElement(System.String,System.Xml.XmlReader)">
+            <summary>
+            Called when an unknown element is encountered while deserializing the System.Configuration.ConfigurationElement object.
+            </summary>
+            <param name="elementName">The name of the element.</param>
+            <param name="reader">The reader used to deserialize the element.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings">
+            <summary>
+            Implements a configuration section that contains retry policy settings.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings.SectionName">
+            <summary>
+            The name of the configuration section that is represented by this type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings.GetRetryPolicySettings(Microsoft.Practices.EnterpriseLibrary.Common.Configuration.IConfigurationSource)">
+            <summary>
+            Retrieves the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings"/> section from the configuration source.
+            </summary>
+            <param name="configurationSource">The configuration source to get the section from.</param>
+            <returns>The retry policy section.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings.BuildRetryManager">
+            <summary>
+            Builds the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager"/> from the configuration settings.
+            </summary>
+            <returns>The retry manager to use when transient errors occur.</returns>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings.DefaultRetryStrategy">
+            <summary>
+            Gets or sets the name of the default general-purpose retry strategy.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings.DefaultSqlConnectionRetryStrategy">
+            <summary>
+            Gets or sets the name of a retry strategy dedicated to handling transient conditions with SQL connections.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings.DefaultSqlCommandRetryStrategy">
+            <summary>
+            Gets or sets the name of a retry strategy dedicated to handling transient conditions with SQL commands.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings.DefaultAzureServiceBusRetryStrategy">
+            <summary>
+            Gets or sets the name of a retry policy dedicated to handling transient conditions in the Windows Azure Service Bus infrastructure.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings.DefaultAzureCachingRetryStrategy">
+            <summary>
+            Gets or sets the name of a retry policy dedicated to handling transient conditions in Windows Azure Caching.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings.DefaultAzureStorageRetryStrategy">
+            <summary>
+            Gets or sets the name of a retry policy dedicated to handling transient conditions in Windows Azure Storage.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryPolicyConfigurationSettings.RetryStrategies">
+            <summary>
+            Gets a collection of retry policy definitions represented by the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.RetryStrategyData"/> object instances.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.TransientFaultHandlingDesignTime.EditorTypes">
+            <summary>
+            Provides common editor types used by the design-time infrastructure.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.TransientFaultHandlingDesignTime.EditorTypes.TimeSpanEditor">
+            <summary>
+            Type name of the TimeSpanEditor class, which is declared in the Microsoft.Practices.EnterpriseLibrary.Configuration.DesignTime assembly.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Configuration.TransientFaultHandlingDesignTime.EditorTypes.FrameworkElement">
+            <summary>
+            Type name of the FrameworkElement, which is declared in the PresentationFramework assembly.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Properties.Resources.CustomRetryStrategyDoesNotProvideCorrectConstructor">
+            <summary>
+              Looks up a localized string similar to The custom retry strategy type {0} does not provide a constructor taking the name identifying the retry strategy, the first fast retry flag, and a NameValueCollection for the additional properties..
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicyFactory">
+            <summary>
+            Provides a factory class for instantiating application-specific retry policies described in the application configuration.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicyFactory.SetRetryManager(Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryManager,System.Boolean)">
+            <summary>
+            Sets the retry manager.
+            </summary>
+            <param name="retryManager">The retry manager.</param>
+            <param name="throwIfSet">true to throw an exception if the writer is already set; otherwise, false. Defaults to <see langword="true"/>.</param>
+            <exception cref="T:System.InvalidOperationException">The factory is already set and <paramref name="throwIfSet"/> is true.</exception>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicyFactory.CreateDefault">
+            <summary>
+            Creates a retry manager from the system configuration.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicyFactory.GetDefaultSqlConnectionRetryPolicy">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with SQL connections.
+            </summary>
+            <returns>The retry policy for SQL connections with the corresponding default strategy (or the default strategy if no retry strategy definition for SQL connections was found).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicyFactory.GetDefaultSqlCommandRetryPolicy">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with SQL commands.
+            </summary>
+            <returns>The retry policy for SQL commands with the corresponding default strategy (or the default strategy if no retry strategy definition for SQL commands was found).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicyFactory.GetDefaultAzureServiceBusRetryPolicy">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with Windows Azure Service Bus.
+            </summary>
+            <returns>The retry policy for Windows Azure Service Bus with the corresponding default strategy (or the default strategy if no retry strategy definition for Windows Azure Service Bus was found).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicyFactory.GetDefaultAzureCachingRetryPolicy">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with Windows Azure Caching.
+            </summary>
+            <returns>The retry policy for Windows Azure Caching with the corresponding default strategy (or the default strategy if no retry strategy definition for Windows Azure Caching was found).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicyFactory.GetDefaultAzureStorageRetryPolicy">
+            <summary>
+            Returns the default retry policy dedicated to handling transient conditions with Windows Azure Storage.
+            </summary>
+            <returns>The retry policy for Windows Azure Storage with the corresponding default strategy (or the default strategy if no retry strategy definition for Windows Azure Storage was found).</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicyFactory.GetRetryPolicy``1">
+            <summary>
+            Returns a retry policy with the specified error detection strategy and the default retry strategy defined in the configuration. 
+            </summary>
+            <typeparam name="T">The type that implements the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy"/> interface that is responsible for detecting transient conditions.</typeparam>
+            <returns>The retry policy that is initialized with the default retry strategy.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicyFactory.GetRetryPolicy``1(System.String)">
+            <summary>
+            Returns an instance of the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.RetryPolicy"/> object for a given error detection strategy and retry strategy.
+            </summary>
+            <typeparam name="T">The type that implements the <see cref="T:Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.ITransientErrorDetectionStrategy"/> interface that is responsible for detecting transient conditions.</typeparam>
+            <param name="retryStrategyName">The name under which a retry strategy definition is registered in the application configuration.</param>
+            <returns>The retry policy that is initialized with the retry strategy matching the provided name.</returns>
+        </member>
+    </members>
+</doc>

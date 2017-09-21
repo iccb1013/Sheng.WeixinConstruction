@@ -1,0 +1,23 @@
+﻿<div class="leftMenuItem @if(ViewBag.LeftMenu == "Member"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("会员管理", "Member", "Member", null, new { @class = ViewBag.LeftMenu == "Member" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "GroupMessage"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("群发功能", "GroupMessage", "Member", null, new { @class = ViewBag.LeftMenu == "GroupMessage" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "PointCommodity"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("积分商城", "PointCommodity", "Member", null, new { @class = ViewBag.LeftMenu == "PointCommodity" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "PointCommodityOrder"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("商城订单", "PointCommodityOrder", "Member", null, new { @class = ViewBag.LeftMenu == "PointCommodityOrder" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "Coupon"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("卡券", "Coupon", "Member", null, new { @class = ViewBag.LeftMenu == "Coupon" ? "a_white_16" : "a_black_16" })
+</div>
+
+<div class="leftMenuItem @if(ViewBag.LeftMenu == "RecommendUrl"){@Html.Raw("leftMenuItem_active")}">
+    @Html.ActionLink("会员多级推广", "RecommendUrl", "Member", null, new { @class = ViewBag.LeftMenu == "RecommendUrl" ? "a_white_16" : "a_black_16" })
+</div>

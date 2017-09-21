@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+您 Web 项目的发布/打包进程将使用此文件。您可以通过编辑此 MSBuild 文件
+来自定义该进程的行为。若要了解与此相关的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=208121。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\WorkFloder\WeixinConstruction_Publish\Sheng.WeixinConstruction.Container</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/aliyun-net-sdk-core.dll">
+      <publishTime>01/20/2016 15:30:21</publishTime>
+    </File>
+    <File Include="bin/aliyun-net-sdk-dm.dll">
+      <publishTime>08/16/2016 19:15:29</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>10/23/2015 23:02:28</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>09/16/2016 23:18:29</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>09/16/2016 23:18:29</publishTime>
+    </File>
+    <File Include="bin/Enyim.Caching.dll">
+      <publishTime>12/11/2014 22:58:59</publishTime>
+    </File>
+    <File Include="bin/ErrorCode.xml">
+      <publishTime>09/05/2016 23:33:19</publishTime>
+    </File>
+    <File Include="bin/Gma.QrCodeNet.Encoding.Net45.dll">
+      <publishTime>02/03/2016 21:39:45</publishTime>
+    </File>
+    <File Include="bin/Linkup.Common.dll">
+      <publishTime>09/16/2016 01:53:16</publishTime>
+    </File>
+    <File Include="bin/Linkup.Data.dll">
+      <publishTime>09/16/2016 01:53:18</publishTime>
+    </File>
+    <File Include="bin/Linkup.DataRelationalMapping.dll">
+      <publishTime>09/16/2016 01:53:17</publishTime>
+    </File>
+    <File Include="bin/LitJson.dll">
+      <publishTime>05/19/2014 21:40:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll">
+      <publishTime>05/21/2013 12:43:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Data.dll">
+      <publishTime>05/21/2013 12:43:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll">
+      <publishTime>05/21/2013 12:43:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll">
+      <publishTime>05/21/2013 12:43:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll">
+      <publishTime>05/21/2013 12:43:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Logging.dll">
+      <publishTime>05/21/2013 12:43:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>10/23/2015 23:02:27</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>09/07/2014 10:39:06</publishTime>
+    </File>
+    <File Include="bin/ServiceStack.Common.dll">
+      <publishTime>12/02/2015 21:21:25</publishTime>
+    </File>
+    <File Include="bin/ServiceStack.Interfaces.dll">
+      <publishTime>12/02/2015 21:21:25</publishTime>
+    </File>
+    <File Include="bin/ServiceStack.Redis.dll">
+      <publishTime>12/02/2015 21:21:26</publishTime>
+    </File>
+    <File Include="bin/ServiceStack.Text.dll">
+      <publishTime>12/02/2015 21:21:26</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.ApiContract.dll">
+      <publishTime>08/29/2016 00:39:54</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.Container.dll">
+      <publishTime>09/16/2016 23:18:21</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.Core.dll">
+      <publishTime>09/16/2016 01:53:19</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.Infrastructure.dll">
+      <publishTime>09/16/2016 01:53:18</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.Service.dll">
+      <publishTime>09/16/2016 01:53:18</publishTime>
+    </File>
+    <File Include="bin/Sheng.WeixinConstruction.WeixinContract.dll">
+      <publishTime>09/16/2016 01:53:17</publishTime>
+    </File>
+    <File Include="bin/StackExchange.Redis.dll">
+      <publishTime>12/03/2015 21:38:22</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>10/23/2015 23:02:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>10/23/2015 23:02:27</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>10/23/2015 23:02:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>10/23/2015 23:02:25</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>10/23/2015 23:02:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>10/23/2015 23:02:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>10/23/2015 23:02:26</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>10/23/2015 23:02:28</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Optimization.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>10/23/2015 23:02:29</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.resources.dll">
+      <publishTime>10/23/2015 23:02:30</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>12/01/2015 20:51:16</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>12/01/2015 20:51:18</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>09/16/2016 23:18:23</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>12/01/2015 20:51:17</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>12/01/2015 20:51:17</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>12/01/2015 20:51:17</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>12/01/2015 20:51:17</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>12/01/2015 20:51:17</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>12/01/2015 20:51:18</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>12/01/2015 20:51:18</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>12/01/2015 20:51:18</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>12/01/2015 20:51:18</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>12/01/2015 20:51:18</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>12/01/2015 20:51:17</publishTime>
+    </File>
+    <File Include="Views/ControlledCache/Monitor.cshtml">
+      <publishTime>01/11/2016 22:52:47</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>12/01/2015 20:51:18</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>12/01/2015 20:51:18</publishTime>
+    </File>
+    <File Include="Views/ThirdPartyAuth/Monitor.cshtml">
+      <publishTime>01/18/2016 20:49:28</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>12/01/2015 20:51:18</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>12/01/2015 20:51:18</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/16/2016 23:18:22</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
