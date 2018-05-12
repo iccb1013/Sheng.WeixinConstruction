@@ -15,12 +15,14 @@ namespace Sheng.WeixinConstruction.Container
 {
     public class BasalController : Controller
     {
+        private static readonly string allowedIPList = System.Configuration.ConfigurationManager.AppSettings["AllowedIPList"];
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
 
             string host = filterContext.HttpContext.Request.Url.Host;
-            if (host != "localhost" && host != "10.168.54.51")
+            if (host != "localhost" && allowedIPList.Contains(host) == false)
             {
                 object[] objAllowedAnonymousArray =
                 filterContext.ActionDescriptor.GetCustomAttributes(typeof(PublishAction), false);
