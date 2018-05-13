@@ -1,10 +1,24 @@
-﻿using System;
+﻿/*
+********************************************************************
+*
+*    曹旭升（sheng.c）
+*    E-mail: cao.silhouette@msn.com
+*    QQ: 279060597
+*    https://github.com/iccb1013
+*    http://shengxunwei.com
+*
+*    © Copyright 2016
+*
+********************************************************************/
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Collections;
-//using System.Web;
+using System.Web;
 using System.Security.Cryptography;
 
 //-40001 ： 签名验证错误

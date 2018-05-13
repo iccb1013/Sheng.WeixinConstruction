@@ -1,4 +1,18 @@
-﻿using Aliyun.Acs.Core;
+﻿/*
+********************************************************************
+*
+*    曹旭升（sheng.c）
+*    E-mail: cao.silhouette@msn.com
+*    QQ: 279060597
+*    https://github.com/iccb1013
+*    http://shengxunwei.com
+*
+*    © Copyright 2016
+*
+********************************************************************/
+
+
+using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Exceptions;
 using Aliyun.Acs.Core.Profile;
 using Aliyun.Acs.Dm.Model.V20151123;
