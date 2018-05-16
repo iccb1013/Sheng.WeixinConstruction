@@ -22,26 +22,27 @@ MIT 协议开源，可以随意使用，但是需在源代码和产品关于画�
 http://wx.shengxunwei.com/
 
 详细的博客说明：  
-升讯威微信营销系统开发实践：（1）功能概要与架构设计
+升讯威微信营销系统开发实践：（1）功能概要与架构设计  
 http://blog.shengxunwei.com/Home/Post/0fb606f8-5def-4c10-9896-c53f1c7cb8ea
 
-升讯威微信营销系统开发实践：（2）中控服务器的详细设计
+升讯威微信营销系统开发实践：（2）中控服务器的详细设计  
 http://blog.shengxunwei.com/Home/Post/1acfa439-8fef-4609-8e74-7057c9f15a3b
 
-升讯威微信营销系统开发实践：（3）功能介绍与此项目推广过程的一些体会
+升讯威微信营销系统开发实践：（3）功能介绍与此项目推广过程的一些体会  
 http://blog.shengxunwei.com/Home/Post/14f5737e-bd4a-4185-8ab1-65c269c62baa
 
-升讯威微信营销系统开发实践：（4）源代码结构说明 与 安装部署说明
+升讯威微信营销系统开发实践：（4）源代码结构说明 与 安装部署说明  
 http://blog.shengxunwei.com/Home/Post/f4c1a78b-7f4f-4efd-bb05-57ff95a5834b
 
-微信协议包装的项目还有一个单独的工程：
-https://github.com/iccb1013/Sheng.WeixinConstruction.WeixinContract
+微信协议包装的项目还有一个单独的工程：   
+https://github.com/iccb1013/Sheng.WeixinConstruction.WeixinContract  
+
 这个工程的版本稍新，我会进行一定的更新维护，如最近增加了几个小程序开发需要使用到的接口。但是注意因为代码结构经过优化调整，直接引用到升讯威微信平台中，需要修改一些类的引用和名称。
 
-曹旭升
-QQ:279060597
-Email：cao.silhouette@msn.com
-@南京
+曹旭升  
+QQ:279060597  
+Email：cao.silhouette@msn.com  
+@南京 
 
 
 
